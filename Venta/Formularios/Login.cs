@@ -16,5 +16,12 @@ namespace Venta.Formularios
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Formularios.Main inicio = new Formularios.Main();
+            inicio.Show();
+            this.Close();
+        }
     }
 }

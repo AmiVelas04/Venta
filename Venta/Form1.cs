@@ -16,5 +16,18 @@ namespace Venta
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TmrInicio_Tick(object sender, EventArgs e)
+        {
+            Formularios.Login logueo = new Formularios.Login();
+            TmrInicio.Enabled = false;
+            logueo .Show();
+            this .Hide();
+        }
     }
 }

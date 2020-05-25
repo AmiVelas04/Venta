@@ -16,5 +16,10 @@ namespace Venta.Formularios
         {
             InitializeComponent();
         }
+
+        private void Ventas_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
