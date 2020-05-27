@@ -21,5 +21,32 @@ namespace Venta.Formularios
         {
             Application.Exit();
         }
+        private void abrir_form(Object formhijo ) { 
+        if( this.PanCent.Controls.Count >= 1){
+               this.PanCent.Controls.RemoveAt(0);
+        }
+            Form fh = formhijo as Form;
+            fh.TopLevel = false;
+            fh.Dock = DockStyle.Fill;
+        this.PanCent.Controls.Add(fh);
+            this.PanCent.Tag = fh;
+            fh.Show();
+
+    }
+
+        private void BtnVenta_Click(object sender, EventArgs e)
+        {
+            abrir_form(new Formularios.Ventas());
+        }
+
+        private void BtnProd_Click(object sender, EventArgs e)
+        {
+            abrir_form(new Formularios.Productos());
+        }
+
+        private void BtnCliente_Click(object sender, EventArgs e)
+        {
+            abrir_form(new Formularios.Clientes());
+        }
     }
 }
