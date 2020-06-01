@@ -109,6 +109,7 @@
             this.BtnImagen.TabIndex = 20;
             this.BtnImagen.Text = "Subir";
             this.BtnImagen.UseVisualStyleBackColor = true;
+            this.BtnImagen.Click += new System.EventHandler(this.BtnImagen_Click);
             // 
             // TxtPrecio_V
             // 
@@ -117,6 +118,7 @@
             this.TxtPrecio_V.Name = "TxtPrecio_V";
             this.TxtPrecio_V.Size = new System.Drawing.Size(149, 23);
             this.TxtPrecio_V.TabIndex = 19;
+            this.TxtPrecio_V.Text = "0";
             // 
             // TxtPrecio_M
             // 
@@ -125,6 +127,7 @@
             this.TxtPrecio_M.Name = "TxtPrecio_M";
             this.TxtPrecio_M.Size = new System.Drawing.Size(148, 23);
             this.TxtPrecio_M.TabIndex = 18;
+            this.TxtPrecio_M.Text = "0";
             // 
             // TxtPrecio_C
             // 
@@ -133,6 +136,7 @@
             this.TxtPrecio_C.Name = "TxtPrecio_C";
             this.TxtPrecio_C.Size = new System.Drawing.Size(158, 23);
             this.TxtPrecio_C.TabIndex = 17;
+            this.TxtPrecio_C.Text = "0";
             // 
             // NudCantidad
             // 
