@@ -22,7 +22,7 @@ namespace Venta.Clases
             try
             {
 
-                MySqlDataAdapter adap = new MySqlDataAdapter(consulta, conect.conn);
+                MySqlDataAdapter adap = new MySqlDataAdapter(consulta, conn.conn);
                 adap.Fill(datos);
             }
             catch (Exception ex)
@@ -61,13 +61,104 @@ namespace Venta.Clases
         }
         #endregion
 
+
+        private int cod_prod()
+        {
+            string consulta = "Select max(id_prod) from producto";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            int cod;
+            cod = Int32.Parse(datos.Rows[0][0].ToString());
+            cod++;
+            return cod;
+        }
         public bool ingreso_prod(string[] datos)
         {
+            int codpod = cod_prod();
             string consulta = "Insert into producto(id_prod,nombre,id_estilo,id_tipo,id_color,talla,cantidad,precio_cost,precio_m,precio_v,imagen) " +
-                               "values ("+1+"','"+datos[0] + "','"+datos[0] + "','"+datos[0] + "','"+datos[0] + "','"+datos[0] + "','"+datos[0] + "','" + ")";
-
-                {
+                               "values ("+codpod+",'"+datos[0] + "','"+datos[1] + "','"+datos[2] + "','"+datos[3] + "','"+datos[4] + "','"+datos[5] + "',"+datos[6] + "," + datos[7] +  "," + datos[8] + ",'" + datos[9] + "')";
+            if (consulta_gen(consulta))
+            {
+                return true;
+            }
+            else
+            {return false; }
                 
         }
+
+        public  AutoCompleteStringCollection Productos()
+        {
+            DataTable dt = new DataTable();
+            dt = nomprod();
+
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            //recorrer y cargar los items para el autocompletado
+            foreach (DataRow row in dt.Rows)
+            {
+                coleccion.Add(Convert.ToString(row["Nombre"]));
+            }
+
+            return coleccion;
+        }
+
+        public AutoCompleteStringCollection estilo()
+        {
+            DataTable dt = new DataTable();
+            dt = nomprod();
+
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            //recorrer y cargar los items para el autocompletado
+            foreach (DataRow row in dt.Rows)
+            {
+                coleccion.Add(Convert.ToString(row["Nombre"]));
+            }
+
+            return coleccion;
+        }
+
+        public AutoCompleteStringCollection tipo()
+
+        { }
+
+
+
+        public  DataTable nomprod()
+        {
+            string consulta = "Select Nombre from producto";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
+       }
+
+        public DataTable estilo(string prod )
+        {
+            string consulta = "Select e.id_estilo,e.estilo from estilo e inner join producto p on e.id_estilo=p.id_estilo " +
+                "where p.nombre='" + prod + "'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
+                    
+        }
+
+        public DataTable tipo(string prod)
+        {
+            string consulta = "Select t.id_tipo,t.tipo from Tipo t inner join producto p on t.id_tipo=p.id_tipo " +
+               "where p.nombre='" + prod + "'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
+        }
+
+        public DataTable color(string prod)
+        {
+
+            string consulta = "Select c.id_color,c.color from color c inner join producto p on e.id_estilo=p.id_estilo " +
+                   "where p.nombre='" + prod + "'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
+        }
+
+
     }
 }
