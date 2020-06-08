@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PanLat = new System.Windows.Forms.Panel();
+            this.BtnCliente = new System.Windows.Forms.Button();
+            this.BtnProd = new System.Windows.Forms.Button();
             this.BtnVenta = new System.Windows.Forms.Button();
             this.PanSup = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.PanCent = new System.Windows.Forms.Panel();
-            this.BtnProd = new System.Windows.Forms.Button();
-            this.BtnCliente = new System.Windows.Forms.Button();
             this.PanLat.SuspendLayout();
             this.PanSup.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +51,26 @@
             this.PanLat.Name = "PanLat";
             this.PanLat.Size = new System.Drawing.Size(134, 680);
             this.PanLat.TabIndex = 0;
+            // 
+            // BtnCliente
+            // 
+            this.BtnCliente.Location = new System.Drawing.Point(29, 185);
+            this.BtnCliente.Name = "BtnCliente";
+            this.BtnCliente.Size = new System.Drawing.Size(75, 23);
+            this.BtnCliente.TabIndex = 2;
+            this.BtnCliente.Text = "Cliente";
+            this.BtnCliente.UseVisualStyleBackColor = true;
+            this.BtnCliente.Click += new System.EventHandler(this.BtnCliente_Click);
+            // 
+            // BtnProd
+            // 
+            this.BtnProd.Location = new System.Drawing.Point(29, 137);
+            this.BtnProd.Name = "BtnProd";
+            this.BtnProd.Size = new System.Drawing.Size(75, 23);
+            this.BtnProd.TabIndex = 1;
+            this.BtnProd.Text = "Productos";
+            this.BtnProd.UseVisualStyleBackColor = true;
+            this.BtnProd.Click += new System.EventHandler(this.BtnProd_Click);
             // 
             // BtnVenta
             // 
@@ -92,26 +112,6 @@
             this.PanCent.Size = new System.Drawing.Size(1146, 629);
             this.PanCent.TabIndex = 2;
             // 
-            // BtnProd
-            // 
-            this.BtnProd.Location = new System.Drawing.Point(29, 137);
-            this.BtnProd.Name = "BtnProd";
-            this.BtnProd.Size = new System.Drawing.Size(75, 23);
-            this.BtnProd.TabIndex = 1;
-            this.BtnProd.Text = "Productos";
-            this.BtnProd.UseVisualStyleBackColor = true;
-            this.BtnProd.Click += new System.EventHandler(this.BtnProd_Click);
-            // 
-            // BtnCliente
-            // 
-            this.BtnCliente.Location = new System.Drawing.Point(29, 185);
-            this.BtnCliente.Name = "BtnCliente";
-            this.BtnCliente.Size = new System.Drawing.Size(75, 23);
-            this.BtnCliente.TabIndex = 2;
-            this.BtnCliente.Text = "Cliente";
-            this.BtnCliente.UseVisualStyleBackColor = true;
-            this.BtnCliente.Click += new System.EventHandler(this.BtnCliente_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -124,6 +124,7 @@
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.PanLat.ResumeLayout(false);
             this.PanSup.ResumeLayout(false);
             this.ResumeLayout(false);

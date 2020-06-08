@@ -62,14 +62,22 @@ namespace Venta.Formularios
 
 
             string[] datos = {Nomprod,idestilo,idtipo,idcolor,talla,cantidad.ToString (),precio_c.ToString () ,precio_m.ToString () ,precio_v.ToString () ,imagen,estilo,tipo,color};
-
-            if (prod.ingreso_prod(datos))
+            if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
             {
-                MessageBox.Show("Producto ingresado correctamente");
+                if (prod.upd_prod(datos))
+                { MessageBox.Show("Producto Actualizado correctamente"); }
+                else { MessageBox.Show("Error al actualizar"); }
             }
             else
             {
-                MessageBox.Show("Error al ingresar producto");
+                if (prod.ingreso_prod(datos))
+                {
+                    MessageBox.Show("Producto ingresado correctamente");
+                }
+                else
+                {
+                    MessageBox.Show("Error al ingresar producto");
+                }
             }
         }
 
@@ -132,6 +140,13 @@ namespace Venta.Formularios
         private void BtnImagen_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            
+            DgvProd.DataSource = prod.buscarprod(TxtBuscNom.Text);
+            DgvProd.Refresh();
         }
     }
 }

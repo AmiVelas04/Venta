@@ -61,7 +61,7 @@ namespace Venta.Clases
         }
         #endregion
 
-        private bool prodexist(string nom,string est,string tip,string col,string tall)
+        public bool prodexist(string nom,string est,string tip,string col,string tall)
         {
             string consulta = "Select * from producto "+
                               "where nombre='" + nom + "' and id_estilo=" + est + " and id_tipo=" + tip + " and id_color="+col +" and Talla='" + tall + "'" ;
@@ -93,6 +93,17 @@ namespace Venta.Clases
                 cod = -1;
             }
             return cod;
+
+        }
+
+        private int cant_prod(int cod)
+        {
+            int codigo;
+            string consulta = "select cantidad from producto where id_prod=" + cod;
+            DataTable datos = new DataTable();
+            datos = buscar(consulta );
+            codigo = Int32.Parse(datos.Rows[0][0].ToString ());
+            return codigo;
 
         }
         private int cod_prod()
@@ -202,33 +213,20 @@ namespace Venta.Clases
             string tipo= datos[2];
             string color= datos[3];
             string val;
-            if (prodexist(datos[0], est, tipo, color, datos[4]))
-            {
-
-                //si existe enviar a actualizar
-                codpod =busc_codprod (datos[1]);
-            }
-            else
-            {
-                codpod = cod_prod();
-            }
+            codpod = cod_prod();
             val = datos[10];
             //esta ingresado el estilo
             if (datos[1] == "0")
             {
-               
                 if (datos[10] != "")
                 {
-                    
                     est = ingreEstil(datos[10]).ToString ();
                 }
-              
             }
             //esta ingresado el tipo
             val = datos[11];
             if (datos[2] == "0")
             {
-              
                 if (datos[11] != "")
                 {
                     tipo  = ingreTipo (datos[11]).ToString();
@@ -238,7 +236,6 @@ namespace Venta.Clases
             val = datos[12];
             if (datos[3] == "0")
             {
-              
                 if (datos[12] != "")
                 {
                     color = ingreColor(datos[12]).ToString();
@@ -247,14 +244,51 @@ namespace Venta.Clases
 
 
             string consulta = "Insert into producto(id_prod,nombre,id_estilo,id_tipo,id_color,talla,cantidad,precio_cost,precio_m,precio_v,imagen) " +
-                               "values ("+codpod+",'"+datos[0] + "','"+est + "','"+ tipo + "','"+color + "','"+datos[4] + "','"+datos[5] + "',"+datos[6] + "," + datos[7] +  "," + datos[8] + ",'" + datos[9] + "')";
+                               "values ("+codpod+",'"+datos[0] + "','"+est + "','"+ tipo + "','"+color + "','"+datos[4] + "',"+datos[5] + ","+datos[6] + "," + datos[7] +  "," + datos[8] + ",'" + datos[9] + "')";
             if (consulta_gen(consulta))
             {
                 return true;
             }
             else
             {return false; }
-                
+        }
+
+        public bool upd_prod(string[] datos)
+        {
+            int codprod,cantant,cantnova;
+            string consulta;
+            codprod = busc_codprod(datos[0]);
+            cantant = cant_prod(codprod);
+            cantnova = Int32.Parse(datos[5]);
+            cantnova += cantant;
+            consulta = "Update producto set cantidad=" + cantnova + " where id_Prod=" + codprod;
+            return consulta_gen(consulta);
+        }
+
+        public DataTable buscarprod(string nom)
+        {
+            string consulta = "SELECT p.id_prod AS Codigo,p.nombre AS Nombre,e.estilo AS Estilo,p.talla AS Talla,t.tipo AS Tipo,c.color AS Color,p.cantidad as Cantidad,p.precio_cost AS Costo,p.precio_m AS P_Mayorista,p.precio_v AS P_Venta " +
+                             "FROM producto p " +
+                             "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
+                             "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
+                             "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
+                             "WHERE p.nombre LIKE '%" + nom + "%'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
+        }
+
+        public DataTable prodvent()
+        {
+            string consulta = "SELECT p.id_prod AS Codigo,Concat(p.nombre ,' - ',e.estilo,' - ' ,t.tipo ,' - ' ,c.color,' - ', p.talla) as produ,p.cantidad as Cantidad,p.precio_cost AS Costo,p.precio_m AS P_Mayorista,p.precio_v AS P_Venta " +
+                                "FROM producto p " +
+                                "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
+                                "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
+                                "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
+                                "order by p.nombre";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
         }
 
         public  AutoCompleteStringCollection Productos()
@@ -271,6 +305,66 @@ namespace Venta.Clases
 
             return coleccion;
         }
+
+        public DataTable  prodId(string id)
+        {
+            DataTable datos = new DataTable();
+            string consulta;
+            consulta = "SELECT p.PRECIO_COST as costo,p.PRECIO_M as mayor,p.PRECIO_V venta,p.TALLA as Talla,t.id_tipo as idt ,t.tipo as tipo,c.id_color as idc, c.color as color,e.id_estilo as ide,e.estilo as estilo, p.nombre " +
+                       "FROM producto p " +
+                       "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
+                       "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
+                       "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
+                       "WHERE p.ID_PROD =" + id +
+                       " ORDER BY p.NOMBRE";
+            return datos = buscar(consulta);
+           
+        }
+
+        //buscar tipo
+
+        public DataTable tipop(string id)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "SELECT t.id_tipo as id,t.tipo as tipo FROM tipo t " +
+                       "INNER JOIN producto p ON p.ID_TIPO = t.ID_TIPO " +
+                       "WHERE p.ID_PROD = " + id;
+         return datos = buscar(consulta);
+        }
+        // buscar color
+        public DataTable colorp(string id)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "SELECT c.id_color as id,c.color as color FROM color c " +
+                       "INNER JOIN producto p ON p.ID_color = c.ID_color " +
+                       "WHERE p.ID_PROD = " + id;
+            return datos = buscar(consulta);
+        }
+
+        //buscar talla
+        public DataTable tallap(string id)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "SELECT talla from producto " +
+                       "WHERE ID_PROD = " + id;
+            return datos = buscar(consulta);
+        }
+
+        //buscar estilo
+        public DataTable estilop(string id)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "SELECT e.id_estilo as id, e.estilo as estilo FROM estilo e " +
+                       "INNER JOIN producto p ON p.ID_TIPO = e.id_estilo " +
+                       "WHERE p.ID_PROD = " + id;
+            return datos = buscar(consulta);
+        }
+
+
 
         private string codestilo(string nom)
         {

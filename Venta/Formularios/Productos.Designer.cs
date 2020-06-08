@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnAdd = new System.Windows.Forms.Button();
+            this.PbxProd = new System.Windows.Forms.PictureBox();
             this.BtnImagen = new System.Windows.Forms.Button();
             this.TxtPrecio_V = new System.Windows.Forms.TextBox();
             this.TxtPrecio_M = new System.Windows.Forms.TextBox();
@@ -51,20 +53,18 @@
             this.LblNomProd = new System.Windows.Forms.Label();
             this.TxtProdNom = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.PbxProd = new System.Windows.Forms.PictureBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.TxtBuscNom = new System.Windows.Forms.TextBox();
-            this.BtnBuscar = new System.Windows.Forms.Button();
             this.BtnEditar = new System.Windows.Forms.Button();
-            this.BtnAdd = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.BtnBuscar = new System.Windows.Forms.Button();
+            this.TxtBuscNom = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.DgvProd = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxProd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PbxProd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvProd)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -99,6 +99,23 @@
             this.panel1.Size = new System.Drawing.Size(300, 590);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // BtnAdd
+            // 
+            this.BtnAdd.Location = new System.Drawing.Point(268, 29);
+            this.BtnAdd.Name = "BtnAdd";
+            this.BtnAdd.Size = new System.Drawing.Size(29, 23);
+            this.BtnAdd.TabIndex = 22;
+            this.BtnAdd.Text = "+";
+            this.BtnAdd.UseVisualStyleBackColor = true;
+            // 
+            // PbxProd
+            // 
+            this.PbxProd.Location = new System.Drawing.Point(211, 472);
+            this.PbxProd.Name = "PbxProd";
+            this.PbxProd.Size = new System.Drawing.Size(76, 67);
+            this.PbxProd.TabIndex = 21;
+            this.PbxProd.TabStop = false;
             // 
             // BtnImagen
             // 
@@ -313,6 +330,15 @@
             this.panel2.Size = new System.Drawing.Size(830, 72);
             this.panel2.TabIndex = 1;
             // 
+            // BtnEditar
+            // 
+            this.BtnEditar.Location = new System.Drawing.Point(12, 18);
+            this.BtnEditar.Name = "BtnEditar";
+            this.BtnEditar.Size = new System.Drawing.Size(102, 42);
+            this.BtnEditar.TabIndex = 0;
+            this.BtnEditar.Text = "Editar";
+            this.BtnEditar.UseVisualStyleBackColor = true;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.BtnBuscar);
@@ -325,26 +351,22 @@
             this.panel3.Size = new System.Drawing.Size(830, 91);
             this.panel3.TabIndex = 2;
             // 
-            // dataGridView1
+            // BtnBuscar
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 91);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(830, 427);
-            this.dataGridView1.TabIndex = 3;
+            this.BtnBuscar.Location = new System.Drawing.Point(528, 34);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.BtnBuscar.TabIndex = 2;
+            this.BtnBuscar.Text = "Buscar";
+            this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
-            // PbxProd
+            // TxtBuscNom
             // 
-            this.PbxProd.Location = new System.Drawing.Point(211, 472);
-            this.PbxProd.Name = "PbxProd";
-            this.PbxProd.Size = new System.Drawing.Size(76, 67);
-            this.PbxProd.TabIndex = 21;
-            this.PbxProd.TabStop = false;
+            this.TxtBuscNom.Location = new System.Drawing.Point(47, 34);
+            this.TxtBuscNom.Name = "TxtBuscNom";
+            this.TxtBuscNom.Size = new System.Drawing.Size(442, 23);
+            this.TxtBuscNom.TabIndex = 1;
             // 
             // label10
             // 
@@ -355,46 +377,25 @@
             this.label10.TabIndex = 0;
             this.label10.Text = "Buscar Producto";
             // 
-            // TxtBuscNom
+            // DgvProd
             // 
-            this.TxtBuscNom.Location = new System.Drawing.Point(47, 34);
-            this.TxtBuscNom.Name = "TxtBuscNom";
-            this.TxtBuscNom.Size = new System.Drawing.Size(442, 23);
-            this.TxtBuscNom.TabIndex = 1;
-            // 
-            // BtnBuscar
-            // 
-            this.BtnBuscar.Location = new System.Drawing.Point(528, 34);
-            this.BtnBuscar.Name = "BtnBuscar";
-            this.BtnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.BtnBuscar.TabIndex = 2;
-            this.BtnBuscar.Text = "Buscar";
-            this.BtnBuscar.UseVisualStyleBackColor = true;
-            // 
-            // BtnEditar
-            // 
-            this.BtnEditar.Location = new System.Drawing.Point(12, 18);
-            this.BtnEditar.Name = "BtnEditar";
-            this.BtnEditar.Size = new System.Drawing.Size(102, 42);
-            this.BtnEditar.TabIndex = 0;
-            this.BtnEditar.Text = "Editar";
-            this.BtnEditar.UseVisualStyleBackColor = true;
-            // 
-            // BtnAdd
-            // 
-            this.BtnAdd.Location = new System.Drawing.Point(268, 29);
-            this.BtnAdd.Name = "BtnAdd";
-            this.BtnAdd.Size = new System.Drawing.Size(29, 23);
-            this.BtnAdd.TabIndex = 22;
-            this.BtnAdd.Text = "+";
-            this.BtnAdd.UseVisualStyleBackColor = true;
+            this.DgvProd.AllowUserToAddRows = false;
+            this.DgvProd.AllowUserToDeleteRows = false;
+            this.DgvProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvProd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DgvProd.Location = new System.Drawing.Point(0, 91);
+            this.DgvProd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.DgvProd.Name = "DgvProd";
+            this.DgvProd.ReadOnly = true;
+            this.DgvProd.Size = new System.Drawing.Size(830, 427);
+            this.DgvProd.TabIndex = 3;
             // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1130, 590);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DgvProd);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -406,12 +407,12 @@
             this.Load += new System.EventHandler(this.Productos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxProd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PbxProd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvProd)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -421,7 +422,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DgvProd;
         private System.Windows.Forms.TextBox TxtProdNom;
         private System.Windows.Forms.Label LblNomProd;
         private System.Windows.Forms.Label label8;

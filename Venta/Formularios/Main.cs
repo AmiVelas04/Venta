@@ -31,7 +31,6 @@ namespace Venta.Formularios
         this.PanCent.Controls.Add(fh);
             this.PanCent.Tag = fh;
             fh.Show();
-
     }
 
         private void BtnVenta_Click(object sender, EventArgs e)
@@ -47,6 +46,11 @@ namespace Venta.Formularios
         private void BtnCliente_Click(object sender, EventArgs e)
         {
             abrir_form(new Formularios.Clientes());
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
