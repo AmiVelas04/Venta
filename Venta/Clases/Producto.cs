@@ -35,7 +35,6 @@ namespace Venta.Clases
 
         }
 
-
         private bool consulta_gen(string consulta)
         {
             conn.iniciar();
@@ -310,7 +309,7 @@ namespace Venta.Clases
         {
             DataTable datos = new DataTable();
             string consulta;
-            consulta = "SELECT p.PRECIO_COST as costo,p.PRECIO_M as mayor,p.PRECIO_V venta,p.TALLA as Talla,t.id_tipo as idt ,t.tipo as tipo,c.id_color as idc, c.color as color,e.id_estilo as ide,e.estilo as estilo, p.nombre " +
+            consulta = "SELECT p.id_prod, p.PRECIO_COST as costo,p.PRECIO_M as mayor,p.PRECIO_V venta,p.TALLA as Talla,t.id_tipo as idt ,t.tipo as tipo,c.id_color as idc, c.color as color,e.id_estilo as ide,e.estilo as estilo, p.nombre " +
                        "FROM producto p " +
                        "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                        "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
@@ -321,8 +320,20 @@ namespace Venta.Clases
            
         }
 
-        //buscar tipo
+        public bool exitencias(string id,int cant)
+        {
+            string consulta;
+            int existe=0;
+            bool resp = false;
+            DataTable datos = new DataTable();
+            consulta = "Select cantidad from producto where id_prod="+id;
+            datos=buscar(consulta);
+            if (datos.Rows[0][0] != DBNull.Value) existe = Int32.Parse(datos.Rows[0][0].ToString()); 
+            if (existe >= cant) resp = true;
+            return resp;
+        }
 
+        //buscar tipo
         public DataTable tipop(string id)
         {
             string consulta;
@@ -359,12 +370,10 @@ namespace Venta.Clases
             string consulta;
             DataTable datos = new DataTable();
             consulta = "SELECT e.id_estilo as id, e.estilo as estilo FROM estilo e " +
-                       "INNER JOIN producto p ON p.ID_TIPO = e.id_estilo " +
+                       "INNER JOIN producto p ON p.id_estilo = e.id_estilo " +
                        "WHERE p.ID_PROD = " + id;
             return datos = buscar(consulta);
         }
-
-
 
         private string codestilo(string nom)
         {

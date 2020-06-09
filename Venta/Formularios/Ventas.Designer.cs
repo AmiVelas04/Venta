@@ -31,6 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ventas));
             this.PanData = new System.Windows.Forms.Panel();
             this.Gbx2 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.CboTalla = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.CboColor = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.CboEstilo = new System.Windows.Forms.ComboBox();
+            this.CboTipo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,22 +59,14 @@
             this.PanCentral = new System.Windows.Forms.Panel();
             this.DgvProd = new System.Windows.Forms.DataGridView();
             this.PanAbajo = new System.Windows.Forms.Panel();
+            this.LblTotal = new System.Windows.Forms.Label();
             this.TxtTotal = new System.Windows.Forms.TextBox();
-            this.RdbConce = new System.Windows.Forms.RadioButton();
-            this.RdbCredito = new System.Windows.Forms.RadioButton();
-            this.RdbContado = new System.Windows.Forms.RadioButton();
             this.Cancelar = new System.Windows.Forms.Button();
             this.BtnGenVen = new System.Windows.Forms.Button();
             this.PanArriba = new System.Windows.Forms.Panel();
-            this.CboTipo = new System.Windows.Forms.ComboBox();
-            this.CboEstilo = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.CboColor = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.CboTalla = new System.Windows.Forms.ComboBox();
-            this.LblTotal = new System.Windows.Forms.Label();
+            this.RdbContado = new System.Windows.Forms.RadioButton();
+            this.RdbCredito = new System.Windows.Forms.RadioButton();
+            this.RdbConce = new System.Windows.Forms.RadioButton();
             this.PanData.SuspendLayout();
             this.Gbx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicExemp)).BeginInit();
@@ -75,6 +75,7 @@
             this.PanCentral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProd)).BeginInit();
             this.PanAbajo.SuspendLayout();
+            this.PanArriba.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanData
@@ -116,10 +117,78 @@
             this.Gbx2.TabStop = false;
             this.Gbx2.Text = "Producto";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(188, 132);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(42, 15);
+            this.label11.TabIndex = 16;
+            this.label11.Text = "Talla";
+            // 
+            // CboTalla
+            // 
+            this.CboTalla.FormattingEnabled = true;
+            this.CboTalla.Location = new System.Drawing.Point(186, 150);
+            this.CboTalla.Name = "CboTalla";
+            this.CboTalla.Size = new System.Drawing.Size(121, 23);
+            this.CboTalla.TabIndex = 15;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(20, 132);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 15);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "Color";
+            // 
+            // CboColor
+            // 
+            this.CboColor.FormattingEnabled = true;
+            this.CboColor.Location = new System.Drawing.Point(16, 150);
+            this.CboColor.Name = "CboColor";
+            this.CboColor.Size = new System.Drawing.Size(123, 23);
+            this.CboColor.TabIndex = 13;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(189, 77);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(45, 15);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Estilo";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(20, 77);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(36, 15);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Tipo";
+            // 
+            // CboEstilo
+            // 
+            this.CboEstilo.FormattingEnabled = true;
+            this.CboEstilo.Location = new System.Drawing.Point(186, 95);
+            this.CboEstilo.Name = "CboEstilo";
+            this.CboEstilo.Size = new System.Drawing.Size(121, 23);
+            this.CboEstilo.TabIndex = 10;
+            // 
+            // CboTipo
+            // 
+            this.CboTipo.FormattingEnabled = true;
+            this.CboTipo.Location = new System.Drawing.Point(18, 95);
+            this.CboTipo.Name = "CboTipo";
+            this.CboTipo.Size = new System.Drawing.Size(121, 23);
+            this.CboTipo.TabIndex = 9;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(220, 188);
+            this.label3.Location = new System.Drawing.Point(188, 187);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 15);
@@ -150,10 +219,10 @@
             // 
             this.PicExemp.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PicExemp.ErrorImage = ((System.Drawing.Image)(resources.GetObject("PicExemp.ErrorImage")));
-            this.PicExemp.Location = new System.Drawing.Point(4, 241);
+            this.PicExemp.Location = new System.Drawing.Point(4, 234);
             this.PicExemp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PicExemp.Name = "PicExemp";
-            this.PicExemp.Size = new System.Drawing.Size(324, 116);
+            this.PicExemp.Size = new System.Drawing.Size(324, 123);
             this.PicExemp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicExemp.TabIndex = 5;
             this.PicExemp.TabStop = false;
@@ -173,7 +242,7 @@
             // 
             // NudCant
             // 
-            this.NudCant.Location = new System.Drawing.Point(211, 205);
+            this.NudCant.Location = new System.Drawing.Point(186, 205);
             this.NudCant.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.NudCant.Maximum = new decimal(new int[] {
             5000,
@@ -200,7 +269,7 @@
             this.TxtPrecio.Location = new System.Drawing.Point(21, 205);
             this.TxtPrecio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio.Name = "TxtPrecio";
-            this.TxtPrecio.Size = new System.Drawing.Size(132, 23);
+            this.TxtPrecio.Size = new System.Drawing.Size(118, 23);
             this.TxtPrecio.TabIndex = 1;
             // 
             // CboProd
@@ -336,9 +405,6 @@
             // 
             this.PanAbajo.Controls.Add(this.LblTotal);
             this.PanAbajo.Controls.Add(this.TxtTotal);
-            this.PanAbajo.Controls.Add(this.RdbConce);
-            this.PanAbajo.Controls.Add(this.RdbCredito);
-            this.PanAbajo.Controls.Add(this.RdbContado);
             this.PanAbajo.Controls.Add(this.Cancelar);
             this.PanAbajo.Controls.Add(this.BtnGenVen);
             this.PanAbajo.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -347,6 +413,16 @@
             this.PanAbajo.Name = "PanAbajo";
             this.PanAbajo.Size = new System.Drawing.Size(798, 85);
             this.PanAbajo.TabIndex = 1;
+            // 
+            // LblTotal
+            // 
+            this.LblTotal.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTotal.Location = new System.Drawing.Point(653, 9);
+            this.LblTotal.Name = "LblTotal";
+            this.LblTotal.Size = new System.Drawing.Size(133, 67);
+            this.LblTotal.TabIndex = 6;
+            this.LblTotal.Text = "Precio";
+            this.LblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TxtTotal
             // 
@@ -357,46 +433,10 @@
             this.TxtTotal.Size = new System.Drawing.Size(204, 69);
             this.TxtTotal.TabIndex = 5;
             // 
-            // RdbConce
-            // 
-            this.RdbConce.AutoSize = true;
-            this.RdbConce.Location = new System.Drawing.Point(841, 58);
-            this.RdbConce.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.RdbConce.Name = "RdbConce";
-            this.RdbConce.Size = new System.Drawing.Size(91, 19);
-            this.RdbConce.TabIndex = 4;
-            this.RdbConce.TabStop = true;
-            this.RdbConce.Text = "Concesion";
-            this.RdbConce.UseVisualStyleBackColor = true;
-            // 
-            // RdbCredito
-            // 
-            this.RdbCredito.AutoSize = true;
-            this.RdbCredito.Location = new System.Drawing.Point(841, 33);
-            this.RdbCredito.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.RdbCredito.Name = "RdbCredito";
-            this.RdbCredito.Size = new System.Drawing.Size(73, 19);
-            this.RdbCredito.TabIndex = 3;
-            this.RdbCredito.TabStop = true;
-            this.RdbCredito.Text = "Credito";
-            this.RdbCredito.UseVisualStyleBackColor = true;
-            // 
-            // RdbContado
-            // 
-            this.RdbContado.AutoSize = true;
-            this.RdbContado.Location = new System.Drawing.Point(841, 7);
-            this.RdbContado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.RdbContado.Name = "RdbContado";
-            this.RdbContado.Size = new System.Drawing.Size(78, 19);
-            this.RdbContado.TabIndex = 2;
-            this.RdbContado.TabStop = true;
-            this.RdbContado.Text = "Contado";
-            this.RdbContado.UseVisualStyleBackColor = true;
-            // 
             // Cancelar
             // 
             this.Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cancelar.Location = new System.Drawing.Point(163, 3);
+            this.Cancelar.Location = new System.Drawing.Point(148, 3);
             this.Cancelar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(121, 78);
@@ -412,7 +452,7 @@
             this.BtnGenVen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGenVen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGenVen.ForeColor = System.Drawing.Color.White;
-            this.BtnGenVen.Location = new System.Drawing.Point(11, 3);
+            this.BtnGenVen.Location = new System.Drawing.Point(8, 7);
             this.BtnGenVen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnGenVen.Name = "BtnGenVen";
             this.BtnGenVen.Size = new System.Drawing.Size(132, 78);
@@ -420,9 +460,13 @@
             this.BtnGenVen.Text = "Generar Venta";
             this.BtnGenVen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnGenVen.UseVisualStyleBackColor = false;
+            this.BtnGenVen.Click += new System.EventHandler(this.BtnGenVen_Click);
             // 
             // PanArriba
             // 
+            this.PanArriba.Controls.Add(this.RdbConce);
+            this.PanArriba.Controls.Add(this.RdbCredito);
+            this.PanArriba.Controls.Add(this.RdbContado);
             this.PanArriba.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanArriba.Location = new System.Drawing.Point(0, 0);
             this.PanArriba.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -430,83 +474,44 @@
             this.PanArriba.Size = new System.Drawing.Size(798, 77);
             this.PanArriba.TabIndex = 0;
             // 
-            // CboTipo
+            // RdbContado
             // 
-            this.CboTipo.FormattingEnabled = true;
-            this.CboTipo.Location = new System.Drawing.Point(18, 95);
-            this.CboTipo.Name = "CboTipo";
-            this.CboTipo.Size = new System.Drawing.Size(121, 23);
-            this.CboTipo.TabIndex = 9;
+            this.RdbContado.AutoSize = true;
+            this.RdbContado.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RdbContado.Location = new System.Drawing.Point(88, 27);
+            this.RdbContado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RdbContado.Name = "RdbContado";
+            this.RdbContado.Size = new System.Drawing.Size(97, 23);
+            this.RdbContado.TabIndex = 4;
+            this.RdbContado.TabStop = true;
+            this.RdbContado.Text = "Contado ";
+            this.RdbContado.UseVisualStyleBackColor = true;
             // 
-            // CboEstilo
+            // RdbCredito
             // 
-            this.CboEstilo.FormattingEnabled = true;
-            this.CboEstilo.Location = new System.Drawing.Point(186, 95);
-            this.CboEstilo.Name = "CboEstilo";
-            this.CboEstilo.Size = new System.Drawing.Size(121, 23);
-            this.CboEstilo.TabIndex = 10;
+            this.RdbCredito.AutoSize = true;
+            this.RdbCredito.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RdbCredito.Location = new System.Drawing.Point(193, 27);
+            this.RdbCredito.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RdbCredito.Name = "RdbCredito";
+            this.RdbCredito.Size = new System.Drawing.Size(87, 23);
+            this.RdbCredito.TabIndex = 5;
+            this.RdbCredito.TabStop = true;
+            this.RdbCredito.Text = "Credito";
+            this.RdbCredito.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // RdbConce
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 77);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(36, 15);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Tipo";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(189, 77);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 15);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Estilo";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 132);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(42, 15);
-            this.label10.TabIndex = 14;
-            this.label10.Text = "Color";
-            // 
-            // CboColor
-            // 
-            this.CboColor.FormattingEnabled = true;
-            this.CboColor.Location = new System.Drawing.Point(16, 150);
-            this.CboColor.Name = "CboColor";
-            this.CboColor.Size = new System.Drawing.Size(123, 23);
-            this.CboColor.TabIndex = 13;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(188, 132);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(42, 15);
-            this.label11.TabIndex = 16;
-            this.label11.Text = "Talla";
-            // 
-            // CboTalla
-            // 
-            this.CboTalla.FormattingEnabled = true;
-            this.CboTalla.Location = new System.Drawing.Point(186, 150);
-            this.CboTalla.Name = "CboTalla";
-            this.CboTalla.Size = new System.Drawing.Size(121, 23);
-            this.CboTalla.TabIndex = 15;
-            // 
-            // LblTotal
-            // 
-            this.LblTotal.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotal.Location = new System.Drawing.Point(642, 9);
-            this.LblTotal.Name = "LblTotal";
-            this.LblTotal.Size = new System.Drawing.Size(144, 67);
-            this.LblTotal.TabIndex = 6;
-            this.LblTotal.Text = "Precio";
-            this.LblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RdbConce.AutoSize = true;
+            this.RdbConce.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RdbConce.Location = new System.Drawing.Point(288, 27);
+            this.RdbConce.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RdbConce.Name = "RdbConce";
+            this.RdbConce.Size = new System.Drawing.Size(110, 23);
+            this.RdbConce.TabIndex = 6;
+            this.RdbConce.TabStop = true;
+            this.RdbConce.Text = "Concesion";
+            this.RdbConce.UseVisualStyleBackColor = true;
             // 
             // Ventas
             // 
@@ -532,6 +537,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvProd)).EndInit();
             this.PanAbajo.ResumeLayout(false);
             this.PanAbajo.PerformLayout();
+            this.PanArriba.ResumeLayout(false);
+            this.PanArriba.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -554,9 +561,6 @@
         private System.Windows.Forms.Button Cancelar;
         private System.Windows.Forms.Button BtnGenVen;
         private System.Windows.Forms.Panel PanArriba;
-        private System.Windows.Forms.RadioButton RdbConce;
-        private System.Windows.Forms.RadioButton RdbCredito;
-        private System.Windows.Forms.RadioButton RdbContado;
         private System.Windows.Forms.DataGridView DgvProd;
         private System.Windows.Forms.TextBox TxtTotal;
         private System.Windows.Forms.PictureBox PicExemp;
@@ -576,5 +580,8 @@
         private System.Windows.Forms.ComboBox CboEstilo;
         private System.Windows.Forms.ComboBox CboTipo;
         private System.Windows.Forms.Label LblTotal;
+        private System.Windows.Forms.RadioButton RdbCredito;
+        private System.Windows.Forms.RadioButton RdbContado;
+        private System.Windows.Forms.RadioButton RdbConce;
     }
 }

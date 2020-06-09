@@ -13,6 +13,7 @@ namespace Venta.Formularios
     public partial class Ventas : Form
     {
         Clases.Producto prod = new Clases.Producto();
+        Clases.Venta vent = new Clases.Venta();
         public Ventas()
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace Venta.Formularios
             CboProd.AutoCompleteSource = AutoCompleteSource.CustomSource;
             CboProd.Text = "";
             PicExemp.Image = PicExemp.ErrorImage;
+            RdbContado.Select();
             
         }
 
@@ -139,12 +141,15 @@ namespace Venta.Formularios
 
         private void BtnAgr_Click(object sender, EventArgs e)
         {
+
             string prod = CboProd.SelectedValue .ToString();
             string est = CboEstilo.SelectedValue.ToString();
             string col = CboColor.SelectedValue.ToString();
             string tipo = CboTipo.SelectedValue.ToString();
+           
             if (DgvProd.Rows.Count <= 0)
             {
+                DgvProd.Columns.Add("Cod","Codigo");
                 DgvProd.Columns.Add("Producto","Producto");
                 DgvProd.Columns.Add("Estilo", "Estilo");
                 DgvProd.Columns.Add("Tipo", "Tipo");
@@ -153,21 +158,110 @@ namespace Venta.Formularios
                 DgvProd.Columns.Add("Cantidad", "Cantidad");
                 DgvProd.Columns.Add("Precio", "Precio");
                 DgvProd.Columns.Add("Subtotal", "Subtotal");
+                DgvProd.Columns[0].Visible = false;
             }
-            addprod(prod, col,tipo,est);
+            if (revcant(prod,NudCant .Value ))
+            {
+                addprod(prod, col, tipo, est);
+            }
+            else
+            {
+                MessageBox.Show("No hay exitencias para cubrir venta");
+            }
+        }
 
+        private bool revcant(string idprod,decimal cant)
+        {
+            int total = DgvProd.Rows.Count;
+            int cont,canti=Int32.Parse (cant.ToString ());
+            
+            for (cont = 0; cont < total; cont++)
+            {
+                if (DgvProd.Rows[cont].Cells[0].Value .ToString () == idprod)
+                    canti += Int32.Parse(DgvProd.Rows[cont].Cells[6].Value.ToString ());
+            }
+            return prod.exitencias(idprod, canti);
         }
 
         private void addprod(string idp, string idcolor, string idtipo, string idestilo)
         {
+            decimal total = 0;
+            if (LblTotal.Text != "Precio") total = decimal.Parse(LblTotal.Text);
             DataTable dt = new DataTable();
-            
             dt = prod.prodId(idp);
             string color = prod.colorp(idcolor).Rows[0][1].ToString();
             string tipo = prod.tipop(idtipo).Rows[0][1].ToString();
             string estilo = prod.estilop(idestilo).Rows[0][1].ToString();
-            DgvProd.Rows.Add(dt.Rows[0][10].ToString(), estilo, tipo, color,CboTalla .Text ,NudCant.Value, TxtPrecio.Text, (decimal.Parse(NudCant.Value.ToString ()) * decimal.Parse(TxtPrecio.Text)).ToString());
+            DgvProd.Rows.Add(dt.Rows[0][0].ToString (),dt.Rows[0][11].ToString(), estilo, tipo, color,CboTalla .Text ,NudCant.Value, TxtPrecio.Text, (decimal.Parse(NudCant.Value.ToString ()) * decimal.Parse(TxtPrecio.Text)).ToString());
+            
+            total += (decimal.Parse(NudCant.Value.ToString()) * decimal.Parse(TxtPrecio.Text));
+            LblTotal.Text = total.ToString();
+        }
 
+        private void BtnGenVen_Click(object sender, EventArgs e)
+        {
+            string estado="", tipo="";
+            if (RdbContado.Checked)
+            {
+                tipo = "Contado";
+                estado = "Cancelado";
+            }
+            else if (RdbCredito.Checked)
+            {
+                tipo = "Credito";
+                estado = "Pendiente";
+            }
+            else if (RdbConce.Checked)
+            {
+                tipo = "Concesion";
+                estado = "Pendiente";
+            }
+            if (DgvProd.Rows.Count > 0)
+            { listarProd(tipo, estado); }
+            else { MessageBox.Show("No exiten productos"); }
+            
+
+        }
+
+        private void listarProd(string tipo,string estado)
+        {
+            int filas = DgvProd.Rows.Count;
+            int cont, indice;
+            indice = DgvProd.CurrentRow.Index;
+            DataTable produ = new DataTable();
+            produ.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("color").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("precio").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("total").DataType = System.Type.GetType("System.String");
+
+            for (cont=0;cont<filas;cont++)
+            {
+                DataRow fila = produ.NewRow();
+                fila["codigo"] = DgvProd.Rows[cont].Cells[0].Value;
+                fila["producto"] = DgvProd.Rows[cont].Cells[1].Value;
+                fila["estilo"] = DgvProd.Rows[cont].Cells[2].Value;
+                fila["tipo"] = DgvProd.Rows[cont].Cells[3].Value;
+                fila["color"] = DgvProd.Rows[cont].Cells[4].Value;
+                fila["talla"] = DgvProd.Rows[cont].Cells[5].Value;
+                fila["cantidad"] = DgvProd.Rows[cont].Cells[6].Value;
+                fila["precio"] = DgvProd.Rows[cont].Cells[7].Value;
+                fila["total"] = DgvProd.Rows[cont].Cells[8].Value;
+                produ.Rows.Add(fila);
+            }
+
+            if (vent.generar_V(produ, "1", estado, tipo))
+            {
+                MessageBox.Show("Venta registrada correctamente");
+            }
+            else
+            {
+                MessageBox.Show("Error en la venta");
+            }
         }
 
     }
