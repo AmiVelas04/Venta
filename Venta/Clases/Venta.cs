@@ -187,7 +187,7 @@ namespace Venta.Clases
             }
             consulta = "insert into credito(id_credtio, id_cliente, id_venta,Total, anticipo, Estado) " +
                         "values("+id+",1," +venta+ ","+ valor+",0,'Activo')";
-            return consulta_gen(consulta);
+            return consulta_gen(consulta); 
         }
 
 
