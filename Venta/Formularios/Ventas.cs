@@ -287,7 +287,7 @@ namespace Venta.Formularios
 
             if (vent.generar_V(produ, "1",cli, estado, tipo))
             {
-                MessageBox.Show("Venta registrada correctamente");
+                MessageBox.Show("Venta registrada correctamente.");
                 //vent.genfact(produ, "1", estado, tipo);
             }
             else
