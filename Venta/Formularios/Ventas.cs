@@ -14,6 +14,8 @@ namespace Venta.Formularios
     {
         Clases.Producto prod = new Clases.Producto();
         Clases.Venta vent = new Clases.Venta();
+        Clases.Clientes cli = new Clases.Clientes();
+    
         public Ventas()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace Venta.Formularios
         private void Ventas_Load(object sender, EventArgs e)
         {
             cargar();
+            cargarcli();
         }
         private void cargar()
         {
@@ -41,7 +44,23 @@ namespace Venta.Formularios
             CboProd.Text = "";
             PicExemp.Image = PicExemp.ErrorImage;
             RdbContado.Select();
-            
+        }
+        private void cargarcli()
+        {
+            DataTable datos = new DataTable();
+            datos = cli.clientes();
+            CboNomCli.DataSource = datos;
+            CboNomCli.DisplayMember = "nombre";
+            CboNomCli.ValueMember = "id_cliente";
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            foreach (DataRow row in datos.Rows)
+            {
+                coleccion.Add(row["nombre"].ToString());
+            }
+            CboNomCli.AutoCompleteCustomSource = coleccion;
+            CboNomCli.AutoCompleteMode = AutoCompleteMode.Suggest;
+            CboNomCli.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            CboNomCli.SelectedIndex = 0;
         }
 
         private void CboProd_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,7 +71,7 @@ namespace Venta.Formularios
             {  }
             
         }
-
+        //busca producto
         private void busqueda(string id)
         {
             DataTable datos = new DataTable();
@@ -72,6 +91,16 @@ namespace Venta.Formularios
 
         }
 
+        private void busquedacli(string id)
+        {
+            DataTable datos = new DataTable();
+            datos = cli.buscli(id);
+            TxtDirCli.Text = datos.Rows[0][0].ToString();
+            TxtNit.Text = datos.Rows[0][1].ToString();
+            TxtCredito.Text = datos.Rows[0][2].ToString();
+        }
+
+        //buscar cliente
         private void llenartipo(string id)
         {
             DataTable dt = new DataTable();
@@ -200,6 +229,7 @@ namespace Venta.Formularios
 
         private void BtnGenVen_Click(object sender, EventArgs e)
         {
+            string cli = CboNomCli.SelectedValue.ToString();
             string estado="", tipo="";
             if (RdbContado.Checked)
             {
@@ -217,17 +247,18 @@ namespace Venta.Formularios
                 estado = "Pendiente";
             }
             if (DgvProd.Rows.Count > 0)
-            { listarProd(tipo, estado); }
+            { listarProd(tipo, estado,cli); }
             else { MessageBox.Show("No exiten productos"); }
             
 
         }
 
-        private void listarProd(string tipo,string estado)
+        private void listarProd(string tipo,string estado,string cli)
         {
             int filas = DgvProd.Rows.Count;
             int cont, indice;
             indice = DgvProd.CurrentRow.Index;
+           
             DataTable produ = new DataTable();
             produ.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
             produ.Columns.Add("producto").DataType = System.Type.GetType("System.String");
@@ -254,9 +285,10 @@ namespace Venta.Formularios
                 produ.Rows.Add(fila);
             }
 
-            if (vent.generar_V(produ, "1", estado, tipo))
+            if (vent.generar_V(produ, "1",cli, estado, tipo))
             {
                 MessageBox.Show("Venta registrada correctamente");
+                //vent.genfact(produ, "1", estado, tipo);
             }
             else
             {
@@ -264,5 +296,13 @@ namespace Venta.Formularios
             }
         }
 
+        private void CboNomCli_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboNomCli.Text != "" && CboNomCli.SelectedValue.ToString() != "System.Data.DataRowView")
+            { busquedacli(CboNomCli.SelectedValue.ToString()); }
+            else
+            { busquedacli("1"); }
+
+        }
     }
 }

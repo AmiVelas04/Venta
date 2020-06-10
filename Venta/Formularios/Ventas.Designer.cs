@@ -64,9 +64,10 @@
             this.Cancelar = new System.Windows.Forms.Button();
             this.BtnGenVen = new System.Windows.Forms.Button();
             this.PanArriba = new System.Windows.Forms.Panel();
-            this.RdbContado = new System.Windows.Forms.RadioButton();
-            this.RdbCredito = new System.Windows.Forms.RadioButton();
             this.RdbConce = new System.Windows.Forms.RadioButton();
+            this.RdbCredito = new System.Windows.Forms.RadioButton();
+            this.RdbContado = new System.Windows.Forms.RadioButton();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.PanData.SuspendLayout();
             this.Gbx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicExemp)).BeginInit();
@@ -344,6 +345,7 @@
             // 
             // TxtCredito
             // 
+            this.TxtCredito.Enabled = false;
             this.TxtCredito.Location = new System.Drawing.Point(166, 135);
             this.TxtCredito.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtCredito.Name = "TxtCredito";
@@ -352,6 +354,7 @@
             // 
             // TxtNit
             // 
+            this.TxtNit.Enabled = false;
             this.TxtNit.Location = new System.Drawing.Point(16, 134);
             this.TxtNit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtNit.Name = "TxtNit";
@@ -360,6 +363,7 @@
             // 
             // TxtDirCli
             // 
+            this.TxtDirCli.Enabled = false;
             this.TxtDirCli.Location = new System.Drawing.Point(16, 85);
             this.TxtDirCli.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtDirCli.Name = "TxtDirCli";
@@ -374,6 +378,7 @@
             this.CboNomCli.Name = "CboNomCli";
             this.CboNomCli.Size = new System.Drawing.Size(294, 23);
             this.CboNomCli.TabIndex = 0;
+            this.CboNomCli.SelectedIndexChanged += new System.EventHandler(this.CboNomCli_SelectedIndexChanged);
             // 
             // PanCentral
             // 
@@ -403,6 +408,7 @@
             // 
             // PanAbajo
             // 
+            this.PanAbajo.Controls.Add(this.textBox1);
             this.PanAbajo.Controls.Add(this.LblTotal);
             this.PanAbajo.Controls.Add(this.TxtTotal);
             this.PanAbajo.Controls.Add(this.Cancelar);
@@ -417,7 +423,7 @@
             // LblTotal
             // 
             this.LblTotal.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotal.Location = new System.Drawing.Point(653, 9);
+            this.LblTotal.Location = new System.Drawing.Point(300, 10);
             this.LblTotal.Name = "LblTotal";
             this.LblTotal.Size = new System.Drawing.Size(133, 67);
             this.LblTotal.TabIndex = 6;
@@ -436,7 +442,7 @@
             // Cancelar
             // 
             this.Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cancelar.Location = new System.Drawing.Point(148, 3);
+            this.Cancelar.Location = new System.Drawing.Point(148, 6);
             this.Cancelar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(121, 78);
@@ -452,7 +458,7 @@
             this.BtnGenVen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGenVen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGenVen.ForeColor = System.Drawing.Color.White;
-            this.BtnGenVen.Location = new System.Drawing.Point(8, 7);
+            this.BtnGenVen.Location = new System.Drawing.Point(8, 6);
             this.BtnGenVen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnGenVen.Name = "BtnGenVen";
             this.BtnGenVen.Size = new System.Drawing.Size(132, 78);
@@ -474,18 +480,18 @@
             this.PanArriba.Size = new System.Drawing.Size(798, 77);
             this.PanArriba.TabIndex = 0;
             // 
-            // RdbContado
+            // RdbConce
             // 
-            this.RdbContado.AutoSize = true;
-            this.RdbContado.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RdbContado.Location = new System.Drawing.Point(88, 27);
-            this.RdbContado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.RdbContado.Name = "RdbContado";
-            this.RdbContado.Size = new System.Drawing.Size(97, 23);
-            this.RdbContado.TabIndex = 4;
-            this.RdbContado.TabStop = true;
-            this.RdbContado.Text = "Contado ";
-            this.RdbContado.UseVisualStyleBackColor = true;
+            this.RdbConce.AutoSize = true;
+            this.RdbConce.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RdbConce.Location = new System.Drawing.Point(288, 27);
+            this.RdbConce.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RdbConce.Name = "RdbConce";
+            this.RdbConce.Size = new System.Drawing.Size(110, 23);
+            this.RdbConce.TabIndex = 6;
+            this.RdbConce.TabStop = true;
+            this.RdbConce.Text = "Concesion";
+            this.RdbConce.UseVisualStyleBackColor = true;
             // 
             // RdbCredito
             // 
@@ -500,18 +506,26 @@
             this.RdbCredito.Text = "Credito";
             this.RdbCredito.UseVisualStyleBackColor = true;
             // 
-            // RdbConce
+            // RdbContado
             // 
-            this.RdbConce.AutoSize = true;
-            this.RdbConce.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RdbConce.Location = new System.Drawing.Point(288, 27);
-            this.RdbConce.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.RdbConce.Name = "RdbConce";
-            this.RdbConce.Size = new System.Drawing.Size(110, 23);
-            this.RdbConce.TabIndex = 6;
-            this.RdbConce.TabStop = true;
-            this.RdbConce.Text = "Concesion";
-            this.RdbConce.UseVisualStyleBackColor = true;
+            this.RdbContado.AutoSize = true;
+            this.RdbContado.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RdbContado.Location = new System.Drawing.Point(88, 27);
+            this.RdbContado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RdbContado.Name = "RdbContado";
+            this.RdbContado.Size = new System.Drawing.Size(97, 23);
+            this.RdbContado.TabIndex = 4;
+            this.RdbContado.TabStop = true;
+            this.RdbContado.Text = "Contado ";
+            this.RdbContado.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Rockwell", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(522, 22);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 39);
+            this.textBox1.TabIndex = 7;
             // 
             // Ventas
             // 
@@ -583,5 +597,6 @@
         private System.Windows.Forms.RadioButton RdbCredito;
         private System.Windows.Forms.RadioButton RdbContado;
         private System.Windows.Forms.RadioButton RdbConce;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

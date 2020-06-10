@@ -136,18 +136,26 @@ namespace Venta.Clases
             return id;
         }
 
-        public bool generar_V(DataTable  datos, string vende,string estado,string tipo)
+        public bool generar_V(DataTable  datos, string vende,string cli,string estado,string tipo)
         {
            string fecha;
             fecha = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
             
-
             int venta = cod_venta();
             string consulta = "insert into  venta(id_venta,id_vendedor,fecha, tipo,estado) " +
                               "values(" +venta + "," +vende + ",'" + fecha + "','"+ tipo +"','" +estado+ "')";
             if (consulta_gen(consulta))
             {
-                return generar_det(datos, venta.ToString());
+                if (tipo == "Credito")
+                {
+                    RegCred(datos, venta.ToString ());
+                }
+                else if (tipo == "Concesion")
+                {
+                    Regconc(datos, venta.ToString ());
+                }
+
+                return generar_det(datos, venta.ToString(),cli,tipo);
             }
             else
             {
@@ -155,7 +163,7 @@ namespace Venta.Clases
             }
         }
 
-        private bool generar_det(DataTable datos, string venta)
+        private bool generar_det(DataTable datos, string venta,string cli,string tipo)
         {
             int id, total, cont;
             string consulta;
@@ -170,7 +178,7 @@ namespace Venta.Clases
                     return false;
                 }
             }
-            
+            genfact(datos, venta, cli, tipo);
             return true;
         }
 
@@ -185,7 +193,8 @@ namespace Venta.Clases
             {
                 valor += decimal.Parse(datos.Rows[cont][8].ToString ());
             }
-            consulta = "insert into credito(id_credtio, id_cliente, id_venta,Total, anticipo, Estado) " +
+            //ingresar el codigo del cliente
+            consulta = "insert into credito(id_credito, id_cliente, id_venta,Total, anticipo, Estado) " +
                         "values("+id+",1," +venta+ ","+ valor+",0,'Activo')";
             return consulta_gen(consulta); 
         }
@@ -202,12 +211,43 @@ namespace Venta.Clases
             {
                 valor += decimal.Parse(datos.Rows[cont][8].ToString());
             }
+            //ingresar el id del cliente
             consulta = "insert into concesion(id_conc, id_venta,id_cliente, Estado) " +
-                        "values(" + id + ",1," + venta + ",1,'Activo')";
+                        "values(" + id +"," +venta+",1,'Activo')";
             return consulta_gen(consulta);
         }
 
-        private bool borrar_det(DataTable datos)
+        private void genfact(DataTable datos,string venta,string clien,string tipo)
+        {
+            DataTable data = new DataTable();
+            data = cli.buscli(clien);
+            int cant=datos.Rows.Count,cont;
+
+            Reportes.FactEnc Encab = new Reportes.FactEnc();
+            Encab .fecha = DateTime.Now.ToString("yyyyy/MM/dd hh:mm:ss");
+            Encab.No = venta;
+            Encab.tipo = tipo;
+            Encab.direccion = data.Rows[0][0].ToString();
+            Encab .nit= data.Rows[0][1].ToString();
+            Encab.nombre = data.Rows[0][3].ToString();
+
+
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.FactDet Deta = new Reportes.FactDet();
+                Deta.Numero = cont +1;
+                Deta.descripcion =datos .Rows[cont][1].ToString () +" - " + datos.Rows[cont][2].ToString() + " - "+datos.Rows[cont][3].ToString() + " - "+datos.Rows[cont][4].ToString();
+                Deta.cantidad = Int32.Parse(datos.Rows[cont][6].ToString());
+                Deta.precio = decimal.Parse(datos.Rows[cont][7].ToString());
+                Deta.total = decimal.Parse (datos.Rows[cont][8].ToString());
+                Encab.Detalle.Add(Deta);
+            }
+            Reportes.Factura Fact = new Reportes.Factura();
+            Fact.Enca.Add(Encab);
+            Fact.Deta = Encab.Detalle;
+            Fact.Show();
+        }
+       private bool borrar_det(DataTable datos)
         {
             string consulta = "";
             return consulta_gen(consulta);

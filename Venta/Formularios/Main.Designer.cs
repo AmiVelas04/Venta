@@ -42,7 +42,7 @@
             // 
             // PanLat
             // 
-            this.PanLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+            this.PanLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.PanLat.Controls.Add(this.BtnCliente);
             this.PanLat.Controls.Add(this.BtnProd);
             this.PanLat.Controls.Add(this.BtnVenta);
@@ -54,37 +54,49 @@
             // 
             // BtnCliente
             // 
-            this.BtnCliente.Location = new System.Drawing.Point(29, 185);
+            this.BtnCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnCliente.FlatAppearance.BorderSize = 0;
+            this.BtnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCliente.Location = new System.Drawing.Point(8, 177);
             this.BtnCliente.Name = "BtnCliente";
-            this.BtnCliente.Size = new System.Drawing.Size(75, 23);
+            this.BtnCliente.Size = new System.Drawing.Size(120, 40);
             this.BtnCliente.TabIndex = 2;
             this.BtnCliente.Text = "Cliente";
-            this.BtnCliente.UseVisualStyleBackColor = true;
+            this.BtnCliente.UseVisualStyleBackColor = false;
             this.BtnCliente.Click += new System.EventHandler(this.BtnCliente_Click);
             // 
             // BtnProd
             // 
-            this.BtnProd.Location = new System.Drawing.Point(29, 137);
+            this.BtnProd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnProd.FlatAppearance.BorderSize = 0;
+            this.BtnProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnProd.Location = new System.Drawing.Point(8, 131);
             this.BtnProd.Name = "BtnProd";
-            this.BtnProd.Size = new System.Drawing.Size(75, 23);
+            this.BtnProd.Size = new System.Drawing.Size(120, 40);
             this.BtnProd.TabIndex = 1;
             this.BtnProd.Text = "Productos";
-            this.BtnProd.UseVisualStyleBackColor = true;
+            this.BtnProd.UseVisualStyleBackColor = false;
             this.BtnProd.Click += new System.EventHandler(this.BtnProd_Click);
             // 
             // BtnVenta
             // 
-            this.BtnVenta.Location = new System.Drawing.Point(29, 89);
+            this.BtnVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnVenta.FlatAppearance.BorderSize = 0;
+            this.BtnVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVenta.Location = new System.Drawing.Point(8, 85);
             this.BtnVenta.Name = "BtnVenta";
-            this.BtnVenta.Size = new System.Drawing.Size(75, 23);
+            this.BtnVenta.Size = new System.Drawing.Size(120, 40);
             this.BtnVenta.TabIndex = 0;
             this.BtnVenta.Text = "Ventas";
-            this.BtnVenta.UseVisualStyleBackColor = true;
+            this.BtnVenta.UseVisualStyleBackColor = false;
             this.BtnVenta.Click += new System.EventHandler(this.BtnVenta_Click);
             // 
             // PanSup
             // 
-            this.PanSup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(0)))), ((int)(((byte)(69)))));
+            this.PanSup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(30)))), ((int)(((byte)(86)))));
             this.PanSup.Controls.Add(this.button1);
             this.PanSup.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanSup.Location = new System.Drawing.Point(134, 0);
