@@ -68,11 +68,33 @@ namespace Venta.Clases
 
         }
 
+        public DataTable clienSin()
+        {
+            String consulta;
+            DataTable datos = new DataTable();
+            consulta = "Select id_cliente, nombre from cliente where id_cliente != 1";
+            datos = buscar(consulta);
+            return datos;
+
+        }
+
+
+
         public DataTable buscli(string cli)
         {
             string consulta;
-            consulta = "Select DIRECCION,nit, credi,Nombre from cliente where id_cliente =" + cli;
+            consulta = "Select DIRECCION,nit, credi,Nombre,telefono, dpi from cliente where id_cliente =" + cli;
             return  buscar(consulta);
         }
+
+        public DataTable CrediCli(string idcli)
+        {
+            string consulta;
+            consulta = "";
+            return buscar(consulta);
+
+        }
+
+      
     }
 }

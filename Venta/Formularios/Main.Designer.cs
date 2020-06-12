@@ -35,7 +35,8 @@
             this.BtnVenta = new System.Windows.Forms.Button();
             this.PanSup = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.PanCent = new System.Windows.Forms.Panel();
+            this.PanCentral = new System.Windows.Forms.Panel();
+            this.BtnCreditos = new System.Windows.Forms.Button();
             this.PanLat.SuspendLayout();
             this.PanSup.SuspendLayout();
             this.SuspendLayout();
@@ -43,6 +44,7 @@
             // PanLat
             // 
             this.PanLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.PanLat.Controls.Add(this.BtnCreditos);
             this.PanLat.Controls.Add(this.BtnCliente);
             this.PanLat.Controls.Add(this.BtnProd);
             this.PanLat.Controls.Add(this.BtnVenta);
@@ -116,20 +118,34 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // PanCent
+            // PanCentral
             // 
-            this.PanCent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanCent.Location = new System.Drawing.Point(134, 51);
-            this.PanCent.Name = "PanCent";
-            this.PanCent.Size = new System.Drawing.Size(1146, 629);
-            this.PanCent.TabIndex = 2;
+            this.PanCentral.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanCentral.Location = new System.Drawing.Point(134, 51);
+            this.PanCentral.Name = "PanCentral";
+            this.PanCentral.Size = new System.Drawing.Size(1146, 629);
+            this.PanCentral.TabIndex = 2;
+            // 
+            // BtnCreditos
+            // 
+            this.BtnCreditos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnCreditos.FlatAppearance.BorderSize = 0;
+            this.BtnCreditos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCreditos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCreditos.Location = new System.Drawing.Point(8, 223);
+            this.BtnCreditos.Name = "BtnCreditos";
+            this.BtnCreditos.Size = new System.Drawing.Size(120, 40);
+            this.BtnCreditos.TabIndex = 3;
+            this.BtnCreditos.Text = "Creditos";
+            this.BtnCreditos.UseVisualStyleBackColor = false;
+            this.BtnCreditos.Click += new System.EventHandler(this.BtnCreditos_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 680);
-            this.Controls.Add(this.PanCent);
+            this.Controls.Add(this.PanCentral);
             this.Controls.Add(this.PanSup);
             this.Controls.Add(this.PanLat);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -147,10 +163,11 @@
 
         private System.Windows.Forms.Panel PanLat;
         private System.Windows.Forms.Panel PanSup;
-        private System.Windows.Forms.Panel PanCent;
+        private System.Windows.Forms.Panel PanCentral;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button BtnVenta;
         private System.Windows.Forms.Button BtnProd;
         private System.Windows.Forms.Button BtnCliente;
+        private System.Windows.Forms.Button BtnCreditos;
     }
 }
