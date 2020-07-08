@@ -287,6 +287,7 @@ namespace Venta.Formularios
 
             if (vent.generar_V(produ, "1",cli, estado, tipo))
             {
+                              
                 MessageBox.Show("Venta registrada correctamente.");
                 //vent.genfact(produ, "1", estado, tipo);
             }
@@ -296,6 +297,10 @@ namespace Venta.Formularios
             }
         }
 
+
+        private void IngConce()
+        { }
+       
         private void CboNomCli_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CboNomCli.Text != "" && CboNomCli.SelectedValue.ToString() != "System.Data.DataRowView")

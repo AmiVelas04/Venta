@@ -35,17 +35,17 @@ namespace Venta.Formularios
 
         private void BtnVenta_Click(object sender, EventArgs e)
         {
-            abrir_form(new Formularios.Ventas());
+            abrir_form(new Ventas());
         }
 
         private void BtnProd_Click(object sender, EventArgs e)
         {
-            abrir_form(new Formularios.Productos());
+            abrir_form(new Productos());
         }
 
         private void BtnCliente_Click(object sender, EventArgs e)
         {
-            abrir_form(new Formularios.Clientes());
+            abrir_form(new Clientes());
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -55,7 +55,12 @@ namespace Venta.Formularios
 
         private void BtnCreditos_Click(object sender, EventArgs e)
         {
-            abrir_form(new Formularios.Creditos());
+            abrir_form(new Creditos());
+        }
+
+        private void BtnCencesion_Click(object sender, EventArgs e)
+        {
+            abrir_form(new Concesion());
         }
     }
 }

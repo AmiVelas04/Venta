@@ -51,7 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Clientes.cs" />
+    <Compile Include="Clases\Conces.cs" />
     <Compile Include="Clases\conexion.cs" />
+    <Compile Include="Clases\Credito.cs" />
     <Compile Include="Clases\Login.cs" />
     <Compile Include="Clases\Producto.cs" />
     <Compile Include="Clases\Venta.cs" />
@@ -66,6 +68,12 @@
     </Compile>
     <Compile Include="Formularios\Clientes.Designer.cs">
       <DependentUpon>Clientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Concesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Concesion.Designer.cs">
+      <DependentUpon>Concesion.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Creditos.cs">
       <SubType>Form</SubType>
@@ -113,6 +121,9 @@
     <EmbeddedResource Include="Formularios\Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Concesion.resx">
+      <DependentUpon>Concesion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Creditos.resx">
       <DependentUpon>Creditos.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,9 +167,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

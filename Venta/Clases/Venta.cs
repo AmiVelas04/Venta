@@ -258,5 +258,12 @@ namespace Venta.Clases
             string consulta = "";
             return consulta_gen(consulta);
         }
+
+        public bool modVenta(string det, string cant,string total)
+         {
+            string consulta;
+            consulta = "Update venta_detalle set cantidad="+cant + ",total="+total + " where id_detalle="+det ;
+            return consulta_gen(consulta);
+        }
     }
 }

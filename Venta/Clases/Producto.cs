@@ -435,9 +435,18 @@ namespace Venta.Clases
             return id.ToString();
         }
 
-
-
-
+        public  bool devolverprod (string id, string cant)
+        {
+            string consultaCant;
+            int canti=0;
+            consultaCant = "Select cantidad from producto where idProd=" + id;
+            DataTable datos = new DataTable();
+            if (datos.Rows[0][0] == DBNull.Value) return false;
+            canti = int.Parse(datos.Rows[0][0].ToString ());
+            canti += int.Parse(cant);
+            string consulupd = "Update producto set cantidad="+canti ;
+            return consulta_gen(consulupd);
+        }
 
         #region "Datos de productos"
         public DataTable nomprod()

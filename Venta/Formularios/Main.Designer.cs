@@ -30,13 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PanLat = new System.Windows.Forms.Panel();
+            this.BtnCreditos = new System.Windows.Forms.Button();
             this.BtnCliente = new System.Windows.Forms.Button();
             this.BtnProd = new System.Windows.Forms.Button();
             this.BtnVenta = new System.Windows.Forms.Button();
             this.PanSup = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.PanCentral = new System.Windows.Forms.Panel();
-            this.BtnCreditos = new System.Windows.Forms.Button();
+            this.BtnCencesion = new System.Windows.Forms.Button();
             this.PanLat.SuspendLayout();
             this.PanSup.SuspendLayout();
             this.SuspendLayout();
@@ -44,6 +45,7 @@
             // PanLat
             // 
             this.PanLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.PanLat.Controls.Add(this.BtnCencesion);
             this.PanLat.Controls.Add(this.BtnCreditos);
             this.PanLat.Controls.Add(this.BtnCliente);
             this.PanLat.Controls.Add(this.BtnProd);
@@ -53,6 +55,20 @@
             this.PanLat.Name = "PanLat";
             this.PanLat.Size = new System.Drawing.Size(134, 680);
             this.PanLat.TabIndex = 0;
+            // 
+            // BtnCreditos
+            // 
+            this.BtnCreditos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnCreditos.FlatAppearance.BorderSize = 0;
+            this.BtnCreditos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCreditos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCreditos.Location = new System.Drawing.Point(8, 223);
+            this.BtnCreditos.Name = "BtnCreditos";
+            this.BtnCreditos.Size = new System.Drawing.Size(120, 40);
+            this.BtnCreditos.TabIndex = 3;
+            this.BtnCreditos.Text = "Creditos";
+            this.BtnCreditos.UseVisualStyleBackColor = false;
+            this.BtnCreditos.Click += new System.EventHandler(this.BtnCreditos_Click);
             // 
             // BtnCliente
             // 
@@ -126,19 +142,19 @@
             this.PanCentral.Size = new System.Drawing.Size(1146, 629);
             this.PanCentral.TabIndex = 2;
             // 
-            // BtnCreditos
+            // BtnCencesion
             // 
-            this.BtnCreditos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
-            this.BtnCreditos.FlatAppearance.BorderSize = 0;
-            this.BtnCreditos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCreditos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCreditos.Location = new System.Drawing.Point(8, 223);
-            this.BtnCreditos.Name = "BtnCreditos";
-            this.BtnCreditos.Size = new System.Drawing.Size(120, 40);
-            this.BtnCreditos.TabIndex = 3;
-            this.BtnCreditos.Text = "Creditos";
-            this.BtnCreditos.UseVisualStyleBackColor = false;
-            this.BtnCreditos.Click += new System.EventHandler(this.BtnCreditos_Click);
+            this.BtnCencesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnCencesion.FlatAppearance.BorderSize = 0;
+            this.BtnCencesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCencesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCencesion.Location = new System.Drawing.Point(8, 269);
+            this.BtnCencesion.Name = "BtnCencesion";
+            this.BtnCencesion.Size = new System.Drawing.Size(120, 40);
+            this.BtnCencesion.TabIndex = 4;
+            this.BtnCencesion.Text = "Concesion";
+            this.BtnCencesion.UseVisualStyleBackColor = false;
+            this.BtnCencesion.Click += new System.EventHandler(this.BtnCencesion_Click);
             // 
             // Main
             // 
@@ -169,5 +185,6 @@
         private System.Windows.Forms.Button BtnProd;
         private System.Windows.Forms.Button BtnCliente;
         private System.Windows.Forms.Button BtnCreditos;
+        private System.Windows.Forms.Button BtnCencesion;
     }
 }
