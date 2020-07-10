@@ -61,7 +61,7 @@ namespace Venta.Formularios
             {
                 for (cont = 0; cont < total; cont++)
                 {
-                    CboVenta.Items.Add(data.Rows[cont][0].ToString());
+                    CboConce.Items.Add(data.Rows[cont][0].ToString());
                 }
             }
         }
@@ -75,7 +75,7 @@ namespace Venta.Formularios
         {
 
             DataTable datos = new DataTable();
-            datos = Conce.ProdConce(CboVenta.Text);
+            datos = Conce.ProdConce(CboConce.Text);
             DgvProd.DataSource = datos;
             int total= datos.Rows .Count, cont;
             if (total > 0)
@@ -114,7 +114,6 @@ namespace Venta.Formularios
                 DgvProd.Rows[cont].Cells[7].Value = Convert.ToString(todoven );
             }
             TxtTotal.Text = TotGen.ToString();
-
         }
 
         private void NudProd_KeyDown(object sender, KeyEventArgs e)
@@ -129,32 +128,51 @@ namespace Venta.Formularios
 
         private void BtnFacturar_Click(object sender, EventArgs e)
         {
-            
-
-
         }
 
         private void prepFact()
         {
             DataTable Prefac = new DataTable();
-            Prefac = Conce.ProdConce(CboVenta.Text);
+            DataTable Fact = new DataTable();
+            Prefac = Conce.ProdConce(CboConce.Text);
             int cont;
             var total = Prefac.Rows.Count;
+            Fact.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+            Fact.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+            Fact.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+            Fact.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+            Fact.Columns.Add("color").DataType = System.Type.GetType("System.String");
+            Fact.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+            Fact.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+            Fact.Columns.Add("precio").DataType = System.Type.GetType("System.String");
+            Fact.Columns.Add("total").DataType = System.Type.GetType("System.String");
             for (cont=0;cont<total;cont++)
             {
+                DataRow fila = Fact.NewRow();
                 int cantAct, cantAnt, CantDvo;
                 decimal totalp, precio;
                 string idP = DgvProd.Rows[cont].Cells[7].Value.ToString();
-                string idvd= DgvProd.Rows[cont].Cells[8].Value.ToString();
                 precio = decimal.Parse(DgvProd.Rows[cont].Cells[6].Value.ToString());
-                
                 cantAnt = int.Parse (Prefac.Rows[cont][5].ToString());
                 cantAct = int.Parse(DgvProd.Rows[cont].Cells[5].Value.ToString());
                 if (cantAct > cantAnt) return;
                 CantDvo = cantAnt - cantAct;
                 totalp = precio * cantAct;
                 prod.devolverprod(idP, CantDvo.ToString());
-                ven.modVenta(idvd, cantAct.ToString(), totalp.ToString());
+                fila["codigo"] = idP.ToString();
+                fila["producto"] = Prefac.Rows[cont][0].ToString();
+                fila["estilo"] = Prefac.Rows[cont][1].ToString();
+                fila["tipo"] = Prefac.Rows[cont][2].ToString();
+                fila["color"] = Prefac.Rows[cont][3].ToString();
+                fila["talla"] = Prefac.Rows[cont][4].ToString();
+                fila["cantidad"] = cantAct .ToString ();
+                fila["precio"] = precio.ToString();
+                fila["total"] = totalp.ToString();
+                Fact.Rows.Add(fila);
+            }
+            if (ven.generar_V(Fact, "1", "1", "Cancelado", "Contado"))
+            {
+                MessageBox.Show("Venta registrada correctamente");
             }
         }
 

@@ -117,24 +117,7 @@ namespace Venta.Clases
             return id;
         }
 
-        private int cod_conc()
-        {
-            int id;
-            DataTable datos = new DataTable();
-            string consulta;
-            consulta = "Select max(id_conc) from concesion";
-            datos = buscar(consulta);
-            if (datos.Rows[0][0] == DBNull.Value)
-            {
-                id = 1;
-            }
-            else
-            {
-                id = Int32.Parse(datos.Rows[0][0].ToString());
-                id++;
-            }
-            return id;
-        }
+       
 
         public bool generar_V(DataTable  datos, string vende,string cli,string estado,string tipo)
         {
@@ -150,10 +133,7 @@ namespace Venta.Clases
                 {
                     RegCred(datos, venta.ToString ());
                 }
-                else if (tipo == "Concesion")
-                {
-                    Regconc(datos, venta.ToString ());
-                }
+              
 
                 return generar_det(datos, venta.ToString(),cli,tipo);
             }
@@ -200,22 +180,7 @@ namespace Venta.Clases
         }
 
 
-        private bool Regconc(DataTable datos, string venta)
-        {
-            string consulta;
-
-            int id = cod_conc(), cont;
-            int total = datos.Rows.Count;
-            decimal valor = 0;
-            for (cont = 0; cont < total; cont++)
-            {
-                valor += decimal.Parse(datos.Rows[cont][8].ToString());
-            }
-            //ingresar el id del cliente
-            consulta = "insert into concesion(id_conc, id_venta,id_cliente, Estado) " +
-                        "values(" + id +"," +venta+",1,'Activo')";
-            return consulta_gen(consulta);
-        }
+       
 
         private void genfact(DataTable datos,string venta,string clien,string tipo)
         {
@@ -258,12 +223,6 @@ namespace Venta.Clases
             string consulta = "";
             return consulta_gen(consulta);
         }
-
-        public bool modVenta(string det, string cant,string total)
-         {
-            string consulta;
-            consulta = "Update venta_detalle set cantidad="+cant + ",total="+total + " where id_detalle="+det ;
-            return consulta_gen(consulta);
-        }
+       
     }
 }

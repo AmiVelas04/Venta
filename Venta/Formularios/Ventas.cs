@@ -15,7 +15,8 @@ namespace Venta.Formularios
         Clases.Producto prod = new Clases.Producto();
         Clases.Venta vent = new Clases.Venta();
         Clases.Clientes cli = new Clases.Clientes();
-    
+        Clases.Conces Conc = new Clases.Conces();
+
         public Ventas()
         {
             InitializeComponent();
@@ -235,30 +236,75 @@ namespace Venta.Formularios
             {
                 tipo = "Contado";
                 estado = "Cancelado";
+                if (DgvProd.Rows.Count > 0)
+                { listarProd(tipo, estado, cli); }
+                else { MessageBox.Show("No exiten productos"); }
             }
             else if (RdbCredito.Checked)
             {
                 tipo = "Credito";
                 estado = "Pendiente";
+                if (DgvProd.Rows.Count > 0)
+                { listarProd(tipo, estado, cli); }
+                else { MessageBox.Show("No exiten productos"); }
             }
             else if (RdbConce.Checked)
             {
-                tipo = "Concesion";
-                estado = "Pendiente";
+              estado = "Pendiente";
+                ListConce(estado, "1");
             }
-            if (DgvProd.Rows.Count > 0)
-            { listarProd(tipo, estado,cli); }
-            else { MessageBox.Show("No exiten productos"); }
-            
 
         }
+
+        private void ListConce( string estado, string cli)
+        {
+            int filas = DgvProd.Rows.Count;
+            int cont, indice;
+            indice = DgvProd.CurrentRow.Index;
+            DataTable produ = new DataTable();
+            produ.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("color").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("precio").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("total").DataType = System.Type.GetType("System.String");
+
+            for (cont = 0; cont < filas; cont++)
+            {
+                DataRow fila = produ.NewRow();
+                fila["codigo"] = DgvProd.Rows[cont].Cells[0].Value;
+                fila["producto"] = DgvProd.Rows[cont].Cells[1].Value;
+                fila["estilo"] = DgvProd.Rows[cont].Cells[2].Value;
+                fila["tipo"] = DgvProd.Rows[cont].Cells[3].Value;
+                fila["color"] = DgvProd.Rows[cont].Cells[4].Value;
+                fila["talla"] = DgvProd.Rows[cont].Cells[5].Value;
+                fila["cantidad"] = DgvProd.Rows[cont].Cells[6].Value;
+                fila["precio"] = DgvProd.Rows[cont].Cells[7].Value;
+                fila["total"] = DgvProd.Rows[cont].Cells[8].Value;
+                produ.Rows.Add(fila);
+            }
+
+            if (Conc.GenConc(produ, cli,"1", estado ))
+            {
+
+                MessageBox.Show("Concesion registrada con exito");
+                //vent.genfact(produ, "1", estado, tipo);
+            }
+            else
+            {
+                MessageBox.Show("Error en la Concesion");
+            }
+        }
+
 
         private void listarProd(string tipo,string estado,string cli)
         {
             int filas = DgvProd.Rows.Count;
             int cont, indice;
             indice = DgvProd.CurrentRow.Index;
-           
             DataTable produ = new DataTable();
             produ.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
             produ.Columns.Add("producto").DataType = System.Type.GetType("System.String");
