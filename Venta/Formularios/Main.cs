@@ -12,6 +12,9 @@ namespace Venta.Formularios
 {
     public partial class Main : Form
     {
+        public string idvende { get; set; }
+        public string nombrev { get; set; }
+        public string nivel { get; set; }
         public Main()
         {
             InitializeComponent();

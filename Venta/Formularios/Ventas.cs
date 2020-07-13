@@ -250,8 +250,12 @@ namespace Venta.Formularios
             }
             else if (RdbConce.Checked)
             {
-              estado = "Pendiente";
-                ListConce(estado, "1");
+                estado = "Pendiente";
+                if (DgvProd.Rows.Count > 0)
+                { ListConce(estado, "1"); }
+                else { MessageBox.Show("No exiten productos"); }
+               
+               
             }
 
         }
@@ -302,6 +306,7 @@ namespace Venta.Formularios
 
         private void listarProd(string tipo,string estado,string cli)
         {
+            string vende;
             int filas = DgvProd.Rows.Count;
             int cont, indice;
             indice = DgvProd.CurrentRow.Index;
@@ -352,7 +357,7 @@ namespace Venta.Formularios
             if (CboNomCli.Text != "" && CboNomCli.SelectedValue.ToString() != "System.Data.DataRowView")
             { busquedacli(CboNomCli.SelectedValue.ToString()); }
             else
-            { busquedacli("1"); }
+            { busquedacli(CboNomCli.SelectedValue.ToString ()); }
 
         }
     }

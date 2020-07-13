@@ -165,14 +165,10 @@
             0,
             0,
             0});
-            this.NudProd.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.NudProd.Name = "NudProd";
             this.NudProd.Size = new System.Drawing.Size(89, 26);
             this.NudProd.TabIndex = 4;
+            this.NudProd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NudProd.Value = new decimal(new int[] {
             1,
             0,

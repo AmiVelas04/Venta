@@ -12,6 +12,8 @@ namespace Venta
 {
     public partial class Form1 : Form
     {
+
+
         public Form1()
         {
             InitializeComponent();
@@ -24,9 +26,9 @@ namespace Venta
 
         private void TmrInicio_Tick(object sender, EventArgs e)
         {
-            Formularios.Login logueo = new Formularios.Login();
+            Formularios.Login Iniciar = new Formularios.Login();
             TmrInicio.Enabled = false;
-            logueo .Show();
+            Iniciar .Show();
             this .Hide();
         }
     }

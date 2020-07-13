@@ -439,12 +439,13 @@ namespace Venta.Clases
         {
             string consultaCant;
             int canti=0;
-            consultaCant = "Select cantidad from producto where idProd=" + id;
+            consultaCant = "Select cantidad from producto where id_Prod=" + id;
             DataTable datos = new DataTable();
-            if (datos.Rows[0][0] == DBNull.Value) return false;
+            datos = buscar(consultaCant);
+            if (datos.Rows.Count<=0) return false;
             canti = int.Parse(datos.Rows[0][0].ToString ());
             canti += int.Parse(cant);
-            string consulupd = "Update producto set cantidad="+canti ;
+            string consulupd = "Update producto set cantidad="+canti +" where id_prod="+id ;
             return consulta_gen(consulupd);
         }
 

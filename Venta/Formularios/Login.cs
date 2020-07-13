@@ -12,6 +12,8 @@ namespace Venta.Formularios
 {
     public partial class Login : Form
     {
+        Clases .Login log=  new Clases.Login();
+       
         public Login()
         {
             InitializeComponent();
@@ -19,9 +21,22 @@ namespace Venta.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Formularios.Main inicio = new Formularios.Main();
-            inicio.Show();
-            this.Close();
+            DataTable datos = new DataTable();
+            datos = log.Logueo(TxtUsu.Text, TxtPass.Text);
+            if (datos.Rows.Count>0)
+            {
+                Formularios.Main inicio = new Formularios.Main();
+                inicio.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Error de inicio de sesion");
+            }
+
+            
         }
+
+
     }
 }

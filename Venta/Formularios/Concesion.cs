@@ -128,6 +128,7 @@ namespace Venta.Formularios
 
         private void BtnFacturar_Click(object sender, EventArgs e)
         {
+            prepFact();
         }
 
         private void prepFact()
@@ -148,33 +149,50 @@ namespace Venta.Formularios
             Fact.Columns.Add("total").DataType = System.Type.GetType("System.String");
             for (cont=0;cont<total;cont++)
             {
-                DataRow fila = Fact.NewRow();
                 int cantAct, cantAnt, CantDvo;
-                decimal totalp, precio;
-                string idP = DgvProd.Rows[cont].Cells[7].Value.ToString();
-                precio = decimal.Parse(DgvProd.Rows[cont].Cells[6].Value.ToString());
-                cantAnt = int.Parse (Prefac.Rows[cont][5].ToString());
                 cantAct = int.Parse(DgvProd.Rows[cont].Cells[5].Value.ToString());
-                if (cantAct > cantAnt) return;
-                CantDvo = cantAnt - cantAct;
-                totalp = precio * cantAct;
-                prod.devolverprod(idP, CantDvo.ToString());
-                fila["codigo"] = idP.ToString();
-                fila["producto"] = Prefac.Rows[cont][0].ToString();
-                fila["estilo"] = Prefac.Rows[cont][1].ToString();
-                fila["tipo"] = Prefac.Rows[cont][2].ToString();
-                fila["color"] = Prefac.Rows[cont][3].ToString();
-                fila["talla"] = Prefac.Rows[cont][4].ToString();
-                fila["cantidad"] = cantAct .ToString ();
-                fila["precio"] = precio.ToString();
-                fila["total"] = totalp.ToString();
-                Fact.Rows.Add(fila);
+                string idP = DgvProd.Rows[cont].Cells[8].Value.ToString();
+                if (cantAct > 0)
+                {
+                    decimal totalp, precio;
+
+                   
+                    precio = decimal.Parse(DgvProd.Rows[cont].Cells[6].Value.ToString());
+                    cantAnt = int.Parse(Prefac.Rows[cont][5].ToString());
+
+                    if (cantAct > cantAnt) return;
+                    DataRow fila = Fact.NewRow();
+                    CantDvo = cantAnt - cantAct;
+                    totalp = precio * cantAct;
+                    prod.devolverprod(idP, CantDvo.ToString());
+                    fila["codigo"] = idP.ToString();
+                    fila["producto"] = Prefac.Rows[cont][0].ToString();
+                    fila["estilo"] = Prefac.Rows[cont][1].ToString();
+                    fila["tipo"] = Prefac.Rows[cont][2].ToString();
+                    fila["color"] = Prefac.Rows[cont][3].ToString();
+                    fila["talla"] = Prefac.Rows[cont][4].ToString();
+                    fila["cantidad"] = cantAct.ToString();
+                    fila["precio"] = precio.ToString();
+                    fila["total"] = totalp.ToString();
+                    Fact.Rows.Add(fila);
+                }
+                else
+                {
+                    CantDvo = int.Parse(Prefac.Rows[cont][5].ToString());
+                    prod.devolverprod(idP, CantDvo.ToString());
+                }
+               
             }
             if (ven.generar_V(Fact, "1", "1", "Cancelado", "Contado"))
             {
-                MessageBox.Show("Venta registrada correctamente");
+                if (Conce.CanceConce(CboConce.Text))
+                { MessageBox.Show("Venta registrada correctamente"); }
+                else { MessageBox.Show("Error al pagar concesion"); }
             }
-        }
+            else
+            {
+                MessageBox.Show("Error al registrar vetnas");
+            } }
 
 
     }
