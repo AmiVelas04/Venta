@@ -78,7 +78,13 @@ namespace Venta.Clases
 
         }
 
-
+        public int CliporConce(string conce)
+        {
+            string consulta = "Select id_cliente from concesion where id_conc=" + conce;
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return int.Parse(datos.Rows[0][0].ToString());
+        }
 
         public DataTable buscli(string cli)
         {

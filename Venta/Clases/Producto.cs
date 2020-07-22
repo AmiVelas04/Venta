@@ -279,7 +279,7 @@ namespace Venta.Clases
 
         public DataTable prodvent()
         {
-            string consulta = "SELECT p.id_prod AS Codigo,Concat(p.nombre ,' - ',e.estilo,' - ' ,t.tipo ,' - ' ,c.color,' - ', p.talla) as produ,p.cantidad as Cantidad,p.precio_cost AS Costo,p.precio_m AS P_Mayorista,p.precio_v AS P_Venta " +
+            string consulta = "SELECT p.id_prod AS Codigo,Concat(p.nombre ,'  ',e.estilo,'  ' ,t.tipo ,'  ' ,c.color,'  ', p.talla) as produ,p.cantidad as Cantidad,p.precio_cost AS Costo,p.precio_m AS P_Mayorista,p.precio_v AS P_Venta " +
                                 "FROM producto p " +
                                 "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
                                 "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
@@ -350,7 +350,7 @@ namespace Venta.Clases
             DataTable datos = new DataTable();
             consulta = "SELECT c.id_color as id,c.color as color FROM color c " +
                        "INNER JOIN producto p ON p.ID_color = c.ID_color " +
-                       "WHERE p.ID_PROD = " + id;
+                       "WHERE p.id_color=" + id;
             return datos = buscar(consulta);
         }
 
@@ -375,66 +375,65 @@ namespace Venta.Clases
             return datos = buscar(consulta);
         }
 
-        private string codestilo(string nom)
+        public string codestilo(string idprod)
         {
-            int id;
+            string id;
             DataTable datos = new DataTable();
-            string consulta = "SELECT MAX(e.id_estilo) FROM estilo e " +
-                               "INNER JOIN producto p ON p.ID_ESTILO = e.ID_ESTILO " +
-                               "WHERE p.NOMBRE ='" +nom + "' ";
+            string consulta = "SELECT id_estilo from producto where id_prod=" + idprod;
             datos = buscar(consulta);
-            if (datos.Rows[0][0] == DBNull.Value)
+            if (datos.Rows .Count<=0)
             {
-                id = 1;
+                id = "0";
             }
             else
             {
-                id = Int32.Parse(datos.Rows[0][0].ToString ());
-                id++;
+                id = datos.Rows[0][0].ToString ();
             }
             return id.ToString();
         }
 
-        private string codcolor(string nom)
+        public string codcolor(string idprod)
         {
-            int id;
+            string id;
             DataTable datos = new DataTable();
-            string consulta = "SELECT MAX(c.id_color) FROM color c " +
-                              "INNER JOIN producto p ON p.ID_color = c.ID_color " +
-                              "WHERE p.NOMBRE ='" + nom + "' ";
+            string consulta = "SELECT id_color from producto where id_prod=" + idprod;
             datos = buscar(consulta);
-            if (datos.Rows[0][0] == DBNull.Value)
+            if (datos.Rows.Count <= 0)
             {
-                id = 1;
+                id = "0";
             }
             else
             {
-                id = Int32.Parse(datos.Rows[0][0].ToString());
-                id++;
+                id = datos.Rows[0][0].ToString();
             }
             return id.ToString();
         }
 
-        private string codtipo(string nom)
+        public string codtipo(string idprod)
         {
-            int id;
+            string id;
             DataTable datos = new DataTable();
-            string consulta = "SELECT MAX(c.id_tipo) FROM tipo t " +
-                              "INNER JOIN producto p ON p.ID_tipo = c.ID_tipo " +
-                              "WHERE p.NOMBRE ='" + nom + "' ";
+            string consulta = "SELECT id_tipo from producto where id_prod=" + idprod;
             datos = buscar(consulta);
-            if (datos.Rows[0][0] == DBNull.Value)
+            if (datos.Rows.Count <= 0)
             {
-                id = 1;
+                id = "0";
             }
             else
             {
-                id = Int32.Parse(datos.Rows[0][0].ToString());
-                id++;
+                id = datos.Rows[0][0].ToString();
             }
             return id.ToString();
         }
 
+        public string BuscTalla(string idprod)
+        {
+            DataTable datos = new DataTable();
+            string consulta = "SELECT Talla from producto where id_prod=" + idprod;
+            datos = buscar(consulta);
+            return datos .Rows[0][0].ToString ();
+        }
+            
         public  bool devolverprod (string id, string cant)
         {
             string consultaCant;
@@ -447,6 +446,48 @@ namespace Venta.Clases
             canti += int.Parse(cant);
             string consulupd = "Update producto set cantidad="+canti +" where id_prod="+id ;
             return consulta_gen(consulupd);
+        }
+        //Listado para escoger productos
+        public DataTable estilolst(string nom, string tipo)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "SELECT e.id_estilo as id, e.estilo as estilo FROM estilo e " +
+                       "INNER JOIN producto p ON p.id_estilo = e.id_estilo " +
+                       "WHERE p.Nombre ='" +nom + "' and p.id_tipo="+tipo +
+                       " Group by p.id_estilo";
+            return datos = buscar(consulta);
+        }
+
+        public DataTable tipolst(string prod)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "SELECT t.id_tipo as id,t.tipo as tipo FROM tipo t " +
+                       "INNER JOIN producto p ON p.ID_TIPO = t.ID_TIPO " +
+                       "WHERE p.Nombre ='" +prod+"' "+
+                       "Group by p.id_tipo";
+            return datos = buscar(consulta);
+        }
+
+        public DataTable colorlst(string nom, string estilo, string tipo)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "SELECT c.id_color as id,c.color as color FROM color c " +
+                       "INNER JOIN producto p ON p.ID_color = c.ID_color " +
+                       "WHERE p.nombre='" +nom +"' and p.id_estilo="+ estilo + " and p.id_tipo="+tipo +
+                       " Group by p.id_color";
+            return datos = buscar(consulta);
+        }
+
+        public DataTable tallalst(string nom,string tip, string  est,string col)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "SELECT talla, id_prod from producto " +
+                       "WHERE Nombre = '" + nom + "' and id_tipo=" + tip + " and id_estilo="+est + " and id_color="+col;
+            return datos = buscar(consulta);
         }
 
         #region "Datos de productos"
@@ -487,6 +528,23 @@ namespace Venta.Clases
             return datos;
         }
 
+        public string nomprod(string id)
+        { string consulta = "Select nombre from producto where id_prod=" + id;
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos.Rows[0][0].ToString ();
+        }
+
+        public string PeticionIdProd(string tip,string est,string col, string tall)
+        {
+            string consulta = "SELECT p.id_prod FROM producto p " +
+                              "WHERE p.ID_ESTILO = "+est+" and p.ID_TIPO ="+tip+" AND p.ID_COLOR ="+col+" AND p.TALLA ='" + tall+"'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows.Count <= 0)
+            { return "0"; }
+            else { return datos.Rows[0][0].ToString(); }
+        }
 
         #endregion
 

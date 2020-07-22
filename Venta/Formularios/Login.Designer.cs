@@ -74,6 +74,7 @@
             this.BtnCerrar.Size = new System.Drawing.Size(56, 49);
             this.BtnCerrar.TabIndex = 0;
             this.BtnCerrar.UseVisualStyleBackColor = true;
+            this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
             // label1
             // 
@@ -93,6 +94,7 @@
             this.TxtUsu.Name = "TxtUsu";
             this.TxtUsu.Size = new System.Drawing.Size(192, 22);
             this.TxtUsu.TabIndex = 3;
+            this.TxtUsu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
             // 
@@ -113,6 +115,7 @@
             this.TxtPass.PasswordChar = '*';
             this.TxtPass.Size = new System.Drawing.Size(192, 22);
             this.TxtPass.TabIndex = 5;
+            this.TxtPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Login
             // 

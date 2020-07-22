@@ -117,8 +117,6 @@ namespace Venta.Clases
             return id;
         }
 
-       
-
         public bool generar_V(DataTable  datos, string vende,string cli,string estado,string tipo)
         {
            string fecha;
@@ -179,9 +177,6 @@ namespace Venta.Clases
             return consulta_gen(consulta); 
         }
 
-
-       
-
         private void genfact(DataTable datos,string venta,string clien,string tipo)
         {
             DataTable data = new DataTable();
@@ -222,6 +217,16 @@ namespace Venta.Clases
         {
             string consulta = "";
             return consulta_gen(consulta);
+        }
+
+        public int idVentaCliente(string idcli)
+        {
+            string consulta="Select max(id_venta) from venta where id_cli=" + idcli;
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] == DBNull.Value)
+            { return 0; }
+            else { return int.Parse(datos.Rows[0][0].ToString()); }
         }
        
     }

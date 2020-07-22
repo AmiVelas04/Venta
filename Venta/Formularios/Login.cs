@@ -27,16 +27,20 @@ namespace Venta.Formularios
             {
                 Formularios.Main inicio = new Formularios.Main();
                 inicio.Show();
+                Main.idvende = datos.Rows[0][0].ToString();
+                Main .nombrev = datos.Rows[0][1].ToString();
+                Main.nivel = datos.Rows[0][4].ToString();
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Error de inicio de sesion");
             }
-
-            
         }
 
-
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

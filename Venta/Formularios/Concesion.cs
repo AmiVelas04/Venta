@@ -57,12 +57,23 @@ namespace Venta.Formularios
             DataTable data = new DataTable();
             data = Conce.busconce(CboCli.SelectedValue.ToString());
             int total = data.Rows.Count, cont;
+            limpiarconce();
             if (total > 0)
             {
                 for (cont = 0; cont < total; cont++)
                 {
                     CboConce.Items.Add(data.Rows[cont][0].ToString());
                 }
+            }
+        }
+
+        private void limpiarconce()
+        {
+            int cont,total = CboConce.Items.Count;
+
+            for (cont = 0; cont < total; cont++)
+            {
+                CboConce.Items.RemoveAt(0);
             }
         }
 
@@ -135,6 +146,7 @@ namespace Venta.Formularios
         {
             DataTable Prefac = new DataTable();
             DataTable Fact = new DataTable();
+            string cliente=cli .CliporConce(CboConce .Text).ToString (), vende= Main.idvende.ToString ();
             Prefac = Conce.ProdConce(CboConce.Text);
             int cont;
             var total = Prefac.Rows.Count;
@@ -183,7 +195,7 @@ namespace Venta.Formularios
                 }
                
             }
-            if (ven.generar_V(Fact, "1", "1", "Cancelado", "Contado"))
+            if (ven.generar_V(Fact, vende,cliente, "Cancelado", "Contado"))
             {
                 if (Conce.CanceConce(CboConce.Text))
                 { MessageBox.Show("Venta registrada correctamente"); }
@@ -191,7 +203,7 @@ namespace Venta.Formularios
             }
             else
             {
-                MessageBox.Show("Error al registrar vetnas");
+                MessageBox.Show("Error al registrar ventas");
             } }
 
 

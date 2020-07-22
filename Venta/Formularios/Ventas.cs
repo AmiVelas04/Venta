@@ -16,6 +16,7 @@ namespace Venta.Formularios
         Clases.Venta vent = new Clases.Venta();
         Clases.Clientes cli = new Clases.Clientes();
         Clases.Conces Conc = new Clases.Conces();
+        
 
         public Ventas()
         {
@@ -76,102 +77,89 @@ namespace Venta.Formularios
         private void busqueda(string id)
         {
             DataTable datos = new DataTable();
+            string nombrepod= prod.nomprod(id);
+            string tipo="0", estilo="0", color="0";
+         
+            tipo = prod.codtipo(id);
+            estilo = prod.codestilo(id);
+            color = prod.codcolor(id);
             datos = prod.prodId(id);
+                llenartipo(id, nombrepod);
+                CboTipo.SelectedValue = int.Parse(tipo);
+                CboEstilo.SelectedValue = int.Parse(estilo);
+                CboColor.SelectedValue = int.Parse(color);
+                CboTalla.SelectedValue = id;
 
-            llenarcolor(id);
-            llenarestilo(id);
-            llenarTalla(id);
-            llenartipo(id);
-            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            coleccion.Add(datos.Rows[0][1].ToString ());
-            coleccion.Add(datos.Rows[0][2].ToString());
-            TxtPrecio.AutoCompleteCustomSource = coleccion;
-            //TxtPrecio.AutoCompleteMode = AutoCompleteMode.Suggest;
-            //TxtPrecio.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            TxtPrecio.Text = datos.Rows[0][1].ToString();
-
+                AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+                coleccion.Add(datos.Rows[0][1].ToString());
+                coleccion.Add(datos.Rows[0][2].ToString());
+                TxtPrecio.AutoCompleteCustomSource = coleccion;
+               // TxtPrecio.AutoCompleteMode = AutoCompleteMode.Suggest;
+              //  TxtPrecio.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                TxtPrecio.Text = datos.Rows[0][1].ToString();
+           
         }
 
         private void busquedacli(string id)
         {
             DataTable datos = new DataTable();
             datos = cli.buscli(id);
+            if (datos.Rows.Count > 0) { 
             TxtDirCli.Text = datos.Rows[0][0].ToString();
             TxtNit.Text = datos.Rows[0][1].ToString();
             TxtCredito.Text = datos.Rows[0][2].ToString();
+            }
         }
 
         //buscar cliente
-        private void llenartipo(string id)
+
+        #region "Llenado de combos"
+        private void llenartipo(string id,string nom)
         {
             DataTable dt = new DataTable();
-            dt = prod.tipop(id);
+            dt = prod.tipolst(nom);
             CboTipo.DataSource = dt;
             CboTipo.DisplayMember = "tipo";
             CboTipo.ValueMember = "id";
-            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            foreach (DataRow row in dt.Rows)
-            {
-                coleccion.Add(row["tipo"].ToString());
-            }
-            CboTipo.AutoCompleteCustomSource = coleccion;
-            CboTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
-            CboTipo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            llenarestilo(id, nom);
         }
-
-        private void llenarcolor(string id)
+        private void llenarestilo(string id, string nom)
         {
             DataTable dt = new DataTable();
-            dt = prod.colorp(id);
-            CboColor.DataSource = dt;
-            CboColor.DisplayMember = "color";
-            CboColor.ValueMember = "id";
-            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            foreach (DataRow row in dt.Rows)
-            {
-                coleccion.Add(row["color"].ToString());
-            }
-            CboColor.AutoCompleteCustomSource = coleccion;
-            CboColor.AutoCompleteMode = AutoCompleteMode.Suggest;
-            CboColor.AutoCompleteSource = AutoCompleteSource.CustomSource;
-        }
-
-        private void llenarTalla(string id)
-        {
-            DataTable dt = new DataTable();
-            dt = prod.tallap(id);
-            CboTalla.DataSource = dt;
-            CboTalla.DisplayMember = "talla";
-            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            foreach (DataRow row in dt.Rows)
-            {
-                coleccion.Add(row["talla"].ToString());
-            }
-            CboTalla.AutoCompleteCustomSource = coleccion;
-            CboTalla.AutoCompleteMode = AutoCompleteMode.Suggest;
-            CboTalla.AutoCompleteSource = AutoCompleteSource.CustomSource;
-        }
-
-        private void llenarestilo(string id)
-        {
-            DataTable dt = new DataTable();
-            dt = prod.estilop(id);
+            string tipo = CboTipo.SelectedValue.ToString();
+            dt = prod.estilolst(nom, tipo);
             CboEstilo.DataSource = dt;
             CboEstilo.DisplayMember = "estilo";
             CboEstilo.ValueMember = "id";
-            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            foreach (DataRow row in dt.Rows)
-            {
-                coleccion.Add(row["estilo"].ToString());
-            }
-            CboEstilo.AutoCompleteCustomSource = coleccion;
-            CboEstilo.AutoCompleteMode = AutoCompleteMode.Suggest;
-            CboEstilo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
         }
+        private void llenarcolor(string id,string nom)
+        {
+            DataTable dt = new DataTable();
+            string tipo=CboTipo.SelectedValue.ToString (), estilo=CboEstilo.SelectedValue.ToString () ;
+            dt = prod.colorlst(nom, estilo, tipo);
+            CboColor.DataSource = dt;
+            CboColor.DisplayMember = "color";
+            CboColor.ValueMember = "id";
+            llenarTalla(id, nom);
+        }
+
+        private void llenarTalla(string id,string nom)
+        {
+            DataTable dt = new DataTable();
+            string tipo = CboTipo.SelectedValue.ToString(), estilo = CboEstilo.SelectedValue.ToString(), color = CboColor.SelectedValue.ToString();
+            dt = prod.tallalst(nom,tipo,estilo,color);
+            CboTalla.DataSource = dt;
+            CboTalla.DisplayMember = "talla";
+            CboTalla.ValueMember = "id_prod";
+       }
+
+#endregion
+
+
 
         private void BtnAgr_Click(object sender, EventArgs e)
         {
-
             string prod = CboProd.SelectedValue .ToString();
             string est = CboEstilo.SelectedValue.ToString();
             string col = CboColor.SelectedValue.ToString();
@@ -189,6 +177,7 @@ namespace Venta.Formularios
                 DgvProd.Columns.Add("Precio", "Precio");
                 DgvProd.Columns.Add("Subtotal", "Subtotal");
                 DgvProd.Columns[0].Visible = false;
+
             }
             if (revcant(prod,NudCant .Value ))
             {
@@ -196,7 +185,7 @@ namespace Venta.Formularios
             }
             else
             {
-                MessageBox.Show("No hay exitencias para cubrir venta");
+                MessageBox.Show("No hay existencias para cubrir venta");
             }
         }
 
@@ -219,11 +208,10 @@ namespace Venta.Formularios
             if (LblTotal.Text != "Precio") total = decimal.Parse(LblTotal.Text);
             DataTable dt = new DataTable();
             dt = prod.prodId(idp);
-            string color = prod.colorp(idcolor).Rows[0][1].ToString();
-            string tipo = prod.tipop(idtipo).Rows[0][1].ToString();
-            string estilo = prod.estilop(idestilo).Rows[0][1].ToString();
+            string color = dt.Rows[0][8].ToString();
+            string tipo = dt.Rows[0][6].ToString();
+            string estilo = dt.Rows[0][10].ToString();
             DgvProd.Rows.Add(dt.Rows[0][0].ToString (),dt.Rows[0][11].ToString(), estilo, tipo, color,CboTalla .Text ,NudCant.Value, TxtPrecio.Text, (decimal.Parse(NudCant.Value.ToString ()) * decimal.Parse(TxtPrecio.Text)).ToString());
-            
             total += (decimal.Parse(NudCant.Value.ToString()) * decimal.Parse(TxtPrecio.Text));
             LblTotal.Text = total.ToString();
         }
@@ -237,7 +225,9 @@ namespace Venta.Formularios
                 tipo = "Contado";
                 estado = "Cancelado";
                 if (DgvProd.Rows.Count > 0)
-                { listarProd(tipo, estado, cli); }
+                { listarProd(tipo, estado, cli);
+                    LimpiarDatos();
+                }
                 else { MessageBox.Show("No exiten productos"); }
             }
             else if (RdbCredito.Checked)
@@ -245,23 +235,25 @@ namespace Venta.Formularios
                 tipo = "Credito";
                 estado = "Pendiente";
                 if (DgvProd.Rows.Count > 0)
-                { listarProd(tipo, estado, cli); }
-                else { MessageBox.Show("No exiten productos"); }
+                { listarProd(tipo, estado, cli);
+                    LimpiarDatos();
+                }
+                else { MessageBox.Show("No existen productos"); }
             }
             else if (RdbConce.Checked)
             {
                 estado = "Pendiente";
                 if (DgvProd.Rows.Count > 0)
-                { ListConce(estado, "1"); }
-                else { MessageBox.Show("No exiten productos"); }
-               
-               
+                { ListConce(estado,cli );
+                    LimpiarDatos();
+                }
+                else { MessageBox.Show("No existen productos"); }
             }
-
         }
 
         private void ListConce( string estado, string cli)
         {
+            string vende = Main.idvende.ToString();
             int filas = DgvProd.Rows.Count;
             int cont, indice;
             indice = DgvProd.CurrentRow.Index;
@@ -275,7 +267,6 @@ namespace Venta.Formularios
             produ.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
             produ.Columns.Add("precio").DataType = System.Type.GetType("System.String");
             produ.Columns.Add("total").DataType = System.Type.GetType("System.String");
-
             for (cont = 0; cont < filas; cont++)
             {
                 DataRow fila = produ.NewRow();
@@ -291,7 +282,7 @@ namespace Venta.Formularios
                 produ.Rows.Add(fila);
             }
 
-            if (Conc.GenConc(produ, cli,"1", estado ))
+            if (Conc.GenConc(produ, cli,vende, estado ))
             {
 
                 MessageBox.Show("Concesion registrada con exito");
@@ -306,11 +297,12 @@ namespace Venta.Formularios
 
         private void listarProd(string tipo,string estado,string cli)
         {
-            string vende;
+            string vende=Main .idvende.ToString ();
             int filas = DgvProd.Rows.Count;
             int cont, indice;
             indice = DgvProd.CurrentRow.Index;
             DataTable produ = new DataTable();
+            
             produ.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
             produ.Columns.Add("producto").DataType = System.Type.GetType("System.String");
             produ.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
@@ -336,7 +328,7 @@ namespace Venta.Formularios
                 produ.Rows.Add(fila);
             }
 
-            if (vent.generar_V(produ, "1",cli, estado, tipo))
+            if (vent.generar_V(produ, vende,cli, estado, tipo))
             {
                               
                 MessageBox.Show("Venta registrada correctamente.");
@@ -349,15 +341,116 @@ namespace Venta.Formularios
         }
 
 
-        private void IngConce()
-        { }
+        private void LimpiarDatos()
+        {
+            while (DgvProd.RowCount > 0)
+                {
+                    DgvProd.Rows.RemoveAt(0);
+                }
+            LblTotal.Text = "0";
+        }
        
         private void CboNomCli_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CboNomCli.Text != "" && CboNomCli.SelectedValue.ToString() != "System.Data.DataRowView")
             { busquedacli(CboNomCli.SelectedValue.ToString()); }
             else
-            { busquedacli(CboNomCli.SelectedValue.ToString ()); }
+            { busquedacli("0"); }
+
+        }
+
+        private void Cancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarDatos();
+        }
+
+        private int selecTalla(string talla)
+        {
+            int cont, cant;
+            cant = CboTalla.Items.Count;
+            for(cont = 0;cont < cant;cont++)
+            {
+                CboTalla.SelectedIndex = cont;
+                string tall = CboTalla.Text;
+                if (tall == talla)
+                {
+                    return cont;
+                }
+               
+            }
+            return -1;
+        }
+
+        private void CboTipo_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (CboTipo.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                string nombrepod = prod.nomprod(CboProd.SelectedValue.ToString());
+                llenarestilo(CboProd.SelectedValue.ToString(),nombrepod);
+           }
+        }
+
+        private void selectprod(string tipo,string estilo, string color,string talla)
+        {
+            /*string idpod;
+            CboTipo.SelectedValue = tipo;
+            CboEstilo.SelectedValue = estilo;
+            CboColor.SelectedValue = color;
+           int tall=selecTalla(talla);
+            CboTalla.SelectedIndex=tall ;
+            idpod = prod.PeticionIdProd(tipo, estilo, color, talla);
+            CboProd.SelectedValue = idpod;*/
+            CboProd.Text = "";
+        }
+
+        private void CboEstilo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboEstilo.Text != "" && CboEstilo.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                string nombrepod = prod.nomprod(CboProd.SelectedValue.ToString());
+                llenarcolor("", nombrepod);
+            }
+        }
+
+        private void CboColor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboColor.Text != "" && CboColor.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                string nombrepod = prod.nomprod(CboProd.SelectedValue.ToString());
+                llenarTalla(CboProd.SelectedValue .ToString (), nombrepod);
+            }
+        }
+
+        private void CboTalla_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (CboTipo.SelectedValue != null && CboTalla.SelectedValue != null && CboEstilo.SelectedValue != null && CboColor.SelectedValue != null && (CboTalla.Text != "" && CboTalla.SelectedValue != null && CboTalla.Text != "System.Data.DataRowView" && CboTalla.Items.Count >= 1))
+            {
+                string tipo = CboTipo.SelectedValue.ToString();
+                string estilo = CboEstilo.SelectedValue.ToString();
+                string color = CboColor.SelectedValue.ToString();
+                string talla = CboTalla.Text;
+                //   if(CboTalla .SelectedValue !=CboProd.SelectedValue && CboTalla.SelectedValue!=null) // busqueda(CboTalla.SelectedValue.ToString ());
+
+            }
+        }
+
+        private void BtnUltVent_Click(object sender, EventArgs e)
+        {
+            int idVenta = vent.idVentaCliente(CboNomCli.SelectedValue.ToString());
+            if (idVenta <= 0)
+            {
+                MessageBox.Show("No existen ventas amterioresd de a este cliente");
+            }
+            else
+            {
+                //Mostrar ultim aventa
+            }
+
+        }
+
+        private void BtnBusca_Click(object sender, EventArgs e)
+        {
 
         }
     }

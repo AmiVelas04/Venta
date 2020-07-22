@@ -12,9 +12,9 @@ namespace Venta.Formularios
 {
     public partial class Main : Form
     {
-        public string idvende { get; set; }
-        public string nombrev { get; set; }
-        public string nivel { get; set; }
+        public static string idvende { get; set; }
+        public static string nombrev { get; set; }
+        public static string nivel { get; set; }
         public Main()
         {
             InitializeComponent();
@@ -33,6 +33,7 @@ namespace Venta.Formularios
             fh.Dock = DockStyle.Fill;
         this.PanCentral.Controls.Add(fh);
             this.PanCentral.Tag = fh;
+            
             fh.Show();
     }
 

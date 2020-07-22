@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PanLat = new System.Windows.Forms.Panel();
+            this.BtnCencesion = new System.Windows.Forms.Button();
             this.BtnCreditos = new System.Windows.Forms.Button();
             this.BtnCliente = new System.Windows.Forms.Button();
             this.BtnProd = new System.Windows.Forms.Button();
@@ -37,7 +38,6 @@
             this.PanSup = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.PanCentral = new System.Windows.Forms.Panel();
-            this.BtnCencesion = new System.Windows.Forms.Button();
             this.PanLat.SuspendLayout();
             this.PanSup.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +55,20 @@
             this.PanLat.Name = "PanLat";
             this.PanLat.Size = new System.Drawing.Size(134, 680);
             this.PanLat.TabIndex = 0;
+            // 
+            // BtnCencesion
+            // 
+            this.BtnCencesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnCencesion.FlatAppearance.BorderSize = 0;
+            this.BtnCencesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCencesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCencesion.Location = new System.Drawing.Point(8, 269);
+            this.BtnCencesion.Name = "BtnCencesion";
+            this.BtnCencesion.Size = new System.Drawing.Size(120, 40);
+            this.BtnCencesion.TabIndex = 4;
+            this.BtnCencesion.Text = "Concesion";
+            this.BtnCencesion.UseVisualStyleBackColor = false;
+            this.BtnCencesion.Click += new System.EventHandler(this.BtnCencesion_Click);
             // 
             // BtnCreditos
             // 
@@ -127,9 +141,9 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(1088, 3);
+            this.button1.Location = new System.Drawing.Point(1077, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 42);
+            this.button1.Size = new System.Drawing.Size(69, 51);
             this.button1.TabIndex = 0;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -141,20 +155,6 @@
             this.PanCentral.Name = "PanCentral";
             this.PanCentral.Size = new System.Drawing.Size(1146, 629);
             this.PanCentral.TabIndex = 2;
-            // 
-            // BtnCencesion
-            // 
-            this.BtnCencesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
-            this.BtnCencesion.FlatAppearance.BorderSize = 0;
-            this.BtnCencesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCencesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCencesion.Location = new System.Drawing.Point(8, 269);
-            this.BtnCencesion.Name = "BtnCencesion";
-            this.BtnCencesion.Size = new System.Drawing.Size(120, 40);
-            this.BtnCencesion.TabIndex = 4;
-            this.BtnCencesion.Text = "Concesion";
-            this.BtnCencesion.UseVisualStyleBackColor = false;
-            this.BtnCencesion.Click += new System.EventHandler(this.BtnCencesion_Click);
             // 
             // Main
             // 

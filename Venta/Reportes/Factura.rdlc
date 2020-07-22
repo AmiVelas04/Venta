@@ -442,7 +442,7 @@
   <Width>6.72259in</Width>
   <Page>
     <PageHeader>
-      <Height>4.22162cm</Height>
+      <Height>4.03641cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -453,7 +453,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Tienda</Value>
+                  <Value>Típicos Veronica</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -465,7 +465,7 @@
           <Top>0.31432cm</Top>
           <Left>6.55849cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
+          <Width>3.92875cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -484,11 +484,17 @@
               <TextRuns>
                 <TextRun>
                   <Value>Comprobante: </Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
                 <TextRun>
                   <Value>=First(Fields!No.Value, "Enca")</Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -517,11 +523,17 @@
               <TextRuns>
                 <TextRun>
                   <Value>Cliente: </Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
                 <TextRun>
                   <Value>=First(Fields!nombre.Value, "Enca")</Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -550,11 +562,17 @@
               <TextRuns>
                 <TextRun>
                   <Value>Nit: </Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
                 <TextRun>
                   <Value>=First(Fields!nit.Value, "Enca")</Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -583,11 +601,17 @@
               <TextRuns>
                 <TextRun>
                   <Value>Direccion: </Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
                 <TextRun>
                   <Value>=First(Fields!direccion.Value, "Enca")</Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -617,11 +641,15 @@
                 <TextRun>
                   <Value>=CDate(First(Fields!fecha.Value, "Enca"))</Value>
                   <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
                     <Format>f</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <Top>0.89641cm</Top>
@@ -647,14 +675,22 @@
               <TextRuns>
                 <TextRun>
                   <Value>Tipo:</Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
                 <TextRun>
                   <Value>=First(Fields!tipo.Value, "Enca")</Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <Top>1.6728cm</Top>
@@ -680,14 +716,22 @@
               <TextRuns>
                 <TextRun>
                   <Value>Atendio: </Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
                 <TextRun>
                   <Value>=First(Fields!vendedor.Value, "Enca")</Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Gill Sans MT</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <Top>2.41391cm</Top>
