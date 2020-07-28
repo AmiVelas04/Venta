@@ -17,6 +17,8 @@ namespace Venta.Reportes
         public string fecha { get; set; }
 
         public List<FactDet> Detalle = new List<FactDet>();
+        public List<ListaProd> Prod = new List<ListaProd>();
+       
 
     }
 }

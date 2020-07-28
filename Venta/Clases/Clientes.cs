@@ -77,6 +77,18 @@ namespace Venta.Clases
             return datos;
 
         }
+        private int IdCli()
+        {
+            string consulta = "Select max(id_cliente) from cliente";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] != DBNull.Value)
+            {
+                return int.Parse(datos.Rows[0][0].ToString())+1;
+            }
+            else
+            {return 1;}
+        }
 
         public int CliporConce(string conce)
         {
@@ -101,6 +113,18 @@ namespace Venta.Clases
 
         }
 
-      
+        public bool ingrecli(string [] datos)
+        {
+            int id = IdCli();
+            string consulta = "insert into cliente(id_cliente,nombre,direccion,nit,dpi,telefono,credi) " +
+                "Values("+id+",'"+datos[0]+"','"+ datos[1]+ "','"+ datos[2]+ "','"+datos[3]+"','"+ datos[4]+ "',"+ datos[5] +")";
+            return consulta_gen(consulta);
+        }
+        public DataTable Nomcliente(string nom)
+        {
+            string consulta = "Select Nombre, Direccion,Nit, Telefono,Dpi ,Credi as Credito from cliente "+
+                "where nombre like '%"+nom+"%'";
+            return buscar(consulta);
+        }
     }
 }

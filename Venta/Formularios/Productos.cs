@@ -8,6 +8,7 @@ using System.Text;
 using System.Configuration;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Venta.Formularios
 {
@@ -28,9 +29,6 @@ namespace Venta.Formularios
             TxtProdNom.AutoCompleteCustomSource = prod.Productos();
             TxtProdNom.AutoCompleteMode = AutoCompleteMode.Suggest;
             TxtProdNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-                
-  
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -53,23 +51,24 @@ namespace Venta.Formularios
             decimal precio_c = Decimal.Parse(TxtPrecio_C.Text);
             decimal precio_m = Decimal.Parse(TxtPrecio_M.Text);
             decimal precio_v = Decimal.Parse(TxtPrecio_V.Text);
-            string imagen = " ";
+            string imagen = revimagen(Nomprod + idestilo+idtipo+idcolor+talla); ;
             string estilo = CboEstilo.DisplayMember != null ?  CboEstilo.Text :"";
             string tipo = CboTipo.DisplayMember != null ? CboTipo.Text : "";
             string color = CboColor.DisplayMember != null ? CboColor.Text : "";
-            
-
 
 
             string[] datos = {Nomprod,idestilo,idtipo,idcolor,talla,cantidad.ToString (),precio_c.ToString () ,precio_m.ToString () ,precio_v.ToString () ,imagen,estilo,tipo,color};
             if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
             {
+               
                 if (prod.upd_prod(datos))
-                { MessageBox.Show("Producto Actualizado correctamente"); }
+                {
+                    MessageBox.Show("Producto Actualizado correctamente"); }
                 else { MessageBox.Show("Error al actualizar"); }
             }
             else
             {
+              
                 if (prod.ingreso_prod(datos))
                 {
                     MessageBox.Show("Producto ingresado correctamente");
@@ -93,7 +92,6 @@ namespace Venta.Formularios
             foreach (DataRow row in datos.Rows)
             {
                 coleccionE.Add(row["estilo"].ToString());
-
             }
             CboEstilo.AutoCompleteCustomSource = coleccionE;
             CboEstilo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -109,12 +107,10 @@ namespace Venta.Formularios
             foreach (DataRow row in datos.Rows)
             {
                 coleccionT.Add(row["tipo"].ToString());
-
             }
             CboTipo.AutoCompleteCustomSource = coleccionT;
             CboTipo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboTipo.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
             
             //agregar color
             datos = prod.color(TxtProdNom.Text);
@@ -130,23 +126,75 @@ namespace Venta.Formularios
             CboColor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboColor.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-
-
-
-
-
         }
 
         private void BtnImagen_Click(object sender, EventArgs e)
         {
-
+            OFD1.InitialDirectory = "c:\\";
+        OFD1.Filter = "JPG|*.jpg;*.jpeg|PNG|*.png|GIF|*.gif";
+            if (OFD1.ShowDialog() == DialogResult.OK)
+            {
+                try {
+                    MessageBox.Show("Ruta Guardada: " + OFD1.FileName);
+                    //PbxProd.Image = Image.FromFile(@"C:\Users\Insane\Pictures\7z6vh4.jpg");
+                    PbxProd.Image = Image.FromFile(@""+ OFD1.FileName);
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.ToString());
+                }
+            }
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            
             DgvProd.DataSource = prod.buscarprod(TxtBuscNom.Text);
             DgvProd.Refresh();
+        }
+
+        private string revimagen(string imagen)
+        {
+            string extension = Path.GetExtension(OFD1.FileName);
+            string NombreFull,ruta;
+            NombreFull = imagen + extension;
+        if(Directory.Exists("./imagen") )
+                {}
+        else{
+                Directory.CreateDirectory("./imagen");
+                    }
+         ruta = Path.GetFullPath("./imagen/" + NombreFull);
+        if (File.Exists(ruta)) {
+                System.IO.File.Delete(ruta);
+            if( extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
+            {
+                    try { File.Copy(OFD1.FileName, "./imagen/" + imagen + extension);
+                    }
+                    catch (Exception Ex) {
+                        MessageBox.Show("./imagen/" + imagen + extension);
+                        MessageBox.Show(Ex.ToString());
+                    }
+                    }
+            else
+                { MessageBox.Show("Imagen no valida/ o inexistente");
+                    NombreFull = "0.jpg";
+                }
+            }
+            else
+            {
+                if ( extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
+                { File.Copy(OFD1.FileName, "./imagen/"+ imagen + extension);
+                }
+            else
+                { MessageBox.Show("Imagen no valida/ o inexistente");
+                    NombreFull = "0.jpg";
+                }
+            }
+            return NombreFull;
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

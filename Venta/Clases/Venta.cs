@@ -182,7 +182,6 @@ namespace Venta.Clases
             DataTable data = new DataTable();
             data = cli.buscli(clien);
             int cant=datos.Rows.Count,cont;
-
             Reportes.FactEnc Encab = new Reportes.FactEnc();
             Encab .fecha = DateTime.Now.ToString("yyyyy/MM/dd hh:mm:ss");
             Encab.No = venta;
@@ -228,6 +227,92 @@ namespace Venta.Clases
             { return 0; }
             else { return int.Parse(datos.Rows[0][0].ToString()); }
         }
-       
+
+        public void RegenFact(string id)
+        {
+            int cont, cant;
+            Reportes.FactEnc Encab = new Reportes.FactEnc();
+            DataTable datos = new DataTable();
+            DataTable encabe = new DataTable();
+            string ConsulDat = "SELECT Concat(p.nombre,' - ',e.ESTILO,' - ',t.TIPO,' - ',c.COLOR,' - Talla: ',p.TALLA) AS nombre,vd.cantidad,vd.precio,vd.total FROM venta_detalle vd " +
+                               "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD " +
+                               "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
+                               "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
+                               "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
+                               "WHERE vd.ID_VENTA ="+id;
+            string ConsulEnca = "select ven.NOMBRE AS cliente,c.nombre AS cliente,c.DIRECCION,c.NIT,v.fecha,v.Tipo FROM venta v " +
+                                "INNER JOIN vendedor ven ON ven.ID_VENDEDOR = v.ID_VENDEDOR " +
+                                "INNER JOIN cliente c ON c.ID_CLIENTE = v.ID_CLI " +
+                                "WHERE v.ID_VENTA =" + id;
+            datos = buscar(ConsulDat);
+            encabe = buscar(ConsulEnca);
+            cant = datos.Rows.Count;
+            Encab.No = id;
+            Encab.nombre = encabe.Rows[0][1].ToString();
+            Encab.direccion= encabe.Rows[0][2].ToString();
+            Encab.nit= encabe.Rows[0][3].ToString();
+            Encab.fecha= encabe.Rows[0][4].ToString();
+            Encab.vendedor = encabe.Rows[0][0].ToString();
+            Encab.tipo= encabe.Rows[0][5].ToString();
+            for (cont=0;cont<cant;cont++)
+            {
+                Reportes.FactDet Deta = new Reportes.FactDet();
+                Deta.Numero = cont + 1;
+                Deta.descripcion = datos.Rows[cont][0].ToString();
+                Deta.cantidad = int.Parse(datos.Rows[cont][1].ToString());
+                Deta.precio = decimal.Parse(datos.Rows[cont][2].ToString());
+                Deta.total = decimal.Parse(datos.Rows[cont][3].ToString());
+                Encab.Detalle.Add(Deta);
+            }
+            Reportes.Factura Fact = new Reportes.Factura();
+            Fact.Enca.Add(Encab);
+            Fact.Deta = Encab.Detalle;
+            Fact.Show();
+        }
+
+        public void ventas(string fechini, string fechaFin)
+        {
+            string consulta = "SELECT V.id_venta, Concat(p.nombre, ' - ', e.ESTILO, ' - ', t.TIPO, ' - ', c.COLOR, ' - Talla: ', p.TALLA) AS nombre, vd.cantidad,vd.precio,vd.total,v.FECHA " +
+                               "FROM venta v "+
+                               "INNER JOIN venta_detalle vd ON vd.ID_VENTA = v.ID_VENTA "+
+                               "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD "+
+                               "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
+                               "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO "+
+                               "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR "+
+                               "WHERE v.FECHA >= '"+fechini+"' AND v.FECHA <= '"+fechaFin+"'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            int cont, cant;
+            cant = datos.Rows.Count;
+            Reportes.ConceEnc Encab = new Reportes.ConceEnc();
+            Encab.direccion = fechini;
+            Encab.vendedor = fechaFin;
+
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.VentasD ven = new Reportes.VentasD();
+                ven.producto = datos.Rows[cont][1].ToString();
+                ven.cantidad = int.Parse(datos.Rows[cont][2].ToString());
+                ven.precio = decimal.Parse(datos.Rows[cont][3].ToString());
+                ven.total = decimal.Parse(datos.Rows[cont][4].ToString());
+                ven.fecha = datos.Rows[cont][5].ToString();
+                Encab.Venta.Add(ven);
+            }
+            Reportes.VentasDiarios venta= new Reportes.VentasDiarios();
+            venta.Enca.Add(Encab);
+            venta.venta = Encab.Venta;
+            venta.Show();
+
+        }
+
+        public string VendePorCre(string idcre)
+        {
+            string consulta = "SELECT ven.nombre FROM vendedor ven "+
+                                "INNER JOIN venta v ON v.ID_VENDEDOR = ven.ID_VENDEDOR "+
+                                "INNER JOIN credito cre ON cre.id_venta = v.ID_VENTA "+
+                                "WHERE cre.ID_CREDITO ="+idcre;
+
+            return buscar(consulta).Rows[0][0].ToString();
+        }
     }
 }

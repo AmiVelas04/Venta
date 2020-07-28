@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PanLat = new System.Windows.Forms.Panel();
+            this.BtnReportes = new System.Windows.Forms.Button();
             this.BtnCencesion = new System.Windows.Forms.Button();
             this.BtnCreditos = new System.Windows.Forms.Button();
             this.BtnCliente = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             // PanLat
             // 
             this.PanLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.PanLat.Controls.Add(this.BtnReportes);
             this.PanLat.Controls.Add(this.BtnCencesion);
             this.PanLat.Controls.Add(this.BtnCreditos);
             this.PanLat.Controls.Add(this.BtnCliente);
@@ -55,6 +57,20 @@
             this.PanLat.Name = "PanLat";
             this.PanLat.Size = new System.Drawing.Size(134, 680);
             this.PanLat.TabIndex = 0;
+            // 
+            // BtnReportes
+            // 
+            this.BtnReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnReportes.FlatAppearance.BorderSize = 0;
+            this.BtnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnReportes.Location = new System.Drawing.Point(8, 315);
+            this.BtnReportes.Name = "BtnReportes";
+            this.BtnReportes.Size = new System.Drawing.Size(120, 40);
+            this.BtnReportes.TabIndex = 5;
+            this.BtnReportes.Text = "Reportes";
+            this.BtnReportes.UseVisualStyleBackColor = false;
+            this.BtnReportes.Click += new System.EventHandler(this.BtnReportes_Click);
             // 
             // BtnCencesion
             // 
@@ -186,5 +202,6 @@
         private System.Windows.Forms.Button BtnCliente;
         private System.Windows.Forms.Button BtnCreditos;
         private System.Windows.Forms.Button BtnCencesion;
+        private System.Windows.Forms.Button BtnReportes;
     }
 }

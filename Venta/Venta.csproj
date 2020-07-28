@@ -99,6 +99,12 @@
     <Compile Include="Formularios\Productos.Designer.cs">
       <DependentUpon>Productos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Reportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Reportes.Designer.cs">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Ventas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,8 +113,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\Boleta.cs" />
+    <Compile Include="Reportes\BoletaP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\BoletaP.Designer.cs">
+      <DependentUpon>BoletaP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\ConceDet.cs" />
     <Compile Include="Reportes\ConceEnc.cs" />
+    <Compile Include="Reportes\Conces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Conces.Designer.cs">
+      <DependentUpon>Conces.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\FactDet.cs" />
     <Compile Include="Reportes\FactEnc.cs" />
     <Compile Include="Reportes\Factura.cs">
@@ -116,6 +135,26 @@
     </Compile>
     <Compile Include="Reportes\Factura.Designer.cs">
       <DependentUpon>Factura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Inventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Inventario.Designer.cs">
+      <DependentUpon>Inventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ListaProd.cs" />
+    <Compile Include="Reportes\MasVendi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\MasVendi.Designer.cs">
+      <DependentUpon>MasVendi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\VentasD.cs" />
+    <Compile Include="Reportes\VentasDiarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\VentasDiarios.Designer.cs">
+      <DependentUpon>VentasDiarios.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -138,6 +177,9 @@
     <EmbeddedResource Include="Formularios\Productos.resx">
       <DependentUpon>Productos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Reportes.resx">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Ventas.resx">
       <DependentUpon>Ventas.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,17 +192,34 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reportes\Boleta.rdlc" />
+    <EmbeddedResource Include="Reportes\BoletaP.resx">
+      <DependentUpon>BoletaP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Conces.rdlc" />
+    <EmbeddedResource Include="Reportes\Conces.resx">
+      <DependentUpon>Conces.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Factura.rdlc" />
     <EmbeddedResource Include="Reportes\Factura.resx">
       <DependentUpon>Factura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Inventario.rdlc" />
+    <EmbeddedResource Include="Reportes\Inventario.resx">
+      <DependentUpon>Inventario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\MasVendi.rdlc" />
     <EmbeddedResource Include="Reportes\VentasDiarios.rdlc" />
+    <EmbeddedResource Include="Reportes\VentasDiarios.resx">
+      <DependentUpon>VentasDiarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\Venta.Reportes.Boleta.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.ConceDet.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.ConceEnc.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.FactDet.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.FactEnc.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.ListaProd.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.VentasD.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

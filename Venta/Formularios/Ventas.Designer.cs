@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ventas));
             this.PanData = new System.Windows.Forms.Panel();
             this.Gbx2 = new System.Windows.Forms.GroupBox();
+            this.CboPrecio = new System.Windows.Forms.ComboBox();
+            this.BtnBusca = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.CboTalla = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.PicExemp = new System.Windows.Forms.PictureBox();
             this.BtnAgr = new System.Windows.Forms.Button();
             this.NudCant = new System.Windows.Forms.NumericUpDown();
-            this.TxtPrecio = new System.Windows.Forms.TextBox();
             this.CboProd = new System.Windows.Forms.ComboBox();
             this.Gbx1 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -58,7 +58,7 @@
             this.CboNomCli = new System.Windows.Forms.ComboBox();
             this.PanCentral = new System.Windows.Forms.Panel();
             this.DgvProd = new System.Windows.Forms.DataGridView();
-            this.PanAbajo = new System.Windows.Forms.Panel();
+            this.PanelInf = new System.Windows.Forms.Panel();
             this.TxtMonto = new System.Windows.Forms.TextBox();
             this.LblTotal = new System.Windows.Forms.Label();
             this.TxtTotal = new System.Windows.Forms.TextBox();
@@ -70,7 +70,6 @@
             this.RdbContado = new System.Windows.Forms.RadioButton();
             this.RdbConce = new System.Windows.Forms.RadioButton();
             this.RdbCredito = new System.Windows.Forms.RadioButton();
-            this.BtnBusca = new System.Windows.Forms.Button();
             this.PanData.SuspendLayout();
             this.Gbx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicExemp)).BeginInit();
@@ -78,7 +77,7 @@
             this.Gbx1.SuspendLayout();
             this.PanCentral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProd)).BeginInit();
-            this.PanAbajo.SuspendLayout();
+            this.PanelInf.SuspendLayout();
             this.PanArriba.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -96,6 +95,7 @@
             // 
             // Gbx2
             // 
+            this.Gbx2.Controls.Add(this.CboPrecio);
             this.Gbx2.Controls.Add(this.BtnBusca);
             this.Gbx2.Controls.Add(this.label11);
             this.Gbx2.Controls.Add(this.CboTalla);
@@ -111,7 +111,6 @@
             this.Gbx2.Controls.Add(this.PicExemp);
             this.Gbx2.Controls.Add(this.BtnAgr);
             this.Gbx2.Controls.Add(this.NudCant);
-            this.Gbx2.Controls.Add(this.TxtPrecio);
             this.Gbx2.Controls.Add(this.CboProd);
             this.Gbx2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Gbx2.Location = new System.Drawing.Point(0, 182);
@@ -122,6 +121,25 @@
             this.Gbx2.TabIndex = 1;
             this.Gbx2.TabStop = false;
             this.Gbx2.Text = "Producto";
+            // 
+            // CboPrecio
+            // 
+            this.CboPrecio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboPrecio.FormattingEnabled = true;
+            this.CboPrecio.Location = new System.Drawing.Point(18, 205);
+            this.CboPrecio.Name = "CboPrecio";
+            this.CboPrecio.Size = new System.Drawing.Size(121, 23);
+            this.CboPrecio.TabIndex = 18;
+            // 
+            // BtnBusca
+            // 
+            this.BtnBusca.Location = new System.Drawing.Point(262, 203);
+            this.BtnBusca.Name = "BtnBusca";
+            this.BtnBusca.Size = new System.Drawing.Size(50, 25);
+            this.BtnBusca.TabIndex = 17;
+            this.BtnBusca.Text = "Buscar";
+            this.BtnBusca.UseVisualStyleBackColor = true;
+            this.BtnBusca.Click += new System.EventHandler(this.BtnBusca_Click);
             // 
             // label11
             // 
@@ -232,7 +250,7 @@
             // PicExemp
             // 
             this.PicExemp.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PicExemp.ErrorImage = ((System.Drawing.Image)(resources.GetObject("PicExemp.ErrorImage")));
+            this.PicExemp.ErrorImage = null;
             this.PicExemp.Location = new System.Drawing.Point(4, 234);
             this.PicExemp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PicExemp.Name = "PicExemp";
@@ -277,14 +295,6 @@
             0,
             0,
             0});
-            // 
-            // TxtPrecio
-            // 
-            this.TxtPrecio.Location = new System.Drawing.Point(21, 205);
-            this.TxtPrecio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TxtPrecio.Name = "TxtPrecio";
-            this.TxtPrecio.Size = new System.Drawing.Size(118, 23);
-            this.TxtPrecio.TabIndex = 1;
             // 
             // CboProd
             // 
@@ -396,7 +406,7 @@
             // PanCentral
             // 
             this.PanCentral.Controls.Add(this.DgvProd);
-            this.PanCentral.Controls.Add(this.PanAbajo);
+            this.PanCentral.Controls.Add(this.PanelInf);
             this.PanCentral.Controls.Add(this.PanArriba);
             this.PanCentral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanCentral.Location = new System.Drawing.Point(332, 0);
@@ -416,22 +426,22 @@
             this.DgvProd.Name = "DgvProd";
             this.DgvProd.ReadOnly = true;
             this.DgvProd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvProd.Size = new System.Drawing.Size(798, 428);
+            this.DgvProd.Size = new System.Drawing.Size(798, 425);
             this.DgvProd.TabIndex = 2;
             // 
-            // PanAbajo
+            // PanelInf
             // 
-            this.PanAbajo.Controls.Add(this.TxtMonto);
-            this.PanAbajo.Controls.Add(this.LblTotal);
-            this.PanAbajo.Controls.Add(this.TxtTotal);
-            this.PanAbajo.Controls.Add(this.Cancelar);
-            this.PanAbajo.Controls.Add(this.BtnGenVen);
-            this.PanAbajo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanAbajo.Location = new System.Drawing.Point(0, 505);
-            this.PanAbajo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.PanAbajo.Name = "PanAbajo";
-            this.PanAbajo.Size = new System.Drawing.Size(798, 85);
-            this.PanAbajo.TabIndex = 1;
+            this.PanelInf.Controls.Add(this.TxtMonto);
+            this.PanelInf.Controls.Add(this.LblTotal);
+            this.PanelInf.Controls.Add(this.TxtTotal);
+            this.PanelInf.Controls.Add(this.Cancelar);
+            this.PanelInf.Controls.Add(this.BtnGenVen);
+            this.PanelInf.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PanelInf.Location = new System.Drawing.Point(0, 502);
+            this.PanelInf.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.PanelInf.Name = "PanelInf";
+            this.PanelInf.Size = new System.Drawing.Size(798, 88);
+            this.PanelInf.TabIndex = 1;
             // 
             // TxtMonto
             // 
@@ -564,16 +574,6 @@
             this.RdbCredito.Text = "Credito";
             this.RdbCredito.UseVisualStyleBackColor = true;
             // 
-            // BtnBusca
-            // 
-            this.BtnBusca.Location = new System.Drawing.Point(262, 203);
-            this.BtnBusca.Name = "BtnBusca";
-            this.BtnBusca.Size = new System.Drawing.Size(50, 25);
-            this.BtnBusca.TabIndex = 17;
-            this.BtnBusca.Text = "Buscar";
-            this.BtnBusca.UseVisualStyleBackColor = true;
-            this.BtnBusca.Click += new System.EventHandler(this.BtnBusca_Click);
-            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -596,8 +596,8 @@
             this.Gbx1.PerformLayout();
             this.PanCentral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvProd)).EndInit();
-            this.PanAbajo.ResumeLayout(false);
-            this.PanAbajo.PerformLayout();
+            this.PanelInf.ResumeLayout(false);
+            this.PanelInf.PerformLayout();
             this.PanArriba.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -617,9 +617,8 @@
         private System.Windows.Forms.Panel PanCentral;
         private System.Windows.Forms.Button BtnAgr;
         private System.Windows.Forms.NumericUpDown NudCant;
-        private System.Windows.Forms.TextBox TxtPrecio;
         private System.Windows.Forms.ComboBox CboProd;
-        private System.Windows.Forms.Panel PanAbajo;
+        private System.Windows.Forms.Panel PanelInf;
         private System.Windows.Forms.Button Cancelar;
         private System.Windows.Forms.Button BtnGenVen;
         private System.Windows.Forms.Panel PanArriba;
@@ -649,5 +648,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button BtnUltVent;
         private System.Windows.Forms.Button BtnBusca;
+        private System.Windows.Forms.ComboBox CboPrecio;
     }
 }

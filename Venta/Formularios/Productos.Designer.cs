@@ -59,6 +59,7 @@
             this.TxtBuscNom = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.DgvProd = new System.Windows.Forms.DataGridView();
+            this.OFD1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxProd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).BeginInit();
@@ -108,18 +109,21 @@
             this.BtnAdd.TabIndex = 22;
             this.BtnAdd.Text = "+";
             this.BtnAdd.UseVisualStyleBackColor = true;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // PbxProd
             // 
-            this.PbxProd.Location = new System.Drawing.Point(211, 472);
+            this.PbxProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PbxProd.Location = new System.Drawing.Point(170, 436);
             this.PbxProd.Name = "PbxProd";
-            this.PbxProd.Size = new System.Drawing.Size(76, 67);
+            this.PbxProd.Size = new System.Drawing.Size(117, 103);
+            this.PbxProd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PbxProd.TabIndex = 21;
             this.PbxProd.TabStop = false;
             // 
             // BtnImagen
             // 
-            this.BtnImagen.Location = new System.Drawing.Point(109, 512);
+            this.BtnImagen.Location = new System.Drawing.Point(99, 512);
             this.BtnImagen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnImagen.Name = "BtnImagen";
             this.BtnImagen.Size = new System.Drawing.Size(54, 27);
@@ -133,7 +137,7 @@
             this.TxtPrecio_V.Location = new System.Drawing.Point(27, 472);
             this.TxtPrecio_V.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio_V.Name = "TxtPrecio_V";
-            this.TxtPrecio_V.Size = new System.Drawing.Size(149, 23);
+            this.TxtPrecio_V.Size = new System.Drawing.Size(114, 23);
             this.TxtPrecio_V.TabIndex = 19;
             this.TxtPrecio_V.Text = "0";
             // 
@@ -142,16 +146,16 @@
             this.TxtPrecio_M.Location = new System.Drawing.Point(27, 414);
             this.TxtPrecio_M.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio_M.Name = "TxtPrecio_M";
-            this.TxtPrecio_M.Size = new System.Drawing.Size(148, 23);
+            this.TxtPrecio_M.Size = new System.Drawing.Size(114, 23);
             this.TxtPrecio_M.TabIndex = 18;
             this.TxtPrecio_M.Text = "0";
             // 
             // TxtPrecio_C
             // 
-            this.TxtPrecio_C.Location = new System.Drawing.Point(18, 356);
+            this.TxtPrecio_C.Location = new System.Drawing.Point(27, 356);
             this.TxtPrecio_C.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio_C.Name = "TxtPrecio_C";
-            this.TxtPrecio_C.Size = new System.Drawing.Size(158, 23);
+            this.TxtPrecio_C.Size = new System.Drawing.Size(114, 23);
             this.TxtPrecio_C.TabIndex = 17;
             this.TxtPrecio_C.Text = "0";
             // 
@@ -390,6 +394,10 @@
             this.DgvProd.Size = new System.Drawing.Size(830, 427);
             this.DgvProd.TabIndex = 3;
             // 
+            // OFD1
+            // 
+            this.OFD1.FileName = "openFileDialog1";
+            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -450,5 +458,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button BtnEditar;
         private System.Windows.Forms.Button BtnAdd;
+        private System.Windows.Forms.OpenFileDialog OFD1;
     }
 }

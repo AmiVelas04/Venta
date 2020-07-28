@@ -126,7 +126,8 @@ namespace Venta.Formularios
             datos[3] = DateTime.Now.ToString("yyyy/MM/dd");
             datos[4] = "1";
             if (cre.RegPago(datos))
-            { MessageBox.Show("Pago Registrado"); }
+            {
+                MessageBox.Show("Pago Registrado"); }
             else
             { MessageBox.Show("Error en pago"); }
 

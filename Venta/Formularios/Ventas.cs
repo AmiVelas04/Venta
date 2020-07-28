@@ -68,10 +68,10 @@ namespace Venta.Formularios
         private void CboProd_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CboProd.Text !="" && CboProd.SelectedValue.ToString() !="System.Data.DataRowView" )
-            { busqueda(CboProd.SelectedValue.ToString()); }
+            { busqueda(CboProd.SelectedValue.ToString());
+            }
             else
             {  }
-            
         }
         //busca producto
         private void busqueda(string id)
@@ -79,25 +79,21 @@ namespace Venta.Formularios
             DataTable datos = new DataTable();
             string nombrepod= prod.nomprod(id);
             string tipo="0", estilo="0", color="0";
-         
             tipo = prod.codtipo(id);
             estilo = prod.codestilo(id);
             color = prod.codcolor(id);
             datos = prod.prodId(id);
-                llenartipo(id, nombrepod);
-                CboTipo.SelectedValue = int.Parse(tipo);
-                CboEstilo.SelectedValue = int.Parse(estilo);
-                CboColor.SelectedValue = int.Parse(color);
-                CboTalla.SelectedValue = id;
-
-                AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-                coleccion.Add(datos.Rows[0][1].ToString());
-                coleccion.Add(datos.Rows[0][2].ToString());
-                TxtPrecio.AutoCompleteCustomSource = coleccion;
-               // TxtPrecio.AutoCompleteMode = AutoCompleteMode.Suggest;
-              //  TxtPrecio.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                TxtPrecio.Text = datos.Rows[0][1].ToString();
-           
+            llenartipo(id, nombrepod);
+            CboTipo.SelectedValue = int.Parse(tipo);
+            CboEstilo.SelectedValue = int.Parse(estilo);
+            CboColor.SelectedValue = int.Parse(color);
+            CboTalla.SelectedValue = id;
+            while (CboPrecio.Items.Count > 0)
+            { CboPrecio.Items.RemoveAt(0); }
+            CboPrecio.Items.Add(datos.Rows[0][2].ToString());
+            CboPrecio.Items.Add(datos.Rows[0][3].ToString());
+            CboPrecio.SelectedIndex = 1;
+            PicExemp.Image = Image.FromFile(@".\imagen\"+prod.imagen(id));
         }
 
         private void busquedacli(string id)
@@ -160,15 +156,20 @@ namespace Venta.Formularios
 
         private void BtnAgr_Click(object sender, EventArgs e)
         {
-            string prod = CboProd.SelectedValue .ToString();
+            agregarprod();
+        }
+
+        private void agregarprod()
+        {
+            string prod = CboProd.SelectedValue.ToString();
             string est = CboEstilo.SelectedValue.ToString();
             string col = CboColor.SelectedValue.ToString();
             string tipo = CboTipo.SelectedValue.ToString();
-           
+
             if (DgvProd.Rows.Count <= 0)
             {
-                DgvProd.Columns.Add("Cod","Codigo");
-                DgvProd.Columns.Add("Producto","Producto");
+                DgvProd.Columns.Add("Cod", "Codigo");
+                DgvProd.Columns.Add("Producto", "Producto");
                 DgvProd.Columns.Add("Estilo", "Estilo");
                 DgvProd.Columns.Add("Tipo", "Tipo");
                 DgvProd.Columns.Add("Color", "Color");
@@ -179,7 +180,7 @@ namespace Venta.Formularios
                 DgvProd.Columns[0].Visible = false;
 
             }
-            if (revcant(prod,NudCant .Value ))
+            if (revcant(prod, NudCant.Value))
             {
                 addprod(prod, col, tipo, est);
             }
@@ -211,8 +212,8 @@ namespace Venta.Formularios
             string color = dt.Rows[0][8].ToString();
             string tipo = dt.Rows[0][6].ToString();
             string estilo = dt.Rows[0][10].ToString();
-            DgvProd.Rows.Add(dt.Rows[0][0].ToString (),dt.Rows[0][11].ToString(), estilo, tipo, color,CboTalla .Text ,NudCant.Value, TxtPrecio.Text, (decimal.Parse(NudCant.Value.ToString ()) * decimal.Parse(TxtPrecio.Text)).ToString());
-            total += (decimal.Parse(NudCant.Value.ToString()) * decimal.Parse(TxtPrecio.Text));
+            DgvProd.Rows.Add(dt.Rows[0][0].ToString (),dt.Rows[0][11].ToString(), estilo, tipo, color,CboTalla .Text ,NudCant.Value, CboPrecio.Text, (decimal.Parse(NudCant.Value.ToString ()) * decimal.Parse(CboPrecio.Text)).ToString());
+            total += (decimal.Parse(NudCant.Value.ToString()) * decimal.Parse(CboPrecio.Text));
             LblTotal.Text = total.ToString();
         }
 
@@ -423,15 +424,16 @@ namespace Venta.Formularios
 
         private void CboTalla_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            if (CboTipo.SelectedValue != null && CboTalla.SelectedValue != null && CboEstilo.SelectedValue != null && CboColor.SelectedValue != null && (CboTalla.Text != "" && CboTalla.SelectedValue != null && CboTalla.Text != "System.Data.DataRowView" && CboTalla.Items.Count >= 1))
+            if ( CboTalla.SelectedValue .ToString () != "System.Data.DataRowView" )
             {
-                string tipo = CboTipo.SelectedValue.ToString();
-                string estilo = CboEstilo.SelectedValue.ToString();
-                string color = CboColor.SelectedValue.ToString();
-                string talla = CboTalla.Text;
-                //   if(CboTalla .SelectedValue !=CboProd.SelectedValue && CboTalla.SelectedValue!=null) // busqueda(CboTalla.SelectedValue.ToString ());
-
+                DataTable datos = new DataTable();
+                datos = prod.prodId(CboTalla.SelectedValue.ToString());
+                while (CboPrecio.Items.Count > 0)
+                { CboPrecio.Items.RemoveAt(0); }
+                CboPrecio.Items.Add(datos.Rows[0][2].ToString());
+                CboPrecio.Items.Add(datos.Rows[0][3].ToString());
+                CboPrecio.SelectedIndex = 1;
+                PicExemp.Image = Image.FromFile(@".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString ()));
             }
         }
 
@@ -440,11 +442,12 @@ namespace Venta.Formularios
             int idVenta = vent.idVentaCliente(CboNomCli.SelectedValue.ToString());
             if (idVenta <= 0)
             {
-                MessageBox.Show("No existen ventas amterioresd de a este cliente");
+                MessageBox.Show("No existen ventas anteriores de este cliente");
             }
             else
             {
-                //Mostrar ultim aventa
+                //Mostrar ultima venta
+                vent.RegenFact(idVenta.ToString());
             }
 
         }

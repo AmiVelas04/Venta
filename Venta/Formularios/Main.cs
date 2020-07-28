@@ -66,5 +66,10 @@ namespace Venta.Formularios
         {
             abrir_form(new Concesion());
         }
+
+        private void BtnReportes_Click(object sender, EventArgs e)
+        {
+            abrir_form(new Reportes());
+        }
     }
 }

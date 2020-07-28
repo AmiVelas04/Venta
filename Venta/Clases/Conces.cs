@@ -13,6 +13,7 @@ namespace Venta.Clases
     {
         conexion conec = new conexion();
         Producto prod = new Producto();
+        Clientes cli = new Clientes();
         #region "General"
         private DataTable buscar(string consulta)
         {
@@ -124,7 +125,7 @@ namespace Venta.Clases
                               "values(" + conc +"," + cli+ "," + vende + ",'" + fecha + "','" + estado + "')";
             if (consulta_gen(consulta))
             {
-                return DetConc(datos, conc.ToString()); 
+                return DetConc(datos, conc.ToString(),cli); 
             }
             else
             {
@@ -132,7 +133,7 @@ namespace Venta.Clases
             }
         }
 
-        public bool DetConc(DataTable datos,string Conce)
+        public bool DetConc(DataTable datos,string Conce,string cli)
         {
             int id, total, cont,Pcant;
             string consulta, totprod, CambioProd;
@@ -157,7 +158,37 @@ namespace Venta.Clases
                     return false;
                 }
             }
+            GenConce(datos, Conce,cli);
             return true;
+        }
+
+        public void GenConce(DataTable datos, string conce,string clien)
+        {
+            DataTable data = new DataTable();
+            data = cli.buscli(clien);
+            int cant, cont;
+            cant = data.Rows.Count;
+            Reportes.ConceEnc Encab = new Reportes.ConceEnc();
+            Encab .fecha = DateTime.Now.ToString("yyyyy/MM/dd hh:mm:ss");
+            Encab.No = conce;
+            //Encab.tipo = tipo;
+            Encab.direccion = data.Rows[0][0].ToString();
+            Encab .nit= data.Rows[0][1].ToString();
+            Encab.nombre = data.Rows[0][3].ToString();
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.ConceDet Det = new Reportes.ConceDet();
+                Det.Numero = cont + 1;
+                Det.descripcion = "";
+                Det.cantidad =int.Parse( datos.Rows[cont][6].ToString());
+                Det.precio = decimal.Parse(datos.Rows[0][7].ToString());
+                Det.total = decimal.Parse(datos.Rows[0][8].ToString());
+                Encab.Detalle.Add(Det);
+            }
+            Reportes.Conces Conceso = new Reportes.Conces();
+            Conceso.Encab.Add(Encab);
+            Conceso.Deta = Encab.Detalle;
+            Conceso.Show();
         }
 
         public bool CanceConce(string id_conce)

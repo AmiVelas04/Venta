@@ -425,14 +425,8 @@ namespace Venta.Clases
             }
             return id.ToString();
         }
-
-        public string BuscTalla(string idprod)
-        {
-            DataTable datos = new DataTable();
-            string consulta = "SELECT Talla from producto where id_prod=" + idprod;
-            datos = buscar(consulta);
-            return datos .Rows[0][0].ToString ();
-        }
+        #region "Datos de productos"
+        
             
         public  bool devolverprod (string id, string cant)
         {
@@ -490,7 +484,7 @@ namespace Venta.Clases
             return datos = buscar(consulta);
         }
 
-        #region "Datos de productos"
+       
         public DataTable nomprod()
         {
             string consulta = "Select Nombre from producto";
@@ -502,7 +496,8 @@ namespace Venta.Clases
         public DataTable estilo(string prod )
         {
             string consulta = "Select e.id_estilo as id,e.estilo as estilo from estilo e inner join producto p on e.id_estilo=p.id_estilo " +
-                "where p.nombre='" + prod + "'";
+                "where p.nombre='" + prod + "' "+
+                "GROUP BY e.ID_ESTILO";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
@@ -512,7 +507,8 @@ namespace Venta.Clases
         public DataTable tipo(string prod)
         {
             string consulta = "Select t.id_tipo as id,t.tipo as tipo from Tipo t inner join producto p on t.id_tipo=p.id_tipo " +
-               "where p.nombre='" + prod + "'";
+               "where p.nombre='" + prod + "' "+
+               "Group by t.id_tipo";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
@@ -522,7 +518,8 @@ namespace Venta.Clases
         {
 
             string consulta = "Select c.id_color as id,c.color as color from color c inner join producto p on c.id_color=p.id_color " +
-                   "where p.nombre='" + prod + "'";
+                   "where p.nombre='" + prod + "' "+
+                   "Group by c.id_color";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
@@ -545,8 +542,44 @@ namespace Venta.Clases
             { return "0"; }
             else { return datos.Rows[0][0].ToString(); }
         }
+        public string imagen(string id)
+        {
+            string consulta = "Select imagen from producto where id_prod=" + id;
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows.Count > 0) { return datos.Rows[0][0].ToString(); }
+            else { return "0.jpg"; }
+        }
 
         #endregion
 
+        public void inventario()
+        {
+            DataTable datos = new DataTable();
+            string consulta = "SELECT p.Nombre,t.tipo,e.estilo,c.color, p.talla, p.cantidad, p.precio_cost,p.imagen FROM producto p "+
+                                "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO "+
+                                "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
+                                "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR";
+            datos= buscar(consulta);
+            int cont, cant;
+            cant = datos.Rows.Count;
+            Reportes.FactEnc Encab = new Reportes.FactEnc();
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.ListaProd produ = new Reportes.ListaProd();
+                produ.NombreProd = datos.Rows[cont][0].ToString();
+                produ.tipo = datos.Rows[cont][1].ToString();
+                produ.estilo= datos.Rows[cont][2].ToString();
+                produ.color= datos.Rows[cont][3].ToString();
+                produ.Talla= datos.Rows[cont][4].ToString();
+                produ.cantidad= int.Parse(datos.Rows[cont][5].ToString());
+                produ.precio= decimal.Parse(datos.Rows[cont][6].ToString());
+                produ.imagen=@""+Application.StartupPath + @"\imagen\"+ datos.Rows[cont][7].ToString();
+                Encab.Prod.Add(produ);
+            }
+            Reportes.Inventario inven = new Reportes.Inventario();
+            inven.inventario = Encab .Prod;
+            inven.Show();
+        }
     }
 }

@@ -40,11 +40,9 @@
             this.PanInf = new System.Windows.Forms.Panel();
             this.NudProd = new System.Windows.Forms.NumericUpDown();
             this.BtnFacturar = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.PanMed = new System.Windows.Forms.Panel();
             this.DgvProd = new System.Windows.Forms.DataGridView();
+            this.BtnEliminar = new System.Windows.Forms.Button();
             this.PanSup.SuspendLayout();
             this.GbxConce.SuspendLayout();
             this.GbxCliente.SuspendLayout();
@@ -148,9 +146,7 @@
             // 
             this.PanInf.Controls.Add(this.NudProd);
             this.PanInf.Controls.Add(this.BtnFacturar);
-            this.PanInf.Controls.Add(this.button3);
-            this.PanInf.Controls.Add(this.button2);
-            this.PanInf.Controls.Add(this.button1);
+            this.PanInf.Controls.Add(this.BtnEliminar);
             this.PanInf.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PanInf.Location = new System.Drawing.Point(0, 529);
             this.PanInf.Name = "PanInf";
@@ -186,33 +182,6 @@
             this.BtnFacturar.UseVisualStyleBackColor = true;
             this.BtnFacturar.Click += new System.EventHandler(this.BtnFacturar_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(212, 8);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(92, 47);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(114, 8);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(92, 47);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(10, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 47);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // PanMed
             // 
             this.PanMed.Controls.Add(this.DgvProd);
@@ -235,6 +204,15 @@
             this.DgvProd.Size = new System.Drawing.Size(1130, 415);
             this.DgvProd.TabIndex = 0;
             this.DgvProd.Click += new System.EventHandler(this.DgvProd_Click);
+            // 
+            // BtnEliminar
+            // 
+            this.BtnEliminar.Location = new System.Drawing.Point(10, 8);
+            this.BtnEliminar.Name = "BtnEliminar";
+            this.BtnEliminar.Size = new System.Drawing.Size(98, 47);
+            this.BtnEliminar.TabIndex = 0;
+            this.BtnEliminar.Text = "Eliminar";
+            this.BtnEliminar.UseVisualStyleBackColor = true;
             // 
             // Concesion
             // 
@@ -278,9 +256,7 @@
         private System.Windows.Forms.TextBox TxtTotal;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button BtnFacturar;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown NudProd;
+        private System.Windows.Forms.Button BtnEliminar;
     }
 }

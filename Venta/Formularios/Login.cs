@@ -25,6 +25,7 @@ namespace Venta.Formularios
             datos = log.Logueo(TxtUsu.Text, TxtPass.Text);
             if (datos.Rows.Count>0)
             {
+                MessageBox.Show("Ingreso Correcto","Inicio",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 Formularios.Main inicio = new Formularios.Main();
                 inicio.Show();
                 Main.idvende = datos.Rows[0][0].ToString();
@@ -34,7 +35,9 @@ namespace Venta.Formularios
             }
             else
             {
-                MessageBox.Show("Error de inicio de sesion");
+                MessageBox.Show("Error de inicio de sesion","Error",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                TxtPass.Clear();
+                TxtUsu.Clear();
             }
         }
 
