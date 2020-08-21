@@ -20,14 +20,13 @@ namespace Venta.Clases
             DataTable datos = new DataTable();
             try
             {
-
                 MySqlDataAdapter adap = new MySqlDataAdapter(consulta, Conec.conn);
                 adap.Fill(datos);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                MessageBox.Show(consulta);
+               // MessageBox.Show(ex.ToString());
+               // MessageBox.Show(consulta);
             }
             return datos;
 
@@ -62,6 +61,12 @@ namespace Venta.Clases
         {
             string consulta = "Select id_vendedor,nombre,usuario,contrasenia,nivel from vendedor where usuario='" + user + "' and contrasenia='" + pass + "'";
            return  buscar(consulta);
+        }
+
+        public string NomVende(string id)       {
+            string consulta = "Select nombre from vendedor where id_vendedor="+id;
+            string nombre= buscar (consulta).Rows[0][0].ToString();
+            return nombre;
         }
     }
 }

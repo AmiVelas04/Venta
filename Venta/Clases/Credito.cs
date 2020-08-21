@@ -12,7 +12,8 @@ namespace Venta.Clases
     class Credito
     {
         conexion conec = new conexion();
-        Venta ven = new Venta();
+        Caja caj = new Caja();
+      
         #region "General"
         private DataTable buscar(string consulta)
         {
@@ -135,7 +136,8 @@ namespace Venta.Clases
             string consulta = "insert into pago(id_pago,id_credito,Monto,detalle,fecha,id_vende) " +
                  "Values("+id+","+datos[0]+","+datos [1]+",'"+datos [2]+ "','"+datos [3]+"',"+datos [4]+")";
             imprimirBoleta(id, datos);
-            return consulta_gen(consulta);
+            consulta_gen(consulta);
+            return RpagoCre(id.ToString(), datos[0], datos[1], datos[4]);
         }
 
         public void imprimirBoleta(int id, string [] datos)
@@ -151,10 +153,39 @@ namespace Venta.Clases
             bol.concepto = datos[2];
             bol.fecha = datos[3];
             bol.Cliente = CliporCre(datos[0]);
-            bol.Vende = ven.VendePorCre(datos[0]);
+            bol.Vende = VendePorCre(datos[0]);
             Reportes.BoletaP Bolet = new Reportes.BoletaP();
             Bolet.bol.Add(bol);
             Bolet.Show();
+        }
+      
+        public string VendePorCre(string idcre)
+        {
+            string consulta = "SELECT ven.nombre FROM vendedor ven " +
+                                "INNER JOIN venta v ON v.ID_VENDEDOR = ven.ID_VENDEDOR " +
+                                "INNER JOIN credito cre ON cre.id_venta = v.ID_VENTA " +
+                                "WHERE cre.ID_CREDITO =" + idcre;
+
+            return buscar(consulta).Rows[0][0].ToString();
+        }
+        private bool RpagoCre(string idp,string cre,string pago,string vende)
+        {
+            string ConsV = "Select nombre from vendedor where id_vendedor=" + vende;
+            DataTable data = new DataTable();
+            data = buscar(ConsV);
+            string nombre = data.Rows[0][0].ToString();
+            string ConsCli = "SELECT c.nombre FROM cliente c " +
+                            "INNER JOIN credito cre ON cre.ID_CLIENTE = c.ID_CLIENTE " +
+                            "INNER JOIN pago p ON p.id_credito = cre.ID_CREDITO " +
+                            "WHERE cre.ID_CREDITO ="+cre;
+            DataTable datcli = new DataTable();
+            datcli = buscar(ConsCli);
+            string nomcli = datcli.Rows[0][0].ToString();
+            string detalle = "Pago de  abono a credito No."+cre+ " nombre de "+nomcli;
+            string operacion = "Entrada";
+            string fecha = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
+            string[] datos = { pago, detalle, operacion, fecha, vende };
+            return caj.Regcaja(datos);
         }
     }
 }

@@ -39,6 +39,7 @@ namespace Venta.Formularios
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             guardar();
+            limpiar();
         }
         private void guardar()
         {
@@ -49,29 +50,33 @@ namespace Venta.Formularios
             string talla = TxtTalla.Text;
             int cantidad = Int32 .Parse(NudCantidad.Value.ToString ());
             decimal precio_c = Decimal.Parse(TxtPrecio_C.Text);
-            decimal precio_m = Decimal.Parse(TxtPrecio_M.Text);
-            decimal precio_v = Decimal.Parse(TxtPrecio_V.Text);
-            string imagen = revimagen(Nomprod + idestilo+idtipo+idcolor+talla); ;
-            string estilo = CboEstilo.DisplayMember != null ?  CboEstilo.Text :"";
+            decimal precio_m1 = Decimal.Parse(TxtPrecio_M1.Text);
+            decimal precio_m2 = Decimal.Parse(TxtPrecio_M2.Text);
+            decimal precio_v1 = Decimal.Parse(TxtPrecio_V1.Text);
+            decimal precio_v2 = Decimal.Parse(TxtPrecio_V2.Text);
+            string imagen;
+              string estilo = CboEstilo.DisplayMember != null ?  CboEstilo.Text :"";
             string tipo = CboTipo.DisplayMember != null ? CboTipo.Text : "";
             string color = CboColor.DisplayMember != null ? CboColor.Text : "";
+            string ubicacion = TxtUbi.Text;
 
-
-            string[] datos = {Nomprod,idestilo,idtipo,idcolor,talla,cantidad.ToString (),precio_c.ToString () ,precio_m.ToString () ,precio_v.ToString () ,imagen,estilo,tipo,color};
             if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
             {
-               
-                if (prod.upd_prod(datos))
+                string idp = prod.busc_codprod(Nomprod, idestilo, idtipo, idcolor, talla);
+                imagen = revimagen(Nomprod + idestilo + idtipo + idcolor + talla, idp); ;
+                string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), imagen, estilo, tipo, color,ubicacion };
+                if (prod.upd_prod(datosupd))
                 {
                     MessageBox.Show("Producto Actualizado correctamente"); }
                 else { MessageBox.Show("Error al actualizar"); }
             }
             else
             {
-              
-                if (prod.ingreso_prod(datos))
+                imagen = OFD1.FileName;
+                string[] datosing = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), imagen, estilo, tipo, color,ubicacion };
+                if (prod.ingreso_prod(datosing))
                 {
-                    MessageBox.Show("Producto ingresado correctamente");
+                   // MessageBox.Show("Producto ingresado correctamente");
                 }
                 else
                 {
@@ -82,6 +87,7 @@ namespace Venta.Formularios
 
         private void TxtProdNom_TextChanged(object sender, EventArgs e)
         {
+            
             // agregar estilos
             DataTable datos = new DataTable();
             datos = prod.estilo(TxtProdNom .Text);
@@ -126,6 +132,8 @@ namespace Venta.Formularios
             CboColor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboColor.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
+            string talla = TxtTalla.Text;
+            TxtTalla.Text = talla;
         }
 
         private void BtnImagen_Click(object sender, EventArgs e)
@@ -135,7 +143,7 @@ namespace Venta.Formularios
             if (OFD1.ShowDialog() == DialogResult.OK)
             {
                 try {
-                    MessageBox.Show("Ruta Guardada: " + OFD1.FileName);
+                   // MessageBox.Show("Ruta Guardada: " + OFD1.FileName);
                     //PbxProd.Image = Image.FromFile(@"C:\Users\Insane\Pictures\7z6vh4.jpg");
                     PbxProd.Image = Image.FromFile(@""+ OFD1.FileName);
                 }
@@ -152,11 +160,12 @@ namespace Venta.Formularios
             DgvProd.Refresh();
         }
 
-        private string revimagen(string imagen)
+        private string revimagen(string imagen, string id)
         {
             string extension = Path.GetExtension(OFD1.FileName);
             string NombreFull,ruta;
             NombreFull = imagen + extension;
+            string imgdefecto = prod.imagen(id);
         if(Directory.Exists("./imagen") )
                 {}
         else{
@@ -176,7 +185,7 @@ namespace Venta.Formularios
                     }
             else
                 { MessageBox.Show("Imagen no valida/ o inexistente");
-                    NombreFull = "0.jpg";
+                    NombreFull = imgdefecto;
                 }
             }
             else
@@ -186,13 +195,139 @@ namespace Venta.Formularios
                 }
             else
                 { MessageBox.Show("Imagen no valida/ o inexistente");
-                    NombreFull = "0.jpg";
+                    NombreFull = imgdefecto;
                 }
             }
             return NombreFull;
         }
 
-        private void BtnAdd_Click(object sender, EventArgs e)
+        private void TxtTalla_TextChanged(object sender, EventArgs e)
+        {
+            if (TxtTalla.Text != "")
+            {
+                string Nomprod = TxtProdNom.Text;
+                string idestilo = CboEstilo.SelectedValue != null ? CboEstilo.SelectedValue.ToString() : "0";
+                string idtipo = CboTipo.SelectedValue != null ? CboTipo.SelectedValue.ToString() : "0";
+                string idcolor = CboColor.SelectedValue != null ? CboColor.SelectedValue.ToString() : "0";
+                string talla = TxtTalla.Text;
+                if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
+                {
+                    DataTable datos = new DataTable();
+                    datos = prod.DatosRestant(Nomprod, idestilo, idtipo, idcolor, talla);
+                    NudCantidad.Value = decimal.Parse(datos.Rows[0][0].ToString());
+                    TxtPrecio_C.Text = datos.Rows[0][1].ToString();
+                    TxtPrecio_M1.Text = datos.Rows[0][2].ToString();
+                    TxtPrecio_M2.Text= datos.Rows[0][3].ToString();
+                    TxtPrecio_V1.Text = datos.Rows[0][4].ToString();
+                    TxtPrecio_V2.Text = datos.Rows[0][5].ToString();
+                    TxtUbi.Text = datos.Rows[0][6].ToString();
+                }
+                else
+                {
+                    NudCantidad.Value = 0;
+                    TxtPrecio_C.Text = "";
+                    TxtPrecio_M1.Text = "";
+                    TxtPrecio_M2.Text = "";
+                    TxtPrecio_V1.Text = "";
+                    TxtPrecio_V2.Text = "";
+                }
+            }
+        }
+
+        private void TxtCod_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                buscarProd();
+            }
+        }
+
+        private void buscarProd()
+        {
+            DataTable datos = new DataTable();
+            datos = prod.PeticionProd(TxtCod.Text);
+            if (datos.Rows.Count > 0)
+            {
+                TxtProdNom.Text = datos.Rows[0][1].ToString();
+                //14-15-16
+                CboEstilo.SelectedValue = datos.Rows[0][14].ToString();
+                CboTipo.SelectedValue = datos.Rows[0][15].ToString();
+                CboColor.SelectedValue = datos.Rows[0][16].ToString();
+                TxtTalla.Text = datos.Rows[0][5].ToString();
+            }
+            else { }
+        }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+            if (DgvProd.Rows.Count > 0)
+            { 
+               string id = DgvProd.Rows[DgvProd.CurrentRow.Index].Cells[0].Value.ToString();
+                TxtCod.Text = id;
+                buscarProd();
+            }
+        }
+
+        private void CboEstilo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string talla = TxtTalla.Text;
+            TxtTalla.Text = talla;
+        }
+
+        private void CboTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string talla = TxtTalla.Text;
+            TxtTalla.Text = talla;
+        }
+
+        private void CboColor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string talla = TxtTalla.Text;
+            TxtTalla.Text = talla;
+        }
+
+        private void CboEstilo_TextChanged(object sender, EventArgs e)
+        {
+            string talla = TxtTalla.Text;
+            TxtTalla.Text = talla;
+        }
+
+        private void CboTipo_TextChanged(object sender, EventArgs e)
+        {
+            string talla = TxtTalla.Text;
+            TxtTalla.Text = talla;
+        }
+
+        private void CboColor_TextChanged(object sender, EventArgs e)
+        {
+            string talla = TxtTalla.Text;
+            TxtTalla.Text = talla;
+        }
+
+        private void BtnNvo_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
+
+        private void limpiar()
+        {
+            TxtCod.Text="";
+            TxtProdNom.Text = "";
+            CboEstilo.Text = "";
+            CboColor.Text = "";
+            CboTipo.Text = "";
+            TxtTalla.Text = "";
+            NudCantidad.Value = decimal.Parse("0");
+            TxtPrecio_C.Text = "0";
+            TxtPrecio_M1.Text = "0";
+            TxtPrecio_M2.Text = "0";
+            TxtPrecio_V1.Text = "0";
+            TxtPrecio_V2.Text = "0";
+            TxtUbi.Text = "";
+            OFD1.FileName = "";
+        }
+
+        private void PbxProd_Click(object sender, EventArgs e)
         {
 
         }

@@ -31,7 +31,20 @@ namespace Venta.Formularios
             fechaf = DtpFin.Value.ToString("yyyy/MM/dd");
             fechi = fechi + " 00:00:00";
             fechaf = fechaf + " 23:59:59";
-            ven.ventas(fechi, fechaf);
+            ven.ventasD(fechi, fechaf);
+        }
+
+        private void BtnVer_Click(object sender, EventArgs e)
+        {
+            conteop();
+        }
+        private void conteop()
+        {
+            int cant;
+            if (TxtCant.Text == "")
+            { cant = 0; }
+            else { cant = int.Parse(TxtCant.Text); }
+            prod.ConteoP(cant);
         }
     }
 }

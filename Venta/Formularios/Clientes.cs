@@ -55,5 +55,10 @@ namespace Venta.Formularios
             Dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
         }
+
+        private void Clientes_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

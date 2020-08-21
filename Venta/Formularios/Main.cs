@@ -54,7 +54,15 @@ namespace Venta.Formularios
 
         private void Main_Load(object sender, EventArgs e)
         {
-
+            LblUsu.Text = nombrev;
+            if (nivel.Equals("3"))
+            {
+                BtnProd.Visible = false;
+                BtnCliente.Visible = false;
+                BtnCreditos.Visible = false;
+                BtnCencesion.Visible = false;
+                BtnReportes.Visible = false;
+            }
         }
 
         private void BtnCreditos_Click(object sender, EventArgs e)
@@ -70,6 +78,16 @@ namespace Venta.Formularios
         private void BtnReportes_Click(object sender, EventArgs e)
         {
             abrir_form(new Reportes());
+        }
+
+        private void BtnCaja_Click(object sender, EventArgs e)
+        {
+            abrir_form(new Cajas());
+        }
+
+        private void BtnVent_Click(object sender, EventArgs e)
+        {
+            abrir_form(new ControlVen());
         }
     }
 }

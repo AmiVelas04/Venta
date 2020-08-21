@@ -36,6 +36,7 @@
             // TmrInicio
             // 
             this.TmrInicio.Enabled = true;
+            this.TmrInicio.Interval = 2000;
             this.TmrInicio.Tick += new System.EventHandler(this.TmrInicio_Tick);
             // 
             // Form1
@@ -47,6 +48,7 @@
             this.ClientSize = new System.Drawing.Size(561, 296);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

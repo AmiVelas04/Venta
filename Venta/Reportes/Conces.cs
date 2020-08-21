@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Reporting.WinForms;
 
 namespace Venta.Reportes
 {
@@ -23,7 +24,9 @@ namespace Venta.Reportes
 
         private void Conces_Load(object sender, EventArgs e)
         {
-
+            this.RepConc.LocalReport.DataSources.Clear();
+            this.RepConc.LocalReport.DataSources.Add(new ReportDataSource("Encabezado", Encab));
+            this.RepConc.LocalReport.DataSources.Add(new ReportDataSource("Detalle", Deta));
             this.RepConc.RefreshReport();
         }
     }

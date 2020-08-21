@@ -29,7 +29,7 @@
         <rd:DefaultName>No</rd:DefaultName>
         <Top>1.21391cm</Top>
         <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Width>5.54271cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -67,7 +67,7 @@
         <rd:DefaultName>direccion</rd:DefaultName>
         <Top>2.66085cm</Top>
         <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Width>5.54271cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -106,7 +106,7 @@
         <rd:DefaultName>Textbox4</rd:DefaultName>
         <Top>3.40196cm</Top>
         <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Width>5.54271cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -145,7 +145,7 @@
         <rd:DefaultName>nombre</rd:DefaultName>
         <Top>1.88446cm</Top>
         <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Width>5.54271cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -185,7 +185,7 @@
         </Paragraphs>
         <rd:DefaultName>vendedor</rd:DefaultName>
         <Top>1.21391cm</Top>
-        <Left>11.8637cm</Left>
+        <Left>12.63099cm</Left>
         <Height>0.6cm</Height>
         <Width>5cm</Width>
         <ZIndex>4</ZIndex>
@@ -210,13 +210,15 @@
                 <Style>
                   <FontFamily>Gill Sans MT</FontFamily>
                   <FontSize>8pt</FontSize>
+                  <Format>d' de 'MMMM' de 'yyyy</Format>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=First(Fields!fecha.Value, "Encabezado")</Value>
+                <Value>=CDate(First(Fields!fecha.Value, "Encabezado"))</Value>
                 <Style>
                   <FontFamily>Gill Sans MT</FontFamily>
                   <FontSize>8pt</FontSize>
+                  <Format>d' de 'MMMM' de 'yyyy</Format>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -227,7 +229,7 @@
         </Paragraphs>
         <rd:DefaultName>fecha</rd:DefaultName>
         <Top>1.84919cm</Top>
-        <Left>11.8637cm</Left>
+        <Left>12.63099cm</Left>
         <Height>0.6cm</Height>
         <Width>5cm</Width>
         <ZIndex>5</ZIndex>
@@ -280,7 +282,7 @@
               <Width>2.02375cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>6.2287cm</Width>
+              <Width>6.99599cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>3.135cm</Width>
@@ -341,7 +343,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Descripcion</Value>
+                              <Value>Descripción</Value>
                               <Style>
                                 <FontFamily>Gill Sans MT</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -491,7 +493,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Numero.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -521,7 +526,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!descripcion.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -551,7 +559,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!cantidad.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -584,6 +595,8 @@
                             <TextRun>
                               <Value>=Fields!precio.Value</Value>
                               <Style>
+                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
@@ -619,6 +632,8 @@
                             <TextRun>
                               <Value>=Fields!total.Value</Value>
                               <Style>
+                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontSize>9pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
@@ -670,7 +685,7 @@
         <Top>4.38891cm</Top>
         <Left>0.47625cm</Left>
         <Height>1.2cm</Height>
-        <Width>16.38745cm</Width>
+        <Width>17.15474cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -678,11 +693,56 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Total: </Value>
+                <Style>
+                  <FontFamily>Microsoft Sans Serif</FontFamily>
+                  <FontSize>9pt</FontSize>
+                  <Format>'Q'#,0.00</Format>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Sum(Fields!total.Value, "Detalle")</Value>
+                <Style>
+                  <FontFamily>Microsoft Sans Serif</FontFamily>
+                  <FontSize>9pt</FontSize>
+                  <Format>'Q'#,0.00</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox3</rd:DefaultName>
+        <Top>5.73002cm</Top>
+        <Left>12.63099cm</Left>
+        <Height>0.6cm</Height>
+        <Width>5cm</Width>
+        <ZIndex>8</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+          <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>2.39827in</Height>
+    <Height>2.6308in</Height>
     <Style />
   </Body>
-  <Width>6.82675in</Width>
+  <Width>7.05592in</Width>
   <Page>
     <PageHeight>27.94cm</PageHeight>
     <PageWidth>21.59cm</PageWidth>

@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PanLat = new System.Windows.Forms.Panel();
+            this.BtnVent = new System.Windows.Forms.Button();
+            this.BtnCaja = new System.Windows.Forms.Button();
             this.BtnReportes = new System.Windows.Forms.Button();
             this.BtnCencesion = new System.Windows.Forms.Button();
             this.BtnCreditos = new System.Windows.Forms.Button();
@@ -37,6 +39,7 @@
             this.BtnProd = new System.Windows.Forms.Button();
             this.BtnVenta = new System.Windows.Forms.Button();
             this.PanSup = new System.Windows.Forms.Panel();
+            this.LblUsu = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.PanCentral = new System.Windows.Forms.Panel();
             this.PanLat.SuspendLayout();
@@ -46,6 +49,8 @@
             // PanLat
             // 
             this.PanLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.PanLat.Controls.Add(this.BtnVent);
+            this.PanLat.Controls.Add(this.BtnCaja);
             this.PanLat.Controls.Add(this.BtnReportes);
             this.PanLat.Controls.Add(this.BtnCencesion);
             this.PanLat.Controls.Add(this.BtnCreditos);
@@ -58,13 +63,41 @@
             this.PanLat.Size = new System.Drawing.Size(134, 680);
             this.PanLat.TabIndex = 0;
             // 
+            // BtnVent
+            // 
+            this.BtnVent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnVent.FlatAppearance.BorderSize = 0;
+            this.BtnVent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVent.Location = new System.Drawing.Point(8, 195);
+            this.BtnVent.Name = "BtnVent";
+            this.BtnVent.Size = new System.Drawing.Size(120, 40);
+            this.BtnVent.TabIndex = 7;
+            this.BtnVent.Text = "Revisar Ventas";
+            this.BtnVent.UseVisualStyleBackColor = false;
+            this.BtnVent.Click += new System.EventHandler(this.BtnVent_Click);
+            // 
+            // BtnCaja
+            // 
+            this.BtnCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnCaja.FlatAppearance.BorderSize = 0;
+            this.BtnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCaja.Location = new System.Drawing.Point(8, 139);
+            this.BtnCaja.Name = "BtnCaja";
+            this.BtnCaja.Size = new System.Drawing.Size(120, 40);
+            this.BtnCaja.TabIndex = 6;
+            this.BtnCaja.Text = "Caja";
+            this.BtnCaja.UseVisualStyleBackColor = false;
+            this.BtnCaja.Click += new System.EventHandler(this.BtnCaja_Click);
+            // 
             // BtnReportes
             // 
             this.BtnReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
             this.BtnReportes.FlatAppearance.BorderSize = 0;
             this.BtnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnReportes.Location = new System.Drawing.Point(8, 315);
+            this.BtnReportes.Location = new System.Drawing.Point(8, 484);
             this.BtnReportes.Name = "BtnReportes";
             this.BtnReportes.Size = new System.Drawing.Size(120, 40);
             this.BtnReportes.TabIndex = 5;
@@ -78,7 +111,7 @@
             this.BtnCencesion.FlatAppearance.BorderSize = 0;
             this.BtnCencesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCencesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCencesion.Location = new System.Drawing.Point(8, 269);
+            this.BtnCencesion.Location = new System.Drawing.Point(8, 426);
             this.BtnCencesion.Name = "BtnCencesion";
             this.BtnCencesion.Size = new System.Drawing.Size(120, 40);
             this.BtnCencesion.TabIndex = 4;
@@ -92,7 +125,7 @@
             this.BtnCreditos.FlatAppearance.BorderSize = 0;
             this.BtnCreditos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCreditos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCreditos.Location = new System.Drawing.Point(8, 223);
+            this.BtnCreditos.Location = new System.Drawing.Point(8, 369);
             this.BtnCreditos.Name = "BtnCreditos";
             this.BtnCreditos.Size = new System.Drawing.Size(120, 40);
             this.BtnCreditos.TabIndex = 3;
@@ -106,7 +139,7 @@
             this.BtnCliente.FlatAppearance.BorderSize = 0;
             this.BtnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCliente.Location = new System.Drawing.Point(8, 177);
+            this.BtnCliente.Location = new System.Drawing.Point(8, 314);
             this.BtnCliente.Name = "BtnCliente";
             this.BtnCliente.Size = new System.Drawing.Size(120, 40);
             this.BtnCliente.TabIndex = 2;
@@ -120,7 +153,7 @@
             this.BtnProd.FlatAppearance.BorderSize = 0;
             this.BtnProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnProd.Location = new System.Drawing.Point(8, 131);
+            this.BtnProd.Location = new System.Drawing.Point(8, 252);
             this.BtnProd.Name = "BtnProd";
             this.BtnProd.Size = new System.Drawing.Size(120, 40);
             this.BtnProd.TabIndex = 1;
@@ -145,12 +178,24 @@
             // PanSup
             // 
             this.PanSup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(30)))), ((int)(((byte)(86)))));
+            this.PanSup.Controls.Add(this.LblUsu);
             this.PanSup.Controls.Add(this.button1);
             this.PanSup.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanSup.Location = new System.Drawing.Point(134, 0);
             this.PanSup.Name = "PanSup";
             this.PanSup.Size = new System.Drawing.Size(1146, 51);
             this.PanSup.TabIndex = 1;
+            // 
+            // LblUsu
+            // 
+            this.LblUsu.AutoSize = true;
+            this.LblUsu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUsu.ForeColor = System.Drawing.Color.White;
+            this.LblUsu.Location = new System.Drawing.Point(34, 14);
+            this.LblUsu.Name = "LblUsu";
+            this.LblUsu.Size = new System.Drawing.Size(76, 20);
+            this.LblUsu.TabIndex = 1;
+            this.LblUsu.Text = "Usuario:";
             // 
             // button1
             // 
@@ -181,12 +226,14 @@
             this.Controls.Add(this.PanSup);
             this.Controls.Add(this.PanLat);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
             this.PanLat.ResumeLayout(false);
             this.PanSup.ResumeLayout(false);
+            this.PanSup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -203,5 +250,8 @@
         private System.Windows.Forms.Button BtnCreditos;
         private System.Windows.Forms.Button BtnCencesion;
         private System.Windows.Forms.Button BtnReportes;
+        private System.Windows.Forms.Label LblUsu;
+        private System.Windows.Forms.Button BtnCaja;
+        private System.Windows.Forms.Button BtnVent;
     }
 }

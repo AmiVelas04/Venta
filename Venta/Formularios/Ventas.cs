@@ -22,11 +22,12 @@ namespace Venta.Formularios
         {
             InitializeComponent();
         }
-
         private void Ventas_Load(object sender, EventArgs e)
         {
+            LblTotal.Text = "0";
             cargar();
             cargarcli();
+
         }
         private void cargar()
         {
@@ -43,7 +44,8 @@ namespace Venta.Formularios
             CboProd.AutoCompleteCustomSource = coleccion;
             CboProd.AutoCompleteMode = AutoCompleteMode.Suggest;
             CboProd.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            CboProd.Text = "";
+            CboProd.SelectedValue = 0;
+           // CboProd.Text = "";
             PicExemp.Image = PicExemp.ErrorImage;
             RdbContado.Select();
         }
@@ -62,9 +64,12 @@ namespace Venta.Formularios
             CboNomCli.AutoCompleteCustomSource = coleccion;
             CboNomCli.AutoCompleteMode = AutoCompleteMode.Suggest;
             CboNomCli.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            CboNomCli.SelectedIndex = 0;
+            if (datos.Rows.Count > 0) {
+                //CboNomCli.SelectedValue = 1;
+                busquedacli("1");
+            }
+            
         }
-
         private void CboProd_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CboProd.Text !="" && CboProd.SelectedValue.ToString() !="System.Data.DataRowView" )
@@ -90,12 +95,17 @@ namespace Venta.Formularios
             CboTalla.SelectedValue = id;
             while (CboPrecio.Items.Count > 0)
             { CboPrecio.Items.RemoveAt(0); }
-            CboPrecio.Items.Add(datos.Rows[0][2].ToString());
-            CboPrecio.Items.Add(datos.Rows[0][3].ToString());
+            while (CboPrecioM.Items.Count > 0)
+            { CboPrecioM.Items.RemoveAt(0); }
+            CboPrecioM.Items.Add(datos.Rows[0][2].ToString());
+            CboPrecioM.Items.Add(datos.Rows[0][3].ToString());
+            CboPrecio.Items.Add(datos.Rows[0][4].ToString());
+            CboPrecio.Items.Add(datos.Rows[0][5].ToString());
+            TxtCod.Text = datos.Rows[0][0].ToString();
             CboPrecio.SelectedIndex = 1;
+            LblPosi.Text = datos.Rows[0][14].ToString();
             PicExemp.Image = Image.FromFile(@".\imagen\"+prod.imagen(id));
         }
-
         private void busquedacli(string id)
         {
             DataTable datos = new DataTable();
@@ -108,7 +118,6 @@ namespace Venta.Formularios
         }
 
         //buscar cliente
-
         #region "Llenado de combos"
         private void llenartipo(string id,string nom)
         {
@@ -151,8 +160,6 @@ namespace Venta.Formularios
        }
 
 #endregion
-
-
 
         private void BtnAgr_Click(object sender, EventArgs e)
         {
@@ -209,24 +216,62 @@ namespace Venta.Formularios
             if (LblTotal.Text != "Precio") total = decimal.Parse(LblTotal.Text);
             DataTable dt = new DataTable();
             dt = prod.prodId(idp);
-            string color = dt.Rows[0][8].ToString();
-            string tipo = dt.Rows[0][6].ToString();
-            string estilo = dt.Rows[0][10].ToString();
-            DgvProd.Rows.Add(dt.Rows[0][0].ToString (),dt.Rows[0][11].ToString(), estilo, tipo, color,CboTalla .Text ,NudCant.Value, CboPrecio.Text, (decimal.Parse(NudCant.Value.ToString ()) * decimal.Parse(CboPrecio.Text)).ToString());
-            total += (decimal.Parse(NudCant.Value.ToString()) * decimal.Parse(CboPrecio.Text));
+            string color = dt.Rows[0][10].ToString();
+            string tipo = dt.Rows[0][8].ToString();
+            string estilo = dt.Rows[0][12].ToString();
+            string precio="0";
+            if (ChkMay.Checked)
+            { precio = CboPrecioM.Text; }
+            else { precio = CboPrecio.Text; }
+            DgvProd.Rows.Add(dt.Rows[0][0].ToString (),dt.Rows[0][13].ToString(), estilo, tipo, color,CboTalla .Text ,NudCant.Value, precio, (decimal.Parse(NudCant.Value.ToString ()) * decimal.Parse(precio)));
+            total += (decimal.Parse(NudCant.Value.ToString()) * decimal.Parse(precio));
             LblTotal.Text = total.ToString();
         }
 
         private void BtnGenVen_Click(object sender, EventArgs e)
         {
+            if (TxtMonto.Text == "") TxtMonto.Text = "0";
+            if (DgvProd.Rows.Count > 0) venta();
+            
+        }
+
+        private void venta()
+        {
+            if (RdbContado.Checked)
+            {
+                if ((decimal.Parse(LblTotal.Text) > decimal.Parse(TxtMonto.Text)))
+                { MessageBox.Show("El monto es menor que el valor total"); }
+                else {
+                    decimal cambio;
+                    cambio = decimal.Parse(TxtMonto.Text) - decimal.Parse(LblTotal.Text);
+                    MessageBox.Show("Cambio: Q." + cambio.ToString());
+                    pago(); }
+            }
+            else if (RdbCredito.Checked)
+            {
+                if (TxtMonto.Text == "") TxtMonto.Text = "0";
+                pago();
+            }
+            else if (RdbConce.Checked)
+            {
+                if (TxtMonto.Text == "") TxtMonto.Text = "0";
+                pago();
+            }
+        }
+
+        private void pago()
+        {
             string cli = CboNomCli.SelectedValue.ToString();
-            string estado="", tipo="";
+            string estado = "", tipo = "";
+            decimal total;
+            total = decimal.Parse(TxtMonto.Text);
             if (RdbContado.Checked)
             {
                 tipo = "Contado";
                 estado = "Cancelado";
                 if (DgvProd.Rows.Count > 0)
-                { listarProd(tipo, estado, cli);
+                {
+                    listarProd(tipo, estado, cli,total.ToString ());
                     LimpiarDatos();
                 }
                 else { MessageBox.Show("No exiten productos"); }
@@ -236,7 +281,8 @@ namespace Venta.Formularios
                 tipo = "Credito";
                 estado = "Pendiente";
                 if (DgvProd.Rows.Count > 0)
-                { listarProd(tipo, estado, cli);
+                {
+                    listarProd(tipo, estado, cli, total.ToString());
                     LimpiarDatos();
                 }
                 else { MessageBox.Show("No existen productos"); }
@@ -245,14 +291,14 @@ namespace Venta.Formularios
             {
                 estado = "Pendiente";
                 if (DgvProd.Rows.Count > 0)
-                { ListConce(estado,cli );
+                {
+               ListConce(estado, cli,"");
                     LimpiarDatos();
                 }
                 else { MessageBox.Show("No existen productos"); }
             }
         }
-
-        private void ListConce( string estado, string cli)
+       private void ListConce( string estado, string cli,string pago)
         {
             string vende = Main.idvende.ToString();
             int filas = DgvProd.Rows.Count;
@@ -294,11 +340,9 @@ namespace Venta.Formularios
                 MessageBox.Show("Error en la Concesion");
             }
         }
-
-
-        private void listarProd(string tipo,string estado,string cli)
+        private void listarProd(string tipo,string estado,string cli,string pago)
         {
-            string vende=Main .idvende.ToString ();
+            string vende = Main .idvende.ToString ();
             int filas = DgvProd.Rows.Count;
             int cont, indice;
             indice = DgvProd.CurrentRow.Index;
@@ -328,10 +372,8 @@ namespace Venta.Formularios
                 fila["total"] = DgvProd.Rows[cont].Cells[8].Value;
                 produ.Rows.Add(fila);
             }
-
-            if (vent.generar_V(produ, vende,cli, estado, tipo))
+            if (vent.generar_V(produ, vende,cli, estado, tipo,pago))
             {
-                              
                 MessageBox.Show("Venta registrada correctamente.");
                 //vent.genfact(produ, "1", estado, tipo);
             }
@@ -340,8 +382,6 @@ namespace Venta.Formularios
                 MessageBox.Show("Error en la venta");
             }
         }
-
-
         private void LimpiarDatos()
         {
             while (DgvProd.RowCount > 0)
@@ -349,8 +389,8 @@ namespace Venta.Formularios
                     DgvProd.Rows.RemoveAt(0);
                 }
             LblTotal.Text = "0";
+            TxtMonto.Text = "0";
         }
-       
         private void CboNomCli_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CboNomCli.Text != "" && CboNomCli.SelectedValue.ToString() != "System.Data.DataRowView")
@@ -359,29 +399,10 @@ namespace Venta.Formularios
             { busquedacli("0"); }
 
         }
-
         private void Cancelar_Click(object sender, EventArgs e)
         {
             LimpiarDatos();
         }
-
-        private int selecTalla(string talla)
-        {
-            int cont, cant;
-            cant = CboTalla.Items.Count;
-            for(cont = 0;cont < cant;cont++)
-            {
-                CboTalla.SelectedIndex = cont;
-                string tall = CboTalla.Text;
-                if (tall == talla)
-                {
-                    return cont;
-                }
-               
-            }
-            return -1;
-        }
-
         private void CboTipo_SelectedValueChanged(object sender, EventArgs e)
         {
             if (CboTipo.SelectedValue.ToString() != "System.Data.DataRowView")
@@ -390,20 +411,6 @@ namespace Venta.Formularios
                 llenarestilo(CboProd.SelectedValue.ToString(),nombrepod);
            }
         }
-
-        private void selectprod(string tipo,string estilo, string color,string talla)
-        {
-            /*string idpod;
-            CboTipo.SelectedValue = tipo;
-            CboEstilo.SelectedValue = estilo;
-            CboColor.SelectedValue = color;
-           int tall=selecTalla(talla);
-            CboTalla.SelectedIndex=tall ;
-            idpod = prod.PeticionIdProd(tipo, estilo, color, talla);
-            CboProd.SelectedValue = idpod;*/
-            CboProd.Text = "";
-        }
-
         private void CboEstilo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CboEstilo.Text != "" && CboEstilo.SelectedValue.ToString() != "System.Data.DataRowView")
@@ -412,7 +419,6 @@ namespace Venta.Formularios
                 llenarcolor("", nombrepod);
             }
         }
-
         private void CboColor_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CboColor.Text != "" && CboColor.SelectedValue.ToString() != "System.Data.DataRowView")
@@ -455,6 +461,42 @@ namespace Venta.Formularios
         private void BtnBusca_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TxtCod_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                Busc_press();
+            }
+        }
+
+        private void Busc_press()
+        {
+            string cod = TxtCod.Text;
+            DataTable datos = new DataTable();
+            datos = prod.prodId(cod);
+            if (datos.Rows.Count > 0) {
+                CboProd.SelectedIndex = 0;
+                    CboProd.SelectedValue = cod; }
+
+            else { MessageBox.Show("El codigo no esta registrado"); }
+        }
+
+        private void ChkMay_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkMay.Checked)
+            {
+                CboPrecio.Enabled = false;
+                CboPrecioM.Enabled = true;
+                CboPrecioM.Visible = true;
+            }
+            else
+            {
+                CboPrecio.Enabled = true;
+                CboPrecioM.Enabled = false;
+                CboPrecioM.Visible = false;
+            }
         }
     }
 }

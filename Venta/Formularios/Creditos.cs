@@ -14,6 +14,7 @@ namespace Venta.Formularios
     {
         Clases.Clientes cli = new Clases.Clientes();
         Clases.Credito cre = new Clases.Credito();
+        
         public Creditos()
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace Venta.Formularios
             CboCli.AutoCompleteCustomSource = coleccion;
             CboCli.AutoCompleteMode = AutoCompleteMode.Suggest;
             CboCli.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            CboCli.SelectedIndex = 0;
+            if (datos.Rows.Count >0)  CboCli.SelectedIndex = 0;
         }
 
         private void CboCli_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,7 +62,6 @@ namespace Venta.Formularios
             TxtTel.Text = datos.Rows[0][4].ToString();
             TxtDpi.Text = datos.Rows[0][5].ToString();
             buscarcredi(idcli);
-
         }
 
         private void buscarcredi(string idC)
@@ -80,7 +80,7 @@ namespace Venta.Formularios
             CboCred.AutoCompleteCustomSource = coleccion;
             CboCred.AutoCompleteMode = AutoCompleteMode.Suggest;
             CboCred.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            CboCred.SelectedIndex = 0;
+            if (CboCred.Items.Count>0)CboCred.SelectedIndex = 0;
         }
 
         private void CboCred_SelectedIndexChanged(object sender, EventArgs e)
@@ -88,6 +88,7 @@ namespace Venta.Formularios
             if (CboCred.Text != "" && CboCred.SelectedValue.ToString() != "System.Data.DataRowView")
             {
                 DataCred(CboCred.SelectedValue.ToString());
+                BtnPago.Enabled = true;
             }
         }
 
@@ -114,7 +115,8 @@ namespace Venta.Formularios
 
         private void BtnPago_Click(object sender, EventArgs e)
         {
-            pago(); 
+            pago();
+            BtnPago.Enabled = false;
         }
 
         private void pago()
@@ -124,7 +126,7 @@ namespace Venta.Formularios
             datos[1] = TxtPago.Text;
             datos[2] = "Abono a Credito";
             datos[3] = DateTime.Now.ToString("yyyy/MM/dd");
-            datos[4] = "1";
+            datos[4] =Main.idvende;
             if (cre.RegPago(datos))
             {
                 MessageBox.Show("Pago Registrado"); }
@@ -132,5 +134,8 @@ namespace Venta.Formularios
             { MessageBox.Show("Error en pago"); }
 
         }
+
+       
+
     }
 }

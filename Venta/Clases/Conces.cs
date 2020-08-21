@@ -14,6 +14,7 @@ namespace Venta.Clases
         conexion conec = new conexion();
         Producto prod = new Producto();
         Clientes cli = new Clientes();
+        Login log = new Login();
         #region "General"
         private DataTable buscar(string consulta)
         {
@@ -125,7 +126,7 @@ namespace Venta.Clases
                               "values(" + conc +"," + cli+ "," + vende + ",'" + fecha + "','" + estado + "')";
             if (consulta_gen(consulta))
             {
-                return DetConc(datos, conc.ToString(),cli); 
+                return DetConc(datos, conc.ToString(),cli,vende); 
             }
             else
             {
@@ -133,44 +134,43 @@ namespace Venta.Clases
             }
         }
 
-        public bool DetConc(DataTable datos,string Conce,string cli)
+        public bool DetConc(DataTable datos,string Conce,string cli,string vende)
         {
-            int id, total, cont,Pcant;
+            int id, total, cont;
             string consulta, totprod, CambioProd;
             total = datos.Rows.Count;
-            
-            
             for (cont = 0; cont < total; cont++)
             {
                 int totalP,Resto;
                 DataTable prod = new DataTable();
                 id = cod_cetConc();
-                totprod = "Select Cantidad from producto where id_Prod="+datos.Rows[cont][0].ToString();
+                totprod = "Select Cantidad from producto where id_Prod='"+datos.Rows[cont][0].ToString()+"'";
                 prod = buscar(totprod);
                 totalP = int.Parse(prod.Rows[0][0].ToString());
                 Resto = totalP - int.Parse(datos.Rows[cont][6].ToString());
                 consulta = "insert into conce_detalle(conc_detalle,id_conc,id_prod,cantidad,precio,total) " +
-                                   "values(" + id + "," + Conce + "," + datos.Rows[cont][0].ToString() + ", " + datos.Rows[cont][6].ToString() + "," + datos.Rows[cont][7].ToString() + "," + datos.Rows[cont][8].ToString() + ")";
-                CambioProd = "Update Producto set cantidad= " + Resto +" where id_prod="+ datos.Rows[cont][0].ToString();
+                                   "values(" + id + "," + Conce + ",'" + datos.Rows[cont][0].ToString() + "', " + datos.Rows[cont][6].ToString() + "," + datos.Rows[cont][7].ToString() + "," + datos.Rows[cont][8].ToString() + ")";
+                CambioProd = "Update Producto set cantidad= " + Resto +" where id_prod='"+ datos.Rows[cont][0].ToString()+"'";
 
                 if (!consulta_gen(consulta)|| !consulta_gen(CambioProd))
                 {
                     return false;
                 }
             }
-            GenConce(datos, Conce,cli);
+            GenConce(datos, Conce,cli,vende);
             return true;
         }
 
-        public void GenConce(DataTable datos, string conce,string clien)
+        public void GenConce(DataTable datos, string conce,string clien,string vende)
         {
             DataTable data = new DataTable();
             data = cli.buscli(clien);
             int cant, cont;
-            cant = data.Rows.Count;
+            cant = datos.Rows.Count;
             Reportes.ConceEnc Encab = new Reportes.ConceEnc();
-            Encab .fecha = DateTime.Now.ToString("yyyyy/MM/dd hh:mm:ss");
+            Encab .fecha = DateTime.Now.ToString("dd/MM/yyyyy hh:mm:ss");
             Encab.No = conce;
+            Encab.vendedor = log.NomVende(vende);
             //Encab.tipo = tipo;
             Encab.direccion = data.Rows[0][0].ToString();
             Encab .nit= data.Rows[0][1].ToString();
@@ -179,7 +179,7 @@ namespace Venta.Clases
             {
                 Reportes.ConceDet Det = new Reportes.ConceDet();
                 Det.Numero = cont + 1;
-                Det.descripcion = "";
+                Det.descripcion = datos.Rows[cont][1].ToString() + "  " + datos.Rows[cont][2].ToString() + "  " + datos.Rows[cont][3].ToString() + "  " + datos.Rows[cont][4].ToString();
                 Det.cantidad =int.Parse( datos.Rows[cont][6].ToString());
                 Det.precio = decimal.Parse(datos.Rows[0][7].ToString());
                 Det.total = decimal.Parse(datos.Rows[0][8].ToString());

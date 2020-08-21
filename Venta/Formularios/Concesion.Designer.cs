@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Concesion));
             this.PanSup = new System.Windows.Forms.Panel();
             this.GbxConce = new System.Windows.Forms.GroupBox();
             this.TxtTotal = new System.Windows.Forms.TextBox();
@@ -40,9 +41,9 @@
             this.PanInf = new System.Windows.Forms.Panel();
             this.NudProd = new System.Windows.Forms.NumericUpDown();
             this.BtnFacturar = new System.Windows.Forms.Button();
+            this.BtnEliminar = new System.Windows.Forms.Button();
             this.PanMed = new System.Windows.Forms.Panel();
             this.DgvProd = new System.Windows.Forms.DataGridView();
-            this.BtnEliminar = new System.Windows.Forms.Button();
             this.PanSup.SuspendLayout();
             this.GbxConce.SuspendLayout();
             this.GbxCliente.SuspendLayout();
@@ -182,6 +183,16 @@
             this.BtnFacturar.UseVisualStyleBackColor = true;
             this.BtnFacturar.Click += new System.EventHandler(this.BtnFacturar_Click);
             // 
+            // BtnEliminar
+            // 
+            this.BtnEliminar.Location = new System.Drawing.Point(10, 8);
+            this.BtnEliminar.Name = "BtnEliminar";
+            this.BtnEliminar.Size = new System.Drawing.Size(98, 47);
+            this.BtnEliminar.TabIndex = 0;
+            this.BtnEliminar.Text = "Eliminar";
+            this.BtnEliminar.UseVisualStyleBackColor = true;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
+            // 
             // PanMed
             // 
             this.PanMed.Controls.Add(this.DgvProd);
@@ -205,15 +216,6 @@
             this.DgvProd.TabIndex = 0;
             this.DgvProd.Click += new System.EventHandler(this.DgvProd_Click);
             // 
-            // BtnEliminar
-            // 
-            this.BtnEliminar.Location = new System.Drawing.Point(10, 8);
-            this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(98, 47);
-            this.BtnEliminar.TabIndex = 0;
-            this.BtnEliminar.Text = "Eliminar";
-            this.BtnEliminar.UseVisualStyleBackColor = true;
-            // 
             // Concesion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -224,6 +226,7 @@
             this.Controls.Add(this.PanSup);
             this.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "Concesion";
             this.Text = "Concesion";

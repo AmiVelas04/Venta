@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>rebaja%281%29.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
@@ -50,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Caja.cs" />
     <Compile Include="Clases\Clientes.cs" />
     <Compile Include="Clases\Conces.cs" />
     <Compile Include="Clases\conexion.cs" />
@@ -63,6 +67,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Cajas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Cajas.Designer.cs">
+      <DependentUpon>Cajas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Clientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +84,12 @@
     </Compile>
     <Compile Include="Formularios\Concesion.Designer.cs">
       <DependentUpon>Concesion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ControlVen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ControlVen.Designer.cs">
+      <DependentUpon>ControlVen.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Creditos.cs">
       <SubType>Form</SubType>
@@ -120,6 +136,12 @@
     <Compile Include="Reportes\BoletaP.Designer.cs">
       <DependentUpon>BoletaP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\CantidadP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\CantidadP.Designer.cs">
+      <DependentUpon>CantidadP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\ConceDet.cs" />
     <Compile Include="Reportes\ConceEnc.cs" />
     <Compile Include="Reportes\Conces.cs">
@@ -159,11 +181,17 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Cajas.resx">
+      <DependentUpon>Cajas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Concesion.resx">
       <DependentUpon>Concesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ControlVen.resx">
+      <DependentUpon>ControlVen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Creditos.resx">
       <DependentUpon>Creditos.cs</DependentUpon>
@@ -195,6 +223,10 @@
     <EmbeddedResource Include="Reportes\Boleta.rdlc" />
     <EmbeddedResource Include="Reportes\BoletaP.resx">
       <DependentUpon>BoletaP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\CantidadP.rdlc" />
+    <EmbeddedResource Include="Reportes\CantidadP.resx">
+      <DependentUpon>CantidadP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Conces.rdlc" />
     <EmbeddedResource Include="Reportes\Conces.resx">
@@ -233,7 +265,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="rebaja%281%29.ico" />
+    <Content Include="rebaja.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

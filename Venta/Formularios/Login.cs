@@ -27,10 +27,11 @@ namespace Venta.Formularios
             {
                 MessageBox.Show("Ingreso Correcto","Inicio",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 Formularios.Main inicio = new Formularios.Main();
-                inicio.Show();
+
                 Main.idvende = datos.Rows[0][0].ToString();
                 Main .nombrev = datos.Rows[0][1].ToString();
                 Main.nivel = datos.Rows[0][4].ToString();
+                inicio.Show();
                 this.Close();
             }
             else

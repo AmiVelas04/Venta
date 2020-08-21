@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reportes));
             this.PanIz = new System.Windows.Forms.Panel();
             this.GbxProd = new System.Windows.Forms.GroupBox();
             this.BtnInventario = new System.Windows.Forms.Button();
@@ -39,10 +40,15 @@
             this.DtpIni = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.GbxFaltantes = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TxtCant = new System.Windows.Forms.TextBox();
+            this.BtnVer = new System.Windows.Forms.Button();
             this.PanIz.SuspendLayout();
             this.GbxProd.SuspendLayout();
             this.PanDer.SuspendLayout();
             this.GbxVentas.SuspendLayout();
+            this.GbxFaltantes.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanIz
@@ -57,6 +63,7 @@
             // 
             // GbxProd
             // 
+            this.GbxProd.Controls.Add(this.GbxFaltantes);
             this.GbxProd.Controls.Add(this.BtnInventario);
             this.GbxProd.Controls.Add(this.label1);
             this.GbxProd.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -157,6 +164,45 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Fecha de inicio";
             // 
+            // GbxFaltantes
+            // 
+            this.GbxFaltantes.Controls.Add(this.BtnVer);
+            this.GbxFaltantes.Controls.Add(this.TxtCant);
+            this.GbxFaltantes.Controls.Add(this.label4);
+            this.GbxFaltantes.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GbxFaltantes.Location = new System.Drawing.Point(4, 440);
+            this.GbxFaltantes.Name = "GbxFaltantes";
+            this.GbxFaltantes.Size = new System.Drawing.Size(536, 147);
+            this.GbxFaltantes.TabIndex = 2;
+            this.GbxFaltantes.TabStop = false;
+            this.GbxFaltantes.Text = "Conteo de productos";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(105, 57);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(122, 15);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Cantidad minima";
+            // 
+            // TxtCant
+            // 
+            this.TxtCant.Location = new System.Drawing.Point(108, 75);
+            this.TxtCant.Name = "TxtCant";
+            this.TxtCant.Size = new System.Drawing.Size(100, 23);
+            this.TxtCant.TabIndex = 1;
+            // 
+            // BtnVer
+            // 
+            this.BtnVer.Location = new System.Drawing.Point(254, 70);
+            this.BtnVer.Name = "BtnVer";
+            this.BtnVer.Size = new System.Drawing.Size(111, 28);
+            this.BtnVer.TabIndex = 2;
+            this.BtnVer.Text = "Ver productos";
+            this.BtnVer.UseVisualStyleBackColor = true;
+            this.BtnVer.Click += new System.EventHandler(this.BtnVer_Click);
+            // 
             // Reportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -167,6 +213,7 @@
             this.Controls.Add(this.PanIz);
             this.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Reportes";
             this.Text = "Reportes";
@@ -176,6 +223,8 @@
             this.PanDer.ResumeLayout(false);
             this.GbxVentas.ResumeLayout(false);
             this.GbxVentas.PerformLayout();
+            this.GbxFaltantes.ResumeLayout(false);
+            this.GbxFaltantes.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -193,5 +242,9 @@
         private System.Windows.Forms.DateTimePicker DtpIni;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox GbxFaltantes;
+        private System.Windows.Forms.Button BtnVer;
+        private System.Windows.Forms.TextBox TxtCant;
+        private System.Windows.Forms.Label label4;
     }
 }

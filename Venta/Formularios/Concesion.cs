@@ -43,7 +43,7 @@ namespace Venta.Formularios
             CboCli.AutoCompleteCustomSource = coleccion;
             CboCli.AutoCompleteMode = AutoCompleteMode.Suggest;
             CboCli.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            CboCli.SelectedIndex = 0;
+            if (datos.Rows.Count>0)  CboCli.SelectedIndex = 0;
         }
 
         private void CboCli_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,7 +148,7 @@ namespace Venta.Formularios
             DataTable Fact = new DataTable();
             string cliente=cli .CliporConce(CboConce .Text).ToString (), vende= Main.idvende.ToString ();
             Prefac = Conce.ProdConce(CboConce.Text);
-            int cont;
+            int cont;decimal Vtotal = decimal.Parse(TxtTotal.Text);
             var total = Prefac.Rows.Count;
             Fact.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
             Fact.Columns.Add("producto").DataType = System.Type.GetType("System.String");
@@ -167,11 +167,8 @@ namespace Venta.Formularios
                 if (cantAct > 0)
                 {
                     decimal totalp, precio;
-
-                   
                     precio = decimal.Parse(DgvProd.Rows[cont].Cells[6].Value.ToString());
                     cantAnt = int.Parse(Prefac.Rows[cont][5].ToString());
-
                     if (cantAct > cantAnt) return;
                     DataRow fila = Fact.NewRow();
                     CantDvo = cantAnt - cantAct;
@@ -193,9 +190,8 @@ namespace Venta.Formularios
                     CantDvo = int.Parse(Prefac.Rows[cont][5].ToString());
                     prod.devolverprod(idP, CantDvo.ToString());
                 }
-               
             }
-            if (ven.generar_V(Fact, vende,cliente, "Cancelado", "Contado"))
+            if (ven.generar_V(Fact, vende,cliente, "Cancelado", "Contado", Vtotal.ToString()))
             {
                 if (Conce.CanceConce(CboConce.Text))
                 { MessageBox.Show("Venta registrada correctamente"); }
@@ -206,7 +202,11 @@ namespace Venta.Formularios
                 MessageBox.Show("Error al registrar ventas");
             } }
 
-
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            int indice = int.Parse (DgvProd.CurrentRow.ToString());
+            DgvProd.Rows.RemoveAt(indice);
+        }
     }
 }
 ;
