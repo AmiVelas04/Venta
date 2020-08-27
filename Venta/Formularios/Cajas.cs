@@ -79,5 +79,43 @@ namespace Venta.Formularios
             TxtTotal.Text ="Q. " +total.ToString();
 
         }
+
+        private void BtnImp_Click(object sender, EventArgs e)
+        {
+            imprimir();
+        }
+        private void imprimir()
+        {
+            string operacion, Descripcion, Monto, entrada, salida, Hora,Atendio;
+            int cont, cant;
+            cant = DgvCaja.Rows.Count;
+            DataTable datos = new DataTable();
+            datos.Columns.Add("orden").DataType = System.Type.GetType("System.String");
+            datos.Columns.Add("Desc").DataType = System.Type.GetType("System.String");
+            datos.Columns.Add("Entrada").DataType = System.Type.GetType("System.String");
+            datos.Columns.Add("Salida").DataType = System.Type.GetType("System.String");
+            datos.Columns.Add("Hora").DataType = System.Type.GetType("System.String");
+            for (cont = 0; cont < cant; cont++)
+            {
+                DataRow fila = datos.NewRow();
+                entrada = "0";
+                salida = "0";
+                Monto= DgvCaja.Rows[cont].Cells[2].Value.ToString();
+                Descripcion = DgvCaja.Rows[cont].Cells[0].Value.ToString();
+                if (DgvCaja.Rows[cont].Cells[1].Value.ToString() == "Entrada")
+                { entrada = Monto; }
+                else
+                { salida = Monto; }
+                 Hora= DgvCaja.Rows[cont].Cells[3].Value.ToString();
+                fila["orden"] = (cont + 1).ToString();
+                fila["Desc"] = Descripcion;
+                fila["Entrada"] = entrada;
+                fila["Salida"] = salida;
+                fila["Hora"] = Hora;
+                datos.Rows.Add(fila);
+            }
+            Caj.imprep(datos);
+            
+        }
     }
 }

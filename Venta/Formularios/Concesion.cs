@@ -171,7 +171,7 @@ namespace Venta.Formularios
                     cantAnt = int.Parse(Prefac.Rows[cont][5].ToString());
                     if (cantAct > cantAnt) return;
                     DataRow fila = Fact.NewRow();
-                    CantDvo = cantAnt - cantAct;
+                    CantDvo = cantAnt; //- cantAct;
                     totalp = precio * cantAct;
                     prod.devolverprod(idP, CantDvo.ToString());
                     fila["codigo"] = idP.ToString();

@@ -97,6 +97,12 @@
     <Compile Include="Formularios\Creditos.Designer.cs">
       <DependentUpon>Creditos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\ImagenPic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ImagenPic.Designer.cs">
+      <DependentUpon>ImagenPic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,12 @@
     <Compile Include="Reportes\MasVendi.Designer.cs">
       <DependentUpon>MasVendi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\RepCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\RepCaja.Designer.cs">
+      <DependentUpon>RepCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\VentasD.cs" />
     <Compile Include="Reportes\VentasDiarios.cs">
       <SubType>Form</SubType>
@@ -195,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Creditos.resx">
       <DependentUpon>Creditos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ImagenPic.resx">
+      <DependentUpon>ImagenPic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -241,17 +256,30 @@
       <DependentUpon>Inventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\MasVendi.rdlc" />
+    <EmbeddedResource Include="Reportes\RepCaja.rdlc" />
+    <EmbeddedResource Include="Reportes\RepCaja.resx">
+      <DependentUpon>RepCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\VentasDiarios.rdlc" />
     <EmbeddedResource Include="Reportes\VentasDiarios.resx">
       <DependentUpon>VentasDiarios.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\Venta.Reportes.Boleta.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.BoletaP.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.CantidadP.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.ConceDet.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.ConceEnc.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.Conces.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.FactDet.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.FactEnc.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.FactEnc1.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.Factura.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.Inventario.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.ListaProd.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.MasVendi.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.RepCaja.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.VentasD.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.VentasDiarios.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

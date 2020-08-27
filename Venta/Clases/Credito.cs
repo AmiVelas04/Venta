@@ -99,7 +99,7 @@ namespace Venta.Clases
         }
         public DataTable pagos(string cred)
         {
-            string consulta = "SELECT p.Id_pago,p.id_credito,p.Monto,p.detalle,p.fecha,v.nombre "+
+            string consulta = "SELECT p.Id_pago as Codigo,p.id_credito as Credito,p.Monto,p.Detalle,p.Fecha,v.Nombre "+
                                "FROM pago p "+
                                "INNER JOIN vendedor v ON v.ID_VENDEDOR = p.id_vende "+
                                "WHERE p.id_credito ="+cred;
@@ -126,7 +126,7 @@ namespace Venta.Clases
             }
 
             decimal saldo;
-            saldo = total - anticipo - totalpag;
+            saldo = total - totalpag;
             return saldo;
         }
 
@@ -135,14 +135,15 @@ namespace Venta.Clases
             int id = codpag();
             string consulta = "insert into pago(id_pago,id_credito,Monto,detalle,fecha,id_vende) " +
                  "Values("+id+","+datos[0]+","+datos [1]+",'"+datos [2]+ "','"+datos [3]+"',"+datos [4]+")";
-            imprimirBoleta(id, datos);
+           
             consulta_gen(consulta);
+            imprimirBoleta(id, datos);
             return RpagoCre(id.ToString(), datos[0], datos[1], datos[4]);
         }
 
-        public void imprimirBoleta(int id, string [] datos)
+        public void imprimirBoleta(int id,string [] datos)
         {
-            decimal monto = saldo(id.ToString());
+            decimal monto = saldo(datos[0]);
             decimal total, pago;
             pago = decimal.Parse(datos[1]);
             total = monto - pago;
@@ -150,6 +151,26 @@ namespace Venta.Clases
             bol.NoBol = id.ToString ();
             bol.NoCre = datos[0];
             bol.pago = pago;
+            bol.saldo = total;
+            bol.concepto = datos[2];
+            bol.fecha = datos[3];
+            bol.Cliente = CliporCre(datos[0]);
+            bol.Vende = VendePorCre(datos[0]);
+            Reportes.BoletaP Bolet = new Reportes.BoletaP();
+            Bolet.bol.Add(bol);
+            Bolet.Show();
+        }
+        public void ReImp(int id,string [] datos)
+        {
+            decimal monto = saldo(datos[0]);
+            decimal total, pago;
+            pago = decimal.Parse(datos[1]);
+            total = monto;
+            Reportes.Boleta bol = new Reportes.Boleta();
+            bol.NoBol = id.ToString();
+            bol.NoCre = datos[0];
+            bol.pago = pago;
+            bol.saldo = total;
             bol.concepto = datos[2];
             bol.fecha = datos[3];
             bol.Cliente = CliporCre(datos[0]);

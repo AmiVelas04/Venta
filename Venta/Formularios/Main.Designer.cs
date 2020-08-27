@@ -42,6 +42,7 @@
             this.LblUsu = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.PanCentral = new System.Windows.Forms.Panel();
+            this.BtnMin = new System.Windows.Forms.Button();
             this.PanLat.SuspendLayout();
             this.PanSup.SuspendLayout();
             this.SuspendLayout();
@@ -178,6 +179,7 @@
             // PanSup
             // 
             this.PanSup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(30)))), ((int)(((byte)(86)))));
+            this.PanSup.Controls.Add(this.BtnMin);
             this.PanSup.Controls.Add(this.LblUsu);
             this.PanSup.Controls.Add(this.button1);
             this.PanSup.Dock = System.Windows.Forms.DockStyle.Top;
@@ -185,6 +187,7 @@
             this.PanSup.Name = "PanSup";
             this.PanSup.Size = new System.Drawing.Size(1146, 51);
             this.PanSup.TabIndex = 1;
+            this.PanSup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanSup_MouseDown);
             // 
             // LblUsu
             // 
@@ -216,6 +219,18 @@
             this.PanCentral.Name = "PanCentral";
             this.PanCentral.Size = new System.Drawing.Size(1146, 629);
             this.PanCentral.TabIndex = 2;
+            // 
+            // BtnMin
+            // 
+            this.BtnMin.FlatAppearance.BorderSize = 0;
+            this.BtnMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMin.Image = ((System.Drawing.Image)(resources.GetObject("BtnMin.Image")));
+            this.BtnMin.Location = new System.Drawing.Point(1014, 0);
+            this.BtnMin.Name = "BtnMin";
+            this.BtnMin.Size = new System.Drawing.Size(69, 51);
+            this.BtnMin.TabIndex = 2;
+            this.BtnMin.UseVisualStyleBackColor = true;
+            this.BtnMin.Click += new System.EventHandler(this.BtnMin_Click);
             // 
             // Main
             // 
@@ -253,5 +268,6 @@
         private System.Windows.Forms.Label LblUsu;
         private System.Windows.Forms.Button BtnCaja;
         private System.Windows.Forms.Button BtnVent;
+        private System.Windows.Forms.Button BtnMin;
     }
 }

@@ -167,8 +167,6 @@ namespace Venta.Clases
                 }
                 if (!prod.descontarprod(idpord, cant))
                 { return false; }
-
-
                 Tvent += decimal.Parse(datos.Rows[cont][8].ToString());
             }
             string ConsV = "Select nombre from vendedor where id_vendedor=" + vende;
@@ -386,6 +384,19 @@ namespace Venta.Clases
         public bool regcaja(string [] datos)
         {
             return caj.Regcaja(datos);
+        }
+
+        public void reimprimivent(string idv)
+        {
+            string consultaV = "SELECT id_vendedor,id_cli,fecha,tipo FROM venta "+
+                               "WHERE id_venta ="+idv;
+            string ConsutaDet = "SELECT Concat(p.nombre,' - ',e.estilo,' - ',t.tipo,' - ',c.color,' - ',p.talla) AS nombre,vd.cantidad,vd.precio,vd.total "+
+                                "FROM venta_detalle vd "+
+                                "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD "+
+                                "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
+                                "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
+                                "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR "+
+                                "WHERE vd.ID_VENTA = "+idv; 
         }
     }
 }

@@ -121,9 +121,11 @@ namespace Venta.Formularios
 
         private void pago()
         {
+            string pago = "0";
+            if (TxtPago.Text != "") { pago = TxtPago.Text; }
             string[] datos = new string[5];
             datos[0] = CboCred.SelectedValue.ToString();
-            datos[1] = TxtPago.Text;
+            datos[1] = pago;
             datos[2] = "Abono a Credito";
             datos[3] = DateTime.Now.ToString("yyyy/MM/dd");
             datos[4] =Main.idvende;
@@ -135,7 +137,25 @@ namespace Venta.Formularios
 
         }
 
-       
+        private void BtnReImp_Click(object sender, EventArgs e)
+        {
+            if (DgvPagos.Rows.Count > 0) {
+                reimprimir();
+            }
+        }
+        private void reimprimir()
+        {
+            int indice = DgvPagos.CurrentRow.Index,idpago=0;
+            string credito, monto, detalle, fecha, opero;
+            idpago = int.Parse(DgvPagos.Rows[indice].Cells[0].Value.ToString());
+            credito = DgvPagos.Rows[indice].Cells[1].Value.ToString();
+            monto = DgvPagos.Rows[indice].Cells[2].Value.ToString();
+            detalle = DgvPagos.Rows[indice].Cells[3].Value.ToString();
+            fecha = DgvPagos.Rows[indice].Cells[4].Value.ToString();
+            opero = DgvPagos.Rows[indice].Cells[5].Value.ToString();
+            string[] datos = { credito,monto,detalle,fecha,opero};
+            cre.ReImp(idpago, datos);
+        }
 
     }
 }

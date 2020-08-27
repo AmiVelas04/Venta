@@ -75,6 +75,7 @@
             this.PanArriba = new System.Windows.Forms.Panel();
             this.BtnUltVent = new System.Windows.Forms.Button();
             this.GbxPago = new System.Windows.Forms.GroupBox();
+            this.RdbProd = new System.Windows.Forms.RadioButton();
             this.RdbContado = new System.Windows.Forms.RadioButton();
             this.RdbConce = new System.Windows.Forms.RadioButton();
             this.RdbCredito = new System.Windows.Forms.RadioButton();
@@ -139,7 +140,7 @@
             // LblPosi
             // 
             this.LblPosi.AutoSize = true;
-            this.LblPosi.Location = new System.Drawing.Point(134, 268);
+            this.LblPosi.Location = new System.Drawing.Point(135, 255);
             this.LblPosi.Name = "LblPosi";
             this.LblPosi.Size = new System.Drawing.Size(62, 15);
             this.LblPosi.TabIndex = 24;
@@ -210,7 +211,6 @@
             this.BtnBusca.Text = "Buscar";
             this.BtnBusca.UseVisualStyleBackColor = true;
             this.BtnBusca.Visible = false;
-            this.BtnBusca.Click += new System.EventHandler(this.BtnBusca_Click);
             // 
             // label11
             // 
@@ -320,15 +320,15 @@
             // 
             // PicExemp
             // 
-            this.PicExemp.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PicExemp.ErrorImage = null;
-            this.PicExemp.Location = new System.Drawing.Point(4, 286);
+            this.PicExemp.Location = new System.Drawing.Point(52, 271);
             this.PicExemp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PicExemp.Name = "PicExemp";
-            this.PicExemp.Size = new System.Drawing.Size(324, 101);
+            this.PicExemp.Size = new System.Drawing.Size(203, 114);
             this.PicExemp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicExemp.TabIndex = 5;
             this.PicExemp.TabStop = false;
+            this.PicExemp.DoubleClick += new System.EventHandler(this.PicExemp_DoubleClick);
             // 
             // BtnAgr
             // 
@@ -606,22 +606,38 @@
             // 
             // GbxPago
             // 
+            this.GbxPago.Controls.Add(this.RdbProd);
             this.GbxPago.Controls.Add(this.RdbContado);
             this.GbxPago.Controls.Add(this.RdbConce);
             this.GbxPago.Controls.Add(this.RdbCredito);
             this.GbxPago.Dock = System.Windows.Forms.DockStyle.Right;
-            this.GbxPago.Location = new System.Drawing.Point(522, 0);
+            this.GbxPago.Location = new System.Drawing.Point(501, 0);
             this.GbxPago.Name = "GbxPago";
-            this.GbxPago.Size = new System.Drawing.Size(276, 77);
+            this.GbxPago.Size = new System.Drawing.Size(297, 77);
             this.GbxPago.TabIndex = 7;
             this.GbxPago.TabStop = false;
-            this.GbxPago.Text = "Modo de Venta";
+            this.GbxPago.Text = "Modo de Venta/Salida";
+            // 
+            // RdbProd
+            // 
+            this.RdbProd.AutoSize = true;
+            this.RdbProd.Enabled = false;
+            this.RdbProd.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RdbProd.Location = new System.Drawing.Point(143, 48);
+            this.RdbProd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RdbProd.Name = "RdbProd";
+            this.RdbProd.Size = new System.Drawing.Size(117, 23);
+            this.RdbProd.TabIndex = 7;
+            this.RdbProd.TabStop = true;
+            this.RdbProd.Text = "Producción";
+            this.RdbProd.UseVisualStyleBackColor = true;
+            this.RdbProd.CheckedChanged += new System.EventHandler(this.RdbProd_CheckedChanged);
             // 
             // RdbContado
             // 
             this.RdbContado.AutoSize = true;
             this.RdbContado.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RdbContado.Location = new System.Drawing.Point(21, 22);
+            this.RdbContado.Location = new System.Drawing.Point(11, 18);
             this.RdbContado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RdbContado.Name = "RdbContado";
             this.RdbContado.Size = new System.Drawing.Size(97, 23);
@@ -634,7 +650,7 @@
             // 
             this.RdbConce.AutoSize = true;
             this.RdbConce.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RdbConce.Location = new System.Drawing.Point(83, 48);
+            this.RdbConce.Location = new System.Drawing.Point(143, 18);
             this.RdbConce.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RdbConce.Name = "RdbConce";
             this.RdbConce.Size = new System.Drawing.Size(110, 23);
@@ -647,7 +663,7 @@
             // 
             this.RdbCredito.AutoSize = true;
             this.RdbCredito.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RdbCredito.Location = new System.Drawing.Point(163, 22);
+            this.RdbCredito.Location = new System.Drawing.Point(11, 48);
             this.RdbCredito.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RdbCredito.Name = "RdbCredito";
             this.RdbCredito.Size = new System.Drawing.Size(87, 23);
@@ -739,5 +755,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label LblPosi;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RadioButton RdbProd;
     }
 }

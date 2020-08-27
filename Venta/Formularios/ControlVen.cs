@@ -130,5 +130,9 @@ namespace Venta.Formularios
             listarven();
         }
 
+        private void BtnImp_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cajas));
             this.PanSup = new System.Windows.Forms.Panel();
+            this.BtnImp = new System.Windows.Forms.Button();
             this.TxtTotal = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtSalida = new System.Windows.Forms.TextBox();
@@ -55,6 +57,7 @@
             // 
             // PanSup
             // 
+            this.PanSup.Controls.Add(this.BtnImp);
             this.PanSup.Controls.Add(this.TxtTotal);
             this.PanSup.Controls.Add(this.label8);
             this.PanSup.Controls.Add(this.TxtSalida);
@@ -79,11 +82,24 @@
             this.PanSup.Size = new System.Drawing.Size(1033, 156);
             this.PanSup.TabIndex = 0;
             // 
+            // BtnImp
+            // 
+            this.BtnImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnImp.Image")));
+            this.BtnImp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnImp.Location = new System.Drawing.Point(892, 96);
+            this.BtnImp.Name = "BtnImp";
+            this.BtnImp.Size = new System.Drawing.Size(129, 49);
+            this.BtnImp.TabIndex = 17;
+            this.BtnImp.Text = "Imprimir Reporte";
+            this.BtnImp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnImp.UseVisualStyleBackColor = true;
+            this.BtnImp.Click += new System.EventHandler(this.BtnImp_Click);
+            // 
             // TxtTotal
             // 
             this.TxtTotal.Enabled = false;
             this.TxtTotal.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTotal.Location = new System.Drawing.Point(872, 57);
+            this.TxtTotal.Location = new System.Drawing.Point(872, 31);
             this.TxtTotal.Name = "TxtTotal";
             this.TxtTotal.Size = new System.Drawing.Size(149, 36);
             this.TxtTotal.TabIndex = 16;
@@ -91,7 +107,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(926, 35);
+            this.label8.Location = new System.Drawing.Point(926, 9);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(50, 19);
             this.label8.TabIndex = 15;
@@ -303,5 +319,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TxtSencillo;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button BtnImp;
     }
 }

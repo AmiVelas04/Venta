@@ -31,11 +31,6 @@ namespace Venta.Formularios
             TxtProdNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             guardar();
@@ -54,17 +49,21 @@ namespace Venta.Formularios
             decimal precio_m2 = Decimal.Parse(TxtPrecio_M2.Text);
             decimal precio_v1 = Decimal.Parse(TxtPrecio_V1.Text);
             decimal precio_v2 = Decimal.Parse(TxtPrecio_V2.Text);
+            decimal precio_v3 = decimal.Parse(TxtPrecio_V3.Text);
             string imagen;
-              string estilo = CboEstilo.DisplayMember != null ?  CboEstilo.Text :"";
-            string tipo = CboTipo.DisplayMember != null ? CboTipo.Text : "";
-            string color = CboColor.DisplayMember != null ? CboColor.Text : "";
+            string estilo = CboEstilo.DisplayMember != null ?  CboEstilo.Text :"N/E";
+            string tipo = CboTipo.DisplayMember != null ? CboTipo.Text : "N/E";
+            string color = CboColor.DisplayMember != null ? CboColor.Text : "N/E";
             string ubicacion = TxtUbi.Text;
+            string MatP = "";
+            if (RdbSi.Checked) { MatP = "1"; }
+            else if (RdbNo.Checked) { MatP = "0"; }
 
             if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
             {
                 string idp = prod.busc_codprod(Nomprod, idestilo, idtipo, idcolor, talla);
                 imagen = revimagen(Nomprod + idestilo + idtipo + idcolor + talla, idp); ;
-                string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), imagen, estilo, tipo, color,ubicacion };
+                string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(),imagen,ubicacion,MatP };
                 if (prod.upd_prod(datosupd))
                 {
                     MessageBox.Show("Producto Actualizado correctamente"); }
@@ -73,7 +72,7 @@ namespace Venta.Formularios
             else
             {
                 imagen = OFD1.FileName;
-                string[] datosing = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), imagen, estilo, tipo, color,ubicacion };
+                string[] datosing = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, estilo, tipo, color,ubicacion,MatP };
                 if (prod.ingreso_prod(datosing))
                 {
                    // MessageBox.Show("Producto ingresado correctamente");
@@ -87,7 +86,6 @@ namespace Venta.Formularios
 
         private void TxtProdNom_TextChanged(object sender, EventArgs e)
         {
-            
             // agregar estilos
             DataTable datos = new DataTable();
             datos = prod.estilo(TxtProdNom .Text);
@@ -156,7 +154,9 @@ namespace Venta.Formularios
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            DgvProd.DataSource = prod.buscarprod(TxtBuscNom.Text);
+            if (RdbT.Checked) { DgvProd.DataSource = prod.buscarprod(TxtBuscNom.Text); }
+            else if (RdbMp.Checked) { DgvProd.DataSource = prod.buscarprodM(TxtBuscNom.Text); }
+            else if (RdbV.Checked) { DgvProd.DataSource = prod.buscarprodP(TxtBuscNom.Text); }
             DgvProd.Refresh();
         }
 
@@ -220,16 +220,22 @@ namespace Venta.Formularios
                     TxtPrecio_M2.Text= datos.Rows[0][3].ToString();
                     TxtPrecio_V1.Text = datos.Rows[0][4].ToString();
                     TxtPrecio_V2.Text = datos.Rows[0][5].ToString();
-                    TxtUbi.Text = datos.Rows[0][6].ToString();
+                    TxtPrecio_V3.Text= datos.Rows[0][6].ToString();
+                    TxtUbi.Text = datos.Rows[0][7].ToString();
+                    PbxProd.Image = Image.FromFile(@".\imagen\"+datos.Rows[0][8].ToString());
+                    string materia = datos.Rows[0][9].ToString();
+                    if (materia== "False") { RdbNo.Checked = true; }
+                    else if (materia == "True"){ RdbSi.Checked = true; }
                 }
                 else
                 {
                     NudCantidad.Value = 0;
-                    TxtPrecio_C.Text = "";
-                    TxtPrecio_M1.Text = "";
-                    TxtPrecio_M2.Text = "";
-                    TxtPrecio_V1.Text = "";
-                    TxtPrecio_V2.Text = "";
+                    TxtPrecio_C.Text = "0";
+                    TxtPrecio_M1.Text = "0";
+                    TxtPrecio_M2.Text = "0";
+                    TxtPrecio_V1.Text = "0";
+                    TxtPrecio_V2.Text = "0";
+                    TxtPrecio_V3.Text = "0";
                 }
             }
         }
@@ -325,11 +331,6 @@ namespace Venta.Formularios
             TxtPrecio_V2.Text = "0";
             TxtUbi.Text = "";
             OFD1.FileName = "";
-        }
-
-        private void PbxProd_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

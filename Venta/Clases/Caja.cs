@@ -91,7 +91,7 @@ namespace Venta.Clases
             string fechai, fechaf;
             fechai = fecha + " 00:00:00";
             fechaf = fecha + " 23:59:59";
-            string consulta = "Select Monto,Descripcion,Operacion,DATE_FORMAT(fecha,'%h:%m:%s') AS Hora from caja " +
+            string consulta = "Select Descripcion,Operacion,Monto,DATE_FORMAT(fecha,'%h:%m:%s') AS Hora from caja " +
                               "where fecha>= '" + fechai + "' and fecha<='" + fechaf + "'";
             return buscar(consulta);
         }
@@ -143,6 +143,35 @@ namespace Venta.Clases
             string consulta = "insert into caja(id_caja,monto,descripcion,operacion,Fecha,id_vende) "+
                               "values("+codi+","+datos[0]+",'"+datos[1]+"','"+datos[2]+"','"+datos[3]+"','"+datos[4]+"')";
             return consulta_gen(consulta);
+        }
+
+        public void imprep(DataTable datos)
+        {
+            Reportes.FactEnc enc = new Reportes.FactEnc();
+            enc.direccion = "Reporte de caja: " + DateTime.Now.ToString("dd/MM/yyyy");
+            int cant, cont;
+            cant = datos.Rows.Count;
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.ListaProd prods = new Reportes.ListaProd();
+                //cantidad=orden
+                prods.cantidad = int.Parse(datos.Rows[cont][0].ToString ());
+                //tipo= descripcion
+                prods.tipo = datos.Rows[cont][1].ToString ();
+                //estilo= Operacion
+               // prods.estilo = datos.Rows[cont][2].ToString();
+                //precio= entrdada
+                prods.precio = decimal.Parse(datos.Rows[cont][2].ToString());
+                //imagen= salida
+                prods.imagen = datos.Rows[cont][3].ToString();
+                //Talla=Hora
+                prods .Talla = datos.Rows[cont][4].ToString();
+                enc.Prod.Add(prods);
+            }
+            Reportes.RepCaja Rcaja = new Reportes.RepCaja();
+            Rcaja.Enc.Add(enc);
+            Rcaja.Detalle = enc.Prod;
+            Rcaja.Show();
         }
     }
 }

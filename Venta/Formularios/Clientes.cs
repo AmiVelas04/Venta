@@ -18,10 +18,7 @@ namespace Venta.Formularios
             InitializeComponent();
         }
 
-        private void BtnGuardar_Click(object sender, EventArgs e)
-        {
-            ingresarcli();
-        }
+       
         private void ingresarcli()
         {
             string nombre, dir, nit, dpi, tel,cre;
@@ -59,6 +56,22 @@ namespace Venta.Formularios
         private void Clientes_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void limpiar()
+        {
+            TxtNom.Clear();
+            TxtCre.Clear();
+            TxtDir.Clear();
+            TxtDpi.Clear();
+            TxtTel.Clear();
+            TxtNit.Clear();
+        }
+
+        private void BtnGuardar_Click(object sender, EventArgs e)
+        {
+            ingresarcli();
+            limpiar();
         }
     }
 }

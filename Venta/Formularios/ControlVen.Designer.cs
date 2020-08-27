@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlVen));
             this.PanDer = new System.Windows.Forms.Panel();
             this.GbxVenta = new System.Windows.Forms.GroupBox();
             this.BtnMostrar = new System.Windows.Forms.Button();
@@ -40,11 +41,12 @@
             this.CboVenta = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.PanAbaj = new System.Windows.Forms.Panel();
+            this.Lblt = new System.Windows.Forms.Label();
             this.BtnSuprVen = new System.Windows.Forms.Button();
             this.lblTotal = new System.Windows.Forms.Label();
             this.PanCent = new System.Windows.Forms.Panel();
             this.DgvDatos = new System.Windows.Forms.DataGridView();
-            this.Lblt = new System.Windows.Forms.Label();
+            this.BtnImp = new System.Windows.Forms.Button();
             this.PanDer.SuspendLayout();
             this.GbxVenta.SuspendLayout();
             this.PanAbaj.SuspendLayout();
@@ -64,6 +66,7 @@
             // 
             // GbxVenta
             // 
+            this.GbxVenta.Controls.Add(this.BtnImp);
             this.GbxVenta.Controls.Add(this.BtnMostrar);
             this.GbxVenta.Controls.Add(this.TxtFech);
             this.GbxVenta.Controls.Add(this.label4);
@@ -176,6 +179,16 @@
             this.PanAbaj.Size = new System.Drawing.Size(906, 82);
             this.PanAbaj.TabIndex = 1;
             // 
+            // Lblt
+            // 
+            this.Lblt.AutoSize = true;
+            this.Lblt.Location = new System.Drawing.Point(831, 31);
+            this.Lblt.Name = "Lblt";
+            this.Lblt.Size = new System.Drawing.Size(12, 16);
+            this.Lblt.TabIndex = 2;
+            this.Lblt.Text = ".";
+            this.Lblt.Visible = false;
+            // 
             // BtnSuprVen
             // 
             this.BtnSuprVen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -223,15 +236,18 @@
             this.DgvDatos.Size = new System.Drawing.Size(906, 508);
             this.DgvDatos.TabIndex = 0;
             // 
-            // Lblt
+            // BtnImp
             // 
-            this.Lblt.AutoSize = true;
-            this.Lblt.Location = new System.Drawing.Point(831, 31);
-            this.Lblt.Name = "Lblt";
-            this.Lblt.Size = new System.Drawing.Size(12, 16);
-            this.Lblt.TabIndex = 2;
-            this.Lblt.Text = ".";
-            this.Lblt.Visible = false;
+            this.BtnImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnImp.Image")));
+            this.BtnImp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnImp.Location = new System.Drawing.Point(25, 372);
+            this.BtnImp.Name = "BtnImp";
+            this.BtnImp.Size = new System.Drawing.Size(149, 64);
+            this.BtnImp.TabIndex = 9;
+            this.BtnImp.Text = "Imprimir comprobante";
+            this.BtnImp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnImp.UseVisualStyleBackColor = true;
+            this.BtnImp.Click += new System.EventHandler(this.BtnImp_Click);
             // 
             // ControlVen
             // 
@@ -277,5 +293,6 @@
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Button BtnSuprVen;
         private System.Windows.Forms.Label Lblt;
+        private System.Windows.Forms.Button BtnImp;
     }
 }

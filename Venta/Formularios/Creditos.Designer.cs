@@ -45,6 +45,7 @@
             this.GbxCredito = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.GbxPago = new System.Windows.Forms.GroupBox();
+            this.BtnReImp = new System.Windows.Forms.Button();
             this.BtnPago = new System.Windows.Forms.Button();
             this.TxtPago = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -233,6 +234,7 @@
             // 
             // GbxPago
             // 
+            this.GbxPago.Controls.Add(this.BtnReImp);
             this.GbxPago.Controls.Add(this.BtnPago);
             this.GbxPago.Controls.Add(this.TxtPago);
             this.GbxPago.Controls.Add(this.label9);
@@ -245,6 +247,19 @@
             this.GbxPago.TabIndex = 0;
             this.GbxPago.TabStop = false;
             this.GbxPago.Text = "Pagos";
+            // 
+            // BtnReImp
+            // 
+            this.BtnReImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnReImp.Image")));
+            this.BtnReImp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnReImp.Location = new System.Drawing.Point(473, 41);
+            this.BtnReImp.Name = "BtnReImp";
+            this.BtnReImp.Size = new System.Drawing.Size(127, 57);
+            this.BtnReImp.TabIndex = 3;
+            this.BtnReImp.Text = "Imprimir Boleta";
+            this.BtnReImp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnReImp.UseVisualStyleBackColor = true;
+            this.BtnReImp.Click += new System.EventHandler(this.BtnReImp_Click);
             // 
             // BtnPago
             // 
@@ -362,12 +377,16 @@
             // 
             this.DgvPagos.AllowUserToAddRows = false;
             this.DgvPagos.AllowUserToDeleteRows = false;
+            this.DgvPagos.AllowUserToResizeColumns = false;
+            this.DgvPagos.AllowUserToResizeRows = false;
+            this.DgvPagos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.DgvPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvPagos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvPagos.Location = new System.Drawing.Point(0, 0);
             this.DgvPagos.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.DgvPagos.Name = "DgvPagos";
             this.DgvPagos.ReadOnly = true;
+            this.DgvPagos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvPagos.Size = new System.Drawing.Size(1130, 293);
             this.DgvPagos.TabIndex = 0;
             // 
@@ -432,5 +451,6 @@
         private System.Windows.Forms.TextBox TxtPago;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView DgvPagos;
+        private System.Windows.Forms.Button BtnReImp;
     }
 }

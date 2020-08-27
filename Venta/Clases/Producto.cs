@@ -79,7 +79,7 @@ namespace Venta.Clases
 
         public DataTable DatosRestant(string nom, string est, string tip, string col, string tall)
         {
-            string consulta = "Select cantidad,precio_cost,precio_m1,precio_m2,precio_V1,precio_V2,ubicacion from producto " +
+            string consulta = "Select cantidad,precio_cost,precio_m1,precio_m2,precio_V1,precio_V2,precio_V3,ubicacion,imagen,materiap from producto " +
                               "where nombre='" + nom + "' and id_estilo=" + est + " and id_tipo=" + tip + " and id_color=" + col + " and Talla='" + tall + "'";
             return buscar(consulta);
         }
@@ -244,37 +244,37 @@ namespace Venta.Clases
             //esta ingresado el estilo
             if (datos[1] == "0")
             {
-                if (datos[10] != "")
+                if (datos[13] != "")
                 {
-                    est = ingreEstil(datos[12]).ToString ();
+                    est = ingreEstil(datos[13]).ToString ();
                 }
             }
             //esta ingresado el tipo
             val = datos[11];
             if (datos[2] == "0")
             {
-                if (datos[11] != "")
+                if (datos[14] != "")
                 {
-                    tipo  = ingreTipo (datos[13]).ToString();
+                    tipo  = ingreTipo (datos[14]).ToString();
                 }
             }
             //esta ingresado el color
             val = datos[12];
             if (datos[3] == "0")
             {
-                if (datos[12] != "")
+                if (datos[15] != "")
                 {
-                    color = ingreColor(datos[14]).ToString();
+                    color = ingreColor(datos[15]).ToString();
                 }
             }
             codpod =cod_prod(tipo,est,datos[4]) + "-" + ConvCol(color);
             string nomcomp = datos[0] + est + tipo + color + datos[4];
-            string imagen = revimagen(nomcomp, datos[11]);
-            string consulta = "Insert into producto(id_prod,nombre,id_estilo,id_tipo,id_color,talla,cantidad,precio_cost,precio_m1,precio_m2,precio_v1,precio_v2,imagen,ubicacion) " +
-                               "values ('"+codpod+"','"+datos[0] + "','"+est + "','"+ tipo + "','"+color + "','"+datos[4] + "',"+datos[5] + ","+datos[6] + "," + datos[7] +  "," + datos[8] +"," +datos[9]+ ","+datos[10]+",'" + imagen +"','"+datos[15]+ "')";
+            string imagen = revimagen(nomcomp, datos[12]);
+            string consulta = "Insert into producto(id_prod,nombre,id_estilo,id_tipo,id_color,talla,cantidad,precio_cost,precio_m1,precio_m2,precio_v1,precio_v2,precio_v3,imagen,ubicacion,MATERIAP) " +
+                               "values ('"+codpod+"','"+datos[0] + "','"+est + "','"+ tipo + "','"+color + "','"+datos[4] + "',"+datos[5] + ","+datos[6] + "," + datos[7] +  "," + datos[8] +"," +datos[9]+ ","+datos[10]+","+datos[11]+",'" + imagen +"','"+datos[16]+"',"+datos[17]+ ")";
             if (consulta_gen(consulta))
             {
-                MessageBox.Show("Codigo: " + codpod + "\nProducto: " + datos[0]+ "\nEstilo: "+ datos[12] + "\nTipo: "+ datos[13] + "\nColor: "+datos[14] + "\nTalla: " + datos [4] + "\n¡Registro correcto!","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Codigo: " + codpod + "\nProducto: " + datos[0]+ "\nEstilo: "+ datos[13] + "\nTipo: "+ datos[14] + "\nColor: "+datos[15] + "\nTalla: " + datos [4] + "\n¡Registro correcto!","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return true;
             }
             else
@@ -288,12 +288,12 @@ namespace Venta.Clases
             cantant = cant_prod(codprod);
             cantnova = Int32.Parse(datos[5]);
             //cantnova += cantant;
-            consulta = "Update producto set cantidad=" + cantnova +", precio_cost="+datos[6]+ ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] + ", imagen='" +datos[11]+"', ubicacion = '"+datos[15]+"' where id_Prod='" + codprod+ "'"; 
+            consulta = "Update producto set cantidad=" + cantnova +", precio_cost="+datos[6]+ ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] +", precio_v3="+ datos [11]+", imagen='" +datos[12]+"', ubicacion = '"+datos[13]+"', Materiap="+datos[14]+" where id_Prod='" + codprod+ "'"; 
             return consulta_gen(consulta);
         }
         public DataTable buscarprod(string nom)
         {
-            string consulta = "SELECT p.id_prod AS Codigo,p.nombre AS Nombre,e.estilo AS Estilo,t.tipo AS Tipo,c.color AS Color,p.talla AS Talla,p.cantidad as Cantidad,p.precio_cost AS Costo,p.precio_m1 AS P_Mayorista_2,p.precio_m2 AS P_Mayorista_2,p.precio_v1 AS P_Venta_1,p.precio_v2 AS P_Venta_2, p.Ubicacion as Ubicacion " +
+            string consulta = "SELECT p.id_prod AS Codigo,p.nombre AS Nombre,e.estilo AS Estilo,t.tipo AS Tipo,c.color AS Color,p.talla AS Talla,p.cantidad as Cantidad,p.precio_cost AS Costo,p.precio_m1 AS P_Mayorista_2,p.precio_m2 AS P_Mayorista_2,p.precio_v1 AS P_Venta_1,p.precio_v2 AS P_Venta_2,p.precio_v3 AS P_Venta_3, p.Ubicacion as Ubicacion " +
                              "FROM producto p " +
                              "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
                              "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
@@ -303,6 +303,31 @@ namespace Venta.Clases
             datos = buscar(consulta);
             return datos;
         }
+        public DataTable buscarprodM(string nom)
+        {
+            string consulta = "SELECT p.id_prod AS Codigo,p.nombre AS Nombre,e.estilo AS Estilo,t.tipo AS Tipo,c.color AS Color,p.talla AS Talla,p.cantidad as Cantidad,p.precio_cost AS Costo,p.precio_m1 AS P_Mayorista_2,p.precio_m2 AS P_Mayorista_2,p.precio_v1 AS P_Venta_1,p.precio_v2 AS P_Venta_2,p.precio_v3 AS P_Venta_3, p.Ubicacion as Ubicacion " +
+                                 "FROM producto p " +
+                                 "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
+                                 "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
+                                 "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
+                                 "WHERE p.nombre LIKE '%" + nom + "%' and MateriaP=1";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
+        }
+        public DataTable buscarprodP(string nom)
+        {
+            string consulta = "SELECT p.id_prod AS Codigo,p.nombre AS Nombre,e.estilo AS Estilo,t.tipo AS Tipo,c.color AS Color,p.talla AS Talla,p.cantidad as Cantidad,p.precio_cost AS Costo,p.precio_m1 AS P_Mayorista_2,p.precio_m2 AS P_Mayorista_2,p.precio_v1 AS P_Venta_1,p.precio_v2 AS P_Venta_2,p.precio_v3 AS P_Venta_3, p.Ubicacion as Ubicacion " +
+                                 "FROM producto p " +
+                                 "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
+                                 "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
+                                 "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
+                                 "WHERE p.nombre LIKE '%" + nom + "%' and materiaP=0";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
+        }
+
         public DataTable prodvent()
         {
             string consulta = "SELECT p.id_prod AS Codigo,Concat(p.nombre ,' ',e.estilo,' ' ,t.tipo ,' ' ,c.color,' ', p.talla) as produ,p.cantidad as Cantidad,p.precio_cost AS Costo,p.precio_v1,p.precio_v2,p.precio_m1,precio_m2 " +
@@ -310,6 +335,7 @@ namespace Venta.Clases
                                 "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
                                 "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                                 "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
+                                "Where p.cantidad>0 "+
                                 "order by p.nombre";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
@@ -333,7 +359,7 @@ namespace Venta.Clases
         {
             DataTable datos = new DataTable();
             string consulta;
-            consulta = "SELECT p.id_prod, p.PRECIO_COST as costo,p.PRECIO_M1,p.PRECIO_M2,p.PRECIO_V1,p.PRECIO_V2,p.TALLA as Talla,t.id_tipo as idt ,t.tipo as tipo,c.id_color as idc, c.color as color,e.id_estilo as ide,e.estilo as estilo, p.nombre,p.ubicacion " +
+            consulta = "SELECT p.id_prod, p.PRECIO_COST as costo,p.PRECIO_M1,p.PRECIO_M2,p.PRECIO_V1,p.PRECIO_V2,p.precio_v3,p.TALLA as Talla,t.id_tipo as idt ,t.tipo as tipo,c.id_color as idc, c.color as color,e.id_estilo as ide,e.estilo as estilo, p.nombre,p.ubicacion " +
                        "FROM producto p " +
                        "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                        "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +

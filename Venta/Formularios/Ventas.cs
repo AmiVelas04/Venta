@@ -29,47 +29,7 @@ namespace Venta.Formularios
             cargarcli();
 
         }
-        private void cargar()
-        {
-            DataTable dt = new DataTable();
-            dt= prod.prodvent();
-            CboProd.DataSource = dt; 
-            CboProd.DisplayMember = "produ";
-            CboProd.ValueMember = "Codigo";
-            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            foreach (DataRow row in dt.Rows)
-            {
-                coleccion.Add(row["produ"].ToString());
-            }
-            CboProd.AutoCompleteCustomSource = coleccion;
-            CboProd.AutoCompleteMode = AutoCompleteMode.Suggest;
-            CboProd.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            CboProd.SelectedValue = 0;
-           // CboProd.Text = "";
-            PicExemp.Image = PicExemp.ErrorImage;
-            RdbContado.Select();
-        }
-        private void cargarcli()
-        {
-            DataTable datos = new DataTable();
-            datos = cli.clientes();
-            CboNomCli.DataSource = datos;
-            CboNomCli.DisplayMember = "nombre";
-            CboNomCli.ValueMember = "id_cliente";
-            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            foreach (DataRow row in datos.Rows)
-            {
-                coleccion.Add(row["nombre"].ToString());
-            }
-            CboNomCli.AutoCompleteCustomSource = coleccion;
-            CboNomCli.AutoCompleteMode = AutoCompleteMode.Suggest;
-            CboNomCli.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            if (datos.Rows.Count > 0) {
-                //CboNomCli.SelectedValue = 1;
-                busquedacli("1");
-            }
-            
-        }
+       
         private void CboProd_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CboProd.Text !="" && CboProd.SelectedValue.ToString() !="System.Data.DataRowView" )
@@ -101,10 +61,13 @@ namespace Venta.Formularios
             CboPrecioM.Items.Add(datos.Rows[0][3].ToString());
             CboPrecio.Items.Add(datos.Rows[0][4].ToString());
             CboPrecio.Items.Add(datos.Rows[0][5].ToString());
+            CboPrecio.Items.Add(datos.Rows[0][6].ToString());
             TxtCod.Text = datos.Rows[0][0].ToString();
-            CboPrecio.SelectedIndex = 1;
-            LblPosi.Text = datos.Rows[0][14].ToString();
+            CboPrecioM.SelectedIndex = 1;
+            CboPrecio.SelectedIndex = 2;
+            LblPosi.Text = datos.Rows[0][15].ToString();
             PicExemp.Image = Image.FromFile(@".\imagen\"+prod.imagen(id));
+            PicExemp.Tag = @".\imagen\" + prod.imagen(id);
         }
         private void busquedacli(string id)
         {
@@ -119,6 +82,48 @@ namespace Venta.Formularios
 
         //buscar cliente
         #region "Llenado de combos"
+        private void cargar()
+        {
+            DataTable dt = new DataTable();
+            dt = prod.prodvent();
+            CboProd.DataSource = dt;
+            CboProd.DisplayMember = "produ";
+            CboProd.ValueMember = "Codigo";
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            foreach (DataRow row in dt.Rows)
+            {
+                coleccion.Add(row["produ"].ToString());
+            }
+            CboProd.AutoCompleteCustomSource = coleccion;
+            CboProd.AutoCompleteMode = AutoCompleteMode.Suggest;
+            CboProd.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            CboProd.SelectedValue = 0;
+            // CboProd.Text = "";
+            PicExemp.Image = PicExemp.ErrorImage;
+            RdbContado.Select();
+        }
+        private void cargarcli()
+        {
+            DataTable datos = new DataTable();
+            datos = cli.clientes();
+            CboNomCli.DataSource = datos;
+            CboNomCli.DisplayMember = "nombre";
+            CboNomCli.ValueMember = "id_cliente";
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            foreach (DataRow row in datos.Rows)
+            {
+                coleccion.Add(row["nombre"].ToString());
+            }
+            CboNomCli.AutoCompleteCustomSource = coleccion;
+            CboNomCli.AutoCompleteMode = AutoCompleteMode.Suggest;
+            CboNomCli.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            if (datos.Rows.Count > 0)
+            {
+                //CboNomCli.SelectedValue = 1;
+                busquedacli("1");
+            }
+
+        }
         private void llenartipo(string id,string nom)
         {
             DataTable dt = new DataTable();
@@ -184,6 +189,7 @@ namespace Venta.Formularios
                 DgvProd.Columns.Add("Cantidad", "Cantidad");
                 DgvProd.Columns.Add("Precio", "Precio");
                 DgvProd.Columns.Add("Subtotal", "Subtotal");
+                DgvProd.Columns.Add("Materiap","Materia Prima");
                 DgvProd.Columns[0].Visible = false;
 
             }
@@ -216,14 +222,14 @@ namespace Venta.Formularios
             if (LblTotal.Text != "Precio") total = decimal.Parse(LblTotal.Text);
             DataTable dt = new DataTable();
             dt = prod.prodId(idp);
-            string color = dt.Rows[0][10].ToString();
-            string tipo = dt.Rows[0][8].ToString();
-            string estilo = dt.Rows[0][12].ToString();
+            string color = dt.Rows[0][11].ToString();
+            string tipo = dt.Rows[0][9].ToString();
+            string estilo = dt.Rows[0][13].ToString();
             string precio="0";
             if (ChkMay.Checked)
             { precio = CboPrecioM.Text; }
             else { precio = CboPrecio.Text; }
-            DgvProd.Rows.Add(dt.Rows[0][0].ToString (),dt.Rows[0][13].ToString(), estilo, tipo, color,CboTalla .Text ,NudCant.Value, precio, (decimal.Parse(NudCant.Value.ToString ()) * decimal.Parse(precio)));
+            DgvProd.Rows.Add(dt.Rows[0][0].ToString (),dt.Rows[0][14].ToString(), estilo, tipo, color,CboTalla .Text ,NudCant.Value, precio, (decimal.Parse(NudCant.Value.ToString ()) * decimal.Parse(precio)),dt.Rows[0][6].ToString ());
             total += (decimal.Parse(NudCant.Value.ToString()) * decimal.Parse(precio));
             LblTotal.Text = total.ToString();
         }
@@ -440,11 +446,12 @@ namespace Venta.Formularios
                 CboPrecio.Items.Add(datos.Rows[0][3].ToString());
                 CboPrecio.SelectedIndex = 1;
                 PicExemp.Image = Image.FromFile(@".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString ()));
-            }
+                PicExemp.Tag =  prod.imagen(CboTalla.SelectedValue.ToString());           }
         }
 
         private void BtnUltVent_Click(object sender, EventArgs e)
         {
+            if (CboNomCli.Text != "") { 
             int idVenta = vent.idVentaCliente(CboNomCli.SelectedValue.ToString());
             if (idVenta <= 0)
             {
@@ -455,13 +462,11 @@ namespace Venta.Formularios
                 //Mostrar ultima venta
                 vent.RegenFact(idVenta.ToString());
             }
+            }
 
         }
 
-        private void BtnBusca_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void TxtCod_KeyDown(object sender, KeyEventArgs e)
         {
@@ -497,6 +502,27 @@ namespace Venta.Formularios
                 CboPrecioM.Enabled = false;
                 CboPrecioM.Visible = false;
             }
+        }
+
+        private void RdbProd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RdbProd.Checked)
+            { BtnGenVen.Text = "Generar Salida"; }
+            else { BtnGenVen.Text = "Generar Venta"; }
+        }
+
+        private void PicExemp_DoubleClick(object sender, EventArgs e)
+        {
+            ImgAum();
+        }
+
+        private void ImgAum()
+        {
+            ImagenPic img = new ImagenPic();
+            if (PicExemp.Image == null) { ImagenPic.ponerimg = @".\imagen\0.jpg"; }
+            else { ImagenPic.ponerimg = PicExemp.Tag.ToString();  }
+            
+            img.Show();
         }
     }
 }
