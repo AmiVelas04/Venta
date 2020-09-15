@@ -44,6 +44,7 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.PanMed = new System.Windows.Forms.Panel();
             this.DgvProd = new System.Windows.Forms.DataGridView();
+            this.BtnImp = new System.Windows.Forms.Button();
             this.PanSup.SuspendLayout();
             this.GbxConce.SuspendLayout();
             this.GbxCliente.SuspendLayout();
@@ -65,6 +66,7 @@
             // 
             // GbxConce
             // 
+            this.GbxConce.Controls.Add(this.BtnImp);
             this.GbxConce.Controls.Add(this.TxtTotal);
             this.GbxConce.Controls.Add(this.label3);
             this.GbxConce.Controls.Add(this.CboConce);
@@ -216,6 +218,19 @@
             this.DgvProd.TabIndex = 0;
             this.DgvProd.Click += new System.EventHandler(this.DgvProd_Click);
             // 
+            // BtnImp
+            // 
+            this.BtnImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnImp.Image")));
+            this.BtnImp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnImp.Location = new System.Drawing.Point(440, 38);
+            this.BtnImp.Name = "BtnImp";
+            this.BtnImp.Size = new System.Drawing.Size(133, 56);
+            this.BtnImp.TabIndex = 4;
+            this.BtnImp.Text = "Imprimir Concesion";
+            this.BtnImp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnImp.UseVisualStyleBackColor = true;
+            this.BtnImp.Click += new System.EventHandler(this.BtnImp_Click);
+            // 
             // Concesion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -261,5 +276,6 @@
         private System.Windows.Forms.Button BtnFacturar;
         private System.Windows.Forms.NumericUpDown NudProd;
         private System.Windows.Forms.Button BtnEliminar;
+        private System.Windows.Forms.Button BtnImp;
     }
 }

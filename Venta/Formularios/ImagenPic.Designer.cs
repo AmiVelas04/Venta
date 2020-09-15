@@ -51,18 +51,19 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.LblCerrar);
-            this.panel1.Location = new System.Drawing.Point(745, 0);
+            this.panel1.Location = new System.Drawing.Point(763, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(55, 55);
+            this.panel1.Size = new System.Drawing.Size(37, 32);
             this.panel1.TabIndex = 3;
             // 
             // LblCerrar
             // 
+            this.LblCerrar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LblCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LblCerrar.Image = ((System.Drawing.Image)(resources.GetObject("LblCerrar.Image")));
-            this.LblCerrar.Location = new System.Drawing.Point(-3, 0);
+            this.LblCerrar.Location = new System.Drawing.Point(0, 0);
             this.LblCerrar.Name = "LblCerrar";
-            this.LblCerrar.Size = new System.Drawing.Size(55, 55);
+            this.LblCerrar.Size = new System.Drawing.Size(37, 32);
             this.LblCerrar.TabIndex = 2;
             this.LblCerrar.Click += new System.EventHandler(this.LblCerrar_Click);
             // 

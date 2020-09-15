@@ -122,9 +122,16 @@ namespace Venta.Clases
         }
         public DataTable Nomcliente(string nom)
         {
-            string consulta = "Select Nombre, Direccion,Nit, Telefono,Dpi ,Credi as Credito from cliente "+
+            string consulta = "Select id_cliente,Nombre, Direccion,Nit, Telefono,Dpi ,Credi as Credito from cliente "+
                 "where nombre like '%"+nom+"%'";
             return buscar(consulta);
+        }
+        public bool Actucli(string [] datos)
+        {
+            string consulta = "Update Cliente set Nombre='" + datos[0] + "', direccion='" + datos[1] + "', nit='" + datos[2] + "', dpi='" + datos[3] +
+                "', telefono='" + datos[4] + "', credi=" + datos[5];
+            return consulta_gen(consulta);
+
         }
     }
 }

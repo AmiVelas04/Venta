@@ -80,8 +80,8 @@ namespace Venta.Clases
         {
             string codigo,consulta;
             codigo = cod().ToString();
-            consulta = "insert into caja(id_caja,Monto,Descripcion,operacion,fecha) " +
-                     "values("+codigo+","+datos[0]+ ",'"+datos[1]+ "','"+datos[2]+ "','"+datos[3]+"')";
+            consulta = "insert into caja(id_caja,Monto,Descripcion,operacion,fecha,id_vende) " +
+                     "values("+codigo+","+datos[0]+ ",'"+datos[1]+ "','"+datos[2]+ "','"+datos[3]+"','"+datos[4]+"')";
 
             return consulta_gen(consulta);
         }
@@ -91,7 +91,7 @@ namespace Venta.Clases
             string fechai, fechaf;
             fechai = fecha + " 00:00:00";
             fechaf = fecha + " 23:59:59";
-            string consulta = "Select Descripcion,Operacion,Monto,DATE_FORMAT(fecha,'%h:%m:%s') AS Hora from caja " +
+            string consulta = "Select Descripcion,Operacion,Monto,DATE_FORMAT(fecha,'%h:%i:%S') AS Hora from caja " +
                               "where fecha>= '" + fechai + "' and fecha<='" + fechaf + "'";
             return buscar(consulta);
         }
@@ -163,7 +163,7 @@ namespace Venta.Clases
                 //precio= entrdada
                 prods.precio = decimal.Parse(datos.Rows[cont][2].ToString());
                 //imagen= salida
-                prods.imagen = datos.Rows[cont][3].ToString();
+                prods.salida = decimal.Parse(datos.Rows[cont][3].ToString());
                 //Talla=Hora
                 prods .Talla = datos.Rows[cont][4].ToString();
                 enc.Prod.Add(prods);

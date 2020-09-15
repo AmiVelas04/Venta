@@ -326,6 +326,7 @@ namespace Venta.Clases
             for (cont = 0; cont < cant; cont++)
             {
                 Reportes.VentasD ven = new Reportes.VentasD();
+                ven.venta = int.Parse(datos.Rows[cont][0].ToString());
                 ven.producto = datos.Rows[cont][1].ToString();
                 ven.cantidad = int.Parse(datos.Rows[cont][2].ToString());
                 ven.precio = decimal.Parse(datos.Rows[cont][3].ToString());
@@ -347,7 +348,7 @@ namespace Venta.Clases
             f2 = fecha + " 23:59:59";
             string consulta = "SELECT id_venta " +
                              "FROM venta " +
-                             "WHERE tipo = 'Contado' AND estado = 'Cancelado' and fecha>='"+f1+"' and fecha<='"+f2+"'";
+                             "WHERE fecha>='"+f1+"' and fecha<='"+f2+"'";
             return buscar(consulta);
         }
 
@@ -386,8 +387,11 @@ namespace Venta.Clases
             return caj.Regcaja(datos);
         }
 
-        public void reimprimivent(string idv)
+        public void reimprimivent(string idv,string atendio)
         {
+            DataTable venta= new DataTable ();
+            DataTable detalle = new DataTable();
+            DataTable data = new DataTable();
             string consultaV = "SELECT id_vendedor,id_cli,fecha,tipo FROM venta "+
                                "WHERE id_venta ="+idv;
             string ConsutaDet = "SELECT Concat(p.nombre,' - ',e.estilo,' - ',t.tipo,' - ',c.color,' - ',p.talla) AS nombre,vd.cantidad,vd.precio,vd.total "+
@@ -396,7 +400,39 @@ namespace Venta.Clases
                                 "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
                                 "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                                 "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR "+
-                                "WHERE vd.ID_VENTA = "+idv; 
+                                "WHERE vd.ID_VENTA = "+idv;
+            venta = buscar(consultaV);
+            detalle = buscar(ConsutaDet);
+            int cant, cont;
+            string idcli = venta.Rows[0][1].ToString();
+            data = cli.buscli(idcli);
+            cant = detalle.Rows.Count;
+            Reportes.FactEnc Encab = new Reportes.FactEnc();
+            Encab.fecha = venta.Rows[0][2].ToString();
+            Encab.No = idv;
+            Encab.tipo = venta.Rows[0][3].ToString();
+            Encab.direccion = data.Rows[0][0].ToString();
+            Encab.nit = data.Rows[0][1].ToString();
+            Encab.nombre = data.Rows[0][3].ToString();
+            Encab.vendedor = atendio;
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.FactDet Deta = new Reportes.FactDet();
+                Deta.Numero = cont + 1;
+                Deta.descripcion = detalle.Rows[cont][0].ToString() ;
+                Deta.cantidad = Int32.Parse(detalle.Rows[cont][1].ToString());
+                Deta.precio = decimal.Parse(detalle.Rows[cont][2].ToString());
+                Deta.total = decimal.Parse(detalle.Rows[cont][3].ToString());
+                Encab.Detalle.Add(Deta);
+            }
+            Reportes.Factura Fact = new Reportes.Factura();
+            Fact.Enca.Add(Encab);
+            Fact.Deta = Encab.Detalle;
+            Fact.Show();
+
+
+
+
         }
     }
 }

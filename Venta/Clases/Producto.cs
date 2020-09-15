@@ -114,17 +114,26 @@ namespace Venta.Clases
             return codigo;
 
         }
-        private string cod_prod(string tip, string est, string tall)
+        private string cod_prod(string tip, string est, string tall,string nombre)
         {
            string cod;
             string buscaid = "SELECT p.id_prod FROM producto p " +
-                            "WHERE p.ID_TIPO ="+tip+" AND p.ID_ESTILO ="+est+" AND p.talla = '"+tall+"'";
+                            "WHERE nombre='"+nombre+"' and  p.ID_TIPO ="+tip+" AND p.ID_ESTILO ="+est+" AND p.talla = '"+tall+"'";
             DataTable codig = new DataTable();
             codig = buscar(buscaid);
             if (codig.Rows.Count > 0)
             {
-                string dato = codig.Rows[0][0].ToString();
-                cod = dato.Substring(0, 2);
+                string dato = codig.Rows[0][0].ToString(),caract;
+                int posi = 0,cant=0;
+                
+                caract = dato.Substring(0, 1);
+               while (caract!="-")
+                {
+                    posi++;
+                    cant++;
+                    caract = dato.Substring(posi, 1);
+                }
+                cod = dato.Substring(0, posi);
             }
             else {
                 string consulta = "Select count(*) from producto";
@@ -267,7 +276,7 @@ namespace Venta.Clases
                     color = ingreColor(datos[15]).ToString();
                 }
             }
-            codpod =cod_prod(tipo,est,datos[4]) + "-" + ConvCol(color);
+            codpod =cod_prod(tipo,est,datos[4],datos[0]) + "-" + ConvCol(color);
             string nomcomp = datos[0] + est + tipo + color + datos[4];
             string imagen = revimagen(nomcomp, datos[12]);
             string consulta = "Insert into producto(id_prod,nombre,id_estilo,id_tipo,id_color,talla,cantidad,precio_cost,precio_m1,precio_m2,precio_v1,precio_v2,precio_v3,imagen,ubicacion,MATERIAP) " +
@@ -291,6 +300,29 @@ namespace Venta.Clases
             consulta = "Update producto set cantidad=" + cantnova +", precio_cost="+datos[6]+ ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] +", precio_v3="+ datos [11]+", imagen='" +datos[12]+"', ubicacion = '"+datos[13]+"', Materiap="+datos[14]+" where id_Prod='" + codprod+ "'"; 
             return consulta_gen(consulta);
         }
+
+        public bool mod_prod(string [] datos)
+        {
+            int cantant, cantnova;
+            string consulta, codprod;
+            codprod = busc_codprod(datos[0], datos[1], datos[2], datos[3], datos[4]);
+            cantant = cant_prod(codprod);
+            cantnova = Int32.Parse(datos[5]);
+            //cantnova += cantant;
+            consulta = "Update producto set id_estilo="+datos [1]+", id_tipo="+datos[2]+", id_color="+datos[3]+", talla="+datos[4]+", cantidad=" + cantnova + ", precio_cost=" + datos[6] + ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] + ", precio_v3=" + datos[11] + ", imagen='" + datos[12] + "', ubicacion = '" + datos[13] + "', Materiap=" + datos[14] + " where id_Prod='" + codprod + "'";
+            return consulta_gen(consulta);
+        }
+
+        public bool Modnoms(string []datos)
+        {
+            string Consulnom, Consulestilo, Consultipo, ConsulColor;
+            Consulnom = "Update producto set nombre='" +datos[1] +"' where id_prod='"+datos[0]+"'";
+            Consulestilo = "Update estilo set estilo='"+datos[3]+ "' where id_estilo="+datos[2];
+            Consultipo = "Update tipo set tipo='" + datos[5] + "' where id_tipo=" + datos[4];
+            ConsulColor="Update color set color='"+datos[7]+"' where id_color=" +datos[6];
+            return (consulta_gen(Consulnom) && consulta_gen(Consulestilo) && consulta_gen(Consultipo) && consulta_gen(ConsulColor));
+
+        }
         public DataTable buscarprod(string nom)
         {
             string consulta = "SELECT p.id_prod AS Codigo,p.nombre AS Nombre,e.estilo AS Estilo,t.tipo AS Tipo,c.color AS Color,p.talla AS Talla,p.cantidad as Cantidad,p.precio_cost AS Costo,p.precio_m1 AS P_Mayorista_2,p.precio_m2 AS P_Mayorista_2,p.precio_v1 AS P_Venta_1,p.precio_v2 AS P_Venta_2,p.precio_v3 AS P_Venta_3, p.Ubicacion as Ubicacion " +
@@ -298,7 +330,7 @@ namespace Venta.Clases
                              "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
                              "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                              "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
-                             "WHERE p.nombre LIKE '%" + nom + "%'";
+                             "WHERE p.nombre LIKE '%" + nom + "%' OR e.estilo LIKE '%"+nom+"%' OR t.TIPO LIKE '%"+nom+"%' OR c.color LIKE '%"+nom+"%' OR p.TALLA LIKE '%"+nom+"%'";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
@@ -359,7 +391,7 @@ namespace Venta.Clases
         {
             DataTable datos = new DataTable();
             string consulta;
-            consulta = "SELECT p.id_prod, p.PRECIO_COST as costo,p.PRECIO_M1,p.PRECIO_M2,p.PRECIO_V1,p.PRECIO_V2,p.precio_v3,p.TALLA as Talla,t.id_tipo as idt ,t.tipo as tipo,c.id_color as idc, c.color as color,e.id_estilo as ide,e.estilo as estilo, p.nombre,p.ubicacion " +
+            consulta = "SELECT p.id_prod, p.PRECIO_COST as costo,p.PRECIO_M1,p.PRECIO_M2,p.PRECIO_V1,p.PRECIO_V2,p.precio_v3,p.TALLA as Talla,t.id_tipo as idt ,t.tipo as tipo,c.id_color as idc, c.color as color,e.id_estilo as ide,e.estilo as estilo, p.nombre,p.ubicacion, p.materiap " +
                        "FROM producto p " +
                        "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                        "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
@@ -559,6 +591,15 @@ namespace Venta.Clases
             else { return "0.jpg"; }
         }
 
+        public int cantidadprod(string id)
+        {
+            string consulta = "Select cantidad from producto where id_prod='" + id + "'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            int total;
+            total = int.Parse(datos.Rows[0][0].ToString());
+            return total;
+        }
         #endregion
 
         public bool descontarprod(string id, string cant)

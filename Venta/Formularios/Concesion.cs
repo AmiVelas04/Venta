@@ -207,6 +207,16 @@ namespace Venta.Formularios
             int indice = int.Parse (DgvProd.CurrentRow.ToString());
             DgvProd.Rows.RemoveAt(indice);
         }
+
+        private void BtnImp_Click(object sender, EventArgs e)
+        {
+            reimprimir();
+        }
+        private void reimprimir()
+        {
+            string idc= CboConce.Text;
+            Conce.reimprimir(idc);
+        }
     }
 }
 ;

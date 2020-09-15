@@ -8,7 +8,9 @@ namespace Venta.Reportes
 {
     class VentasD
     {
-       public string producto { get; set; }
+        public int venta { get; set; }
+        public int venta_detalle { get; set; }
+        public string producto { get; set; }
         public int cantidad { get; set; }
         public decimal precio { get; set; }
         public decimal total { get; set; }

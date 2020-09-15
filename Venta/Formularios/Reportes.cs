@@ -14,6 +14,7 @@ namespace Venta.Formularios
     {
         Clases.Producto prod = new Clases.Producto();
         Clases.Venta ven = new Clases.Venta();
+        Clases.Salidaprod sprod = new Clases.Salidaprod();
         public Reportes()
         {
             InitializeComponent();
@@ -45,6 +46,16 @@ namespace Venta.Formularios
             { cant = 0; }
             else { cant = int.Parse(TxtCant.Text); }
             prod.ConteoP(cant);
+        }
+
+        private void BtnSmp_Click(object sender, EventArgs e)
+        {
+            string fechi, fechaf;
+            fechi = DtpIni.Value.ToString("yyyy/MM/dd");
+            fechaf = DtpFin.Value.ToString("yyyy/MM/dd");
+            fechi = fechi + " 00:00:00";
+            fechaf = fechaf + " 23:59:59";
+
         }
     }
 }

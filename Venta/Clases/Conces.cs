@@ -181,8 +181,54 @@ namespace Venta.Clases
                 Det.Numero = cont + 1;
                 Det.descripcion = datos.Rows[cont][1].ToString() + "  " + datos.Rows[cont][2].ToString() + "  " + datos.Rows[cont][3].ToString() + "  " + datos.Rows[cont][4].ToString();
                 Det.cantidad =int.Parse( datos.Rows[cont][6].ToString());
-                Det.precio = decimal.Parse(datos.Rows[0][7].ToString());
-                Det.total = decimal.Parse(datos.Rows[0][8].ToString());
+                Det.precio = decimal.Parse(datos.Rows[cont][7].ToString());
+                Det.total = decimal.Parse(datos.Rows[cont][8].ToString());
+                Encab.Detalle.Add(Det);
+            }
+            Reportes.Conces Conceso = new Reportes.Conces();
+            Conceso.Encab.Add(Encab);
+            Conceso.Deta = Encab.Detalle;
+            Conceso.Show();
+        }
+
+        public void reimprimir(string idc)
+        {
+            DataTable Dcli = new DataTable();
+            DataTable Conce = new DataTable();
+            DataTable ConcDet = new DataTable();
+            DataTable clie = new DataTable();
+           
+            string concon = "SELECT id_vende,id_cliente,fecha,estado "+
+                            "FROM concesion "+
+                            "WHERE id_conc ="+idc;
+            string condet = "SELECT Concat(p.nombre,' - ',e.estilo,' - ',t.tipo,' - ',c.color,' - ',p.talla) AS nombre,cd.cantidad,cd.precio,cd.total "+
+                            "FROM conce_detalle cd "+
+                            "INNER JOIN producto p ON p.ID_PROD = cd.ID_PROD "+
+                            "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
+                            "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO "+
+                            "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR "+
+                            "WHERE cd.id_conc ="+idc;
+            Conce = buscar(concon);
+            ConcDet = buscar(condet);
+            clie = cli.buscli(Conce.Rows[0][1].ToString());
+            int cant, cont;
+            cant = ConcDet.Rows.Count;
+            Reportes.ConceEnc Encab = new Reportes.ConceEnc();
+            Encab.fecha = Conce.Rows[0][2].ToString ();
+            Encab.No = idc;
+            Encab.vendedor = log.NomVende(Conce.Rows[0][0].ToString ());
+            //Encab.tipo = tipo;
+            Encab.direccion = clie.Rows[0][0].ToString();
+            Encab.nit = clie.Rows[0][1].ToString();
+            Encab.nombre = clie.Rows[0][3].ToString();
+            for (cont=0;cont<cant;cont++)
+            {
+                Reportes.ConceDet Det = new Reportes.ConceDet();
+                Det.Numero = cont + 1;
+                Det.descripcion = ConcDet.Rows[cont][0].ToString() ;
+                Det.cantidad = int.Parse(ConcDet.Rows[cont][1].ToString());
+                Det.precio = decimal.Parse(ConcDet.Rows[cont][2].ToString());
+                Det.total = decimal.Parse(ConcDet.Rows[cont][3].ToString());
                 Encab.Detalle.Add(Det);
             }
             Reportes.Conces Conceso = new Reportes.Conces();

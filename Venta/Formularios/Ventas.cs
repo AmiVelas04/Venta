@@ -16,7 +16,7 @@ namespace Venta.Formularios
         Clases.Venta vent = new Clases.Venta();
         Clases.Clientes cli = new Clases.Clientes();
         Clases.Conces Conc = new Clases.Conces();
-        
+        Clases.Salidaprod sal = new Clases.Salidaprod();
 
         public Ventas()
         {
@@ -68,6 +68,8 @@ namespace Venta.Formularios
             LblPosi.Text = datos.Rows[0][15].ToString();
             PicExemp.Image = Image.FromFile(@".\imagen\"+prod.imagen(id));
             PicExemp.Tag = @".\imagen\" + prod.imagen(id);
+            int total = prod.cantidadprod(id);
+            lbldisp.Text = total.ToString ();
         }
         private void busquedacli(string id)
         {
@@ -95,7 +97,7 @@ namespace Venta.Formularios
                 coleccion.Add(row["produ"].ToString());
             }
             CboProd.AutoCompleteCustomSource = coleccion;
-            CboProd.AutoCompleteMode = AutoCompleteMode.Suggest;
+            CboProd.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboProd.AutoCompleteSource = AutoCompleteSource.CustomSource;
             CboProd.SelectedValue = 0;
             // CboProd.Text = "";
@@ -229,7 +231,10 @@ namespace Venta.Formularios
             if (ChkMay.Checked)
             { precio = CboPrecioM.Text; }
             else { precio = CboPrecio.Text; }
-            DgvProd.Rows.Add(dt.Rows[0][0].ToString (),dt.Rows[0][14].ToString(), estilo, tipo, color,CboTalla .Text ,NudCant.Value, precio, (decimal.Parse(NudCant.Value.ToString ()) * decimal.Parse(precio)),dt.Rows[0][6].ToString ());
+            string materia = "";
+            if (dt.Rows[0][16].ToString() == "True") { materia = "Si"; }
+            else { materia = "No"; }
+            DgvProd.Rows.Add(dt.Rows[0][0].ToString (),dt.Rows[0][14].ToString(), estilo, tipo, color,CboTalla .Text ,NudCant.Value, precio, (decimal.Parse(NudCant.Value.ToString ()) * decimal.Parse(precio)),materia);
             total += (decimal.Parse(NudCant.Value.ToString()) * decimal.Parse(precio));
             LblTotal.Text = total.ToString();
         }
@@ -247,11 +252,13 @@ namespace Venta.Formularios
             {
                 if ((decimal.Parse(LblTotal.Text) > decimal.Parse(TxtMonto.Text)))
                 { MessageBox.Show("El monto es menor que el valor total"); }
-                else {
+                else
+                {
                     decimal cambio;
                     cambio = decimal.Parse(TxtMonto.Text) - decimal.Parse(LblTotal.Text);
                     MessageBox.Show("Cambio: Q." + cambio.ToString());
-                    pago(); }
+                    pago();
+                }
             }
             else if (RdbCredito.Checked)
             {
@@ -263,8 +270,57 @@ namespace Venta.Formularios
                 if (TxtMonto.Text == "") TxtMonto.Text = "0";
                 pago();
             }
+            else if (RdbProd.Checked)
+            {
+                SalidaProd();
+            }
         }
 
+        private void SalidaProd()
+        {
+            if (materiaprim())
+            {
+                string vende = Main.idvende.ToString();
+                string soli = TxtSoli.Text;
+                int filas = DgvProd.Rows.Count;
+                int cont, indice;
+                indice = DgvProd.CurrentRow.Index;
+                DataTable produ = new DataTable();
+                produ.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+                produ.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+                string[] datos = { vende, soli };
+                for (cont = 0; cont < filas; cont++)
+                {
+                    DataRow fila = produ.NewRow();
+                    fila["codigo"] = DgvProd.Rows[cont].Cells[0].Value;
+                    fila["cantidad"] = DgvProd.Rows[cont].Cells[6].Value;
+                    produ.Rows.Add(fila);
+                }
+                if (sal.GenerarSalidaprod(datos, produ))
+                {
+                    MessageBox.Show("Salida de producto registrada");
+                }
+                else
+                {
+                    MessageBox.Show("Error de registro de salida");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se puede dar salida a productos que no sean materia prima");
+            }
+        }
+
+        private bool materiaprim()
+        {
+            int cant, cont;
+            cant = DgvProd.Rows.Count;
+            for (cont = 0; cont < cant; cont++)
+            {
+                if (DgvProd.Rows[cont].Cells[9].Value.ToString() == "No") return false;
+            }
+            return true;
+        }
         private void pago()
         {
             string cli = CboNomCli.SelectedValue.ToString();
@@ -466,12 +522,11 @@ namespace Venta.Formularios
 
         }
 
-      
-
         private void TxtCod_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
             {
+                
                 Busc_press();
             }
         }
@@ -507,8 +562,16 @@ namespace Venta.Formularios
         private void RdbProd_CheckedChanged(object sender, EventArgs e)
         {
             if (RdbProd.Checked)
-            { BtnGenVen.Text = "Generar Salida"; }
-            else { BtnGenVen.Text = "Generar Venta"; }
+            {
+                BtnGenVen.Text = "Generar Salida";
+                LblSoli.Visible = true;
+                TxtSoli.Text = "";
+                TxtSoli.Visible = true;
+            }
+            else {
+                LblSoli.Visible =false;
+                TxtSoli.Visible = false;
+                BtnGenVen.Text = "Generar Venta"; }
         }
 
         private void PicExemp_DoubleClick(object sender, EventArgs e)
@@ -523,6 +586,11 @@ namespace Venta.Formularios
             else { ImagenPic.ponerimg = PicExemp.Tag.ToString();  }
             
             img.Show();
+        }
+
+        private void CboProd_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

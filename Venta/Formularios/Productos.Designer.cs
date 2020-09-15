@@ -78,6 +78,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.DgvProd = new System.Windows.Forms.DataGridView();
             this.OFD1 = new System.Windows.Forms.OpenFileDialog();
+            this.BtnModif = new System.Windows.Forms.Button();
+            this.BtnLimp = new System.Windows.Forms.Button();
+            this.IdEst = new System.Windows.Forms.Label();
+            this.IdTip = new System.Windows.Forms.Label();
+            this.IdCol = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxProd)).BeginInit();
@@ -90,6 +95,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.IdCol);
+            this.panel1.Controls.Add(this.IdTip);
+            this.panel1.Controls.Add(this.IdEst);
+            this.panel1.Controls.Add(this.BtnLimp);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.TxtPrecio_V3);
             this.panel1.Controls.Add(this.label15);
@@ -486,6 +495,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.BtnModif);
             this.panel2.Controls.Add(this.BtnNvo);
             this.panel2.Controls.Add(this.BtnEditar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -497,21 +507,27 @@
             // 
             // BtnNvo
             // 
+            this.BtnNvo.Image = ((System.Drawing.Image)(resources.GetObject("BtnNvo.Image")));
+            this.BtnNvo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnNvo.Location = new System.Drawing.Point(120, 18);
             this.BtnNvo.Name = "BtnNvo";
             this.BtnNvo.Size = new System.Drawing.Size(102, 42);
             this.BtnNvo.TabIndex = 1;
             this.BtnNvo.Text = "Nuevo";
+            this.BtnNvo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnNvo.UseVisualStyleBackColor = true;
             this.BtnNvo.Click += new System.EventHandler(this.BtnNvo_Click);
             // 
             // BtnEditar
             // 
+            this.BtnEditar.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditar.Image")));
+            this.BtnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnEditar.Location = new System.Drawing.Point(12, 18);
             this.BtnEditar.Name = "BtnEditar";
             this.BtnEditar.Size = new System.Drawing.Size(102, 42);
             this.BtnEditar.TabIndex = 0;
             this.BtnEditar.Text = "Editar";
+            this.BtnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnEditar.UseVisualStyleBackColor = true;
             this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
@@ -605,6 +621,8 @@
             this.DgvProd.AllowUserToDeleteRows = false;
             this.DgvProd.AllowUserToResizeColumns = false;
             this.DgvProd.AllowUserToResizeRows = false;
+            this.DgvProd.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DgvProd.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DgvProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvProd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvProd.EnableHeadersVisualStyles = false;
@@ -616,10 +634,64 @@
             this.DgvProd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvProd.Size = new System.Drawing.Size(722, 417);
             this.DgvProd.TabIndex = 3;
+            this.DgvProd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProd_CellContentClick);
             // 
             // OFD1
             // 
             this.OFD1.FileName = "Seleccionar imagen";
+            // 
+            // BtnModif
+            // 
+            this.BtnModif.Image = ((System.Drawing.Image)(resources.GetObject("BtnModif.Image")));
+            this.BtnModif.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnModif.Location = new System.Drawing.Point(239, 18);
+            this.BtnModif.Name = "BtnModif";
+            this.BtnModif.Size = new System.Drawing.Size(102, 42);
+            this.BtnModif.TabIndex = 2;
+            this.BtnModif.Text = "Modificar Datos";
+            this.BtnModif.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnModif.UseVisualStyleBackColor = true;
+            this.BtnModif.Click += new System.EventHandler(this.BtnModif_Click);
+            // 
+            // BtnLimp
+            // 
+            this.BtnLimp.Image = ((System.Drawing.Image)(resources.GetObject("BtnLimp.Image")));
+            this.BtnLimp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnLimp.Location = new System.Drawing.Point(318, 139);
+            this.BtnLimp.Name = "BtnLimp";
+            this.BtnLimp.Size = new System.Drawing.Size(75, 54);
+            this.BtnLimp.TabIndex = 32;
+            this.BtnLimp.Text = "Limpiar";
+            this.BtnLimp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnLimp.UseVisualStyleBackColor = true;
+            this.BtnLimp.Click += new System.EventHandler(this.BtnLimp_Click);
+            // 
+            // IdEst
+            // 
+            this.IdEst.AutoSize = true;
+            this.IdEst.Location = new System.Drawing.Point(87, 62);
+            this.IdEst.Name = "IdEst";
+            this.IdEst.Size = new System.Drawing.Size(20, 15);
+            this.IdEst.TabIndex = 33;
+            this.IdEst.Text = "Id";
+            // 
+            // IdTip
+            // 
+            this.IdTip.AutoSize = true;
+            this.IdTip.Location = new System.Drawing.Point(269, 59);
+            this.IdTip.Name = "IdTip";
+            this.IdTip.Size = new System.Drawing.Size(20, 15);
+            this.IdTip.TabIndex = 34;
+            this.IdTip.Text = "Id";
+            // 
+            // IdCol
+            // 
+            this.IdCol.AutoSize = true;
+            this.IdCol.Location = new System.Drawing.Point(72, 120);
+            this.IdCol.Name = "IdCol";
+            this.IdCol.Size = new System.Drawing.Size(20, 15);
+            this.IdCol.TabIndex = 35;
+            this.IdCol.Text = "Id";
             // 
             // Productos
             // 
@@ -704,5 +776,10 @@
         private System.Windows.Forms.RadioButton RdbT;
         private System.Windows.Forms.RadioButton RdbV;
         private System.Windows.Forms.RadioButton RdbMp;
+        private System.Windows.Forms.Button BtnModif;
+        private System.Windows.Forms.Button BtnLimp;
+        private System.Windows.Forms.Label IdCol;
+        private System.Windows.Forms.Label IdTip;
+        private System.Windows.Forms.Label IdEst;
     }
 }

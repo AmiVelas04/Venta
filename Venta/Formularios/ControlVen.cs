@@ -132,7 +132,10 @@ namespace Venta.Formularios
 
         private void BtnImp_Click(object sender, EventArgs e)
         {
-
+            if (TxtFech.Text != "") {
+                ven.reimprimivent(CboVenta.Text,TxtVend.Text);
+            }
+            
         }
     }
 }

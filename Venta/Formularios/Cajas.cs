@@ -32,12 +32,12 @@ namespace Venta.Formularios
         private void BtnAgr_Click(object sender, EventArgs e)
         {
             agregarope();
+            busqueda();
         }
 
         private void agregarope()
         {
-            decimal monto= decimal.Parse (TxtMonto.Text);
-            string Desc=TxtDesc.Text;
+            decimal monto = 0;
             if (TxtMonto.Text =="")
             {
                 monto = 0;
@@ -48,7 +48,9 @@ namespace Venta.Formularios
                 MessageBox.Show("Falta descripccion","Falta",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 return;
             }
-            string[] datos = {monto.ToString(),Desc ,CboOpe.Text,DateTime.Now.ToString ("yyyy/MM/dd hh:mm:ss")};
+            monto = decimal.Parse(TxtMonto.Text);
+            string Desc = TxtDesc.Text;
+            string[] datos = {monto.ToString(),Desc ,CboOpe.Text,DateTime.Now.ToString ("yyyy/MM/dd HH:mm:ss"),Main.idvende };
             if (Caj.ingreso(datos))
             {
                 MessageBox.Show("Operacion ingresada");

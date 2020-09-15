@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ventas));
             this.PanData = new System.Windows.Forms.Panel();
             this.Gbx2 = new System.Windows.Forms.GroupBox();
+            this.lbldisp = new System.Windows.Forms.Label();
             this.LblPosi = new System.Windows.Forms.Label();
             this.TxtCod = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.CboPrecioM = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.CboPrecio = new System.Windows.Forms.ComboBox();
-            this.BtnBusca = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.CboTalla = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -73,6 +73,8 @@
             this.Cancelar = new System.Windows.Forms.Button();
             this.BtnGenVen = new System.Windows.Forms.Button();
             this.PanArriba = new System.Windows.Forms.Panel();
+            this.TxtSoli = new System.Windows.Forms.TextBox();
+            this.LblSoli = new System.Windows.Forms.Label();
             this.BtnUltVent = new System.Windows.Forms.Button();
             this.GbxPago = new System.Windows.Forms.GroupBox();
             this.RdbProd = new System.Windows.Forms.RadioButton();
@@ -99,11 +101,12 @@
             this.PanData.Location = new System.Drawing.Point(0, 0);
             this.PanData.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PanData.Name = "PanData";
-            this.PanData.Size = new System.Drawing.Size(332, 590);
+            this.PanData.Size = new System.Drawing.Size(356, 629);
             this.PanData.TabIndex = 0;
             // 
             // Gbx2
             // 
+            this.Gbx2.Controls.Add(this.lbldisp);
             this.Gbx2.Controls.Add(this.LblPosi);
             this.Gbx2.Controls.Add(this.TxtCod);
             this.Gbx2.Controls.Add(this.label13);
@@ -111,7 +114,6 @@
             this.Gbx2.Controls.Add(this.CboPrecioM);
             this.Gbx2.Controls.Add(this.label12);
             this.Gbx2.Controls.Add(this.CboPrecio);
-            this.Gbx2.Controls.Add(this.BtnBusca);
             this.Gbx2.Controls.Add(this.label11);
             this.Gbx2.Controls.Add(this.CboTalla);
             this.Gbx2.Controls.Add(this.label10);
@@ -132,10 +134,19 @@
             this.Gbx2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Gbx2.Name = "Gbx2";
             this.Gbx2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Gbx2.Size = new System.Drawing.Size(332, 432);
+            this.Gbx2.Size = new System.Drawing.Size(356, 471);
             this.Gbx2.TabIndex = 1;
             this.Gbx2.TabStop = false;
             this.Gbx2.Text = "Producto";
+            // 
+            // lbldisp
+            // 
+            this.lbldisp.AutoSize = true;
+            this.lbldisp.Location = new System.Drawing.Point(290, 183);
+            this.lbldisp.Name = "lbldisp";
+            this.lbldisp.Size = new System.Drawing.Size(37, 15);
+            this.lbldisp.TabIndex = 25;
+            this.lbldisp.Text = "Disp";
             // 
             // LblPosi
             // 
@@ -150,7 +161,7 @@
             // 
             this.TxtCod.Location = new System.Drawing.Point(18, 84);
             this.TxtCod.Name = "TxtCod";
-            this.TxtCod.Size = new System.Drawing.Size(100, 23);
+            this.TxtCod.Size = new System.Drawing.Size(121, 23);
             this.TxtCod.TabIndex = 23;
             this.TxtCod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCod_KeyDown);
             // 
@@ -166,7 +177,7 @@
             // ChkMay
             // 
             this.ChkMay.AutoSize = true;
-            this.ChkMay.Location = new System.Drawing.Point(173, 211);
+            this.ChkMay.Location = new System.Drawing.Point(166, 211);
             this.ChkMay.Name = "ChkMay";
             this.ChkMay.Size = new System.Drawing.Size(15, 14);
             this.ChkMay.TabIndex = 21;
@@ -178,16 +189,16 @@
             this.CboPrecioM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboPrecioM.Enabled = false;
             this.CboPrecioM.FormattingEnabled = true;
-            this.CboPrecioM.Location = new System.Drawing.Point(192, 229);
+            this.CboPrecioM.Location = new System.Drawing.Point(184, 229);
             this.CboPrecioM.Name = "CboPrecioM";
-            this.CboPrecioM.Size = new System.Drawing.Size(121, 23);
+            this.CboPrecioM.Size = new System.Drawing.Size(101, 23);
             this.CboPrecioM.TabIndex = 20;
             this.CboPrecioM.Visible = false;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(194, 210);
+            this.label12.Location = new System.Drawing.Point(188, 211);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(119, 15);
             this.label12.TabIndex = 19;
@@ -201,16 +212,6 @@
             this.CboPrecio.Name = "CboPrecio";
             this.CboPrecio.Size = new System.Drawing.Size(121, 23);
             this.CboPrecio.TabIndex = 18;
-            // 
-            // BtnBusca
-            // 
-            this.BtnBusca.Location = new System.Drawing.Point(279, 181);
-            this.BtnBusca.Name = "BtnBusca";
-            this.BtnBusca.Size = new System.Drawing.Size(50, 25);
-            this.BtnBusca.TabIndex = 17;
-            this.BtnBusca.Text = "Buscar";
-            this.BtnBusca.UseVisualStyleBackColor = true;
-            this.BtnBusca.Visible = false;
             // 
             // label11
             // 
@@ -246,14 +247,14 @@
             this.CboColor.FormattingEnabled = true;
             this.CboColor.Location = new System.Drawing.Point(184, 137);
             this.CboColor.Name = "CboColor";
-            this.CboColor.Size = new System.Drawing.Size(123, 23);
+            this.CboColor.Size = new System.Drawing.Size(109, 23);
             this.CboColor.TabIndex = 13;
             this.CboColor.SelectedIndexChanged += new System.EventHandler(this.CboColor_SelectedIndexChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 119);
+            this.label9.Location = new System.Drawing.Point(20, 118);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(45, 15);
             this.label9.TabIndex = 12;
@@ -262,7 +263,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(193, 66);
+            this.label8.Location = new System.Drawing.Point(186, 66);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 15);
             this.label8.TabIndex = 11;
@@ -282,9 +283,9 @@
             // 
             this.CboTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboTipo.FormattingEnabled = true;
-            this.CboTipo.Location = new System.Drawing.Point(191, 84);
+            this.CboTipo.Location = new System.Drawing.Point(184, 84);
             this.CboTipo.Name = "CboTipo";
-            this.CboTipo.Size = new System.Drawing.Size(121, 23);
+            this.CboTipo.Size = new System.Drawing.Size(149, 23);
             this.CboTipo.TabIndex = 9;
             this.CboTipo.SelectedValueChanged += new System.EventHandler(this.CboTipo_SelectedValueChanged);
             // 
@@ -294,9 +295,9 @@
             this.label3.Location = new System.Drawing.Point(188, 163);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 15);
+            this.label3.Size = new System.Drawing.Size(144, 15);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Cantidad";
+            this.label3.Text = "Cantidad/Disponible";
             // 
             // label2
             // 
@@ -334,10 +335,10 @@
             // 
             this.BtnAgr.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BtnAgr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAgr.Location = new System.Drawing.Point(4, 387);
+            this.BtnAgr.Location = new System.Drawing.Point(4, 426);
             this.BtnAgr.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnAgr.Name = "BtnAgr";
-            this.BtnAgr.Size = new System.Drawing.Size(324, 42);
+            this.BtnAgr.Size = new System.Drawing.Size(348, 42);
             this.BtnAgr.TabIndex = 4;
             this.BtnAgr.Text = "Agregar producto";
             this.BtnAgr.UseVisualStyleBackColor = true;
@@ -373,9 +374,10 @@
             this.CboProd.Location = new System.Drawing.Point(18, 40);
             this.CboProd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CboProd.Name = "CboProd";
-            this.CboProd.Size = new System.Drawing.Size(289, 23);
+            this.CboProd.Size = new System.Drawing.Size(315, 23);
             this.CboProd.TabIndex = 0;
             this.CboProd.SelectedIndexChanged += new System.EventHandler(this.CboProd_SelectedIndexChanged);
+            this.CboProd.TextChanged += new System.EventHandler(this.CboProd_TextChanged);
             // 
             // Gbx1
             // 
@@ -392,7 +394,7 @@
             this.Gbx1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Gbx1.Name = "Gbx1";
             this.Gbx1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Gbx1.Size = new System.Drawing.Size(332, 158);
+            this.Gbx1.Size = new System.Drawing.Size(356, 158);
             this.Gbx1.TabIndex = 0;
             this.Gbx1.TabStop = false;
             this.Gbx1.Text = "Datos del cliente";
@@ -480,10 +482,10 @@
             this.PanCentral.Controls.Add(this.PanelInf);
             this.PanCentral.Controls.Add(this.PanArriba);
             this.PanCentral.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanCentral.Location = new System.Drawing.Point(332, 0);
+            this.PanCentral.Location = new System.Drawing.Point(356, 0);
             this.PanCentral.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PanCentral.Name = "PanCentral";
-            this.PanCentral.Size = new System.Drawing.Size(798, 590);
+            this.PanCentral.Size = new System.Drawing.Size(774, 629);
             this.PanCentral.TabIndex = 1;
             // 
             // DgvProd
@@ -497,7 +499,7 @@
             this.DgvProd.Name = "DgvProd";
             this.DgvProd.ReadOnly = true;
             this.DgvProd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvProd.Size = new System.Drawing.Size(798, 425);
+            this.DgvProd.Size = new System.Drawing.Size(774, 464);
             this.DgvProd.TabIndex = 2;
             // 
             // PanelInf
@@ -509,10 +511,10 @@
             this.PanelInf.Controls.Add(this.Cancelar);
             this.PanelInf.Controls.Add(this.BtnGenVen);
             this.PanelInf.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelInf.Location = new System.Drawing.Point(0, 502);
+            this.PanelInf.Location = new System.Drawing.Point(0, 541);
             this.PanelInf.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PanelInf.Name = "PanelInf";
-            this.PanelInf.Size = new System.Drawing.Size(798, 88);
+            this.PanelInf.Size = new System.Drawing.Size(774, 88);
             this.PanelInf.TabIndex = 1;
             // 
             // label14
@@ -584,14 +586,34 @@
             // 
             // PanArriba
             // 
+            this.PanArriba.Controls.Add(this.TxtSoli);
+            this.PanArriba.Controls.Add(this.LblSoli);
             this.PanArriba.Controls.Add(this.BtnUltVent);
             this.PanArriba.Controls.Add(this.GbxPago);
             this.PanArriba.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanArriba.Location = new System.Drawing.Point(0, 0);
             this.PanArriba.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PanArriba.Name = "PanArriba";
-            this.PanArriba.Size = new System.Drawing.Size(798, 77);
+            this.PanArriba.Size = new System.Drawing.Size(774, 77);
             this.PanArriba.TabIndex = 0;
+            // 
+            // TxtSoli
+            // 
+            this.TxtSoli.Location = new System.Drawing.Point(165, 48);
+            this.TxtSoli.Name = "TxtSoli";
+            this.TxtSoli.Size = new System.Drawing.Size(306, 23);
+            this.TxtSoli.TabIndex = 10;
+            this.TxtSoli.Visible = false;
+            // 
+            // LblSoli
+            // 
+            this.LblSoli.AutoSize = true;
+            this.LblSoli.Location = new System.Drawing.Point(162, 30);
+            this.LblSoli.Name = "LblSoli";
+            this.LblSoli.Size = new System.Drawing.Size(153, 15);
+            this.LblSoli.TabIndex = 9;
+            this.LblSoli.Text = "Solicitante de producto";
+            this.LblSoli.Visible = false;
             // 
             // BtnUltVent
             // 
@@ -611,7 +633,7 @@
             this.GbxPago.Controls.Add(this.RdbConce);
             this.GbxPago.Controls.Add(this.RdbCredito);
             this.GbxPago.Dock = System.Windows.Forms.DockStyle.Right;
-            this.GbxPago.Location = new System.Drawing.Point(501, 0);
+            this.GbxPago.Location = new System.Drawing.Point(477, 0);
             this.GbxPago.Name = "GbxPago";
             this.GbxPago.Size = new System.Drawing.Size(297, 77);
             this.GbxPago.TabIndex = 7;
@@ -621,7 +643,6 @@
             // RdbProd
             // 
             this.RdbProd.AutoSize = true;
-            this.RdbProd.Enabled = false;
             this.RdbProd.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RdbProd.Location = new System.Drawing.Point(143, 48);
             this.RdbProd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -676,7 +697,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1130, 590);
+            this.ClientSize = new System.Drawing.Size(1130, 629);
             this.Controls.Add(this.PanCentral);
             this.Controls.Add(this.PanData);
             this.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -698,6 +719,7 @@
             this.PanelInf.ResumeLayout(false);
             this.PanelInf.PerformLayout();
             this.PanArriba.ResumeLayout(false);
+            this.PanArriba.PerformLayout();
             this.GbxPago.ResumeLayout(false);
             this.GbxPago.PerformLayout();
             this.ResumeLayout(false);
@@ -746,7 +768,6 @@
         private System.Windows.Forms.TextBox TxtMonto;
         private System.Windows.Forms.GroupBox GbxPago;
         private System.Windows.Forms.Button BtnUltVent;
-        private System.Windows.Forms.Button BtnBusca;
         private System.Windows.Forms.ComboBox CboPrecio;
         private System.Windows.Forms.ComboBox CboPrecioM;
         private System.Windows.Forms.Label label12;
@@ -756,5 +777,8 @@
         private System.Windows.Forms.Label LblPosi;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.RadioButton RdbProd;
+        private System.Windows.Forms.TextBox TxtSoli;
+        private System.Windows.Forms.Label LblSoli;
+        private System.Windows.Forms.Label lbldisp;
     }
 }

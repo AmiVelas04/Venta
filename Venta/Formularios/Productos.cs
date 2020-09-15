@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+
+
 namespace Venta.Formularios
 {
     public partial class Productos : Form
@@ -51,6 +53,7 @@ namespace Venta.Formularios
             decimal precio_v2 = Decimal.Parse(TxtPrecio_V2.Text);
             decimal precio_v3 = decimal.Parse(TxtPrecio_V3.Text);
             string imagen;
+            string[] images = new string[2];
             string estilo = CboEstilo.DisplayMember != null ?  CboEstilo.Text :"N/E";
             string tipo = CboTipo.DisplayMember != null ? CboTipo.Text : "N/E";
             string color = CboColor.DisplayMember != null ? CboColor.Text : "N/E";
@@ -62,12 +65,16 @@ namespace Venta.Formularios
             if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
             {
                 string idp = prod.busc_codprod(Nomprod, idestilo, idtipo, idcolor, talla);
+               
                 imagen = revimagen(Nomprod + idestilo + idtipo + idcolor + talla, idp); ;
                 string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(),imagen,ubicacion,MatP };
                 if (prod.upd_prod(datosupd))
                 {
-                    MessageBox.Show("Producto Actualizado correctamente"); }
-                else { MessageBox.Show("Error al actualizar"); }
+                    MessageBox.Show("Producto Actualizado correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    PbxProd.InitialImage = null;
+                    PbxProd.Image = null;
+                }
+                else { MessageBox.Show("Error al actualizar", "revisar dartos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
             else
             {
@@ -79,10 +86,56 @@ namespace Venta.Formularios
                 }
                 else
                 {
-                    MessageBox.Show("Error al ingresar producto");
+                    MessageBox.Show("Error al ingresar producto", "revisar dartos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //MessageBox.Show("Error al ingresar producto");
                 }
             }
         }
+
+        private void Actualiz()
+        {
+            string Nomprod = TxtProdNom.Text;
+            string idestilo = IdEst.Text;
+            string idtipo = IdTip.Text;
+            string idcolor = IdCol.Text;
+            string talla = TxtTalla.Text;
+            int cantidad = Int32.Parse(NudCantidad.Value.ToString());
+            decimal precio_c = Decimal.Parse(TxtPrecio_C.Text);
+            decimal precio_m1 = Decimal.Parse(TxtPrecio_M1.Text);
+            decimal precio_m2 = Decimal.Parse(TxtPrecio_M2.Text);
+            decimal precio_v1 = Decimal.Parse(TxtPrecio_V1.Text);
+            decimal precio_v2 = Decimal.Parse(TxtPrecio_V2.Text);
+            decimal precio_v3 = decimal.Parse(TxtPrecio_V3.Text);
+            string imagen;
+            string[] images = new string[2];
+            string estilo = CboEstilo.DisplayMember != null ? CboEstilo.Text : "N/E";
+            string tipo = CboTipo.DisplayMember != null ? CboTipo.Text : "N/E";
+            string color = CboColor.DisplayMember != null ? CboColor.Text : "N/E";
+            string ubicacion = TxtUbi.Text;
+            string MatP = "";
+            string Nestilo = CboEstilo.Text;
+            string Ntipo=CboTipo.Text;
+            string NColor= CboColor.Text;
+            if (RdbSi.Checked) { MatP = "1"; }
+            else if (RdbNo.Checked) { MatP = "0"; }
+            if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
+            {
+                string idp = TxtCod.Text;
+                imagen = revimagen(Nomprod + idestilo + idtipo + idcolor + talla, idp); ;
+                string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, ubicacion, MatP };
+                string[] datoscamb = {idp,Nomprod, idestilo, Nestilo, idtipo, Ntipo, idcolor, NColor };
+                if (prod.mod_prod(datosupd) && prod .Modnoms(datoscamb))
+                {
+                    MessageBox.Show("Producto Actualizado correctamente","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    PbxProd.InitialImage = null;
+                    PbxProd.Image = null;
+                }
+                else { MessageBox.Show("Error al actualizar","revisar dartos",MessageBoxButtons.OK,MessageBoxIcon.Exclamation); }
+            }
+            else
+            {
+            }
+            }
 
         private void TxtProdNom_TextChanged(object sender, EventArgs e)
         {
@@ -155,7 +208,8 @@ namespace Venta.Formularios
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             if (RdbT.Checked) { DgvProd.DataSource = prod.buscarprod(TxtBuscNom.Text); }
-            else if (RdbMp.Checked) { DgvProd.DataSource = prod.buscarprodM(TxtBuscNom.Text); }
+            else if (RdbMp.Checked) { DgvProd.DataSource = prod.buscarprodM(TxtBuscNom.Text);
+            }
             else if (RdbV.Checked) { DgvProd.DataSource = prod.buscarprodP(TxtBuscNom.Text); }
             DgvProd.Refresh();
         }
@@ -163,43 +217,63 @@ namespace Venta.Formularios
         private string revimagen(string imagen, string id)
         {
             string extension = Path.GetExtension(OFD1.FileName);
-            string NombreFull,ruta;
+           
+            string NombreFull, ruta, alterno = ""; 
             NombreFull = imagen + extension;
             string imgdefecto = prod.imagen(id);
-        if(Directory.Exists("./imagen") )
-                {}
-        else{
-                Directory.CreateDirectory("./imagen");
+            ruta = Path.GetFullPath(@".\imagen\" + NombreFull);
+            
+                if (File.Exists(ruta))
+                {
+                    File.Delete(ruta);
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
+                    {
+                        try
+                        {
+                            /*Bitmap imag = new Bitmap(OFD1.FileName);
+                            byte[] contenido =  ImagenaByte( imag) ;
+                            FileStream archi = new FileStream("./imagen/" + imagen + extension,FileMode.Create);
+                            archi.Write(contenido, 0, contenido.Length);
+                            archi.Close();*/
+                            File.Copy(OFD1.FileName, "./imagen/" + imagen + extension);
+
+                            alterno = "./imagen/" + imagen + "B" + extension;
+                        }
+                        catch (Exception Ex)
+                        {
+                            //   MessageBox.Show("./imagen/" + imagen + extension);
+                            MessageBox.Show(Ex.ToString());
+                        }
                     }
-         ruta = Path.GetFullPath("./imagen/" + NombreFull);
-        if (File.Exists(ruta)) {
-                System.IO.File.Delete(ruta);
-            if( extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
-            {
-                    try { File.Copy(OFD1.FileName, "./imagen/" + imagen + extension);
+                    else
+                    { //MessageBox.Show("Imagen no valida/ o inexistente");
+                        NombreFull = imgdefecto;
                     }
-                    catch (Exception Ex) {
-                        MessageBox.Show("./imagen/" + imagen + extension);
-                        MessageBox.Show(Ex.ToString());
-                    }
-                    }
-            else
-                { MessageBox.Show("Imagen no valida/ o inexistente");
-                    NombreFull = imgdefecto;
                 }
-            }
-            else
-            {
-                if ( extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
-                { File.Copy(OFD1.FileName, "./imagen/"+ imagen + extension);
+                else
+                {
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
+                    {
+                        File.Copy(OFD1.FileName, "./imagen/" + imagen + extension);
+                    }
+                    else
+                    {
+                       // MessageBox.Show("Imagen no valida/ o inexistente");
+                        NombreFull = imgdefecto;
+                    }
                 }
-            else
-                { MessageBox.Show("Imagen no valida/ o inexistente");
-                    NombreFull = imgdefecto;
-                }
-            }
             return NombreFull;
         }
+
+        private static byte[] ImagenaByte(System.Drawing.Image imagen)
+         {
+            using (var ms = new MemoryStream())
+            {
+                imagen.Save(ms, imagen.RawFormat);
+                return ms.ToArray();
+            }
+        }
+        
 
         private void TxtTalla_TextChanged(object sender, EventArgs e)
         {
@@ -222,7 +296,10 @@ namespace Venta.Formularios
                     TxtPrecio_V2.Text = datos.Rows[0][5].ToString();
                     TxtPrecio_V3.Text= datos.Rows[0][6].ToString();
                     TxtUbi.Text = datos.Rows[0][7].ToString();
-                    PbxProd.Image = Image.FromFile(@".\imagen\"+datos.Rows[0][8].ToString());
+                   using (var stream = File.Open(@".\imagen\" + datos.Rows[0][8].ToString(), FileMode.Open))
+                    {
+                        PbxProd.Image = Image.FromStream(stream);
+                    }
                     string materia = datos.Rows[0][9].ToString();
                     if (materia== "False") { RdbNo.Checked = true; }
                     else if (materia == "True"){ RdbSi.Checked = true; }
@@ -236,6 +313,9 @@ namespace Venta.Formularios
                     TxtPrecio_V1.Text = "0";
                     TxtPrecio_V2.Text = "0";
                     TxtPrecio_V3.Text = "0";
+                    PbxProd.InitialImage = null;
+                    PbxProd.Image = null;
+
                 }
             }
         }
@@ -257,8 +337,11 @@ namespace Venta.Formularios
                 TxtProdNom.Text = datos.Rows[0][1].ToString();
                 //14-15-16
                 CboEstilo.SelectedValue = datos.Rows[0][14].ToString();
+                IdEst.Text= datos.Rows[0][14].ToString();
                 CboTipo.SelectedValue = datos.Rows[0][15].ToString();
+                IdTip.Text = datos.Rows[0][15].ToString();
                 CboColor.SelectedValue = datos.Rows[0][16].ToString();
+                IdCol.Text= datos.Rows[0][16].ToString();
                 TxtTalla.Text = datos.Rows[0][5].ToString();
             }
             else { }
@@ -284,6 +367,7 @@ namespace Venta.Formularios
         {
             string talla = TxtTalla.Text;
             TxtTalla.Text = talla;
+            IdTip.Text  = CboTipo.SelectedValue.ToString();
         }
 
         private void CboColor_SelectedIndexChanged(object sender, EventArgs e)
@@ -329,8 +413,49 @@ namespace Venta.Formularios
             TxtPrecio_M2.Text = "0";
             TxtPrecio_V1.Text = "0";
             TxtPrecio_V2.Text = "0";
+            TxtPrecio_V3.Text = "0";
             TxtUbi.Text = "";
             OFD1.FileName = "";
+            PbxProd.InitialImage = null;
+            PbxProd.Image = null;
+        }
+
+        private void DgvProd_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DgvProd.Rows.Count > 0)
+            {
+                PbxProd.InitialImage = null;
+                PbxProd.Image = null;
+                string id = DgvProd.Rows[DgvProd.CurrentRow.Index].Cells[0].Value.ToString();
+                TxtCod.Text = id;
+                string imag=prod.imagen(id);
+                //mostrar imagen
+                using (var stream = File.Open(@".\imagen\" + imag, FileMode.Open))
+                {
+                    PbxProd.Image = Image.FromStream(stream);
+                }
+            }
+        }
+
+        private void BtnLimp_Click(object sender, EventArgs e)
+        {
+            NudCantidad.Value = 0;
+            TxtPrecio_C.Text = "0";
+            TxtPrecio_M1.Text = "0";
+            TxtPrecio_M2.Text = "0";
+            TxtPrecio_V1.Text = "0";
+            TxtPrecio_V2.Text = "0";
+            TxtPrecio_V3.Text = "0";
+            TxtUbi.Text = "";
+            OFD1.FileName = "";
+            PbxProd.InitialImage = null;
+            PbxProd.Image = null;
+        }
+
+        private void BtnModif_Click(object sender, EventArgs e)
+        {
+            Actualiz();
+            limpiar();
         }
     }
 }

@@ -16,5 +16,6 @@ namespace Venta.Reportes
         public int cantidad { get; set; }
         public decimal precio { get; set; }
         public string imagen { get; set; }
+        public decimal salida { get; set; }
     }
 }

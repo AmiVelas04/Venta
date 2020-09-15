@@ -49,6 +49,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtNom = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.BtnEditar = new System.Windows.Forms.Button();
+            this.BtnNvo = new System.Windows.Forms.Button();
             this.PanBaj.SuspendLayout();
             this.PanCentral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv1)).BeginInit();
@@ -58,6 +60,8 @@
             // 
             // PanBaj
             // 
+            this.PanBaj.Controls.Add(this.BtnNvo);
+            this.PanBaj.Controls.Add(this.BtnEditar);
             this.PanBaj.Controls.Add(this.TxtCliNom);
             this.PanBaj.Controls.Add(this.label7);
             this.PanBaj.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -267,6 +271,25 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "Nombre";
             // 
+            // BtnEditar
+            // 
+            this.BtnEditar.Location = new System.Drawing.Point(245, 19);
+            this.BtnEditar.Name = "BtnEditar";
+            this.BtnEditar.Size = new System.Drawing.Size(115, 30);
+            this.BtnEditar.TabIndex = 2;
+            this.BtnEditar.Text = "Editar";
+            this.BtnEditar.UseVisualStyleBackColor = true;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
+            // 
+            // BtnNvo
+            // 
+            this.BtnNvo.Location = new System.Drawing.Point(366, 20);
+            this.BtnNvo.Name = "BtnNvo";
+            this.BtnNvo.Size = new System.Drawing.Size(115, 30);
+            this.BtnNvo.TabIndex = 3;
+            this.BtnNvo.Text = "Nuevo";
+            this.BtnNvo.UseVisualStyleBackColor = true;
+            // 
             // Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -314,5 +337,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtNom;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BtnEditar;
+        private System.Windows.Forms.Button BtnNvo;
     }
 }
