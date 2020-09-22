@@ -63,11 +63,11 @@ namespace Venta.Clases
 
         public bool prodexist(string nom,string est,string tip,string col,string tall)
         {
-            string consulta = "Select * from producto "+
+            string consulta = "Select count(*) from producto "+
                               "where nombre='" + nom + "' and id_estilo=" + est + " and id_tipo=" + tip + " and id_color="+col +" and Talla='" + tall + "'" ;
             DataTable datos = new DataTable();
             datos = buscar(consulta );
-            if (datos.Rows.Count <=0)
+            if (datos.Rows[0][0].ToString ()== "0")
             {
                 return false;
             }
@@ -309,7 +309,7 @@ namespace Venta.Clases
             cantant = cant_prod(codprod);
             cantnova = Int32.Parse(datos[5]);
             //cantnova += cantant;
-            consulta = "Update producto set id_estilo="+datos [1]+", id_tipo="+datos[2]+", id_color="+datos[3]+", talla="+datos[4]+", cantidad=" + cantnova + ", precio_cost=" + datos[6] + ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] + ", precio_v3=" + datos[11] + ", imagen='" + datos[12] + "', ubicacion = '" + datos[13] + "', Materiap=" + datos[14] + " where id_Prod='" + codprod + "'";
+            consulta = "Update producto set id_estilo="+datos [1]+", id_tipo="+datos[2]+", id_color="+datos[3]+", talla='"+datos[4]+"', cantidad=" + cantnova + ", precio_cost=" + datos[6] + ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] + ", precio_v3=" + datos[11] + ", imagen='" + datos[12] + "', ubicacion = '" + datos[13] + "', Materiap=" + datos[14] + " where id_Prod='" + codprod + "'";
             return consulta_gen(consulta);
         }
 
@@ -367,7 +367,7 @@ namespace Venta.Clases
                                 "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
                                 "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                                 "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
-                                "Where p.cantidad>0 "+
+                                ""+
                                 "order by p.nombre";
             DataTable datos = new DataTable();
             datos = buscar(consulta);

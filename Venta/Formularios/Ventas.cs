@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Venta.Formularios
 {
@@ -62,14 +63,37 @@ namespace Venta.Formularios
             CboPrecio.Items.Add(datos.Rows[0][4].ToString());
             CboPrecio.Items.Add(datos.Rows[0][5].ToString());
             CboPrecio.Items.Add(datos.Rows[0][6].ToString());
-            TxtCod.Text = datos.Rows[0][0].ToString();
+            char[] elim = { 'r', 'R' };
+            TxtCod.Text = datos.Rows[0][0].ToString().TrimStart(elim);
             CboPrecioM.SelectedIndex = 1;
             CboPrecio.SelectedIndex = 2;
             LblPosi.Text = datos.Rows[0][15].ToString();
-            PicExemp.Image = Image.FromFile(@".\imagen\"+prod.imagen(id));
-            PicExemp.Tag = @".\imagen\" + prod.imagen(id);
+            try
+            {
+                using (var stream = File.Open(@".\" + @".\imagen\" + prod.imagen(id), FileMode.Open))
+                {
+                    Bitmap archivo = new Bitmap(stream);
+                    Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
+                    PicExemp.Image = muestra;
+                }
+                //   PicExemp.Image = Image.FromFile();
+                PicExemp.Tag = @".\imagen\" + prod.imagen(id);
+               
+            }
+            catch (FileNotFoundException ex)
+            {
+                using (var stream = File.Open(@".\" + @".\imagen\0.jpg", FileMode.Open))
+                {
+                    Bitmap archivo = new Bitmap(stream);
+                    Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
+                    PicExemp.Image = muestra;
+                }
+                //   PicExemp.Image = Image.FromFile();
+                PicExemp.Tag = @".\imagen\" + prod.imagen(id);
+
+            }
             int total = prod.cantidadprod(id);
-            lbldisp.Text = total.ToString ();
+            lbldisp.Text = total.ToString();
         }
         private void busquedacli(string id)
         {
@@ -242,7 +266,8 @@ namespace Venta.Formularios
         private void BtnGenVen_Click(object sender, EventArgs e)
         {
             if (TxtMonto.Text == "") TxtMonto.Text = "0";
-            if (DgvProd.Rows.Count > 0) venta();
+            //if (DgvProd.Rows.Count > 0)
+                venta();
             
         }
 
@@ -251,14 +276,17 @@ namespace Venta.Formularios
             if (RdbContado.Checked)
             {
                 if ((decimal.Parse(LblTotal.Text) > decimal.Parse(TxtMonto.Text)))
-                { MessageBox.Show("El monto es menor que el valor total"); }
+                {// MessageBox.Show("El monto es menor que el valor total"); 
+                }
                 else
                 {
-                    decimal cambio;
+                  /*  decimal cambio;
                     cambio = decimal.Parse(TxtMonto.Text) - decimal.Parse(LblTotal.Text);
-                    MessageBox.Show("Cambio: Q." + cambio.ToString());
-                    pago();
+                    MessageBox.Show("Cambio: Q." + cambio.ToString());*/
+                    
                 }
+                if (TxtMonto.Text == "") TxtMonto.Text = "0";
+                pago();
             }
             else if (RdbCredito.Checked)
             {
@@ -501,8 +529,29 @@ namespace Venta.Formularios
                 CboPrecio.Items.Add(datos.Rows[0][2].ToString());
                 CboPrecio.Items.Add(datos.Rows[0][3].ToString());
                 CboPrecio.SelectedIndex = 1;
-                PicExemp.Image = Image.FromFile(@".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString ()));
-                PicExemp.Tag =  prod.imagen(CboTalla.SelectedValue.ToString());           }
+                try
+                {
+                    using (var stream = File.Open(@".\" + @".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString()), FileMode.Open))
+                    {
+                        Bitmap archivo = new Bitmap(stream);
+                        Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
+                        PicExemp.Image = muestra;
+                    }
+                    //PicExemp.Image = Image.FromFile(@".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString ()));
+                    PicExemp.Tag = prod.imagen(CboTalla.SelectedValue.ToString());
+                }
+                catch (FileNotFoundException ex){
+                    using (var stream = File.Open(@".\" + @".\imagen\0.jpg", FileMode.Open))
+                    {
+                        Bitmap archivo = new Bitmap(stream);
+                        Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
+                        PicExemp.Image = muestra;
+                    }
+                    //PicExemp.Image = Image.FromFile(@".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString ()));
+                    PicExemp.Tag = prod.imagen(CboTalla.SelectedValue.ToString());
+                }
+
+                }
         }
 
         private void BtnUltVent_Click(object sender, EventArgs e)
@@ -526,14 +575,13 @@ namespace Venta.Formularios
         {
             if (e.KeyCode == Keys.Return)
             {
-                
                 Busc_press();
             }
         }
 
         private void Busc_press()
         {
-            string cod = TxtCod.Text;
+            string cod = "R"+TxtCod.Text;
             DataTable datos = new DataTable();
             datos = prod.prodId(cod);
             if (datos.Rows.Count > 0) {
@@ -584,13 +632,22 @@ namespace Venta.Formularios
             ImagenPic img = new ImagenPic();
             if (PicExemp.Image == null) { ImagenPic.ponerimg = @".\imagen\0.jpg"; }
             else { ImagenPic.ponerimg = PicExemp.Tag.ToString();  }
-            
             img.Show();
         }
 
         private void CboProd_TextChanged(object sender, EventArgs e)
         {
 
+        }
+        public static Bitmap RedimImage(Image Imagenori, int width, int heigth)
+        {
+            var Radio = Math.Max((double)width / Imagenori.Width, (double)heigth / Imagenori.Height);
+            var NuevoAncho = (int)(Imagenori.Width * Radio);
+            var NuevoAlto = (int)(Imagenori.Height * Radio);
+            var Imagenmodelo = new Bitmap(NuevoAncho, NuevoAlto);
+            Graphics.FromImage(Imagenmodelo).DrawImage(Imagenori, 0, 0, NuevoAncho, NuevoAlto);
+            Bitmap imageniFinal = new Bitmap(Imagenmodelo);
+            return imageniFinal;
         }
     }
 }

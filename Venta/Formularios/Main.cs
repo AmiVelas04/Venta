@@ -106,5 +106,11 @@ namespace Venta.Formularios
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void BtnResp_Click(object sender, EventArgs e)
+        {
+            Respaldo Guardar = new Respaldo();
+            Guardar.ShowDialog();
+        }
     }
 }

@@ -81,6 +81,7 @@
             this.RdbContado = new System.Windows.Forms.RadioButton();
             this.RdbConce = new System.Windows.Forms.RadioButton();
             this.RdbCredito = new System.Windows.Forms.RadioButton();
+            this.label15 = new System.Windows.Forms.Label();
             this.PanData.SuspendLayout();
             this.Gbx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicExemp)).BeginInit();
@@ -106,6 +107,7 @@
             // 
             // Gbx2
             // 
+            this.Gbx2.Controls.Add(this.label15);
             this.Gbx2.Controls.Add(this.lbldisp);
             this.Gbx2.Controls.Add(this.LblPosi);
             this.Gbx2.Controls.Add(this.TxtCod);
@@ -322,7 +324,7 @@
             // PicExemp
             // 
             this.PicExemp.ErrorImage = null;
-            this.PicExemp.Location = new System.Drawing.Point(52, 271);
+            this.PicExemp.Location = new System.Drawing.Point(68, 273);
             this.PicExemp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PicExemp.Name = "PicExemp";
             this.PicExemp.Size = new System.Drawing.Size(203, 114);
@@ -693,6 +695,15 @@
             this.RdbCredito.Text = "Credito";
             this.RdbCredito.UseVisualStyleBackColor = true;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(-2, 87);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(20, 15);
+            this.label15.TabIndex = 26;
+            this.label15.Text = "R-";
+            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -780,5 +791,6 @@
         private System.Windows.Forms.TextBox TxtSoli;
         private System.Windows.Forms.Label LblSoli;
         private System.Windows.Forms.Label lbldisp;
+        private System.Windows.Forms.Label label15;
     }
 }

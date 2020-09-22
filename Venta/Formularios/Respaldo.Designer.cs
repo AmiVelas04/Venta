@@ -33,10 +33,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BtnGuardar = new System.Windows.Forms.Button();
             this.BtnCarpeta = new System.Windows.Forms.Button();
+            this.PgbAvance = new System.Windows.Forms.ProgressBar();
+            this.LblProg = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TxtRuta
             // 
+            this.TxtRuta.Enabled = false;
             this.TxtRuta.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtRuta.Location = new System.Drawing.Point(12, 45);
             this.TxtRuta.Name = "TxtRuta";
@@ -82,11 +85,31 @@
             this.BtnCarpeta.UseVisualStyleBackColor = true;
             this.BtnCarpeta.Click += new System.EventHandler(this.BtnCarpeta_Click);
             // 
+            // PgbAvance
+            // 
+            this.PgbAvance.Location = new System.Drawing.Point(12, 172);
+            this.PgbAvance.Name = "PgbAvance";
+            this.PgbAvance.Size = new System.Drawing.Size(417, 23);
+            this.PgbAvance.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.PgbAvance.TabIndex = 4;
+            // 
+            // LblProg
+            // 
+            this.LblProg.AutoSize = true;
+            this.LblProg.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblProg.Location = new System.Drawing.Point(180, 152);
+            this.LblProg.Name = "LblProg";
+            this.LblProg.Size = new System.Drawing.Size(66, 15);
+            this.LblProg.TabIndex = 5;
+            this.LblProg.Text = "Progreso...";
+            // 
             // Respaldo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(439, 147);
+            this.ClientSize = new System.Drawing.Size(439, 196);
+            this.Controls.Add(this.LblProg);
+            this.Controls.Add(this.PgbAvance);
             this.Controls.Add(this.BtnCarpeta);
             this.Controls.Add(this.BtnGuardar);
             this.Controls.Add(this.label1);
@@ -94,6 +117,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "Respaldo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Respaldo";
             this.Load += new System.EventHandler(this.Respaldo_Load);
             this.ResumeLayout(false);
@@ -107,5 +131,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnGuardar;
         private System.Windows.Forms.Button BtnCarpeta;
+        private System.Windows.Forms.ProgressBar PgbAvance;
+        private System.Windows.Forms.Label LblProg;
     }
 }

@@ -39,10 +39,11 @@
             this.BtnProd = new System.Windows.Forms.Button();
             this.BtnVenta = new System.Windows.Forms.Button();
             this.PanSup = new System.Windows.Forms.Panel();
+            this.BtnMin = new System.Windows.Forms.Button();
             this.LblUsu = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.PanCentral = new System.Windows.Forms.Panel();
-            this.BtnMin = new System.Windows.Forms.Button();
+            this.BtnResp = new System.Windows.Forms.Button();
             this.PanLat.SuspendLayout();
             this.PanSup.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +51,7 @@
             // PanLat
             // 
             this.PanLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.PanLat.Controls.Add(this.BtnResp);
             this.PanLat.Controls.Add(this.BtnVent);
             this.PanLat.Controls.Add(this.BtnCaja);
             this.PanLat.Controls.Add(this.BtnReportes);
@@ -189,6 +191,18 @@
             this.PanSup.TabIndex = 1;
             this.PanSup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanSup_MouseDown);
             // 
+            // BtnMin
+            // 
+            this.BtnMin.FlatAppearance.BorderSize = 0;
+            this.BtnMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMin.Image = ((System.Drawing.Image)(resources.GetObject("BtnMin.Image")));
+            this.BtnMin.Location = new System.Drawing.Point(1014, 0);
+            this.BtnMin.Name = "BtnMin";
+            this.BtnMin.Size = new System.Drawing.Size(69, 51);
+            this.BtnMin.TabIndex = 2;
+            this.BtnMin.UseVisualStyleBackColor = true;
+            this.BtnMin.Click += new System.EventHandler(this.BtnMin_Click);
+            // 
             // LblUsu
             // 
             this.LblUsu.AutoSize = true;
@@ -220,17 +234,22 @@
             this.PanCentral.Size = new System.Drawing.Size(1146, 629);
             this.PanCentral.TabIndex = 2;
             // 
-            // BtnMin
+            // BtnResp
             // 
-            this.BtnMin.FlatAppearance.BorderSize = 0;
-            this.BtnMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnMin.Image = ((System.Drawing.Image)(resources.GetObject("BtnMin.Image")));
-            this.BtnMin.Location = new System.Drawing.Point(1014, 0);
-            this.BtnMin.Name = "BtnMin";
-            this.BtnMin.Size = new System.Drawing.Size(69, 51);
-            this.BtnMin.TabIndex = 2;
-            this.BtnMin.UseVisualStyleBackColor = true;
-            this.BtnMin.Click += new System.EventHandler(this.BtnMin_Click);
+            this.BtnResp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnResp.FlatAppearance.BorderSize = 0;
+            this.BtnResp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnResp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnResp.Image = ((System.Drawing.Image)(resources.GetObject("BtnResp.Image")));
+            this.BtnResp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnResp.Location = new System.Drawing.Point(8, 637);
+            this.BtnResp.Name = "BtnResp";
+            this.BtnResp.Size = new System.Drawing.Size(120, 40);
+            this.BtnResp.TabIndex = 8;
+            this.BtnResp.Text = "Respaldo";
+            this.BtnResp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnResp.UseVisualStyleBackColor = false;
+            this.BtnResp.Click += new System.EventHandler(this.BtnResp_Click);
             // 
             // Main
             // 
@@ -269,5 +288,6 @@
         private System.Windows.Forms.Button BtnCaja;
         private System.Windows.Forms.Button BtnVent;
         private System.Windows.Forms.Button BtnMin;
+        private System.Windows.Forms.Button BtnResp;
     }
 }

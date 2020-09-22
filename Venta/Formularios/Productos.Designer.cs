@@ -30,6 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Productos));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LblRow = new System.Windows.Forms.Label();
+            this.IdCol = new System.Windows.Forms.Label();
+            this.IdTip = new System.Windows.Forms.Label();
+            this.IdEst = new System.Windows.Forms.Label();
+            this.BtnLimp = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.RdbNo = new System.Windows.Forms.RadioButton();
             this.RdbSi = new System.Windows.Forms.RadioButton();
@@ -66,6 +71,7 @@
             this.LblNomProd = new System.Windows.Forms.Label();
             this.TxtProdNom = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BtnModif = new System.Windows.Forms.Button();
             this.BtnNvo = new System.Windows.Forms.Button();
             this.BtnEditar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -78,11 +84,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.DgvProd = new System.Windows.Forms.DataGridView();
             this.OFD1 = new System.Windows.Forms.OpenFileDialog();
-            this.BtnModif = new System.Windows.Forms.Button();
-            this.BtnLimp = new System.Windows.Forms.Button();
-            this.IdEst = new System.Windows.Forms.Label();
-            this.IdTip = new System.Windows.Forms.Label();
-            this.IdCol = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxProd)).BeginInit();
@@ -95,6 +96,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.LblRow);
             this.panel1.Controls.Add(this.IdCol);
             this.panel1.Controls.Add(this.IdTip);
             this.panel1.Controls.Add(this.IdEst);
@@ -138,6 +140,59 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(408, 590);
             this.panel1.TabIndex = 0;
+            // 
+            // LblRow
+            // 
+            this.LblRow.AutoSize = true;
+            this.LblRow.Location = new System.Drawing.Point(338, 32);
+            this.LblRow.Name = "LblRow";
+            this.LblRow.Size = new System.Drawing.Size(34, 15);
+            this.LblRow.TabIndex = 36;
+            this.LblRow.Text = "Row";
+            this.LblRow.Visible = false;
+            // 
+            // IdCol
+            // 
+            this.IdCol.AutoSize = true;
+            this.IdCol.Location = new System.Drawing.Point(72, 120);
+            this.IdCol.Name = "IdCol";
+            this.IdCol.Size = new System.Drawing.Size(20, 15);
+            this.IdCol.TabIndex = 35;
+            this.IdCol.Text = "Id";
+            this.IdCol.Visible = false;
+            // 
+            // IdTip
+            // 
+            this.IdTip.AutoSize = true;
+            this.IdTip.Location = new System.Drawing.Point(269, 59);
+            this.IdTip.Name = "IdTip";
+            this.IdTip.Size = new System.Drawing.Size(20, 15);
+            this.IdTip.TabIndex = 34;
+            this.IdTip.Text = "Id";
+            this.IdTip.Visible = false;
+            // 
+            // IdEst
+            // 
+            this.IdEst.AutoSize = true;
+            this.IdEst.Location = new System.Drawing.Point(87, 62);
+            this.IdEst.Name = "IdEst";
+            this.IdEst.Size = new System.Drawing.Size(20, 15);
+            this.IdEst.TabIndex = 33;
+            this.IdEst.Text = "Id";
+            this.IdEst.Visible = false;
+            // 
+            // BtnLimp
+            // 
+            this.BtnLimp.Image = ((System.Drawing.Image)(resources.GetObject("BtnLimp.Image")));
+            this.BtnLimp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnLimp.Location = new System.Drawing.Point(318, 139);
+            this.BtnLimp.Name = "BtnLimp";
+            this.BtnLimp.Size = new System.Drawing.Size(75, 54);
+            this.BtnLimp.TabIndex = 32;
+            this.BtnLimp.Text = "Limpiar";
+            this.BtnLimp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnLimp.UseVisualStyleBackColor = true;
+            this.BtnLimp.Click += new System.EventHandler(this.BtnLimp_Click);
             // 
             // groupBox1
             // 
@@ -505,6 +560,19 @@
             this.panel2.Size = new System.Drawing.Size(722, 72);
             this.panel2.TabIndex = 1;
             // 
+            // BtnModif
+            // 
+            this.BtnModif.Image = ((System.Drawing.Image)(resources.GetObject("BtnModif.Image")));
+            this.BtnModif.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnModif.Location = new System.Drawing.Point(239, 18);
+            this.BtnModif.Name = "BtnModif";
+            this.BtnModif.Size = new System.Drawing.Size(102, 42);
+            this.BtnModif.TabIndex = 2;
+            this.BtnModif.Text = "Modificar Datos";
+            this.BtnModif.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnModif.UseVisualStyleBackColor = true;
+            this.BtnModif.Click += new System.EventHandler(this.BtnModif_Click);
+            // 
             // BtnNvo
             // 
             this.BtnNvo.Image = ((System.Drawing.Image)(resources.GetObject("BtnNvo.Image")));
@@ -605,6 +673,7 @@
             this.TxtBuscNom.Name = "TxtBuscNom";
             this.TxtBuscNom.Size = new System.Drawing.Size(368, 23);
             this.TxtBuscNom.TabIndex = 1;
+            this.TxtBuscNom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBuscNom_KeyDown);
             // 
             // label10
             // 
@@ -628,70 +697,18 @@
             this.DgvProd.EnableHeadersVisualStyles = false;
             this.DgvProd.Location = new System.Drawing.Point(0, 101);
             this.DgvProd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.DgvProd.MultiSelect = false;
             this.DgvProd.Name = "DgvProd";
             this.DgvProd.ReadOnly = true;
             this.DgvProd.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.DgvProd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvProd.Size = new System.Drawing.Size(722, 417);
             this.DgvProd.TabIndex = 3;
-            this.DgvProd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProd_CellContentClick);
+            this.DgvProd.Click += new System.EventHandler(this.DgvProd_Click);
             // 
             // OFD1
             // 
             this.OFD1.FileName = "Seleccionar imagen";
-            // 
-            // BtnModif
-            // 
-            this.BtnModif.Image = ((System.Drawing.Image)(resources.GetObject("BtnModif.Image")));
-            this.BtnModif.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnModif.Location = new System.Drawing.Point(239, 18);
-            this.BtnModif.Name = "BtnModif";
-            this.BtnModif.Size = new System.Drawing.Size(102, 42);
-            this.BtnModif.TabIndex = 2;
-            this.BtnModif.Text = "Modificar Datos";
-            this.BtnModif.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnModif.UseVisualStyleBackColor = true;
-            this.BtnModif.Click += new System.EventHandler(this.BtnModif_Click);
-            // 
-            // BtnLimp
-            // 
-            this.BtnLimp.Image = ((System.Drawing.Image)(resources.GetObject("BtnLimp.Image")));
-            this.BtnLimp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.BtnLimp.Location = new System.Drawing.Point(318, 139);
-            this.BtnLimp.Name = "BtnLimp";
-            this.BtnLimp.Size = new System.Drawing.Size(75, 54);
-            this.BtnLimp.TabIndex = 32;
-            this.BtnLimp.Text = "Limpiar";
-            this.BtnLimp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnLimp.UseVisualStyleBackColor = true;
-            this.BtnLimp.Click += new System.EventHandler(this.BtnLimp_Click);
-            // 
-            // IdEst
-            // 
-            this.IdEst.AutoSize = true;
-            this.IdEst.Location = new System.Drawing.Point(87, 62);
-            this.IdEst.Name = "IdEst";
-            this.IdEst.Size = new System.Drawing.Size(20, 15);
-            this.IdEst.TabIndex = 33;
-            this.IdEst.Text = "Id";
-            // 
-            // IdTip
-            // 
-            this.IdTip.AutoSize = true;
-            this.IdTip.Location = new System.Drawing.Point(269, 59);
-            this.IdTip.Name = "IdTip";
-            this.IdTip.Size = new System.Drawing.Size(20, 15);
-            this.IdTip.TabIndex = 34;
-            this.IdTip.Text = "Id";
-            // 
-            // IdCol
-            // 
-            this.IdCol.AutoSize = true;
-            this.IdCol.Location = new System.Drawing.Point(72, 120);
-            this.IdCol.Name = "IdCol";
-            this.IdCol.Size = new System.Drawing.Size(20, 15);
-            this.IdCol.TabIndex = 35;
-            this.IdCol.Text = "Id";
             // 
             // Productos
             // 
@@ -781,5 +798,6 @@
         private System.Windows.Forms.Label IdCol;
         private System.Windows.Forms.Label IdTip;
         private System.Windows.Forms.Label IdEst;
+        private System.Windows.Forms.Label LblRow;
     }
 }
