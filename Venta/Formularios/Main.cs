@@ -68,6 +68,8 @@ namespace Venta.Formularios
                 BtnCreditos.Visible = false;
                 BtnCencesion.Visible = false;
                 BtnReportes.Visible = false;
+                BtnVent.Visible = false;
+                BtnResp.Visible = false;
             }
         }
 

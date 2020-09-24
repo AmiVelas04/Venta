@@ -22,12 +22,17 @@ namespace Venta.Formularios
         private void ingresarcli()
         {
             string nombre, dir, nit, dpi, tel,cre;
-            nombre = TxtNom.Text;
-            dir = TxtDir.Text;
-            nit = TxtNit.Text;
-            dpi = TxtDpi.Text;
-            tel = TxtTel.Text;
-            cre = TxtCre.Text;
+            if (TxtNom.Text == "") {
+                MessageBox.Show("No se ha ingresado el nombre del cliente");
+                return;
+            }
+
+            nombre = TxtNom.Text; 
+            dir = TxtDir.Text != "" ? TxtDir.Text : "N/E"; 
+            nit = TxtNit.Text != "" ? TxtNit.Text : "N/E"; 
+            dpi = TxtDpi.Text != "" ? TxtDpi.Text : "N/E"; 
+            tel = TxtTel.Text != "" ? TxtTel.Text : "N/E"; 
+            cre = TxtCre.Text != "" ? TxtCre.Text : "0"; ;
             string[] datos = {nombre,dir,nit,dpi,tel,cre};
             if (cli.ingrecli(datos))
             {
@@ -51,11 +56,6 @@ namespace Venta.Formularios
             Dgv1.DataSource = datos;
             Dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             Dgv1.Columns[0].Visible = false;
-
-        }
-
-        private void Clientes_Load(object sender, EventArgs e)
-        {
 
         }
 

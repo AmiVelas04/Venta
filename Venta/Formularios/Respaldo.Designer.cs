@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Respaldo));
             this.TxtRuta = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -35,6 +36,7 @@
             this.BtnCarpeta = new System.Windows.Forms.Button();
             this.PgbAvance = new System.Windows.Forms.ProgressBar();
             this.LblProg = new System.Windows.Forms.Label();
+            this.Compresion = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // TxtRuta
@@ -97,11 +99,17 @@
             // 
             this.LblProg.AutoSize = true;
             this.LblProg.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblProg.Location = new System.Drawing.Point(180, 152);
+            this.LblProg.Location = new System.Drawing.Point(9, 154);
             this.LblProg.Name = "LblProg";
             this.LblProg.Size = new System.Drawing.Size(66, 15);
             this.LblProg.TabIndex = 5;
             this.LblProg.Text = "Progreso...";
+            this.LblProg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Compresion
+            // 
+            this.Compresion.Interval = 1000;
+            this.Compresion.Tick += new System.EventHandler(this.Compresion_Tick);
             // 
             // Respaldo
             // 
@@ -133,5 +141,6 @@
         private System.Windows.Forms.Button BtnCarpeta;
         private System.Windows.Forms.ProgressBar PgbAvance;
         private System.Windows.Forms.Label LblProg;
+        private System.Windows.Forms.Timer Compresion;
     }
 }

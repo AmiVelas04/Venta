@@ -120,6 +120,22 @@ namespace Venta.Clases
                 "Values("+id+",'"+datos[0]+"','"+ datos[1]+ "','"+ datos[2]+ "','"+datos[3]+"','"+ datos[4]+ "',"+ datos[5] +")";
             return consulta_gen(consulta);
         }
+
+        public string clienvent(string [] datos)
+        {
+            int id = IdCli();
+        string consulta = "insert into cliente(id_cliente,nombre,direccion,nit,dpi,telefono,credi) " +
+            "Values(" + id + ",'" + datos[0] + "','" + datos[1] + "','" + datos[2] + "','" + datos[3] + "','" + datos[4] + "'," + datos[5] + ")";
+            if (consulta_gen(consulta))
+                 {
+                return id.ToString();
+            }
+            else {
+                return "0";
+            }
+    }
+
+
         public DataTable Nomcliente(string nom)
         {
             string consulta = "Select id_cliente,Nombre, Direccion,Nit, Telefono,Dpi ,Credi as Credito from cliente "+

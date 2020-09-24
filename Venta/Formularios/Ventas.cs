@@ -268,6 +268,8 @@ namespace Venta.Formularios
             if (TxtMonto.Text == "") TxtMonto.Text = "0";
             //if (DgvProd.Rows.Count > 0)
                 venta();
+            cargarcli();
+            ChkNvoCli.Checked = false;
             
         }
 
@@ -351,7 +353,12 @@ namespace Venta.Formularios
         }
         private void pago()
         {
-            string cli = CboNomCli.SelectedValue.ToString();
+            string cli = buscarcli();
+            if (cli == "0") {
+                MessageBox.Show("No se pudo encontrar al cliente");
+                return;
+            }
+            
             string estado = "", tipo = "";
             decimal total;
             total = decimal.Parse(TxtMonto.Text);
@@ -364,7 +371,7 @@ namespace Venta.Formularios
                     listarProd(tipo, estado, cli,total.ToString ());
                     LimpiarDatos();
                 }
-                else { MessageBox.Show("No exiten productos"); }
+                else { MessageBox.Show("No exisiten productos","Sin existencias", MessageBoxButtons.OK,MessageBoxIcon.Exclamation); }
             }
             else if (RdbCredito.Checked)
             {
@@ -375,7 +382,7 @@ namespace Venta.Formularios
                     listarProd(tipo, estado, cli, total.ToString());
                     LimpiarDatos();
                 }
-                else { MessageBox.Show("No existen productos"); }
+                else { MessageBox.Show("No exisiten productos", "Sin existencias", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
             else if (RdbConce.Checked)
             {
@@ -385,7 +392,7 @@ namespace Venta.Formularios
                ListConce(estado, cli,"");
                     LimpiarDatos();
                 }
-                else { MessageBox.Show("No existen productos"); }
+                else { MessageBox.Show("No exisiten productos", "Sin existencias", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
         }
        private void ListConce( string estado, string cli,string pago)
@@ -464,12 +471,12 @@ namespace Venta.Formularios
             }
             if (vent.generar_V(produ, vende,cli, estado, tipo,pago))
             {
-                MessageBox.Show("Venta registrada correctamente.");
+                MessageBox.Show("Venta registrada correctamente.","Exito",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 //vent.genfact(produ, "1", estado, tipo);
             }
             else
             {
-                MessageBox.Show("Error en la venta");
+                MessageBox.Show("No se pudo lleva a cabo la venta","Error",MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
         private void LimpiarDatos()
@@ -478,6 +485,10 @@ namespace Venta.Formularios
                 {
                     DgvProd.Rows.RemoveAt(0);
                 }
+            while (DgvProd.ColumnCount > 0)
+            {
+                DgvProd.Columns.RemoveAt(0);
+            }
             LblTotal.Text = "0";
             TxtMonto.Text = "0";
         }
@@ -649,5 +660,99 @@ namespace Venta.Formularios
             Bitmap imageniFinal = new Bitmap(Imagenmodelo);
             return imageniFinal;
         }
+
+        private string buscarcli()
+        {
+           string codigo=CboEstilo.SelectedValue != null ? CboEstilo.SelectedValue.ToString() : "0";
+            if (ChkNvoCli.Checked) codigo = "0";
+            string nom,dir, nit, dpi, tel, cre;
+            if (codigo == "0" && ChkNvoCli.Checked)
+            {
+                nom = CboNomCli.Text;
+                dir = TxtDirCli.Text != "" ? TxtDirCli.Text : "N/E";
+                nit = TxtNit.Text != "" ? TxtNit.Text : "N/E";
+                dpi = "N/E";
+                tel = "N/E";
+                cre = TxtCredito.Text != "" ? TxtCredito.Text : "0"; ;
+                string[] datos = { nom, dir, nit, dpi, tel, cre };
+                codigo = cli.clienvent(datos);
+                return codigo;
+            }
+            else if (codigo == "0" && !ChkNvoCli.Checked)
+            {
+                return "0";
+            }
+            else
+            {
+                return codigo;
+            }
+        }
+
+        private void ChkNvoCli_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (ChkNvoCli.Checked)
+            {
+                TxtDirCli.Text = "";
+                TxtNit.Text = "";
+                TxtCredito.Text = "";
+                CboNomCli.Text = "";
+                TxtDirCli.Enabled = true;
+                TxtNit.Enabled = true;
+                TxtCredito.Enabled = true;
+            }
+            else
+            {
+                TxtDirCli.Text = "";
+                TxtNit.Text = "";
+                TxtCredito.Text = "";
+                CboNomCli.Text = "";
+                TxtDirCli.Enabled = false;
+                TxtNit.Enabled = false;
+                TxtCredito.Enabled =false;
+            }
+        }
+
+        private void BtnBorrar_Click(object sender, EventArgs e)
+        {
+            BorrarProd();
+        }
+
+        private void BorrarProd()
+        {
+            if (DgvProd.Rows.Count > 0)
+            {
+                int indice = DgvProd.CurrentRow.Index;
+                // columna 8 praa obetener el subtotal
+                DgvProd.Rows.RemoveAt(indice);
+                if (DgvProd.Rows.Count < 1)
+                {
+                    while (DgvProd.ColumnCount > 0)
+                    {
+                        DgvProd.Columns.RemoveAt(0);
+                    }
+                }
+
+            }
+
+            decimal total = 0;
+            if (LblTotal.Text != "Precio") //total = decimal.Parse(LblTotal.Text);
+            if (DgvProd.Rows.Count <= 0)
+            {
+                LblTotal.Text = total.ToString();
+            }
+            else
+            {
+                int cant, cont;
+                cant = DgvProd.Rows.Count;
+                for (cont = 0; cont < cant; cont++)
+                {
+                    total += decimal.Parse(DgvProd.Rows[cont].Cells[8].Value.ToString());
+                }
+                LblTotal.Text = total.ToString();
+            }
+            
+
+        }
+        
     }
 }

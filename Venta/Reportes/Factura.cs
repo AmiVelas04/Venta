@@ -24,7 +24,10 @@ namespace Venta.Reportes
             this.RepFactura.LocalReport.DataSources.Clear();
             this.RepFactura.LocalReport.DataSources.Add(new ReportDataSource("Enca", Enca));
             this.RepFactura.LocalReport.DataSources.Add(new ReportDataSource("Deta", Deta));
-
+            this.RepFactura.SetDisplayMode(DisplayMode.PrintLayout);
+            this.RepFactura.ZoomMode = ZoomMode.Percent;
+            //Seleccionamos el zoom que deseamos utilizar. En este caso un 100%
+            this.RepFactura.ZoomPercent = 100;
             this.RepFactura.RefreshReport();
         }
     }

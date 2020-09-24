@@ -39,8 +39,6 @@ namespace Venta.Formularios
         {
             guardar();
             limpiar();
-
-
         }
 
         private void TxtProdNom_TextChanged(object sender, EventArgs e)

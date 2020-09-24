@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Clientes));
             this.PanBaj = new System.Windows.Forms.Panel();
+            this.BtnNvo = new System.Windows.Forms.Button();
+            this.BtnEditar = new System.Windows.Forms.Button();
             this.TxtCliNom = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.PanCentral = new System.Windows.Forms.Panel();
@@ -49,8 +51,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtNom = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnEditar = new System.Windows.Forms.Button();
-            this.BtnNvo = new System.Windows.Forms.Button();
             this.PanBaj.SuspendLayout();
             this.PanCentral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv1)).BeginInit();
@@ -70,6 +70,25 @@
             this.PanBaj.Name = "PanBaj";
             this.PanBaj.Size = new System.Drawing.Size(799, 57);
             this.PanBaj.TabIndex = 1;
+            // 
+            // BtnNvo
+            // 
+            this.BtnNvo.Location = new System.Drawing.Point(366, 20);
+            this.BtnNvo.Name = "BtnNvo";
+            this.BtnNvo.Size = new System.Drawing.Size(115, 30);
+            this.BtnNvo.TabIndex = 3;
+            this.BtnNvo.Text = "Nuevo";
+            this.BtnNvo.UseVisualStyleBackColor = true;
+            // 
+            // BtnEditar
+            // 
+            this.BtnEditar.Location = new System.Drawing.Point(245, 19);
+            this.BtnEditar.Name = "BtnEditar";
+            this.BtnEditar.Size = new System.Drawing.Size(115, 30);
+            this.BtnEditar.TabIndex = 2;
+            this.BtnEditar.Text = "Editar";
+            this.BtnEditar.UseVisualStyleBackColor = true;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // TxtCliNom
             // 
@@ -260,6 +279,7 @@
             this.TxtNom.Name = "TxtNom";
             this.TxtNom.Size = new System.Drawing.Size(197, 26);
             this.TxtNom.TabIndex = 14;
+            this.TxtNom.Tag = "0";
             // 
             // label1
             // 
@@ -270,25 +290,6 @@
             this.label1.Size = new System.Drawing.Size(73, 19);
             this.label1.TabIndex = 13;
             this.label1.Text = "Nombre";
-            // 
-            // BtnEditar
-            // 
-            this.BtnEditar.Location = new System.Drawing.Point(245, 19);
-            this.BtnEditar.Name = "BtnEditar";
-            this.BtnEditar.Size = new System.Drawing.Size(115, 30);
-            this.BtnEditar.TabIndex = 2;
-            this.BtnEditar.Text = "Editar";
-            this.BtnEditar.UseVisualStyleBackColor = true;
-            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
-            // 
-            // BtnNvo
-            // 
-            this.BtnNvo.Location = new System.Drawing.Point(366, 20);
-            this.BtnNvo.Name = "BtnNvo";
-            this.BtnNvo.Size = new System.Drawing.Size(115, 30);
-            this.BtnNvo.TabIndex = 3;
-            this.BtnNvo.Text = "Nuevo";
-            this.BtnNvo.UseVisualStyleBackColor = true;
             // 
             // Clientes
             // 
@@ -304,7 +305,6 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "Clientes";
             this.Text = "Clientes";
-            this.Load += new System.EventHandler(this.Clientes_Load);
             this.PanBaj.ResumeLayout(false);
             this.PanBaj.PerformLayout();
             this.PanCentral.ResumeLayout(false);

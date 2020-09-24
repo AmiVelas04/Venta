@@ -59,8 +59,8 @@ namespace Venta.Clases
         #endregion
         public DataTable Logueo(string user, string pass)
         {
-            string consulta = "Select id_vendedor,nombre,usuario,contrasenia,nivel from vendedor where usuario='" + user + "' and contrasenia='" + pass + "'";
-           return  buscar(consulta);
+        string consulta = "Select id_vendedor,nombre,usuario,contrasenia,nivel from vendedor where usuario='" + user + "' and contrasenia='" + pass + "'";
+        return  buscar(consulta);
         }
 
         public string NomVende(string id)       {

@@ -25,14 +25,23 @@ namespace Venta.Formularios
             datos = log.Logueo(TxtUsu.Text, TxtPass.Text);
             if (datos.Rows.Count>0)
             {
-                MessageBox.Show("Ingreso Correcto","Inicio",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                Formularios.Main inicio = new Formularios.Main();
+                if (datos.Rows[0][2].ToString() == TxtUsu.Text && datos.Rows[0][3].ToString() == TxtPass.Text)
+                {
+                    MessageBox.Show("Ingreso Correcto", "Inicio", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Formularios.Main inicio = new Formularios.Main();
 
-                Main.idvende = datos.Rows[0][0].ToString();
-                Main .nombrev = datos.Rows[0][1].ToString();
-                Main.nivel = datos.Rows[0][4].ToString();
-                inicio.Show();
-                this.Close();
+                    Main.idvende = datos.Rows[0][0].ToString();
+                    Main.nombrev = datos.Rows[0][1].ToString();
+                    Main.nivel = datos.Rows[0][4].ToString();
+                    inicio.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o contraseña incorrecta, intente de nuevo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    TxtPass.Clear();
+                    TxtUsu.Clear();
+                }
             }
             else
             {
