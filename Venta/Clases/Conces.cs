@@ -59,7 +59,7 @@ namespace Venta.Clases
             }
             return true;
         }
-        #endregion
+        #endregion  
 
         public DataTable busconce(string cli)
         {
