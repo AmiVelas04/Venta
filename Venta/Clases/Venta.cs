@@ -127,7 +127,7 @@ namespace Venta.Clases
         public bool generar_V(DataTable  datos, string vende,string cli,string estado,string tipo,string pago)
         {
            string fecha;
-            fecha = DateTime.Now.ToString("yyyy/MM/dd H:mm:ss");
+            fecha = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             int Nventa = cod_venta();
             string consulta = "insert into  venta(id_venta,id_vendedor,id_cli,fecha, tipo,estado) " +
                               "values(" +Nventa + "," +vende + ","+cli+",'" + fecha + "','"+ tipo +"','" +estado+ "')";
