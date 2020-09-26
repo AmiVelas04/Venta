@@ -67,7 +67,7 @@ namespace Venta.Formularios
             TxtCod.Text = datos.Rows[0][0].ToString().TrimStart(elim);
             CboPrecioM.SelectedIndex = 1;
             CboPrecio.SelectedIndex = 2;
-            LblPosi.Text = datos.Rows[0][15].ToString();
+            LblPosi.Text = "Ubicación: " +datos.Rows[0][15].ToString();
             try
             {
                 using (var stream = File.Open(@".\" + @".\imagen\" + prod.imagen(id), FileMode.Open))
@@ -663,7 +663,7 @@ namespace Venta.Formularios
 
         private string buscarcli()
         {
-           string codigo=CboEstilo.SelectedValue != null ? CboEstilo.SelectedValue.ToString() : "0";
+           string codigo=CboNomCli.SelectedValue != null ? CboNomCli.SelectedValue.ToString() : "0";
             if (ChkNvoCli.Checked) codigo = "0";
             string nom,dir, nit, dpi, tel, cre;
             if (codigo == "0" && ChkNvoCli.Checked)

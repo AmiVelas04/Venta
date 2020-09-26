@@ -68,6 +68,7 @@
             this.PanCentral = new System.Windows.Forms.Panel();
             this.DgvProd = new System.Windows.Forms.DataGridView();
             this.PanelInf = new System.Windows.Forms.Panel();
+            this.BtnBorrar = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.TxtMonto = new System.Windows.Forms.TextBox();
             this.LblTotal = new System.Windows.Forms.Label();
@@ -83,7 +84,6 @@
             this.RdbContado = new System.Windows.Forms.RadioButton();
             this.RdbConce = new System.Windows.Forms.RadioButton();
             this.RdbCredito = new System.Windows.Forms.RadioButton();
-            this.BtnBorrar = new System.Windows.Forms.Button();
             this.PanData.SuspendLayout();
             this.Gbx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicExemp)).BeginInit();
@@ -164,9 +164,10 @@
             // LblPosi
             // 
             this.LblPosi.AutoSize = true;
-            this.LblPosi.Location = new System.Drawing.Point(135, 255);
+            this.LblPosi.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPosi.Location = new System.Drawing.Point(45, 269);
             this.LblPosi.Name = "LblPosi";
-            this.LblPosi.Size = new System.Drawing.Size(62, 15);
+            this.LblPosi.Size = new System.Drawing.Size(77, 19);
             this.LblPosi.TabIndex = 24;
             this.LblPosi.Text = "Posicion";
             // 
@@ -335,10 +336,10 @@
             // PicExemp
             // 
             this.PicExemp.ErrorImage = null;
-            this.PicExemp.Location = new System.Drawing.Point(68, 273);
+            this.PicExemp.Location = new System.Drawing.Point(72, 295);
             this.PicExemp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PicExemp.Name = "PicExemp";
-            this.PicExemp.Size = new System.Drawing.Size(203, 114);
+            this.PicExemp.Size = new System.Drawing.Size(203, 125);
             this.PicExemp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicExemp.TabIndex = 5;
             this.PicExemp.TabStop = false;
@@ -546,6 +547,21 @@
             this.PanelInf.Size = new System.Drawing.Size(774, 97);
             this.PanelInf.TabIndex = 1;
             // 
+            // BtnBorrar
+            // 
+            this.BtnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBorrar.Image = ((System.Drawing.Image)(resources.GetObject("BtnBorrar.Image")));
+            this.BtnBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnBorrar.Location = new System.Drawing.Point(132, 10);
+            this.BtnBorrar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BtnBorrar.Name = "BtnBorrar";
+            this.BtnBorrar.Size = new System.Drawing.Size(153, 39);
+            this.BtnBorrar.TabIndex = 9;
+            this.BtnBorrar.Text = "Borrar Producto";
+            this.BtnBorrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnBorrar.UseVisualStyleBackColor = true;
+            this.BtnBorrar.Click += new System.EventHandler(this.BtnBorrar_Click);
+            // 
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -727,21 +743,6 @@
             this.RdbCredito.TabStop = true;
             this.RdbCredito.Text = "Credito";
             this.RdbCredito.UseVisualStyleBackColor = true;
-            // 
-            // BtnBorrar
-            // 
-            this.BtnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBorrar.Image = ((System.Drawing.Image)(resources.GetObject("BtnBorrar.Image")));
-            this.BtnBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnBorrar.Location = new System.Drawing.Point(132, 10);
-            this.BtnBorrar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.BtnBorrar.Name = "BtnBorrar";
-            this.BtnBorrar.Size = new System.Drawing.Size(153, 39);
-            this.BtnBorrar.TabIndex = 9;
-            this.BtnBorrar.Text = "Borrar Producto";
-            this.BtnBorrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnBorrar.UseVisualStyleBackColor = true;
-            this.BtnBorrar.Click += new System.EventHandler(this.BtnBorrar_Click);
             // 
             // Ventas
             // 

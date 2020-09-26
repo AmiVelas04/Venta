@@ -55,5 +55,10 @@ namespace Venta.Formularios
         {
             Application.Exit();
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Fecha y hora" + DateTime.Now.ToString("dd/MM/yyyy H:m:s"));
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace Venta.Clases
             }
             catch (Exception ex)
             {
-               // MessageBox.Show(ex.ToString());
+               //MessageBox.Show(ex.ToString());
                // MessageBox.Show(consulta);
             }
             return datos;

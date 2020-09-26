@@ -127,7 +127,7 @@ namespace Venta.Clases
         public bool generar_V(DataTable  datos, string vende,string cli,string estado,string tipo,string pago)
         {
            string fecha;
-            fecha = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
+            fecha = DateTime.Now.ToString("yyyy/MM/dd H:mm:ss");
             int Nventa = cod_venta();
             string consulta = "insert into  venta(id_venta,id_vendedor,id_cli,fecha, tipo,estado) " +
                               "values(" +Nventa + "," +vende + ","+cli+",'" + fecha + "','"+ tipo +"','" +estado+ "')";
@@ -205,7 +205,7 @@ namespace Venta.Clases
             data = cli.buscli(clien);
             int cant=datos.Rows.Count,cont;
             Reportes.FactEnc Encab = new Reportes.FactEnc();
-            Encab .fecha = DateTime.Now.ToString("yyyyy/MM/dd hh:mm:ss");
+            Encab .fecha = DateTime.Now.ToString("yyyyy/MM/dd HH:mm:ss");
             Encab.No = Nventa;
             Encab.tipo = tipo;
             Encab.direccion = data.Rows[0][0].ToString();
@@ -392,7 +392,7 @@ namespace Venta.Clases
             DataTable venta= new DataTable ();
             DataTable detalle = new DataTable();
             DataTable data = new DataTable();
-            string consultaV = "SELECT id_vendedor,id_cli,fecha,tipo FROM venta "+
+            string consultaV = "SELECT id_vendedor,id_cli,Date_format(fecha,'%d/%M/%y %H:%m:%s'),tipo FROM venta "+
                                "WHERE id_venta ="+idv;
             string ConsutaDet = "SELECT Concat(p.nombre,' - ',e.estilo,' - ',t.tipo,' - ',c.color,' - ',p.talla) AS nombre,vd.cantidad,vd.precio,vd.total "+
                                 "FROM venta_detalle vd "+

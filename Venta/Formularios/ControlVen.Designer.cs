@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlVen));
             this.PanDer = new System.Windows.Forms.Panel();
             this.GbxVenta = new System.Windows.Forms.GroupBox();
+            this.BtnImp = new System.Windows.Forms.Button();
             this.BtnMostrar = new System.Windows.Forms.Button();
             this.TxtFech = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,7 +47,6 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.PanCent = new System.Windows.Forms.Panel();
             this.DgvDatos = new System.Windows.Forms.DataGridView();
-            this.BtnImp = new System.Windows.Forms.Button();
             this.PanDer.SuspendLayout();
             this.GbxVenta.SuspendLayout();
             this.PanAbaj.SuspendLayout();
@@ -85,6 +85,19 @@
             this.GbxVenta.TabIndex = 0;
             this.GbxVenta.TabStop = false;
             this.GbxVenta.Text = "Datos de la venta";
+            // 
+            // BtnImp
+            // 
+            this.BtnImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnImp.Image")));
+            this.BtnImp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnImp.Location = new System.Drawing.Point(25, 372);
+            this.BtnImp.Name = "BtnImp";
+            this.BtnImp.Size = new System.Drawing.Size(149, 64);
+            this.BtnImp.TabIndex = 9;
+            this.BtnImp.Text = "Imprimir comprobante";
+            this.BtnImp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnImp.UseVisualStyleBackColor = true;
+            this.BtnImp.Click += new System.EventHandler(this.BtnImp_Click);
             // 
             // BtnMostrar
             // 
@@ -209,9 +222,9 @@
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.Location = new System.Drawing.Point(657, 31);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(76, 25);
+            this.lblTotal.Size = new System.Drawing.Size(65, 25);
             this.lblTotal.TabIndex = 0;
-            this.lblTotal.Text = "label5";
+            this.lblTotal.Text = "Total";
             // 
             // PanCent
             // 
@@ -235,19 +248,6 @@
             this.DgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvDatos.Size = new System.Drawing.Size(906, 508);
             this.DgvDatos.TabIndex = 0;
-            // 
-            // BtnImp
-            // 
-            this.BtnImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnImp.Image")));
-            this.BtnImp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnImp.Location = new System.Drawing.Point(25, 372);
-            this.BtnImp.Name = "BtnImp";
-            this.BtnImp.Size = new System.Drawing.Size(149, 64);
-            this.BtnImp.TabIndex = 9;
-            this.BtnImp.Text = "Imprimir comprobante";
-            this.BtnImp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnImp.UseVisualStyleBackColor = true;
-            this.BtnImp.Click += new System.EventHandler(this.BtnImp_Click);
             // 
             // ControlVen
             // 
