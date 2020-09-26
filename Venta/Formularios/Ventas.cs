@@ -663,7 +663,7 @@ namespace Venta.Formularios
 
         private string buscarcli()
         {
-           string codigo=CboEstilo.SelectedValue != null ? CboEstilo.SelectedValue.ToString() : "0";
+           string codigo=CboNomCli.SelectedValue != null ? CboNomCli.SelectedValue.ToString() : "0";
             if (ChkNvoCli.Checked) codigo = "0";
             string nom,dir, nit, dpi, tel, cre;
             if (codigo == "0" && ChkNvoCli.Checked)
