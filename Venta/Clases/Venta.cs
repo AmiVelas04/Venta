@@ -392,8 +392,8 @@ namespace Venta.Clases
             DataTable venta= new DataTable ();
             DataTable detalle = new DataTable();
             DataTable data = new DataTable();
-            string consultaV = "SELECT id_vendedor,id_cli,Date_format(fecha,'%d/%M/%y %H:%m:%s'),tipo FROM venta "+
-                               "WHERE id_venta ="+idv;
+            string consultaV = "SELECT id_vendedor,id_cli,Date_format(fecha,'%d/%M/%y %H:%m:%s'),tipo FROM venta " +
+                               "WHERE id_venta =" + idv;
             string ConsutaDet = "SELECT Concat(p.nombre,' - ',e.estilo,' - ',t.tipo,' - ',c.color,' - ',p.talla) AS nombre,vd.cantidad,vd.precio,vd.total "+
                                 "FROM venta_detalle vd "+
                                 "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD "+
