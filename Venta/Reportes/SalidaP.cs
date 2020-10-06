@@ -16,11 +16,5 @@ namespace Venta.Reportes
         {
             InitializeComponent();
         }
-
-        private void SalidaP_Load(object sender, EventArgs e)
-        {
-
-            this.reportViewer1.RefreshReport();
-        }
     }
 }
