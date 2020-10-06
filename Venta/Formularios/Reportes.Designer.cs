@@ -39,12 +39,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PanDer = new System.Windows.Forms.Panel();
             this.GbxVentas = new System.Windows.Forms.GroupBox();
+            this.BtnSmp = new System.Windows.Forms.Button();
             this.BtnVenta = new System.Windows.Forms.Button();
             this.DtpFin = new System.Windows.Forms.DateTimePicker();
             this.DtpIni = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.BtnSmp = new System.Windows.Forms.Button();
             this.PanIz.SuspendLayout();
             this.GbxProd.SuspendLayout();
             this.GbxFaltantes.SuspendLayout();
@@ -163,6 +163,16 @@
             this.GbxVentas.TabStop = false;
             this.GbxVentas.Text = "Ventas/Salidas";
             // 
+            // BtnSmp
+            // 
+            this.BtnSmp.Location = new System.Drawing.Point(321, 106);
+            this.BtnSmp.Name = "BtnSmp";
+            this.BtnSmp.Size = new System.Drawing.Size(115, 53);
+            this.BtnSmp.TabIndex = 5;
+            this.BtnSmp.Text = "Salida materia prima";
+            this.BtnSmp.UseVisualStyleBackColor = true;
+            this.BtnSmp.Click += new System.EventHandler(this.BtnSmp_Click);
+            // 
             // BtnVenta
             // 
             this.BtnVenta.Location = new System.Drawing.Point(154, 106);
@@ -204,16 +214,6 @@
             this.label2.Size = new System.Drawing.Size(103, 15);
             this.label2.TabIndex = 0;
             this.label2.Text = "Fecha de inicio";
-            // 
-            // BtnSmp
-            // 
-            this.BtnSmp.Location = new System.Drawing.Point(321, 106);
-            this.BtnSmp.Name = "BtnSmp";
-            this.BtnSmp.Size = new System.Drawing.Size(115, 53);
-            this.BtnSmp.TabIndex = 5;
-            this.BtnSmp.Text = "Salida materia prima";
-            this.BtnSmp.UseVisualStyleBackColor = true;
-            this.BtnSmp.Click += new System.EventHandler(this.BtnSmp_Click);
             // 
             // Reportes
             // 

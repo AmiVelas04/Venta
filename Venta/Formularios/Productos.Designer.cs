@@ -329,6 +329,7 @@
             this.PbxProd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PbxProd.TabIndex = 21;
             this.PbxProd.TabStop = false;
+            this.PbxProd.DoubleClick += new System.EventHandler(this.PbxProd_DoubleClick);
             // 
             // BtnImagen
             // 

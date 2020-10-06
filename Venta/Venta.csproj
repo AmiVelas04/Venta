@@ -308,6 +308,9 @@
       <DependentUpon>RepCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\SalidaP.rdlc" />
+    <EmbeddedResource Include="Reportes\SalidaP.resx">
+      <DependentUpon>SalidaP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\VentasDiarios.rdlc" />
     <EmbeddedResource Include="Reportes\VentasDiarios.resx">
       <DependentUpon>VentasDiarios.cs</DependentUpon>

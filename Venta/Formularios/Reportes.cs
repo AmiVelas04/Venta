@@ -55,6 +55,8 @@ namespace Venta.Formularios
             fechaf = DtpFin.Value.ToString("yyyy/MM/dd");
             fechi = fechi + " 00:00:00";
             fechaf = fechaf + " 23:59:59";
+            sprod.RepSalidaprod (fechi, fechaf);
+
 
         }
     }

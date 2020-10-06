@@ -511,6 +511,7 @@ namespace Venta.Formularios
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PbxProd.Image = muestra;
+                        PbxProd.Tag = @".\imagen\" + imag;
                     }
                 }
                 catch (FileNotFoundException ex)
@@ -521,6 +522,7 @@ namespace Venta.Formularios
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PbxProd.Image = muestra;
+                        PbxProd.Tag = @".\imagen\" + imag;
                     }
 
                 }
@@ -576,8 +578,21 @@ namespace Venta.Formularios
                 return regreso = canti.ToString();
             }
         }
+
+
+
         #endregion
 
-
+        private void PbxProd_DoubleClick(object sender, EventArgs e)
+        {
+            ImgAum();
+        }
+        private void ImgAum()
+        {
+            ImagenPic img = new ImagenPic();
+            if (PbxProd.Image == null) { ImagenPic.ponerimg = @".\imagen\0.jpg"; }
+            else { ImagenPic.ponerimg = PbxProd.Tag.ToString(); }
+            img.Show();
+        }
     }
 }
