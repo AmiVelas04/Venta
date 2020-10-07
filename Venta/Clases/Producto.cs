@@ -79,7 +79,7 @@ namespace Venta.Clases
 
         public DataTable DatosRestant(string nom, string est, string tip, string col, string tall)
         {
-            string consulta = "Select cantidad,precio_cost,precio_m1,precio_m2,precio_V1,precio_V2,precio_V3,ubicacion,imagen,materiap from producto " +
+            string consulta = "Select cantidad,precio_cost,precio_m1,precio_m2,precio_V1,precio_V2,precio_V3,ubicacion,imagen,materiap,id_prod from producto " +
                               "where nombre='" + nom + "' and id_estilo=" + est + " and id_tipo=" + tip + " and id_color=" + col + " and Talla='" + tall + "'";
             return buscar(consulta);
         }
@@ -293,7 +293,7 @@ namespace Venta.Clases
         {
             int cantant,cantnova;
             string consulta,codprod;
-            codprod = busc_codprod(datos[0], datos[1], datos[2], datos[3],datos[4]);
+            codprod =datos[15];
             cantant = cant_prod(codprod);
             cantnova = Int32.Parse(datos[5]);
             //cantnova += cantant;
@@ -305,11 +305,11 @@ namespace Venta.Clases
         {
             int cantant, cantnova;
             string consulta, codprod;
-            codprod = busc_codprod(datos[0], datos[1], datos[2], datos[3], datos[4]);
+            codprod =  datos[15];
             cantant = cant_prod(codprod);
             cantnova = Int32.Parse(datos[5]);
             //cantnova += cantant;
-            consulta = "Update producto set id_estilo="+datos [1]+", id_tipo="+datos[2]+", id_color="+datos[3]+", talla='"+datos[4]+"', cantidad=" + cantnova + ", precio_cost=" + datos[6] + ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] + ", precio_v3=" + datos[11] + ", imagen='" + datos[12] + "', ubicacion = '" + datos[13] + "', Materiap=" + datos[14] + " where id_Prod='" + codprod + "'";
+            consulta = "Update producto set nombre='"+datos[0]+"', id_estilo="+datos [1]+", id_tipo="+datos[2]+", id_color="+datos[3]+", talla='"+datos[4]+"', cantidad=" + cantnova + ", precio_cost=" + datos[6] + ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] + ", precio_v3=" + datos[11] + ", imagen='" + datos[12] + "', ubicacion = '" + datos[13] + "', Materiap=" + datos[14] + " where id_Prod='" + codprod + "'";
             return consulta_gen(consulta);
         }
 
@@ -355,6 +355,19 @@ namespace Venta.Clases
                                  "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                                  "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
                                  "WHERE p.nombre LIKE '%" + nom + "%' and materiaP=0";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
+        }
+
+        public DataTable BuscaProdCant(string nom,string cant)
+        {
+            string consulta = "SELECT p.id_prod AS Codigo,p.nombre AS Nombre,e.estilo AS Estilo,t.tipo AS Tipo,c.color AS Color,p.talla AS Talla,p.cantidad as Cantidad " +
+                              "FROM producto p " +
+                              "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
+                              "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
+                              "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
+                              "WHERE (p.nombre LIKE '%" + nom + "%' OR e.estilo LIKE '%" + nom + "%' OR t.TIPO LIKE '%" + nom + "%' OR c.color LIKE '%" + nom + "%' OR p.TALLA LIKE '%" + nom + "%') and p.cantidad<="+ cant;
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
@@ -667,6 +680,24 @@ namespace Venta.Clases
                 Reportes.ConceDet deta = new Reportes.ConceDet();
                 deta.descripcion = datos.Rows[cont][0].ToString() + " "+ datos.Rows[cont][1].ToString() + " "+datos.Rows[cont][2].ToString() + " "+datos.Rows[cont][3].ToString() + " " + datos.Rows[cont][4].ToString();
                 deta.cantidad =int.Parse( datos.Rows[cont][5].ToString());
+                titulo.Detalle.Add(deta);
+            }
+            Reportes.CantidadP cantid = new Reportes.CantidadP();
+            cantid.encabezado.Add(titulo);
+            cantid.detalle = titulo.Detalle;
+            cantid.Show();
+        }
+        public void ImpCantidadprod(DataTable datos)
+        {
+            int cont, canti;
+            canti = datos.Rows.Count;
+            Reportes.ConceEnc titulo = new Reportes.ConceEnc();
+            titulo.fecha = DateTime.Now.ToString("yyyy/MM/dd");
+            for (cont = 0; cont < canti; cont++)
+            {
+                Reportes.ConceDet deta = new Reportes.ConceDet();
+                deta.descripcion = datos.Rows[cont][0].ToString() ;
+                deta.cantidad = int.Parse(datos.Rows[cont][1].ToString());
                 titulo.Detalle.Add(deta);
             }
             Reportes.CantidadP cantid = new Reportes.CantidadP();

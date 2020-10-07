@@ -136,6 +136,7 @@ namespace Venta.Formularios
                     TxtPrecio_V2.Text = datos.Rows[0][5].ToString();
                     TxtPrecio_V3.Text = datos.Rows[0][6].ToString();
                     TxtUbi.Text = datos.Rows[0][7].ToString();
+                    
                     /*  using (var stream = File.Open(@".\imagen\" + datos.Rows[0][8].ToString(), FileMode.Open))
                        {
                            Bitmap archivo = new Bitmap(stream);
@@ -193,7 +194,7 @@ namespace Venta.Formularios
         {
             string talla = TxtTalla.Text;
             TxtTalla.Text = talla;
-            IdTip.Text = CboTipo.SelectedValue.ToString();
+           IdTip.Text = CboTipo.SelectedValue.ToString();
         }
 
         private void CboColor_SelectedIndexChanged(object sender, EventArgs e)
@@ -289,7 +290,7 @@ namespace Venta.Formularios
                 string idp = prod.busc_codprod(Nomprod, idestilo, idtipo, idcolor, talla);
 
                 imagen = revimagen(Nomprod + idestilo + idtipo + idcolor + talla, idp); ;
-                string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, ubicacion, MatP };
+                string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, ubicacion, MatP,idp };
                 if (prod.upd_prod(datosupd))
                 {
                     MessageBox.Show("Producto Actualizado correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -342,11 +343,11 @@ namespace Venta.Formularios
             string NColor = CboColor.Text;
             if (RdbSi.Checked) { MatP = "1"; }
             else if (RdbNo.Checked) { MatP = "0"; }
-            if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
-            {
+        //   if (prod.prodexist(TxtProdNom.Tag.ToString() , idestilo, idtipo, idcolor, talla))
+          //  {
                 string idp = "R" + TxtCod.Text;
                 imagen = revimagen(Nomprod + idestilo + idtipo + idcolor + talla, idp); ;
-                string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, ubicacion, MatP };
+                string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, ubicacion, MatP,idp };
                 string[] datoscamb = { idp, Nomprod, idestilo, Nestilo, idtipo, Ntipo, idcolor, NColor };
                 if (prod.mod_prod(datosupd) && prod.Modnoms(datoscamb))
                 {
@@ -356,10 +357,10 @@ namespace Venta.Formularios
                     PbxProd.Image = null;
                 }
                 else { MessageBox.Show("Error al actualizar", "revisar dartos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
-            }
+          /*  }
             else
             {
-            }
+            }*/
         }
 
 
@@ -432,6 +433,7 @@ namespace Venta.Formularios
             if (datos.Rows.Count > 0)
             {
                 TxtProdNom.Text = datos.Rows[0][1].ToString();
+                TxtProdNom.Tag= datos.Rows[0][1].ToString();
                 //14-15-16
                 CboEstilo.SelectedValue = datos.Rows[0][14].ToString();
                 IdEst.Text = datos.Rows[0][14].ToString();

@@ -121,6 +121,12 @@
     <Compile Include="Formularios\Concesion.Designer.cs">
       <DependentUpon>Concesion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\ConteoP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ConteoP.Designer.cs">
+      <DependentUpon>ConteoP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\ControlVen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Concesion.resx">
       <DependentUpon>Concesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ConteoP.resx">
+      <DependentUpon>ConteoP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ControlVen.resx">
       <DependentUpon>ControlVen.cs</DependentUpon>

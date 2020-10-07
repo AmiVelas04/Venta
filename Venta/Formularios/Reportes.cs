@@ -59,5 +59,11 @@ namespace Venta.Formularios
 
 
         }
+
+        private void BtnConteo_Click(object sender, EventArgs e)
+        {
+            ConteoP Conteo = new ConteoP();
+            Conteo.ShowDialog();
+        }
     }
 }

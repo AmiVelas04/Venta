@@ -45,6 +45,8 @@
             this.DtpIni = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.BtnGanacias = new System.Windows.Forms.Button();
+            this.BtnConteo = new System.Windows.Forms.Button();
             this.PanIz.SuspendLayout();
             this.GbxProd.SuspendLayout();
             this.GbxFaltantes.SuspendLayout();
@@ -79,42 +81,46 @@
             // 
             // GbxFaltantes
             // 
+            this.GbxFaltantes.Controls.Add(this.BtnConteo);
             this.GbxFaltantes.Controls.Add(this.BtnVer);
             this.GbxFaltantes.Controls.Add(this.TxtCant);
             this.GbxFaltantes.Controls.Add(this.label4);
             this.GbxFaltantes.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.GbxFaltantes.Location = new System.Drawing.Point(4, 440);
+            this.GbxFaltantes.Location = new System.Drawing.Point(4, 400);
             this.GbxFaltantes.Name = "GbxFaltantes";
-            this.GbxFaltantes.Size = new System.Drawing.Size(536, 147);
+            this.GbxFaltantes.Size = new System.Drawing.Size(536, 187);
             this.GbxFaltantes.TabIndex = 2;
             this.GbxFaltantes.TabStop = false;
             this.GbxFaltantes.Text = "Conteo de productos";
             // 
             // BtnVer
             // 
-            this.BtnVer.Location = new System.Drawing.Point(254, 70);
+            this.BtnVer.Location = new System.Drawing.Point(34, 111);
             this.BtnVer.Name = "BtnVer";
             this.BtnVer.Size = new System.Drawing.Size(111, 28);
             this.BtnVer.TabIndex = 2;
             this.BtnVer.Text = "Ver productos";
             this.BtnVer.UseVisualStyleBackColor = true;
+            this.BtnVer.Visible = false;
             this.BtnVer.Click += new System.EventHandler(this.BtnVer_Click);
             // 
             // TxtCant
             // 
-            this.TxtCant.Location = new System.Drawing.Point(108, 75);
+            this.TxtCant.Location = new System.Drawing.Point(35, 70);
             this.TxtCant.Name = "TxtCant";
             this.TxtCant.Size = new System.Drawing.Size(100, 23);
             this.TxtCant.TabIndex = 1;
+            this.TxtCant.Visible = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(105, 57);
+            this.label4.Location = new System.Drawing.Point(23, 52);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(122, 15);
             this.label4.TabIndex = 0;
             this.label4.Text = "Cantidad minima";
+            this.label4.Visible = false;
             // 
             // BtnInventario
             // 
@@ -147,6 +153,7 @@
             // 
             // GbxVentas
             // 
+            this.GbxVentas.Controls.Add(this.BtnGanacias);
             this.GbxVentas.Controls.Add(this.BtnSmp);
             this.GbxVentas.Controls.Add(this.BtnVenta);
             this.GbxVentas.Controls.Add(this.DtpFin);
@@ -165,7 +172,7 @@
             // 
             // BtnSmp
             // 
-            this.BtnSmp.Location = new System.Drawing.Point(321, 106);
+            this.BtnSmp.Location = new System.Drawing.Point(396, 106);
             this.BtnSmp.Name = "BtnSmp";
             this.BtnSmp.Size = new System.Drawing.Size(115, 53);
             this.BtnSmp.TabIndex = 5;
@@ -175,7 +182,7 @@
             // 
             // BtnVenta
             // 
-            this.BtnVenta.Location = new System.Drawing.Point(154, 106);
+            this.BtnVenta.Location = new System.Drawing.Point(72, 106);
             this.BtnVenta.Name = "BtnVenta";
             this.BtnVenta.Size = new System.Drawing.Size(126, 53);
             this.BtnVenta.TabIndex = 4;
@@ -214,6 +221,25 @@
             this.label2.Size = new System.Drawing.Size(103, 15);
             this.label2.TabIndex = 0;
             this.label2.Text = "Fecha de inicio";
+            // 
+            // BtnGanacias
+            // 
+            this.BtnGanacias.Location = new System.Drawing.Point(72, 204);
+            this.BtnGanacias.Name = "BtnGanacias";
+            this.BtnGanacias.Size = new System.Drawing.Size(126, 53);
+            this.BtnGanacias.TabIndex = 6;
+            this.BtnGanacias.Text = "Ver ventas";
+            this.BtnGanacias.UseVisualStyleBackColor = true;
+            // 
+            // BtnConteo
+            // 
+            this.BtnConteo.Location = new System.Drawing.Point(222, 69);
+            this.BtnConteo.Name = "BtnConteo";
+            this.BtnConteo.Size = new System.Drawing.Size(154, 56);
+            this.BtnConteo.TabIndex = 3;
+            this.BtnConteo.Text = "Conteo de productos";
+            this.BtnConteo.UseVisualStyleBackColor = true;
+            this.BtnConteo.Click += new System.EventHandler(this.BtnConteo_Click);
             // 
             // Reportes
             // 
@@ -259,5 +285,7 @@
         private System.Windows.Forms.TextBox TxtCant;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button BtnSmp;
+        private System.Windows.Forms.Button BtnGanacias;
+        private System.Windows.Forms.Button BtnConteo;
     }
 }
