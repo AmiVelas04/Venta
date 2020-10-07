@@ -522,7 +522,7 @@ namespace Venta.Formularios
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PbxProd.Image = muestra;
-                        PbxProd.Tag = @".\imagen\0.jpg";
+                        PbxProd.Tag = @".\imagen\" + imag;
                     }
 
                 }
@@ -579,13 +579,14 @@ namespace Venta.Formularios
             }
         }
 
+
+
         #endregion
 
         private void PbxProd_DoubleClick(object sender, EventArgs e)
         {
             ImgAum();
         }
-
         private void ImgAum()
         {
             ImagenPic img = new ImagenPic();

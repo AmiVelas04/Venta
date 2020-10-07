@@ -227,6 +227,8 @@
     <Compile Include="Reportes\SalidaP.Designer.cs">
       <DependentUpon>SalidaP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\SalidaPdet.cs" />
+    <Compile Include="Reportes\SalidaPEnc.cs" />
     <Compile Include="Reportes\VentasD.cs" />
     <Compile Include="Reportes\VentasDiarios.cs">
       <SubType>Form</SubType>
@@ -308,6 +310,9 @@
       <DependentUpon>RepCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\SalidaP.rdlc" />
+    <EmbeddedResource Include="Reportes\SalidaP.resx">
+      <DependentUpon>SalidaP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\VentasDiarios.rdlc" />
     <EmbeddedResource Include="Reportes\VentasDiarios.resx">
       <DependentUpon>VentasDiarios.cs</DependentUpon>
@@ -327,6 +332,8 @@
     <None Include="Properties\DataSources\Venta.Reportes.ListaProd.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.MasVendi.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.RepCaja.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.SalidaPdet.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.SalidaPEnc.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.VentasD.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.VentasDiarios.datasource" />
     <None Include="Properties\Settings.settings">
