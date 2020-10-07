@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Reporting.WinForms
 
 namespace Venta.Reportes
 {
-    public partial class SalidaP : Form
+    partial class SalidaP : Form
     {
+        public List<SalidaPEnc> Encabezado = new List<SalidaPEnc>();
+        public List<SalidaPdet> Detalle = new List<SalidaPdet>();
+
+
         public SalidaP()
         {
             InitializeComponent();
@@ -19,8 +24,10 @@ namespace Venta.Reportes
 
         private void SalidaP_Load(object sender, EventArgs e)
         {
-
-            this.reportViewer1.RefreshReport();
+            this.RpvSalida.LocalReport.DataSources.Clear();
+            this.RpvSalida.LocalReport.DataSources.Add(new ReportDataSource("Encabezado", Encabezado));
+            this.RpvSalida.LocalReport.DataSources.Add(new ReportDataSource("Detalle", Detalle));
+            this.RpvSalida.RefreshReport();
         }
     }
 }

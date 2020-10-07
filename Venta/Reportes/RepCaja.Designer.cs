@@ -47,7 +47,7 @@
             this.ClientSize = new System.Drawing.Size(887, 333);
             this.Controls.Add(this.Rpv1);
             this.Name = "RepCaja";
-            this.Text = "RepCaja";
+            this.Text = "Reporte de caja";
             this.Load += new System.EventHandler(this.RepCaja_Load);
             this.ResumeLayout(false);
 
