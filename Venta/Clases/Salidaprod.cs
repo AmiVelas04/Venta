@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Ionic.Zip;
 
 namespace Venta.Clases
 {
@@ -139,8 +140,10 @@ namespace Venta.Clases
         public void RepSalidaprod(string fechai,string fechaf)
         {
             DataTable datos = new DataTable();
-            string consulta = "SELECT s.id_sprod,sd.Id_SDet,Concat(p.nombre,' - ', e.estilo,' - ', t.tipo, ' - ', c.color,' - ', p.talla) AS nombre,sd.cant,s.Fecha,s.solicito " +
+            Reportes.RepSalGenEnc Enc = new Reportes.RepSalGenEnc();
+            string consulta = "SELECT s.id_sprod,sd.Id_SDet,Concat(p.nombre,' - ', e.estilo,' - ', t.tipo, ' - ', c.color,' - ', p.talla) AS nombre,sd.cant,s.Fecha,s.solicito, ven.Nombre " +
                               "FROM sprod s " +
+                              "INNER JOIN Vendedor ven ON ven.id_vendedor=s.id_vende "+
                               "INNER JOIN sproddet sd ON sd.id_Sprod = s.id_Sprod " +
                               "INNER JOIN producto p on sd.id_prod = p.ID_PROD " +
                               "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
@@ -149,12 +152,32 @@ namespace Venta.Clases
                               "WHERE s.fecha <= '" + fechaf + "' AND s.Fecha >= '" + fechai + "' " +
                               "GROUP BY sd.Id_SDet";
             datos = buscar(consulta);
+            Enc.fechai = fechai;
+            Enc.fechaf = fechaf;
             int cont, cant;
             cant = datos.Rows.Count;
             for (cont= 0; cont<cant;cont++)
             {
-
+                Reportes.RepSalGenDet deta = new Reportes.RepSalGenDet();
+                deta.idSalida =int.Parse( datos.Rows[cont][0].ToString());
+                deta.Sdet = int.Parse(datos.Rows[cont][1].ToString());
+                deta.Producto = datos.Rows[cont][2].ToString ();
+                deta.cantidad = int.Parse(datos.Rows[cont][3].ToString());
+                deta.Solicito = datos.Rows[cont][5].ToString();
+                deta.Atendio = datos.Rows[cont][6].ToString();
+                Enc.Detalle.Add(deta);
             }
+            Reportes.RepSalGen report = new Reportes.RepSalGen();
+            report.Encabezado.Add(Enc);
+            report.Detalle = Enc.Detalle;
+            report.Show();
         }
+
+        public bool salidaprod(string soli, DataTable datos, string opero)
+        {
+
+            return true;
+        }
+       
     }
 }

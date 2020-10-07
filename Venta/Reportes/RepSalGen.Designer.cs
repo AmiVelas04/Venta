@@ -37,14 +37,14 @@
             this.RpvSalidaGen.LocalReport.ReportEmbeddedResource = "Venta.Reportes.RepSalGen.rdlc";
             this.RpvSalidaGen.Location = new System.Drawing.Point(0, 0);
             this.RpvSalidaGen.Name = "RpvSalidaGen";
-            this.RpvSalidaGen.Size = new System.Drawing.Size(610, 330);
+            this.RpvSalidaGen.Size = new System.Drawing.Size(790, 391);
             this.RpvSalidaGen.TabIndex = 0;
             // 
             // RepSalGen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(610, 330);
+            this.ClientSize = new System.Drawing.Size(790, 391);
             this.Controls.Add(this.RpvSalidaGen);
             this.Name = "RepSalGen";
             this.Text = "Reporde de Salida General";
