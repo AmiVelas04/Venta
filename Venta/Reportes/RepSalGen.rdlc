@@ -46,13 +46,15 @@
                 <Value>Desde: </Value>
                 <Style>
                   <FontFamily>Microsoft Sans Serif</FontFamily>
+                  <Format>dd/MM/yyyy</Format>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=First(Fields!fechai.Value, "Encabezado")</Value>
+                <Value>=CDate(First(Fields!fechai.Value, "Encabezado"))</Value>
                 <Style>
                   <FontFamily>Microsoft Sans Serif</FontFamily>
                   <FontWeight>Bold</FontWeight>
+                  <Format>dd/MM/yyyy</Format>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -88,10 +90,11 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=First(Fields!fechaf.Value, "Encabezado")</Value>
+                <Value>=CDate(First(Fields!fechaf.Value, "Encabezado"))</Value>
                 <Style>
                   <FontFamily>Microsoft Sans Serif</FontFamily>
                   <FontWeight>Bold</FontWeight>
+                  <Format>dd/MM/yyyy</Format>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -118,10 +121,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>5.30459cm</Width>
+              <Width>5.96605cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>1.83854cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -217,7 +220,7 @@
                               <Value>=Fields!Producto.Value</Value>
                               <Style>
                                 <FontFamily>Microsoft Sans Serif</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -250,11 +253,12 @@
                               <Value>=Fields!cantidad.Value</Value>
                               <Style>
                                 <FontFamily>Microsoft Sans Serif</FontFamily>
-                                <FontSize>9pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>cantidad</rd:DefaultName>
@@ -285,7 +289,7 @@
           <TablixMembers>
             <TablixMember>
               <TablixHeader>
-                <Size>1.62688cm</Size>
+                <Size>1.44167cm</Size>
                 <CellContents>
                   <Textbox Name="Textbox16">
                     <CanGrow>true</CanGrow>
@@ -402,7 +406,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>2.14312cm</Size>
+                            <Size>1.87854cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox14">
                                 <CanGrow>true</CanGrow>
@@ -450,7 +454,7 @@
               <KeepWithGroup>After</KeepWithGroup>
             </TablixMember>
             <TablixMember>
-              <Group Name="idSalida">
+              <Group Name="General">
                 <GroupExpressions>
                   <GroupExpression>=Fields!idSalida.Value</GroupExpression>
                 </GroupExpressions>
@@ -461,7 +465,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>1.62688cm</Size>
+                <Size>1.44167cm</Size>
                 <CellContents>
                   <Textbox Name="Textbox17">
                     <CanGrow>true</CanGrow>
@@ -470,10 +474,9 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=RowNumber("Detalle")</Value>
+                            <Value>=RowNumber("General")</Value>
                             <Style>
                               <FontFamily>Microsoft Sans Serif</FontFamily>
-                              <FontSize>9pt</FontSize>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -511,7 +514,7 @@
                                 <Value>=Fields!Solicito.Value</Value>
                                 <Style>
                                   <FontFamily>Microsoft Sans Serif</FontFamily>
-                                  <FontSize>9pt</FontSize>
+                                  <FontSize>8pt</FontSize>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -549,7 +552,7 @@
                                     <Value>=Fields!Atendio.Value</Value>
                                     <Style>
                                       <FontFamily>Microsoft Sans Serif</FontFamily>
-                                      <FontSize>9pt</FontSize>
+                                      <FontSize>8pt</FontSize>
                                     </Style>
                                   </TextRun>
                                 </TextRuns>
@@ -575,7 +578,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>2.14312cm</Size>
+                            <Size>1.87854cm</Size>
                             <CellContents>
                               <Textbox Name="idSalida1">
                                 <CanGrow>true</CanGrow>
@@ -587,7 +590,6 @@
                                         <Value>=Fields!idSalida.Value</Value>
                                         <Style>
                                           <FontFamily>Microsoft Sans Serif</FontFamily>
-                                          <FontSize>9pt</FontSize>
                                         </Style>
                                       </TextRun>
                                     </TextRuns>
@@ -628,7 +630,7 @@
         <Top>2.01676cm</Top>
         <Left>0.28787cm</Left>
         <Height>1.5175cm</Height>
-        <Width>18.45437cm</Width>
+        <Width>18.00458cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
