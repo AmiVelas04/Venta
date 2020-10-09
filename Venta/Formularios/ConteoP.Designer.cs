@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConteoP));
             this.PanSup = new System.Windows.Forms.Panel();
-            this.PanCent = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TxtProd = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.NudCant = new System.Windows.Forms.NumericUpDown();
-            this.BtnBusca = new System.Windows.Forms.Button();
-            this.DgvProd = new System.Windows.Forms.DataGridView();
             this.BtnPrint = new System.Windows.Forms.Button();
+            this.BtnBusca = new System.Windows.Forms.Button();
+            this.NudCant = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TxtProd = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PanCent = new System.Windows.Forms.Panel();
+            this.DgvProd = new System.Windows.Forms.DataGridView();
             this.PanSup.SuspendLayout();
-            this.PanCent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudCant)).BeginInit();
+            this.PanCent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProd)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,36 +54,43 @@
             this.PanSup.Controls.Add(this.label1);
             this.PanSup.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanSup.Location = new System.Drawing.Point(0, 0);
-            this.PanSup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanSup.Margin = new System.Windows.Forms.Padding(4);
             this.PanSup.Name = "PanSup";
             this.PanSup.Size = new System.Drawing.Size(732, 70);
             this.PanSup.TabIndex = 0;
             // 
-            // PanCent
+            // BtnPrint
             // 
-            this.PanCent.Controls.Add(this.DgvProd);
-            this.PanCent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanCent.Location = new System.Drawing.Point(0, 70);
-            this.PanCent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.PanCent.Name = "PanCent";
-            this.PanCent.Size = new System.Drawing.Size(732, 488);
-            this.PanCent.TabIndex = 1;
+            this.BtnPrint.Image = ((System.Drawing.Image)(resources.GetObject("BtnPrint.Image")));
+            this.BtnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnPrint.Location = new System.Drawing.Point(599, 14);
+            this.BtnPrint.Name = "BtnPrint";
+            this.BtnPrint.Size = new System.Drawing.Size(121, 45);
+            this.BtnPrint.TabIndex = 5;
+            this.BtnPrint.Text = "Imprimir";
+            this.BtnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnPrint.UseVisualStyleBackColor = true;
+            this.BtnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
             // 
-            // label1
+            // BtnBusca
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Buscar Producto";
+            this.BtnBusca.Image = ((System.Drawing.Image)(resources.GetObject("BtnBusca.Image")));
+            this.BtnBusca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnBusca.Location = new System.Drawing.Point(484, 12);
+            this.BtnBusca.Name = "BtnBusca";
+            this.BtnBusca.Size = new System.Drawing.Size(109, 45);
+            this.BtnBusca.TabIndex = 4;
+            this.BtnBusca.Text = "Buscar";
+            this.BtnBusca.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnBusca.UseVisualStyleBackColor = true;
+            this.BtnBusca.Click += new System.EventHandler(this.BtnBusca_Click);
             // 
-            // TxtProd
+            // NudCant
             // 
-            this.TxtProd.Location = new System.Drawing.Point(42, 26);
-            this.TxtProd.Name = "TxtProd";
-            this.TxtProd.Size = new System.Drawing.Size(274, 23);
-            this.TxtProd.TabIndex = 1;
+            this.NudCant.Location = new System.Drawing.Point(354, 27);
+            this.NudCant.Name = "NudCant";
+            this.NudCant.Size = new System.Drawing.Size(64, 23);
+            this.NudCant.TabIndex = 3;
             // 
             // label2
             // 
@@ -93,23 +101,31 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Cantidad";
             // 
-            // NudCant
+            // TxtProd
             // 
-            this.NudCant.Location = new System.Drawing.Point(354, 27);
-            this.NudCant.Name = "NudCant";
-            this.NudCant.Size = new System.Drawing.Size(64, 23);
-            this.NudCant.TabIndex = 3;
+            this.TxtProd.Location = new System.Drawing.Point(42, 26);
+            this.TxtProd.Name = "TxtProd";
+            this.TxtProd.Size = new System.Drawing.Size(274, 23);
+            this.TxtProd.TabIndex = 1;
             // 
-            // BtnBusca
+            // label1
             // 
-            this.BtnBusca.Location = new System.Drawing.Point(471, 14);
-            this.BtnBusca.Name = "BtnBusca";
-            this.BtnBusca.Size = new System.Drawing.Size(115, 45);
-            this.BtnBusca.TabIndex = 4;
-            this.BtnBusca.Text = "Buscar";
-            this.BtnBusca.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnBusca.UseVisualStyleBackColor = true;
-            this.BtnBusca.Click += new System.EventHandler(this.BtnBusca_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(39, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Buscar Producto";
+            // 
+            // PanCent
+            // 
+            this.PanCent.Controls.Add(this.DgvProd);
+            this.PanCent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanCent.Location = new System.Drawing.Point(0, 70);
+            this.PanCent.Margin = new System.Windows.Forms.Padding(4);
+            this.PanCent.Name = "PanCent";
+            this.PanCent.Size = new System.Drawing.Size(732, 488);
+            this.PanCent.TabIndex = 1;
             // 
             // DgvProd
             // 
@@ -126,17 +142,6 @@
             this.DgvProd.Size = new System.Drawing.Size(732, 488);
             this.DgvProd.TabIndex = 0;
             // 
-            // BtnPrint
-            // 
-            this.BtnPrint.Location = new System.Drawing.Point(604, 14);
-            this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(116, 45);
-            this.BtnPrint.TabIndex = 5;
-            this.BtnPrint.Text = "Imprimir";
-            this.BtnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnPrint.UseVisualStyleBackColor = true;
-            this.BtnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
-            // 
             // ConteoP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -146,13 +151,13 @@
             this.Controls.Add(this.PanSup);
             this.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ConteoP";
             this.Text = "Conteo de productos";
             this.PanSup.ResumeLayout(false);
             this.PanSup.PerformLayout();
-            this.PanCent.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NudCant)).EndInit();
+            this.PanCent.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvProd)).EndInit();
             this.ResumeLayout(false);
 
