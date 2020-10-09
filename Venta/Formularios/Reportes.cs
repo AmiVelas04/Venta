@@ -65,5 +65,13 @@ namespace Venta.Formularios
             ConteoP Conteo = new ConteoP();
             Conteo.ShowDialog();
         }
+
+        private void BtnGanacias_Click(object sender, EventArgs e)
+        {
+            string fechai, fechaf;
+            fechai = DtpIni.Value.ToString("yyyy/MM/dd");
+            fechaf = DtpFin.Value.ToString("yyyy/MM/dd");
+            ven.Ganacia(fechai,fechaf);
+        }
     }
 }

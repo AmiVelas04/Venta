@@ -32,6 +32,7 @@
             this.PanIz = new System.Windows.Forms.Panel();
             this.GbxProd = new System.Windows.Forms.GroupBox();
             this.GbxFaltantes = new System.Windows.Forms.GroupBox();
+            this.BtnConteo = new System.Windows.Forms.Button();
             this.BtnVer = new System.Windows.Forms.Button();
             this.TxtCant = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,14 +40,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PanDer = new System.Windows.Forms.Panel();
             this.GbxVentas = new System.Windows.Forms.GroupBox();
+            this.BtnGanacias = new System.Windows.Forms.Button();
             this.BtnSmp = new System.Windows.Forms.Button();
             this.BtnVenta = new System.Windows.Forms.Button();
             this.DtpFin = new System.Windows.Forms.DateTimePicker();
             this.DtpIni = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.BtnGanacias = new System.Windows.Forms.Button();
-            this.BtnConteo = new System.Windows.Forms.Button();
             this.PanIz.SuspendLayout();
             this.GbxProd.SuspendLayout();
             this.GbxFaltantes.SuspendLayout();
@@ -92,6 +92,16 @@
             this.GbxFaltantes.TabIndex = 2;
             this.GbxFaltantes.TabStop = false;
             this.GbxFaltantes.Text = "Conteo de productos";
+            // 
+            // BtnConteo
+            // 
+            this.BtnConteo.Location = new System.Drawing.Point(222, 69);
+            this.BtnConteo.Name = "BtnConteo";
+            this.BtnConteo.Size = new System.Drawing.Size(154, 56);
+            this.BtnConteo.TabIndex = 3;
+            this.BtnConteo.Text = "Conteo de productos";
+            this.BtnConteo.UseVisualStyleBackColor = true;
+            this.BtnConteo.Click += new System.EventHandler(this.BtnConteo_Click);
             // 
             // BtnVer
             // 
@@ -170,6 +180,16 @@
             this.GbxVentas.TabStop = false;
             this.GbxVentas.Text = "Ventas/Salidas";
             // 
+            // BtnGanacias
+            // 
+            this.BtnGanacias.Location = new System.Drawing.Point(72, 191);
+            this.BtnGanacias.Name = "BtnGanacias";
+            this.BtnGanacias.Size = new System.Drawing.Size(126, 53);
+            this.BtnGanacias.TabIndex = 6;
+            this.BtnGanacias.Text = "Reporte de Ganacia";
+            this.BtnGanacias.UseVisualStyleBackColor = true;
+            this.BtnGanacias.Click += new System.EventHandler(this.BtnGanacias_Click);
+            // 
             // BtnSmp
             // 
             this.BtnSmp.Location = new System.Drawing.Point(396, 106);
@@ -221,25 +241,6 @@
             this.label2.Size = new System.Drawing.Size(103, 15);
             this.label2.TabIndex = 0;
             this.label2.Text = "Fecha de inicio";
-            // 
-            // BtnGanacias
-            // 
-            this.BtnGanacias.Location = new System.Drawing.Point(72, 204);
-            this.BtnGanacias.Name = "BtnGanacias";
-            this.BtnGanacias.Size = new System.Drawing.Size(126, 53);
-            this.BtnGanacias.TabIndex = 6;
-            this.BtnGanacias.Text = "Ver ventas";
-            this.BtnGanacias.UseVisualStyleBackColor = true;
-            // 
-            // BtnConteo
-            // 
-            this.BtnConteo.Location = new System.Drawing.Point(222, 69);
-            this.BtnConteo.Name = "BtnConteo";
-            this.BtnConteo.Size = new System.Drawing.Size(154, 56);
-            this.BtnConteo.TabIndex = 3;
-            this.BtnConteo.Text = "Conteo de productos";
-            this.BtnConteo.UseVisualStyleBackColor = true;
-            this.BtnConteo.Click += new System.EventHandler(this.BtnConteo_Click);
             // 
             // Reportes
             // 

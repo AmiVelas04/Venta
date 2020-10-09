@@ -212,6 +212,14 @@
     <Compile Include="Reportes\Factura.Designer.cs">
       <DependentUpon>Factura.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\GanaciaDet.cs" />
+    <Compile Include="Reportes\GanaciaEnc.cs" />
+    <Compile Include="Reportes\Ganancia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Ganancia.Designer.cs">
+      <DependentUpon>Ganancia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\Inventario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,6 +329,10 @@
     <EmbeddedResource Include="Reportes\Factura.resx">
       <DependentUpon>Factura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Ganancia.rdlc" />
+    <EmbeddedResource Include="Reportes\Ganancia.resx">
+      <DependentUpon>Ganancia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Inventario.rdlc" />
     <EmbeddedResource Include="Reportes\Inventario.resx">
       <DependentUpon>Inventario.cs</DependentUpon>
@@ -353,6 +365,8 @@
     <None Include="Properties\DataSources\Venta.Reportes.FactEnc.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.FactEnc1.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.Factura.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.GanaciaDet.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.GanaciaEnc.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.Inventario.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.ListaProd.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.MasVendi.datasource" />

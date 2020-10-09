@@ -434,5 +434,88 @@ namespace Venta.Clases
 
 
         }
+
+        public void Ganacia(string Fechai, string fechaf)
+        {
+            Reportes.GanaciaEnc Enca = new Reportes.GanaciaEnc();
+            DataTable datos = new DataTable();
+            Fechai = Fechai + " 00:00:00";
+            fechaf = fechaf + " 23:59:59";
+            string Consulta= "SELECT DATE_FORMAT(v.fecha,'%Y/%m/%d') AS Fecha1, DATE_FORMAT(v.fecha,'%d/%m/%Y') AS Fecha2 "+
+                              "FROM venta v "+
+                              "WHERE v.FECHA >= '"+Fechai+"' AND fecha <= '"+fechaf+"' "+
+                              "GROUP BY Fecha1";
+            datos = buscar(Consulta);
+            int cant, cont;
+            Enca.Titulo = "Reporte de ganancias";
+            cant = datos.Rows.Count;
+            Enca.FechaI = Fechai;
+            Enca.FechaF = fechaf;
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.GanaciaDet deta = new Reportes.GanaciaDet();
+                decimal costo, Ganacia, vendido;
+                string fecha=datos.Rows[cont][0].ToString();
+                costo = costoVenta(fecha);
+                vendido = vendidoTot(fecha);
+                Ganacia = vendido - costo;
+                deta.Fecha = datos.Rows[cont][1].ToString();
+                deta.Totalcosto = costo;
+                deta.TotalGan = Ganacia;
+                deta.TotalGene = vendido;
+                Enca.Detalle.Add(deta);
+            }
+            Reportes.Ganancia formu = new Reportes.Ganancia();
+            formu.Encabezado.Add(Enca);
+            formu.Detalle = Enca.Detalle;
+            formu.Show();
+
+        }
+
+        private decimal costoVenta(string fecha)
+        {
+            string fechai, fechaf;
+            fechai = fecha + " 00:00:00";
+            fechaf = fecha + " 23:59:59";
+            DataTable datos = new DataTable();
+            string consulta = "SELECT vd.id_prod, vd.cantidad, p.Precio_cost " +
+                             "FROM venta_detalle vd " +
+                             "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD " +
+                             "INNER JOIN venta v ON v.ID_VENTA = vd.ID_VENTA " +
+                             "WHERE v.Fecha>='"+fechai+"' and v.fecha<='"+fechaf+"'"+
+                             "GROUP BY vd.ID_DETALLE";
+            datos = buscar(consulta);
+            decimal total = 0;
+            int cont, cant;
+            cant = datos.Rows.Count;
+            for (cont = 0; cont < cant; cont++)
+            {
+                total += (decimal.Parse(datos.Rows[cont][1].ToString()) * decimal.Parse(datos.Rows[cont][2].ToString()));
+            }
+            return total;
+        }
+
+        private decimal vendidoTot(string fecha)
+        {
+            string fechai, fechaf;
+            fechai = fecha + " 00:00:00";
+            fechaf = fecha + " 23:59:59";
+            DataTable datos = new DataTable();
+            string consulta = "SELECT SUM(vd.TOTAL) " +
+                              "FROM venta_detalle vd " +
+                              "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD " +
+                              "INNER JOIN venta v ON v.ID_VENTA = vd.ID_VENTA " +
+                              "WHERE v.FECHA >= '"+fechai+"' AND v.fecha <= '"+fechaf+"' " +
+                              "GROUP BY v.FECHA";
+            datos = buscar(consulta);
+            decimal total = 0;
+            int cont, cant;
+            cant = datos.Rows.Count;
+            for (cont = 0; cont < cant; cont++)
+            {
+                total += (decimal.Parse(datos.Rows[cont][0].ToString()));
+            }
+            return total;
+        }
     }
 }
