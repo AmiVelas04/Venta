@@ -678,12 +678,11 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=CDate(Fields!fecha.Value)</Value>
+                              <Value>=Fields!fecha.Value</Value>
                               <Style>
                                 <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>dd/MM/yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>

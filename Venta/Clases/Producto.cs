@@ -152,6 +152,17 @@ namespace Venta.Clases
             }
             return cod;
         }
+        public int IngresoEst(string estilo)
+        {
+            return ingreEstil(estilo);
+        }
+
+        public int IngresoCol(string Color)
+        {
+            return ingreColor(Color);
+        }
+        public int IngresoTip(string Tipo)
+        { return ingreTipo(Tipo); }
         private int ingreEstil(string estilo)
         {
             DataTable datos = new DataTable();
@@ -294,10 +305,10 @@ namespace Venta.Clases
             int cantant,cantnova;
             string consulta,codprod;
             codprod =datos[15];
-            cantant = cant_prod(codprod);
-            cantnova = Int32.Parse(datos[5]);
-            //cantnova += cantant;
-            consulta = "Update producto set cantidad=" + cantnova +", precio_cost="+datos[6]+ ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] +", precio_v3="+ datos [11]+", imagen='" +datos[12]+"', ubicacion = '"+datos[13]+"', Materiap="+datos[14]+" where id_Prod='" + codprod+ "'"; 
+            cantant = Int32.Parse(datos[5]);
+            cantnova = Int32.Parse(datos[16]);
+            cantnova +=cantant;
+            consulta = "Update producto set cantidad=" + cantnova +", precio_cost="+datos[6]+ ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] +", precio_v3="+ datos [11]+", imagen='" +datos[12]+"', ubicacion = '"+datos[13]+"', Materiap="+datos[14]+", Ultcant="+datos[16]+" where id_Prod='" + codprod+ "'"; 
             return consulta_gen(consulta);
         }
 
@@ -306,10 +317,10 @@ namespace Venta.Clases
             int cantant, cantnova;
             string consulta, codprod;
             codprod =  datos[15];
-            cantant = cant_prod(codprod);
-            cantnova = Int32.Parse(datos[5]);
-            //cantnova += cantant;
-            consulta = "Update producto set nombre='"+datos[0]+"', id_estilo="+datos [1]+", id_tipo="+datos[2]+", id_color="+datos[3]+", talla='"+datos[4]+"', cantidad=" + cantnova + ", precio_cost=" + datos[6] + ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] + ", precio_v3=" + datos[11] + ", imagen='" + datos[12] + "', ubicacion = '" + datos[13] + "', Materiap=" + datos[14] + " where id_Prod='" + codprod + "'";
+            cantant = Int32.Parse(datos[5]);
+            cantnova = Int32.Parse(datos[16]);
+            cantnova += cantant;
+            consulta = "Update producto set nombre='"+datos[0]+"', id_estilo="+datos [1]+", id_tipo="+datos[2]+", id_color="+datos[3]+", talla='"+datos[4]+"', cantidad=" + cantnova + ", precio_cost=" + datos[6] + ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] + ", precio_v3=" + datos[11] + ", imagen='" + datos[12] + "', ubicacion = '" + datos[13] + "', Materiap=" + datos[14] + ",Ultcant=" + datos[16] + " where id_Prod='" + codprod + "'";
             return consulta_gen(consulta);
         }
 
@@ -360,19 +371,23 @@ namespace Venta.Clases
             return datos;
         }
 
-        public DataTable BuscaProdCant(string nom,string cant)
+        public DataTable BuscaProdCant(string nom,string est, string tip, string color,string talla,string cant)
         {
             string consulta = "SELECT p.id_prod AS Codigo,p.nombre AS Nombre,e.estilo AS Estilo,t.tipo AS Tipo,c.color AS Color,p.talla AS Talla,p.cantidad as Cantidad " +
                               "FROM producto p " +
                               "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
                               "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                               "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
-                              "WHERE (p.nombre LIKE '%" + nom + "%' OR e.estilo LIKE '%" + nom + "%' OR t.TIPO LIKE '%" + nom + "%' OR c.color LIKE '%" + nom + "%' OR p.TALLA LIKE '%" + nom + "%') and p.cantidad<="+ cant;
+                              "WHERE (p.nombre LIKE '%" + nom + "%' and e.estilo LIKE '%" + est + "%' and t.TIPO LIKE '%" + tip + "%' and c.color LIKE '%" + color + "%' and p.TALLA LIKE '%" + talla + "%') and p.cantidad<="+ cant;
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
         }
-
+        private DataTable buscaprecost(string cod)
+        {
+            string consulta = "Select precio_cost from producto where id_prod='"+cod+"'";
+            return buscar(consulta);
+        }
         public DataTable prodvent()
         {
             string consulta = "SELECT p.id_prod AS Codigo,Concat(p.nombre ,' ',e.estilo,' ' ,t.tipo ,' ' ,c.color,' ', p.talla) as produ,p.cantidad as Cantidad,p.precio_cost AS Costo,p.precio_v1,p.precio_v2,p.precio_m1,precio_m2 " +
@@ -586,7 +601,7 @@ namespace Venta.Clases
 
         public DataTable PeticionProd(string id)
         {
-            string consulta = "SELECT p.ID_PROD, p.NOMBRE, e.estilo,t.tipo,c.color,p.TALLA,p.CANTIDAD,p.PRECIO_COST,p.PRECIO_M1, p.PRECIO_M2,p.PRECIO_V1,p.PRECIO_V2,p.IMAGEN,p.UBICACION,e.ID_ESTILO,t.ID_TIPO,c.ID_COLOR " + 
+            string consulta = "SELECT p.ID_PROD, p.NOMBRE, e.estilo,t.tipo,c.color,p.TALLA,p.CANTIDAD,p.PRECIO_COST,p.PRECIO_M1, p.PRECIO_M2,p.PRECIO_V1,p.PRECIO_V2,p.IMAGEN,p.UBICACION,e.ID_ESTILO,t.ID_TIPO,c.ID_COLOR,p.Ultcant " + 
                                 "FROM producto p "+
                                 "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
                                 "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO "+ 
@@ -695,9 +710,15 @@ namespace Venta.Clases
             titulo.fecha = DateTime.Now.ToString("yyyy/MM/dd");
             for (cont = 0; cont < canti; cont++)
             {
+                decimal costo;
+                DataTable cost = new DataTable();
+                cost = buscaprecost(datos.Rows[cont][0].ToString());
+                costo = decimal.Parse(cost.Rows[0][0].ToString());
                 Reportes.ConceDet deta = new Reportes.ConceDet();
-                deta.descripcion = datos.Rows[cont][0].ToString() ;
-                deta.cantidad = int.Parse(datos.Rows[cont][1].ToString());
+                deta.cod= datos.Rows[cont][0].ToString();
+                deta.descripcion = datos.Rows[cont][1].ToString() ;
+                deta.cantidad = int.Parse(datos.Rows[cont][2].ToString());
+                deta.precio = costo;
                 titulo.Detalle.Add(deta);
             }
             Reportes.CantidadP cantid = new Reportes.CantidadP();
@@ -753,6 +774,43 @@ namespace Venta.Clases
                 }
             }
             return NombreFull;
+        }
+
+        public void ImpEti(string[,] titulo, string[,] prod, string[,] codigo, string[,] precio)
+        {
+            Reportes.SalidaPEnc enc = new Reportes.SalidaPEnc();
+            int fila, columna,tfila;
+            tfila = titulo.Length/4;
+            for (fila=0;fila<tfila;fila++)
+            {
+                Reportes.Etiqueta etiqu = new Reportes.Etiqueta();
+                etiqu.titulo1 = titulo[fila, 0];
+                etiqu.titulo2 = titulo[fila, 1];
+                etiqu.titulo3 = titulo[fila, 2];
+                etiqu.titulo4 = titulo[fila, 3];
+
+                etiqu.subtitulo1 = prod[fila, 0];
+                etiqu.subtitulo2 = prod[fila, 1];
+                etiqu.subtitulo3 = prod[fila, 2];
+                etiqu.subtitulo4 = prod[fila, 3];
+
+                etiqu.codigo1 = codigo[fila, 0];
+                etiqu.codigo2 = codigo[fila, 1];
+                etiqu.codigo3 = codigo[fila, 2];
+                etiqu.codigo4 = codigo[fila, 3];
+
+                etiqu.precio1 = precio[fila, 0];
+                etiqu.precio2 = precio[fila, 1];
+                etiqu.precio3 = precio[fila, 2];
+                etiqu.precio4 = precio[fila, 3];
+
+                enc.Etiqueta.Add(etiqu);
+                                            }
+            Reportes.Etiquetas Ventana = new Reportes.Etiquetas();
+            Ventana.Etiq = enc.Etiqueta;
+            Ventana.Show();
+
+
         }
 
     }

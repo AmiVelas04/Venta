@@ -12,7 +12,6 @@
                 <Value>=First(Fields!Titulo.Value, "Encabezado")</Value>
                 <Style>
                   <FontStyle>Italic</FontStyle>
-                  <FontFamily>Microsoft Sans Serif</FontFamily>
                   <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -47,14 +46,12 @@
               <TextRun>
                 <Value>Desde: </Value>
                 <Style>
-                  <FontFamily>Microsoft Sans Serif</FontFamily>
                   <Format>d' de 'MMMM' de 'yyyy</Format>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=CDate(First(Fields!FechaI.Value, "Encabezado"))</Value>
                 <Style>
-                  <FontFamily>Microsoft Sans Serif</FontFamily>
                   <FontWeight>Bold</FontWeight>
                   <Format>d' de 'MMMM' de 'yyyy</Format>
                 </Style>
@@ -88,14 +85,12 @@
               <TextRun>
                 <Value>Hasta: </Value>
                 <Style>
-                  <FontFamily>Microsoft Sans Serif</FontFamily>
                   <Format>d' de 'MMMM' de 'yyyy</Format>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=CDate(First(Fields!FechaF.Value, "Encabezado"))</Value>
                 <Style>
-                  <FontFamily>Microsoft Sans Serif</FontFamily>
                   <FontWeight>Bold</FontWeight>
                   <Format>d' de 'MMMM' de 'yyyy</Format>
                 </Style>
@@ -360,7 +355,6 @@
                             <TextRun>
                               <Value>=RowNumber("Detalle")</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -395,7 +389,6 @@
                             <TextRun>
                               <Value>=Fields!Fecha.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -430,7 +423,6 @@
                             <TextRun>
                               <Value>=Fields!Totalcosto.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
@@ -467,7 +459,6 @@
                             <TextRun>
                               <Value>=Fields!TotalGan.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
@@ -504,7 +495,6 @@
                             <TextRun>
                               <Value>=Fields!TotalGene.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>

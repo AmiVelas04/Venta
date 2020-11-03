@@ -26,6 +26,10 @@ namespace Venta.Reportes
             this.RpvSalidaGen.LocalReport.DataSources.Clear();
             this.RpvSalidaGen.LocalReport.DataSources.Add(new ReportDataSource("Detalle", Detalle));
             this.RpvSalidaGen.LocalReport.DataSources.Add(new ReportDataSource("Encabezado", Encabezado));
+            this.RpvSalidaGen.SetDisplayMode(DisplayMode.PrintLayout);
+            this.RpvSalidaGen.ZoomMode = ZoomMode.Percent;
+            //Seleccionamos el zoom que deseamos utilizar. En este caso un 100%
+            this.RpvSalidaGen.ZoomPercent = 100;
             this.RpvSalidaGen.RefreshReport();
         }
     }

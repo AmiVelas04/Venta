@@ -18,6 +18,7 @@ namespace Venta.Reportes
 
         public List<FactDet> Detalle = new List<FactDet>();
         public List<ListaProd> Prod = new List<ListaProd>();
+        public List<Etiqueta> Etiqu = new List<Etiqueta>();
        
 
     }

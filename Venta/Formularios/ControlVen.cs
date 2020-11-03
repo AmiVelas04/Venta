@@ -137,5 +137,27 @@ namespace Venta.Formularios
             }
             
         }
+
+        private void DtpFecha_ValueChanged(object sender, EventArgs e)
+        {
+            ListVenFech();
+        }
+        private void ListVenFech()
+        {
+            DataTable datos = new DataTable();
+            string fecha = DtpFecha.Value.ToString("yyyy/MM/dd");
+            datos = ven.ListVenFech(fecha);
+            CboVenta.DataSource = datos;
+            CboVenta.ValueMember = "id_venta";
+            CboVenta.DisplayMember = "id_venta";
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            foreach (DataRow row in datos.Rows)
+            {
+                coleccion.Add(row["id_venta"].ToString());
+            }
+            CboVenta.AutoCompleteCustomSource = coleccion;
+            CboVenta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            CboVenta.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        }
     }
 }
