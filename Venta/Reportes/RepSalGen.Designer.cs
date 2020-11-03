@@ -47,7 +47,7 @@
             this.ClientSize = new System.Drawing.Size(790, 391);
             this.Controls.Add(this.RpvSalidaGen);
             this.Name = "RepSalGen";
-            this.Text = "Reporde de Salida General";
+            this.Text = "Reporte de Salida General";
             this.Load += new System.EventHandler(this.RepSalGen_Load);
             this.ResumeLayout(false);
 

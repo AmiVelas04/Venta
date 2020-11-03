@@ -221,7 +221,6 @@ namespace Venta.Clases
                 Deta.cantidad = Int32.Parse(datos.Rows[cont][6].ToString());
                 Deta.precio = decimal.Parse(datos.Rows[cont][7].ToString());
                 Deta.total = decimal.Parse (datos.Rows[cont][8].ToString());
-
                 Encab.Detalle.Add(Deta);
             }
             Reportes.Factura Fact = new Reportes.Factura();
@@ -307,7 +306,7 @@ namespace Venta.Clases
         }
         public void ventasD(string fechini, string fechaFin)
         {
-            string consulta = "SELECT V.id_venta, Concat(p.nombre, ' - ', e.ESTILO, ' - ', t.TIPO, ' - ', c.COLOR, ' - Talla: ', p.TALLA) AS nombre, vd.cantidad,vd.precio,vd.total,v.FECHA " +
+            string consulta = "SELECT V.id_venta, Concat(p.nombre, ' - ', e.ESTILO, ' - ', t.TIPO, ' - ', c.COLOR, ' - Talla: ', p.TALLA) AS nombre, vd.cantidad,vd.precio,vd.total,Date_format(v.FECHA,'%d/%m/%Y') " +
                                "FROM venta v "+
                                "INNER JOIN venta_detalle vd ON vd.ID_VENTA = v.ID_VENTA "+
                                "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD "+
@@ -349,6 +348,16 @@ namespace Venta.Clases
             string consulta = "SELECT id_venta " +
                              "FROM venta " +
                              "WHERE fecha>='"+f1+"' and fecha<='"+f2+"'";
+            return buscar(consulta);
+        }
+        public DataTable ListVenFech(string fecha)
+        {
+            string f1, f2;
+            f1 = fecha + " 00:00:00";
+            f2 = fecha + " 23:59:59";
+            string consulta = "SELECT id_venta " +
+                             "FROM venta " +
+                             "WHERE fecha>='" + f1 + "' and fecha<='" + f2 + "'";
             return buscar(consulta);
         }
 

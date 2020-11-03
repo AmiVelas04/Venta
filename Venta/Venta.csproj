@@ -204,6 +204,13 @@
     <Compile Include="Reportes\Conces.Designer.cs">
       <DependentUpon>Conces.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Etiqueta.cs" />
+    <Compile Include="Reportes\Etiquetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Etiquetas.Designer.cs">
+      <DependentUpon>Etiquetas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\FactDet.cs" />
     <Compile Include="Reportes\FactEnc.cs" />
     <Compile Include="Reportes\Factura.cs">
@@ -325,6 +332,10 @@
     <EmbeddedResource Include="Reportes\Conces.resx">
       <DependentUpon>Conces.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Etiquetas.rdlc" />
+    <EmbeddedResource Include="Reportes\Etiquetas.resx">
+      <DependentUpon>Etiquetas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Factura.rdlc" />
     <EmbeddedResource Include="Reportes\Factura.resx">
       <DependentUpon>Factura.cs</DependentUpon>
@@ -361,6 +372,7 @@
     <None Include="Properties\DataSources\Venta.Reportes.ConceDet.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.ConceEnc.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.Conces.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.Etiqueta.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.FactDet.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.FactEnc.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.FactEnc1.datasource" />

@@ -25,7 +25,15 @@ namespace Venta.Formularios
 
         private void buscarp()
         {
-            DgvProd.DataSource = Produ.BuscaProdCant(TxtProd.Text, NudCant.Value.ToString());
+            string nom, tipo, estilo, color, talla,cant;
+            nom = TxtProd.Text;
+            tipo = TxtTipo.Text;
+            estilo = TxtEstilo.Text;
+            color = Txtcolor.Text;
+            talla = TxtTalla.Text;
+            cant = NudCant.Value.ToString();
+            
+            DgvProd.DataSource = Produ.BuscaProdCant(nom, estilo,tipo, color,talla,cant);
 
         }
 
@@ -37,7 +45,8 @@ namespace Venta.Formularios
         private void imprimir()
         {
             DataTable datos = new DataTable();
-            
+
+            datos.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
             datos.Columns.Add("producto").DataType = System.Type.GetType("System.String");
             datos.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
             int cont, canti;
@@ -45,6 +54,7 @@ namespace Venta.Formularios
            for (cont = 0; cont < canti; cont++)
             {
                 DataRow fila = datos.NewRow();
+                fila["codigo"] = DgvProd.Rows[cont].Cells[0].Value.ToString();
                 fila["producto"]= DgvProd.Rows[cont].Cells[1].Value.ToString() + " " + DgvProd.Rows[cont].Cells[2].Value.ToString() + " " + DgvProd.Rows[cont].Cells[3].Value.ToString() + " " + DgvProd.Rows[cont].Cells[4].Value.ToString() + " " + DgvProd.Rows[cont].Cells[5].Value.ToString();
                 fila["cantidad"] = DgvProd.Rows[cont].Cells[6].Value.ToString();
 

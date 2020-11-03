@@ -121,8 +121,8 @@ namespace Venta.Clases
             for (cont=0;cont<cant;cont++)
             {
                 id = cod_detalle();
-                string idprod = detalle.Rows[0][0].ToString();
-                string canti = detalle.Rows[0][1].ToString();
+                string idprod = detalle.Rows[cont][0].ToString();
+                string canti = detalle.Rows[cont][1].ToString();
                 string consulta = "insert into sproddet(id_sdet,id_sprod,id_prod,cant) values"+
                                   "("+id+ ","+salida+ ",'"+ idprod +"',"+canti+")";
                 if (!consulta_gen(consulta))

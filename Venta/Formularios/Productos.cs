@@ -113,6 +113,8 @@ namespace Venta.Formularios
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             buscar();
+            BtnLblPrint.Visible = true;
+            NudEtiqueta.Visible = true;
         }
 
         private void TxtTalla_TextChanged(object sender, EventArgs e)
@@ -136,7 +138,7 @@ namespace Venta.Formularios
                     TxtPrecio_V2.Text = datos.Rows[0][5].ToString();
                     TxtPrecio_V3.Text = datos.Rows[0][6].ToString();
                     TxtUbi.Text = datos.Rows[0][7].ToString();
-                    
+
                     /*  using (var stream = File.Open(@".\imagen\" + datos.Rows[0][8].ToString(), FileMode.Open))
                        {
                            Bitmap archivo = new Bitmap(stream);
@@ -194,7 +196,7 @@ namespace Venta.Formularios
         {
             string talla = TxtTalla.Text;
             TxtTalla.Text = talla;
-           IdTip.Text = CboTipo.SelectedValue.ToString();
+            IdTip.Text = CboTipo.SelectedValue.ToString();
         }
 
         private void CboColor_SelectedIndexChanged(object sender, EventArgs e)
@@ -235,6 +237,8 @@ namespace Venta.Formularios
             TxtPrecio_V1.Text = "0";
             TxtPrecio_V2.Text = "0";
             TxtPrecio_V3.Text = "0";
+            TxtUltimoIng.Text = "0";
+            NudIngreso.Value = 0;
             TxtUbi.Text = "";
             OFD1.FileName = "";
             PbxProd.InitialImage = null;
@@ -269,7 +273,18 @@ namespace Venta.Formularios
             string idtipo = CboTipo.SelectedValue != null ? CboTipo.SelectedValue.ToString() : "0";
             string idcolor = CboColor.SelectedValue != null ? CboColor.SelectedValue.ToString() : "0";
             string talla = TxtTalla.Text;
-            int cantidad = Int32.Parse(NudCantidad.Value.ToString());
+            int cantidad, cantingre;
+            cantidad = Int32.Parse(NudCantidad.Value.ToString());
+            if (ChkCantCamb.Checked)
+            {
+                cantingre = 0;
+            }
+            else
+            {
+                cantingre = Int32.Parse(NudIngreso.Value.ToString());
+            }
+            
+            
             decimal precio_c = Decimal.Parse(TxtPrecio_C.Text);
             decimal precio_m1 = Decimal.Parse(TxtPrecio_M1.Text);
             decimal precio_m2 = Decimal.Parse(TxtPrecio_M2.Text);
@@ -290,7 +305,7 @@ namespace Venta.Formularios
                 string idp = prod.busc_codprod(Nomprod, idestilo, idtipo, idcolor, talla);
 
                 imagen = revimagen(Nomprod + idestilo + idtipo + idcolor + talla, idp); ;
-                string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, ubicacion, MatP,idp };
+                string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, ubicacion, MatP, idp,cantingre.ToString()};
                 if (prod.upd_prod(datosupd))
                 {
                     MessageBox.Show("Producto Actualizado correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -298,7 +313,7 @@ namespace Venta.Formularios
                     PbxProd.Image = null;
                     ModifLista();
                 }
-                else { MessageBox.Show("Error al actualizar", "revisar dartos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+                else { MessageBox.Show("Error al actualizar", "revisar datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
             else
             {
@@ -319,12 +334,35 @@ namespace Venta.Formularios
 
         private void Actualiz()
         {
+            int cantidad,CantIng;
             string Nomprod = TxtProdNom.Text;
-            string idestilo = IdEst.Text;
-            string idtipo = IdTip.Text;
-            string idcolor = IdCol.Text;
+            string idestilo = CboEstilo.SelectedValue != null ? CboEstilo.SelectedValue.ToString() : "0";
+            string idtipo = CboTipo.SelectedValue != null ? CboTipo.SelectedValue.ToString() : "0";
+            string idcolor = CboColor.SelectedValue != null ? CboColor.SelectedValue.ToString() : "0";
             string talla = TxtTalla.Text;
-            int cantidad = Int32.Parse(NudCantidad.Value.ToString());
+            if (idtipo == "0")
+            {
+                idtipo = prod.IngresoTip(CboTipo.Text).ToString();
+            }
+            if (idestilo == "0")
+            {
+                idestilo = prod.IngresoEst(CboEstilo.Text).ToString();
+            }
+            if (idcolor=="0")
+            {
+                idcolor = prod.IngresoCol(CboColor.Text).ToString();
+            }
+
+            cantidad = Int32.Parse(NudCantidad.Value.ToString());
+            if (ChkCantCamb.Checked)
+            {
+                CantIng = 0;
+            }
+            else
+            {
+                CantIng = Int32.Parse(NudIngreso.Value.ToString());
+            }
+            
             decimal precio_c = Decimal.Parse(TxtPrecio_C.Text);
             decimal precio_m1 = Decimal.Parse(TxtPrecio_M1.Text);
             decimal precio_m2 = Decimal.Parse(TxtPrecio_M2.Text);
@@ -333,34 +371,32 @@ namespace Venta.Formularios
             decimal precio_v3 = decimal.Parse(TxtPrecio_V3.Text);
             string imagen;
             string[] images = new string[2];
-            string estilo = CboEstilo.DisplayMember != null ? CboEstilo.Text : "N/E";
-            string tipo = CboTipo.DisplayMember != null ? CboTipo.Text : "N/E";
-            string color = CboColor.DisplayMember != null ? CboColor.Text : "N/E";
             string ubicacion = TxtUbi.Text;
             string MatP = "";
             string Nestilo = CboEstilo.Text;
             string Ntipo = CboTipo.Text;
             string NColor = CboColor.Text;
-            if (RdbSi.Checked) { MatP = "1"; }
-            else if (RdbNo.Checked) { MatP = "0"; }
-        //   if (prod.prodexist(TxtProdNom.Tag.ToString() , idestilo, idtipo, idcolor, talla))
-          //  {
-                string idp = "R" + TxtCod.Text;
-                imagen = revimagen(Nomprod + idestilo + idtipo + idcolor + talla, idp); ;
-                string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, ubicacion, MatP,idp };
-                string[] datoscamb = { idp, Nomprod, idestilo, Nestilo, idtipo, Ntipo, idcolor, NColor };
-                if (prod.mod_prod(datosupd) && prod.Modnoms(datoscamb))
-                {
-                    MessageBox.Show("Producto Actualizado correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ModifLista();
-                    PbxProd.InitialImage = null;
-                    PbxProd.Image = null;
-                }
-                else { MessageBox.Show("Error al actualizar", "revisar dartos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
-          /*  }
-            else
+            if (RdbSi.Checked)
+            { MatP = "1"; }
+            else if (RdbNo.Checked)
+            { MatP = "0"; }
+         
+            string idp = "R" + TxtCod.Text;
+            imagen = revimagen(Nomprod + idestilo + idtipo + idcolor + talla, idp); ;
+            string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, ubicacion, MatP, idp,CantIng.ToString() };
+            string[] datoscamb = { idp, Nomprod, idestilo, Nestilo, idtipo, Ntipo, idcolor, NColor };
+            if (prod.mod_prod(datosupd) && prod.Modnoms(datoscamb))
             {
-            }*/
+                MessageBox.Show("Producto Actualizado correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ModifLista();
+                PbxProd.InitialImage = null;
+                PbxProd.Image = null;
+            }
+            else { MessageBox.Show("Error al actualizar", "revisar dartos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+            /*  }
+              else
+              {
+              }*/
         }
 
 
@@ -432,8 +468,9 @@ namespace Venta.Formularios
             datos = prod.PeticionProd("R" + TxtCod.Text);
             if (datos.Rows.Count > 0)
             {
+                //int cantidad = int.Parse(datos.Rows[0][16].ToString());
                 TxtProdNom.Text = datos.Rows[0][1].ToString();
-                TxtProdNom.Tag= datos.Rows[0][1].ToString();
+                TxtProdNom.Tag = datos.Rows[0][1].ToString();
                 //14-15-16
                 CboEstilo.SelectedValue = datos.Rows[0][14].ToString();
                 IdEst.Text = datos.Rows[0][14].ToString();
@@ -445,6 +482,7 @@ namespace Venta.Formularios
                 TxtTalla.Text = datos.Rows[0][5].ToString();
                 PbxProd.InitialImage = null;
                 PbxProd.Image = null;
+                TxtUltimoIng.Text = datos.Rows[0][17].ToString();
                 string id = "R" + TxtCod.Text;
                 //  TxtCod.Text = id;
                 string imag = prod.imagen(id);
@@ -489,6 +527,8 @@ namespace Venta.Formularios
             TxtPrecio_V1.Text = "0";
             TxtPrecio_V2.Text = "0";
             TxtPrecio_V3.Text = "0";
+            TxtUltimoIng.Text = "0";
+            NudIngreso.Value = 0;
             TxtUbi.Text = "";
             OFD1.FileName = "";
             PbxProd.InitialImage = null;
@@ -551,7 +591,19 @@ namespace Venta.Formularios
             DgvProd.Rows[indice].Cells[3].Value = CboTipo.Text;
             DgvProd.Rows[indice].Cells[4].Value = CboColor.Text;
             DgvProd.Rows[indice].Cells[5].Value = TxtTalla.Text;
-            DgvProd.Rows[indice].Cells[6].Value = NudCantidad.Value.ToString();
+            if (ChkCantCamb.Checked)
+            {
+                DgvProd.Rows[indice].Cells[6].Value = NudCantidad.Value.ToString();
+            }
+            else
+            {
+                int cantAnt, cantnvo, Total;
+                cantAnt = int.Parse(NudCantidad.Value.ToString());
+                cantnvo = int.Parse(NudIngreso.Value.ToString());
+                Total = cantAnt + cantnvo;
+
+                DgvProd.Rows[indice].Cells[6].Value = Total.ToString();
+            }
             DgvProd.Rows[indice].Cells[7].Value = Decimal2(TxtPrecio_C.Text);
             DgvProd.Rows[indice].Cells[8].Value = Decimal2(TxtPrecio_M1.Text);
             DgvProd.Rows[indice].Cells[9].Value = Decimal2(TxtPrecio_M2.Text);
@@ -564,15 +616,15 @@ namespace Venta.Formularios
         private string Decimal2(string cantidad)
         {
             decimal canti = decimal.Parse(cantidad);
-            string regreso;int total;
-             if ((canti % 1) == 0)
-             {
-              /*   int total = cantidad.Length;
-                 int m = Math.Max(0, total - 3);
-                 StringBuilder sb = new StringBuilder(cantidad);
-                 sb.Length = m;
-                 int canti2 = int.Parse(sb.ToString());*/
-            total = Convert.ToInt32(canti);
+            string regreso; int total;
+            if ((canti % 1) == 0)
+            {
+                /*   int total = cantidad.Length;
+                   int m = Math.Max(0, total - 3);
+                   StringBuilder sb = new StringBuilder(cantidad);
+                   sb.Length = m;
+                   int canti2 = int.Parse(sb.ToString());*/
+                total = Convert.ToInt32(canti);
                 return regreso = total.ToString() + ".00";
             }
             else
@@ -595,6 +647,96 @@ namespace Venta.Formularios
             if (PbxProd.Image == null) { ImagenPic.ponerimg = @".\imagen\0.jpg"; }
             else { ImagenPic.ponerimg = PbxProd.Tag.ToString(); }
             img.Show();
+        }
+
+        private void BtnLblPrint_Click(object sender, EventArgs e)
+        {
+            if (DgvProd.Rows.Count > 0)
+            { ImprimirEtiquetas(); }
+            
+        }
+
+        private void ImprimirEtiquetas()
+        {
+            int indice = DgvProd.CurrentRow.Index;
+            string cod = DgvProd.Rows[indice].Cells[0].Value.ToString();
+            string nombre = DgvProd.Rows[indice].Cells[1].Value.ToString() +" " + DgvProd.Rows[indice].Cells[2].Value.ToString() + " " + DgvProd.Rows[indice].Cells[3].Value.ToString() + " " + DgvProd.Rows[indice].Cells[4].Value.ToString() + " " + DgvProd.Rows[indice].Cells[5].Value.ToString();
+            string Ltitulo = "Modas y Artesanias\n Veronica";
+            string Lprecio = DgvProd.Rows[indice].Cells[12].Value.ToString();
+           
+            int cantidad = int.Parse(NudEtiqueta.Value.ToString());
+            int canfil = (cantidad - (cantidad % 4)) / 4;
+            int cantcolumn,ultcol;
+            if (cantidad % 4 > 0)
+            {
+                canfil++;
+                ultcol = cantidad % 4;
+            }
+            else
+            {
+                ultcol = 4;
+            }
+            int fila, columna;
+            
+            string[,] titulo = new string[canfil,4];
+            string[,] subtitulo = new string[canfil, 4];
+            string[,] codigo = new string[canfil, 4];
+            string[,] precio = new string[canfil, 4];
+
+            //iniciar varialbes
+            for (fila=0;fila<canfil;fila++)
+            {
+                for (columna=0;columna<=3;columna++)
+                {
+                    titulo[fila, columna] = "";
+                    subtitulo[fila, columna] = "";
+                    codigo[fila, columna] = "";
+                    precio[fila, columna] = "";
+                }
+            }
+
+
+           //darle valor a todas las filas  ycolumnas
+            for (fila = 0; fila <canfil  ; fila++)
+            {
+                if (fila == (canfil - 1))
+                {
+                    for (columna = 0; columna < ultcol; columna++)
+                    {
+                        titulo[fila, columna] = Ltitulo;
+                        subtitulo[fila, columna] = nombre;
+                        codigo[fila, columna] = cod;
+                        precio[fila, columna] = "Q."+Lprecio;
+                    }
+                }
+                else
+                {
+                    for (columna = 0; columna <= 3; columna++)
+                    {
+                        titulo[fila, columna] = Ltitulo;
+                        subtitulo[fila, columna] = nombre;
+                        codigo[fila, columna] = cod;
+                        precio[fila, columna] = "Q." + Lprecio;
+                    }
+                }
+            }
+
+            prod.ImpEti(titulo,subtitulo,codigo,precio);
+        }
+
+        private void ChkCantCamb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkCantCamb.Checked)
+            { NudCantidad.Enabled = true;
+                NudIngreso.Value = 0;
+                NudIngreso.Enabled = false;
+            }
+            else
+            {
+                NudCantidad.Enabled =false;
+                NudIngreso.Value = 0;
+                NudIngreso.Enabled = true;
+            }
         }
     }
 }

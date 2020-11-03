@@ -30,6 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Productos));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ChkCantCamb = new System.Windows.Forms.CheckBox();
+            this.TxtUltimoIng = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.NudIngreso = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
             this.LblRow = new System.Windows.Forms.Label();
             this.IdCol = new System.Windows.Forms.Label();
             this.IdTip = new System.Windows.Forms.Label();
@@ -71,6 +76,8 @@
             this.LblNomProd = new System.Windows.Forms.Label();
             this.TxtProdNom = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.NudEtiqueta = new System.Windows.Forms.NumericUpDown();
+            this.BtnLblPrint = new System.Windows.Forms.Button();
             this.BtnModif = new System.Windows.Forms.Button();
             this.BtnNvo = new System.Windows.Forms.Button();
             this.BtnEditar = new System.Windows.Forms.Button();
@@ -85,10 +92,12 @@
             this.DgvProd = new System.Windows.Forms.DataGridView();
             this.OFD1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudIngreso)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxProd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudEtiqueta)).BeginInit();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProd)).BeginInit();
@@ -96,6 +105,11 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ChkCantCamb);
+            this.panel1.Controls.Add(this.TxtUltimoIng);
+            this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.NudIngreso);
+            this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.LblRow);
             this.panel1.Controls.Add(this.IdCol);
             this.panel1.Controls.Add(this.IdTip);
@@ -141,6 +155,52 @@
             this.panel1.Size = new System.Drawing.Size(408, 590);
             this.panel1.TabIndex = 0;
             // 
+            // ChkCantCamb
+            // 
+            this.ChkCantCamb.AutoSize = true;
+            this.ChkCantCamb.Location = new System.Drawing.Point(119, 188);
+            this.ChkCantCamb.Name = "ChkCantCamb";
+            this.ChkCantCamb.Size = new System.Drawing.Size(67, 19);
+            this.ChkCantCamb.TabIndex = 41;
+            this.ChkCantCamb.Text = "Editar";
+            this.ChkCantCamb.UseVisualStyleBackColor = true;
+            this.ChkCantCamb.CheckedChanged += new System.EventHandler(this.ChkCantCamb_CheckedChanged);
+            // 
+            // TxtUltimoIng
+            // 
+            this.TxtUltimoIng.Enabled = false;
+            this.TxtUltimoIng.Location = new System.Drawing.Point(210, 231);
+            this.TxtUltimoIng.Name = "TxtUltimoIng";
+            this.TxtUltimoIng.Size = new System.Drawing.Size(75, 23);
+            this.TxtUltimoIng.TabIndex = 40;
+            this.TxtUltimoIng.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(175, 213);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(180, 15);
+            this.label17.TabIndex = 39;
+            this.label17.Text = "Ultimo ingreso de Producto";
+            // 
+            // NudIngreso
+            // 
+            this.NudIngreso.Location = new System.Drawing.Point(15, 231);
+            this.NudIngreso.Name = "NudIngreso";
+            this.NudIngreso.Size = new System.Drawing.Size(97, 23);
+            this.NudIngreso.TabIndex = 38;
+            this.NudIngreso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(23, 213);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(55, 15);
+            this.label16.TabIndex = 37;
+            this.label16.Text = "Ingreso";
+            // 
             // LblRow
             // 
             this.LblRow.AutoSize = true;
@@ -154,7 +214,7 @@
             // IdCol
             // 
             this.IdCol.AutoSize = true;
-            this.IdCol.Location = new System.Drawing.Point(72, 120);
+            this.IdCol.Location = new System.Drawing.Point(72, 114);
             this.IdCol.Name = "IdCol";
             this.IdCol.Size = new System.Drawing.Size(20, 15);
             this.IdCol.TabIndex = 35;
@@ -229,7 +289,7 @@
             // 
             // TxtPrecio_V3
             // 
-            this.TxtPrecio_V3.Location = new System.Drawing.Point(304, 326);
+            this.TxtPrecio_V3.Location = new System.Drawing.Point(304, 333);
             this.TxtPrecio_V3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio_V3.Name = "TxtPrecio_V3";
             this.TxtPrecio_V3.Size = new System.Drawing.Size(74, 23);
@@ -240,7 +300,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(282, 308);
+            this.label15.Location = new System.Drawing.Point(282, 315);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(116, 15);
@@ -282,7 +342,7 @@
             // 
             // TxtPrecio_V2
             // 
-            this.TxtPrecio_V2.Location = new System.Drawing.Point(178, 326);
+            this.TxtPrecio_V2.Location = new System.Drawing.Point(178, 333);
             this.TxtPrecio_V2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio_V2.Name = "TxtPrecio_V2";
             this.TxtPrecio_V2.Size = new System.Drawing.Size(74, 23);
@@ -293,7 +353,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(156, 308);
+            this.label12.Location = new System.Drawing.Point(156, 315);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(116, 15);
@@ -302,7 +362,7 @@
             // 
             // TxtPrecio_M2
             // 
-            this.TxtPrecio_M2.Location = new System.Drawing.Point(222, 266);
+            this.TxtPrecio_M2.Location = new System.Drawing.Point(222, 286);
             this.TxtPrecio_M2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio_M2.Name = "TxtPrecio_M2";
             this.TxtPrecio_M2.Size = new System.Drawing.Size(74, 23);
@@ -313,7 +373,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(194, 248);
+            this.label11.Location = new System.Drawing.Point(194, 268);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(129, 15);
@@ -344,7 +404,7 @@
             // 
             // TxtPrecio_V1
             // 
-            this.TxtPrecio_V1.Location = new System.Drawing.Point(38, 326);
+            this.TxtPrecio_V1.Location = new System.Drawing.Point(38, 333);
             this.TxtPrecio_V1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio_V1.Name = "TxtPrecio_V1";
             this.TxtPrecio_V1.Size = new System.Drawing.Size(74, 23);
@@ -354,7 +414,7 @@
             // 
             // TxtPrecio_M1
             // 
-            this.TxtPrecio_M1.Location = new System.Drawing.Point(38, 266);
+            this.TxtPrecio_M1.Location = new System.Drawing.Point(38, 286);
             this.TxtPrecio_M1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio_M1.Name = "TxtPrecio_M1";
             this.TxtPrecio_M1.Size = new System.Drawing.Size(74, 23);
@@ -364,7 +424,7 @@
             // 
             // TxtPrecio_C
             // 
-            this.TxtPrecio_C.Location = new System.Drawing.Point(213, 197);
+            this.TxtPrecio_C.Location = new System.Drawing.Point(210, 186);
             this.TxtPrecio_C.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio_C.Name = "TxtPrecio_C";
             this.TxtPrecio_C.Size = new System.Drawing.Size(75, 23);
@@ -374,7 +434,8 @@
             // 
             // NudCantidad
             // 
-            this.NudCantidad.Location = new System.Drawing.Point(15, 197);
+            this.NudCantidad.Enabled = false;
+            this.NudCantidad.Location = new System.Drawing.Point(15, 187);
             this.NudCantidad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.NudCantidad.Maximum = new decimal(new int[] {
             10000,
@@ -382,13 +443,13 @@
             0,
             0});
             this.NudCantidad.Name = "NudCantidad";
-            this.NudCantidad.Size = new System.Drawing.Size(114, 23);
+            this.NudCantidad.Size = new System.Drawing.Size(97, 23);
             this.NudCantidad.TabIndex = 6;
             this.NudCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TxtTalla
             // 
-            this.TxtTalla.Location = new System.Drawing.Point(213, 139);
+            this.TxtTalla.Location = new System.Drawing.Point(213, 133);
             this.TxtTalla.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtTalla.Name = "TxtTalla";
             this.TxtTalla.Size = new System.Drawing.Size(86, 23);
@@ -398,7 +459,7 @@
             // CboColor
             // 
             this.CboColor.FormattingEnabled = true;
-            this.CboColor.Location = new System.Drawing.Point(15, 139);
+            this.CboColor.Location = new System.Drawing.Point(15, 133);
             this.CboColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CboColor.Name = "CboColor";
             this.CboColor.Size = new System.Drawing.Size(135, 23);
@@ -453,7 +514,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 308);
+            this.label8.Location = new System.Drawing.Point(13, 315);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(116, 15);
@@ -463,7 +524,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 248);
+            this.label7.Location = new System.Drawing.Point(12, 268);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(129, 15);
@@ -473,7 +534,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(197, 178);
+            this.label5.Location = new System.Drawing.Point(197, 168);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 15);
@@ -483,7 +544,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 178);
+            this.label6.Location = new System.Drawing.Point(23, 168);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 15);
@@ -493,7 +554,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(222, 121);
+            this.label3.Location = new System.Drawing.Point(222, 115);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 15);
@@ -503,7 +564,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 120);
+            this.label4.Location = new System.Drawing.Point(23, 114);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 15);
@@ -551,6 +612,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.NudEtiqueta);
+            this.panel2.Controls.Add(this.BtnLblPrint);
             this.panel2.Controls.Add(this.BtnModif);
             this.panel2.Controls.Add(this.BtnNvo);
             this.panel2.Controls.Add(this.BtnEditar);
@@ -561,11 +624,48 @@
             this.panel2.Size = new System.Drawing.Size(722, 72);
             this.panel2.TabIndex = 1;
             // 
+            // NudEtiqueta
+            // 
+            this.NudEtiqueta.Location = new System.Drawing.Point(379, 30);
+            this.NudEtiqueta.Maximum = new decimal(new int[] {
+            36000,
+            0,
+            0,
+            0});
+            this.NudEtiqueta.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NudEtiqueta.Name = "NudEtiqueta";
+            this.NudEtiqueta.Size = new System.Drawing.Size(55, 23);
+            this.NudEtiqueta.TabIndex = 4;
+            this.NudEtiqueta.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NudEtiqueta.Visible = false;
+            // 
+            // BtnLblPrint
+            // 
+            this.BtnLblPrint.Image = ((System.Drawing.Image)(resources.GetObject("BtnLblPrint.Image")));
+            this.BtnLblPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnLblPrint.Location = new System.Drawing.Point(260, 18);
+            this.BtnLblPrint.Name = "BtnLblPrint";
+            this.BtnLblPrint.Size = new System.Drawing.Size(113, 42);
+            this.BtnLblPrint.TabIndex = 3;
+            this.BtnLblPrint.Text = "Imprimir etiquetas";
+            this.BtnLblPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnLblPrint.UseVisualStyleBackColor = true;
+            this.BtnLblPrint.Visible = false;
+            this.BtnLblPrint.Click += new System.EventHandler(this.BtnLblPrint_Click);
+            // 
             // BtnModif
             // 
             this.BtnModif.Image = ((System.Drawing.Image)(resources.GetObject("BtnModif.Image")));
             this.BtnModif.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnModif.Location = new System.Drawing.Point(239, 18);
+            this.BtnModif.Location = new System.Drawing.Point(144, 18);
             this.BtnModif.Name = "BtnModif";
             this.BtnModif.Size = new System.Drawing.Size(102, 42);
             this.BtnModif.TabIndex = 2;
@@ -578,13 +678,14 @@
             // 
             this.BtnNvo.Image = ((System.Drawing.Image)(resources.GetObject("BtnNvo.Image")));
             this.BtnNvo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnNvo.Location = new System.Drawing.Point(120, 18);
+            this.BtnNvo.Location = new System.Drawing.Point(553, 18);
             this.BtnNvo.Name = "BtnNvo";
             this.BtnNvo.Size = new System.Drawing.Size(102, 42);
             this.BtnNvo.TabIndex = 1;
             this.BtnNvo.Text = "Nuevo";
             this.BtnNvo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnNvo.UseVisualStyleBackColor = true;
+            this.BtnNvo.Visible = false;
             this.BtnNvo.Click += new System.EventHandler(this.BtnNvo_Click);
             // 
             // BtnEditar
@@ -729,11 +830,13 @@
             this.Load += new System.EventHandler(this.Productos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudIngreso)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxProd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NudEtiqueta)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -800,5 +903,12 @@
         private System.Windows.Forms.Label IdTip;
         private System.Windows.Forms.Label IdEst;
         private System.Windows.Forms.Label LblRow;
+        private System.Windows.Forms.Button BtnLblPrint;
+        private System.Windows.Forms.NumericUpDown NudEtiqueta;
+        private System.Windows.Forms.NumericUpDown NudIngreso;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox TxtUltimoIng;
+        private System.Windows.Forms.CheckBox ChkCantCamb;
     }
 }

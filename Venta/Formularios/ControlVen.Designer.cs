@@ -47,6 +47,8 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.PanCent = new System.Windows.Forms.Panel();
             this.DgvDatos = new System.Windows.Forms.DataGridView();
+            this.DtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             this.PanDer.SuspendLayout();
             this.GbxVenta.SuspendLayout();
             this.PanAbaj.SuspendLayout();
@@ -66,6 +68,8 @@
             // 
             // GbxVenta
             // 
+            this.GbxVenta.Controls.Add(this.label5);
+            this.GbxVenta.Controls.Add(this.DtpFecha);
             this.GbxVenta.Controls.Add(this.BtnImp);
             this.GbxVenta.Controls.Add(this.BtnMostrar);
             this.GbxVenta.Controls.Add(this.TxtFech);
@@ -90,7 +94,7 @@
             // 
             this.BtnImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnImp.Image")));
             this.BtnImp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnImp.Location = new System.Drawing.Point(25, 372);
+            this.BtnImp.Location = new System.Drawing.Point(25, 421);
             this.BtnImp.Name = "BtnImp";
             this.BtnImp.Size = new System.Drawing.Size(149, 64);
             this.BtnImp.TabIndex = 9;
@@ -114,7 +118,7 @@
             // TxtFech
             // 
             this.TxtFech.Enabled = false;
-            this.TxtFech.Location = new System.Drawing.Point(12, 277);
+            this.TxtFech.Location = new System.Drawing.Point(12, 351);
             this.TxtFech.Name = "TxtFech";
             this.TxtFech.Size = new System.Drawing.Size(178, 22);
             this.TxtFech.TabIndex = 7;
@@ -122,7 +126,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 258);
+            this.label4.Location = new System.Drawing.Point(22, 332);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 16);
             this.label4.TabIndex = 6;
@@ -131,7 +135,7 @@
             // TxtCli
             // 
             this.TxtCli.Enabled = false;
-            this.TxtCli.Location = new System.Drawing.Point(12, 203);
+            this.TxtCli.Location = new System.Drawing.Point(12, 277);
             this.TxtCli.Name = "TxtCli";
             this.TxtCli.Size = new System.Drawing.Size(178, 22);
             this.TxtCli.TabIndex = 5;
@@ -139,7 +143,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 184);
+            this.label3.Location = new System.Drawing.Point(22, 258);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 16);
             this.label3.TabIndex = 4;
@@ -148,7 +152,7 @@
             // TxtVend
             // 
             this.TxtVend.Enabled = false;
-            this.TxtVend.Location = new System.Drawing.Point(12, 131);
+            this.TxtVend.Location = new System.Drawing.Point(12, 205);
             this.TxtVend.Name = "TxtVend";
             this.TxtVend.Size = new System.Drawing.Size(178, 22);
             this.TxtVend.TabIndex = 3;
@@ -156,7 +160,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 112);
+            this.label2.Location = new System.Drawing.Point(22, 186);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 16);
             this.label2.TabIndex = 2;
@@ -165,7 +169,7 @@
             // CboVenta
             // 
             this.CboVenta.FormattingEnabled = true;
-            this.CboVenta.Location = new System.Drawing.Point(12, 54);
+            this.CboVenta.Location = new System.Drawing.Point(12, 128);
             this.CboVenta.Name = "CboVenta";
             this.CboVenta.Size = new System.Drawing.Size(181, 24);
             this.CboVenta.TabIndex = 1;
@@ -174,7 +178,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 35);
+            this.label1.Location = new System.Drawing.Point(22, 109);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 16);
             this.label1.TabIndex = 0;
@@ -240,6 +244,8 @@
             // 
             this.DgvDatos.AllowUserToAddRows = false;
             this.DgvDatos.AllowUserToDeleteRows = false;
+            this.DgvDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DgvDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvDatos.Location = new System.Drawing.Point(0, 0);
@@ -248,6 +254,25 @@
             this.DgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvDatos.Size = new System.Drawing.Size(906, 508);
             this.DgvDatos.TabIndex = 0;
+            // 
+            // DtpFecha
+            // 
+            this.DtpFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpFecha.Location = new System.Drawing.Point(12, 38);
+            this.DtpFecha.Name = "DtpFecha";
+            this.DtpFecha.Size = new System.Drawing.Size(200, 26);
+            this.DtpFecha.TabIndex = 10;
+            this.DtpFecha.ValueChanged += new System.EventHandler(this.DtpFecha_ValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(22, 19);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 16);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Fecha";
             // 
             // ControlVen
             // 
@@ -294,5 +319,7 @@
         private System.Windows.Forms.Button BtnSuprVen;
         private System.Windows.Forms.Label Lblt;
         private System.Windows.Forms.Button BtnImp;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker DtpFecha;
     }
 }
