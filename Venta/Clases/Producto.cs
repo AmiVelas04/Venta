@@ -116,7 +116,7 @@ namespace Venta.Clases
         }
         private string cod_prod(string tip, string est, string tall,string nombre)
         {
-           string cod;
+           string cod="";
             string buscaid = "SELECT p.id_prod FROM producto p " +
                             "WHERE nombre='"+nombre+"' and  p.ID_TIPO ="+tip+" AND p.ID_ESTILO ="+est+" AND p.talla = '"+tall+"'";
             DataTable codig = new DataTable();
@@ -136,10 +136,65 @@ namespace Venta.Clases
                 cod = dato.Substring(0, posi);
             }
             else {
+                bool usable=false;
+                string consulcolor = "Select id_color from color";
+                DataTable color = new DataTable();
+                color = buscar(consulcolor);
+                string todoscod = "Select id_prod from producto";
+                DataTable codtod = new DataTable();
+                codtod = buscar(todoscod);
+                int cantcolor = color.Rows.Count;
                 string consulta = "Select count(*) from producto";
                 DataTable datos = new DataTable();
                 datos = buscar(consulta);
-                if (datos.Rows[0][0] != DBNull.Value)
+                int totprod = codtod.Rows.Count;
+                int cont, contacolor;
+                string caract="",primcod="", colcod="";
+                for (cont = 1; cont <= totprod; cont++)
+                {
+                    primcod = cont.ToString();
+                    /* if (cont < 10)
+                     { primcod = "000" + cont.ToString(); }
+                     else if (cont < 100)
+                     { primcod = "00" + cont.ToString(); }
+                     else if (cont < 1000)
+                     { primcod = "0" + cont.ToString(); }
+                     else if (cont<10000)
+                     {
+                         primcod = cont.ToString();
+                     }*/
+                    usable = true;
+                    for (contacolor = 1; contacolor <= cantcolor; contacolor++)
+                    {
+                        if (contacolor < 10)
+                        {
+                            colcod = "00" + contacolor.ToString();
+                        }
+                        else if (contacolor < 100)
+                        {
+                            colcod = "0" + contacolor.ToString();
+                        }
+                        else
+                        {
+                            colcod = contacolor.ToString();
+                        }
+                        caract = "R" + primcod +"-"+ colcod;
+
+                        if (existecod(caract))
+                        {
+                            cod = "R" + primcod;
+                            usable = false;
+                            break;
+                        }
+                        cod = "R" + primcod;
+                    }
+                    if (usable)
+                    {
+                        break;
+                    }
+                }
+
+               /* if (datos.Rows[0][0] != DBNull.Value)
                 {
                     int num= Int32.Parse(datos.Rows[0][0].ToString());
                     num += 1;
@@ -148,7 +203,7 @@ namespace Venta.Clases
                 else
                 {
                     cod = "R1";
-                }
+                }*/ 
             }
             return cod;
         }
@@ -492,6 +547,21 @@ namespace Venta.Clases
                 id = datos.Rows[0][0].ToString();
             }
             return id.ToString();
+        }
+
+        private bool existecod(string codigo)
+        {
+            string consulta="select * from producto where id_prod='"+codigo+"'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows.Count > 0)
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+
         }
         #region "Datos de productos"
         
