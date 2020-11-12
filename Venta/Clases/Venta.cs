@@ -217,6 +217,7 @@ namespace Venta.Clases
             {
                 Reportes.FactDet Deta = new Reportes.FactDet();
                 Deta.Numero = cont +1;
+                Deta.codigo = datos.Rows[cont][0].ToString();
                 Deta.descripcion =datos .Rows[cont][1].ToString () +" - " + datos.Rows[cont][2].ToString() + " - "+datos.Rows[cont][3].ToString() + " - "+datos.Rows[cont][4].ToString() +" - " + datos.Rows[cont][5].ToString();
                 Deta.cantidad = Int32.Parse(datos.Rows[cont][6].ToString());
                 Deta.precio = decimal.Parse(datos.Rows[cont][7].ToString());
@@ -257,7 +258,7 @@ namespace Venta.Clases
             Reportes.FactEnc Encab = new Reportes.FactEnc();
             DataTable datos = new DataTable();
             DataTable encabe = new DataTable();
-            string ConsulDat = "SELECT Concat(p.nombre,' - ',e.ESTILO,' - ',t.TIPO,' - ',c.COLOR,' - Talla: ',p.TALLA) AS nombre,vd.cantidad,vd.precio,vd.total FROM venta_detalle vd " +
+            string ConsulDat = "SELECT Concat(p.nombre,' - ',e.ESTILO,' - ',t.TIPO,' - ',c.COLOR,' - Talla: ',p.TALLA) AS nombre,vd.cantidad,vd.precio,vd.total,p.id_prod FROM venta_detalle vd " +
                                "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD " +
                                "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
                                "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
@@ -281,6 +282,7 @@ namespace Venta.Clases
             {
                 Reportes.FactDet Deta = new Reportes.FactDet();
                 Deta.Numero = cont + 1;
+                Deta.codigo = datos.Rows[cont][4].ToString();
                 Deta.descripcion = datos.Rows[cont][0].ToString();
                 Deta.cantidad = int.Parse(datos.Rows[cont][1].ToString());
                 Deta.precio = decimal.Parse(datos.Rows[cont][2].ToString());
@@ -306,7 +308,7 @@ namespace Venta.Clases
         }
         public void ventasD(string fechini, string fechaFin)
         {
-            string consulta = "SELECT V.id_venta, Concat(p.nombre, ' - ', e.ESTILO, ' - ', t.TIPO, ' - ', c.COLOR, ' - Talla: ', p.TALLA) AS nombre, vd.cantidad,vd.precio,vd.total,Date_format(v.FECHA,'%d/%m/%Y') " +
+            string consulta = "SELECT V.id_venta, Concat(p.nombre, ' - ', e.ESTILO, ' - ', t.TIPO, ' - ', c.COLOR, ' - Talla: ', p.TALLA) AS nombre, vd.cantidad,vd.precio,vd.total,Date_format(v.FECHA,'%d/%m/%Y'), p.id_prod " +
                                "FROM venta v "+
                                "INNER JOIN venta_detalle vd ON vd.ID_VENTA = v.ID_VENTA "+
                                "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD "+
@@ -325,6 +327,7 @@ namespace Venta.Clases
             for (cont = 0; cont < cant; cont++)
             {
                 Reportes.VentasD ven = new Reportes.VentasD();
+                ven.codigo = datos.Rows[cont][6].ToString();
                 ven.venta = int.Parse(datos.Rows[cont][0].ToString());
                 ven.producto = datos.Rows[cont][1].ToString();
                 ven.cantidad = int.Parse(datos.Rows[cont][2].ToString());
@@ -403,7 +406,7 @@ namespace Venta.Clases
             DataTable data = new DataTable();
             string consultaV = "SELECT id_vendedor,id_cli,Date_format(fecha,'%d/%M/%y %H:%m:%s'),tipo FROM venta " +
                               "WHERE id_venta =" + idv;
-            string ConsutaDet = "SELECT Concat(p.nombre,' - ',e.estilo,' - ',t.tipo,' - ',c.color,' - ',p.talla) AS nombre,vd.cantidad,vd.precio,vd.total "+
+            string ConsutaDet = "SELECT Concat(p.nombre,' - ',e.estilo,' - ',t.tipo,' - ',c.color,' - ',p.talla) AS nombre,vd.cantidad,vd.precio,vd.total,p.id_prod "+
                                 "FROM venta_detalle vd "+
                                 "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD "+
                                 "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
@@ -428,6 +431,7 @@ namespace Venta.Clases
             {
                 Reportes.FactDet Deta = new Reportes.FactDet();
                 Deta.Numero = cont + 1;
+                Deta.codigo = detalle.Rows[cont][4].ToString();
                 Deta.descripcion = detalle.Rows[cont][0].ToString() ;
                 Deta.cantidad = Int32.Parse(detalle.Rows[cont][1].ToString());
                 Deta.precio = decimal.Parse(detalle.Rows[cont][2].ToString());
