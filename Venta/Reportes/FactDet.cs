@@ -8,9 +8,10 @@ namespace Venta.Reportes
 {
     class FactDet
     {
-    public int Numero{get;set;}
-    public string descripcion { get; set; }
-public int cantidad { get; set; }
+        public string codigo { get; set; }
+        public int Numero{get;set;}
+        public string descripcion { get; set; }
+        public int cantidad { get; set; }
         public decimal precio { get; set; }
         public decimal total { get; set; }
         

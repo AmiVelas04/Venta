@@ -24,7 +24,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>1.94536cm</Top>
-        <Left>4.44183cm</Left>
+        <Left>4.70641cm</Left>
         <Height>0.62646cm</Height>
         <Width>9.70958cm</Width>
         <Style>
@@ -65,7 +65,7 @@
         </Paragraphs>
         <rd:DefaultName>fecha</rd:DefaultName>
         <Top>2.71293cm</Top>
-        <Left>7.14057cm</Left>
+        <Left>7.1087cm</Left>
         <Height>0.6cm</Height>
         <Width>4.77542cm</Width>
         <ZIndex>1</ZIndex>
@@ -83,10 +83,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
+              <Width>1.75917cm</Width>
+            </TablixColumn>
+            <TablixColumn>
               <Width>1.865cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>11.36354cm</Width>
+              <Width>8.86354cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -101,6 +104,42 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Textbox1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>No.</Value>
+                              <Style>
+                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="Textbox5">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -108,7 +147,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Numero</Value>
+                              <Value>Código</Value>
                               <Style>
                                 <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -250,6 +289,42 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=RowNumber("Detalle")</Value>
+                              <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="cod">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -258,7 +333,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!cod.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -290,7 +367,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!descripcion.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -321,6 +400,7 @@
                             <TextRun>
                               <Value>=Fields!precio.Value</Value>
                               <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
                                 <Format>'Q'0.00</Format>
                               </Style>
                             </TextRun>
@@ -355,7 +435,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!cantidad.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -387,6 +469,7 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -403,7 +486,7 @@
         <Top>3.48932cm</Top>
         <Left>0.92287cm</Left>
         <Height>1.2cm</Height>
-        <Width>18.22854cm</Width>
+        <Width>17.48771cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>

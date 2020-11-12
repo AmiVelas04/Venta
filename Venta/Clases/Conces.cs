@@ -179,6 +179,7 @@ namespace Venta.Clases
             {
                 Reportes.ConceDet Det = new Reportes.ConceDet();
                 Det.Numero = cont + 1;
+                Det.cod = datos.Rows[cont][0].ToString();
                 Det.descripcion = datos.Rows[cont][1].ToString() + "  " + datos.Rows[cont][2].ToString() + "  " + datos.Rows[cont][3].ToString() + "  " + datos.Rows[cont][4].ToString();
                 Det.cantidad =int.Parse( datos.Rows[cont][6].ToString());
                 Det.precio = decimal.Parse(datos.Rows[cont][7].ToString());
@@ -201,7 +202,7 @@ namespace Venta.Clases
             string concon = "SELECT id_vende,id_cliente,fecha,estado "+
                             "FROM concesion "+
                             "WHERE id_conc ="+idc;
-            string condet = "SELECT Concat(p.nombre,' - ',e.estilo,' - ',t.tipo,' - ',c.color,' - ',p.talla) AS nombre,cd.cantidad,cd.precio,cd.total "+
+            string condet = "SELECT Concat(p.nombre,' - ',e.estilo,' - ',t.tipo,' - ',c.color,' - ',p.talla) AS nombre,cd.cantidad,cd.precio,cd.total,p.id_prod "+
                             "FROM conce_detalle cd "+
                             "INNER JOIN producto p ON p.ID_PROD = cd.ID_PROD "+
                             "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
@@ -225,6 +226,7 @@ namespace Venta.Clases
             {
                 Reportes.ConceDet Det = new Reportes.ConceDet();
                 Det.Numero = cont + 1;
+                Det.cod = ConcDet.Rows[cont][4].ToString();
                 Det.descripcion = ConcDet.Rows[cont][0].ToString() ;
                 Det.cantidad = int.Parse(ConcDet.Rows[cont][1].ToString());
                 Det.precio = decimal.Parse(ConcDet.Rows[cont][2].ToString());

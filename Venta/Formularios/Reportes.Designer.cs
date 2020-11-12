@@ -95,7 +95,7 @@
             // 
             // BtnConteo
             // 
-            this.BtnConteo.Location = new System.Drawing.Point(222, 69);
+            this.BtnConteo.Location = new System.Drawing.Point(190, 70);
             this.BtnConteo.Name = "BtnConteo";
             this.BtnConteo.Size = new System.Drawing.Size(154, 56);
             this.BtnConteo.TabIndex = 3;

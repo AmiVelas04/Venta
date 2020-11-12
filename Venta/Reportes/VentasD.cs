@@ -8,6 +8,7 @@ namespace Venta.Reportes
 {
     class VentasD
     {
+        public string codigo {get;set;}
         public int venta { get; set; }
         public int venta_detalle { get; set; }
         public string producto { get; set; }

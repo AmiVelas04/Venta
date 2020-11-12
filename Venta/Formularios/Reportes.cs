@@ -23,7 +23,7 @@ namespace Venta.Formularios
         private void BtnInventario_Click(object sender, EventArgs e)
         {
             prod.inventario();
-                    }
+        }
 
         private void BtnVenta_Click(object sender, EventArgs e)
         {

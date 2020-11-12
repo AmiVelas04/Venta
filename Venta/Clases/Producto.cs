@@ -719,7 +719,7 @@ namespace Venta.Clases
         public void inventario()
         {
             DataTable datos = new DataTable();
-            string consulta = "SELECT p.Nombre,t.tipo,e.estilo,c.color, p.talla, p.cantidad, p.precio_cost,p.imagen FROM producto p "+
+            string consulta = "SELECT p.Nombre,t.tipo,e.estilo,c.color, p.talla, p.cantidad, p.precio_cost,p.imagen,p.id_prod FROM producto p "+
                                 "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO "+
                                 "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
                                 "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR";
@@ -737,7 +737,8 @@ namespace Venta.Clases
                 produ.Talla= datos.Rows[cont][4].ToString();
                 produ.cantidad= int.Parse(datos.Rows[cont][5].ToString());
                 produ.precio= decimal.Parse(datos.Rows[cont][6].ToString());
-                produ.imagen=@""+Application.StartupPath + @"\imagen\"+ datos.Rows[cont][7].ToString();
+                produ.imagen= datos.Rows[cont][8].ToString();
+                //produ.imagen=@""+Application.StartupPath + @"\imagen\"+ datos.Rows[cont][7].ToString();
                 Encab.Prod.Add(produ);
             }
             Reportes.Inventario inven = new Reportes.Inventario();
