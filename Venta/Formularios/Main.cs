@@ -26,6 +26,8 @@ namespace Venta.Formularios
             InitializeComponent();
         }
 
+       
+
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -61,6 +63,7 @@ namespace Venta.Formularios
         private void Main_Load(object sender, EventArgs e)
         {
             LblUsu.Text = nombrev;
+            BtnVent.Focus();
             if (nivel.Equals("3"))
             {
                 BtnProd.Visible = false;
@@ -113,6 +116,124 @@ namespace Venta.Formularios
         {
             Respaldo Guardar = new Respaldo();
             Guardar.ShowDialog();
+        }
+
+        private void BtnVenta_Enter(object sender, EventArgs e)
+        {
+            this.BtnVenta.BackColor = Color.FromArgb(255, 30, 86);
+           this.BtnCaja.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnVent.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnProd.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCliente.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCreditos.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCencesion.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnReportes.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnResp.BackColor = Color.FromArgb(255, 172, 65);
+            
+        }
+
+        private void BtnCaja_Enter(object sender, EventArgs e)
+        {
+            this.BtnVenta.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCaja.BackColor = Color.FromArgb(255, 30, 86);
+            this.BtnVent.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnProd.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCliente.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCreditos.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCencesion.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnReportes.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnResp.BackColor = Color.FromArgb(255, 172, 65);
+        }
+
+        private void BtnVent_Enter(object sender, EventArgs e)
+        {
+            this.BtnVenta.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCaja.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnVent.BackColor = Color.FromArgb(255, 30, 86);
+            this.BtnProd.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCliente.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCreditos.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCencesion.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnReportes.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnResp.BackColor = Color.FromArgb(255, 172, 65);
+        }
+
+        private void BtnProd_Enter(object sender, EventArgs e)
+        {
+            this.BtnVenta.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCaja.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnVent.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnProd.BackColor = Color.FromArgb(255, 30, 86);
+            this.BtnCliente.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCreditos.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCencesion.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnReportes.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnResp.BackColor = Color.FromArgb(255, 172, 65);
+        }
+
+        private void BtnCliente_Enter(object sender, EventArgs e)
+        {
+            this.BtnVenta.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCaja.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnVent.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnProd.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCliente.BackColor = Color.FromArgb(255, 30, 86);
+            this.BtnCreditos.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCencesion.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnReportes.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnResp.BackColor = Color.FromArgb(255, 172, 65);
+        }
+
+        private void BtnCreditos_Enter(object sender, EventArgs e)
+        {
+            this.BtnVenta.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCaja.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnVent.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnProd.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCliente.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCreditos.BackColor = Color.FromArgb(255, 30, 86);
+            this.BtnCencesion.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnReportes.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnResp.BackColor = Color.FromArgb(255, 172, 65);
+        }
+
+        private void BtnCencesion_Enter(object sender, EventArgs e)
+        {
+            this.BtnVenta.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCaja.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnVent.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnProd.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCliente.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCreditos.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCencesion.BackColor = Color.FromArgb(255, 30, 86);
+            this.BtnReportes.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnResp.BackColor = Color.FromArgb(255, 172, 65);
+        }
+
+        private void BtnReportes_Enter(object sender, EventArgs e)
+        {
+            this.BtnVenta.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCaja.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnVent.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnProd.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCliente.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCreditos.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCencesion.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnReportes.BackColor = Color.FromArgb(255, 30, 86);
+            this.BtnResp.BackColor = Color.FromArgb(255, 172, 65);
+        }
+
+        private void BtnResp_Enter(object sender, EventArgs e)
+        {
+            this.BtnVenta.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCaja.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnVent.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnProd.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCliente.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCreditos.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnCencesion.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnReportes.BackColor = Color.FromArgb(255, 172, 65);
+            this.BtnResp.BackColor = Color.FromArgb(255, 30, 86);
         }
     }
 }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PanLat = new System.Windows.Forms.Panel();
+            this.BtnResp = new System.Windows.Forms.Button();
             this.BtnVent = new System.Windows.Forms.Button();
             this.BtnCaja = new System.Windows.Forms.Button();
             this.BtnReportes = new System.Windows.Forms.Button();
@@ -43,7 +44,6 @@
             this.LblUsu = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.PanCentral = new System.Windows.Forms.Panel();
-            this.BtnResp = new System.Windows.Forms.Button();
             this.PanLat.SuspendLayout();
             this.PanSup.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +66,24 @@
             this.PanLat.Size = new System.Drawing.Size(134, 680);
             this.PanLat.TabIndex = 0;
             // 
+            // BtnResp
+            // 
+            this.BtnResp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnResp.FlatAppearance.BorderSize = 0;
+            this.BtnResp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnResp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnResp.Image = ((System.Drawing.Image)(resources.GetObject("BtnResp.Image")));
+            this.BtnResp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnResp.Location = new System.Drawing.Point(8, 637);
+            this.BtnResp.Name = "BtnResp";
+            this.BtnResp.Size = new System.Drawing.Size(120, 40);
+            this.BtnResp.TabIndex = 8;
+            this.BtnResp.Text = "Respaldo";
+            this.BtnResp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnResp.UseVisualStyleBackColor = false;
+            this.BtnResp.Click += new System.EventHandler(this.BtnResp_Click);
+            this.BtnResp.Enter += new System.EventHandler(this.BtnResp_Enter);
+            // 
             // BtnVent
             // 
             this.BtnVent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
@@ -75,10 +93,11 @@
             this.BtnVent.Location = new System.Drawing.Point(8, 195);
             this.BtnVent.Name = "BtnVent";
             this.BtnVent.Size = new System.Drawing.Size(120, 40);
-            this.BtnVent.TabIndex = 7;
+            this.BtnVent.TabIndex = 2;
             this.BtnVent.Text = "Revisar Ventas";
             this.BtnVent.UseVisualStyleBackColor = false;
             this.BtnVent.Click += new System.EventHandler(this.BtnVent_Click);
+            this.BtnVent.Enter += new System.EventHandler(this.BtnVent_Enter);
             // 
             // BtnCaja
             // 
@@ -89,10 +108,11 @@
             this.BtnCaja.Location = new System.Drawing.Point(8, 139);
             this.BtnCaja.Name = "BtnCaja";
             this.BtnCaja.Size = new System.Drawing.Size(120, 40);
-            this.BtnCaja.TabIndex = 6;
+            this.BtnCaja.TabIndex = 1;
             this.BtnCaja.Text = "Caja";
             this.BtnCaja.UseVisualStyleBackColor = false;
             this.BtnCaja.Click += new System.EventHandler(this.BtnCaja_Click);
+            this.BtnCaja.Enter += new System.EventHandler(this.BtnCaja_Enter);
             // 
             // BtnReportes
             // 
@@ -103,10 +123,11 @@
             this.BtnReportes.Location = new System.Drawing.Point(8, 484);
             this.BtnReportes.Name = "BtnReportes";
             this.BtnReportes.Size = new System.Drawing.Size(120, 40);
-            this.BtnReportes.TabIndex = 5;
+            this.BtnReportes.TabIndex = 7;
             this.BtnReportes.Text = "Reportes";
             this.BtnReportes.UseVisualStyleBackColor = false;
             this.BtnReportes.Click += new System.EventHandler(this.BtnReportes_Click);
+            this.BtnReportes.Enter += new System.EventHandler(this.BtnReportes_Enter);
             // 
             // BtnCencesion
             // 
@@ -117,10 +138,11 @@
             this.BtnCencesion.Location = new System.Drawing.Point(8, 426);
             this.BtnCencesion.Name = "BtnCencesion";
             this.BtnCencesion.Size = new System.Drawing.Size(120, 40);
-            this.BtnCencesion.TabIndex = 4;
+            this.BtnCencesion.TabIndex = 6;
             this.BtnCencesion.Text = "Concesion";
             this.BtnCencesion.UseVisualStyleBackColor = false;
             this.BtnCencesion.Click += new System.EventHandler(this.BtnCencesion_Click);
+            this.BtnCencesion.Enter += new System.EventHandler(this.BtnCencesion_Enter);
             // 
             // BtnCreditos
             // 
@@ -131,10 +153,11 @@
             this.BtnCreditos.Location = new System.Drawing.Point(8, 369);
             this.BtnCreditos.Name = "BtnCreditos";
             this.BtnCreditos.Size = new System.Drawing.Size(120, 40);
-            this.BtnCreditos.TabIndex = 3;
+            this.BtnCreditos.TabIndex = 5;
             this.BtnCreditos.Text = "Creditos";
             this.BtnCreditos.UseVisualStyleBackColor = false;
             this.BtnCreditos.Click += new System.EventHandler(this.BtnCreditos_Click);
+            this.BtnCreditos.Enter += new System.EventHandler(this.BtnCreditos_Enter);
             // 
             // BtnCliente
             // 
@@ -145,10 +168,11 @@
             this.BtnCliente.Location = new System.Drawing.Point(8, 314);
             this.BtnCliente.Name = "BtnCliente";
             this.BtnCliente.Size = new System.Drawing.Size(120, 40);
-            this.BtnCliente.TabIndex = 2;
+            this.BtnCliente.TabIndex = 4;
             this.BtnCliente.Text = "Cliente";
             this.BtnCliente.UseVisualStyleBackColor = false;
             this.BtnCliente.Click += new System.EventHandler(this.BtnCliente_Click);
+            this.BtnCliente.Enter += new System.EventHandler(this.BtnCliente_Enter);
             // 
             // BtnProd
             // 
@@ -159,10 +183,11 @@
             this.BtnProd.Location = new System.Drawing.Point(8, 252);
             this.BtnProd.Name = "BtnProd";
             this.BtnProd.Size = new System.Drawing.Size(120, 40);
-            this.BtnProd.TabIndex = 1;
+            this.BtnProd.TabIndex = 3;
             this.BtnProd.Text = "Productos";
             this.BtnProd.UseVisualStyleBackColor = false;
             this.BtnProd.Click += new System.EventHandler(this.BtnProd_Click);
+            this.BtnProd.Enter += new System.EventHandler(this.BtnProd_Enter);
             // 
             // BtnVenta
             // 
@@ -177,6 +202,7 @@
             this.BtnVenta.Text = "Ventas";
             this.BtnVenta.UseVisualStyleBackColor = false;
             this.BtnVenta.Click += new System.EventHandler(this.BtnVenta_Click);
+            this.BtnVenta.Enter += new System.EventHandler(this.BtnVenta_Enter);
             // 
             // PanSup
             // 
@@ -233,23 +259,6 @@
             this.PanCentral.Name = "PanCentral";
             this.PanCentral.Size = new System.Drawing.Size(1146, 629);
             this.PanCentral.TabIndex = 2;
-            // 
-            // BtnResp
-            // 
-            this.BtnResp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
-            this.BtnResp.FlatAppearance.BorderSize = 0;
-            this.BtnResp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnResp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnResp.Image = ((System.Drawing.Image)(resources.GetObject("BtnResp.Image")));
-            this.BtnResp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnResp.Location = new System.Drawing.Point(8, 637);
-            this.BtnResp.Name = "BtnResp";
-            this.BtnResp.Size = new System.Drawing.Size(120, 40);
-            this.BtnResp.TabIndex = 8;
-            this.BtnResp.Text = "Respaldo";
-            this.BtnResp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnResp.UseVisualStyleBackColor = false;
-            this.BtnResp.Click += new System.EventHandler(this.BtnResp_Click);
             // 
             // Main
             // 
