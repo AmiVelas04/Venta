@@ -68,6 +68,8 @@
             this.PanCentral = new System.Windows.Forms.Panel();
             this.DgvProd = new System.Windows.Forms.DataGridView();
             this.PanelInf = new System.Windows.Forms.Panel();
+            this.LblCantprod = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.BtnBorrar = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.TxtMonto = new System.Windows.Forms.TextBox();
@@ -226,6 +228,8 @@
             this.CboPrecio.Name = "CboPrecio";
             this.CboPrecio.Size = new System.Drawing.Size(121, 23);
             this.CboPrecio.TabIndex = 18;
+            this.CboPrecio.SelectionChangeCommitted += new System.EventHandler(this.CboPrecio_SelectionChangeCommitted);
+            this.CboPrecio.Enter += new System.EventHandler(this.CboPrecio_Enter);
             // 
             // label11
             // 
@@ -381,6 +385,7 @@
             0,
             0,
             0});
+            this.NudCant.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NudCant_KeyDown);
             // 
             // CboProd
             // 
@@ -521,6 +526,8 @@
             // 
             this.DgvProd.AllowUserToAddRows = false;
             this.DgvProd.AllowUserToDeleteRows = false;
+            this.DgvProd.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.DgvProd.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.DgvProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvProd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvProd.Location = new System.Drawing.Point(0, 77);
@@ -533,6 +540,8 @@
             // 
             // PanelInf
             // 
+            this.PanelInf.Controls.Add(this.LblCantprod);
+            this.PanelInf.Controls.Add(this.label16);
             this.PanelInf.Controls.Add(this.BtnBorrar);
             this.PanelInf.Controls.Add(this.label14);
             this.PanelInf.Controls.Add(this.TxtMonto);
@@ -546,6 +555,26 @@
             this.PanelInf.Name = "PanelInf";
             this.PanelInf.Size = new System.Drawing.Size(774, 97);
             this.PanelInf.TabIndex = 1;
+            // 
+            // LblCantprod
+            // 
+            this.LblCantprod.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCantprod.Location = new System.Drawing.Point(443, 52);
+            this.LblCantprod.Name = "LblCantprod";
+            this.LblCantprod.Size = new System.Drawing.Size(91, 36);
+            this.LblCantprod.TabIndex = 11;
+            this.LblCantprod.Text = "Precio";
+            this.LblCantprod.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(303, 52);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(152, 40);
+            this.label16.TabIndex = 10;
+            this.label16.Text = "Total Prods:";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnBorrar
             // 
@@ -565,9 +594,9 @@
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(304, 9);
+            this.label14.Location = new System.Drawing.Point(303, 15);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(105, 67);
+            this.label14.Size = new System.Drawing.Size(105, 40);
             this.label14.TabIndex = 8;
             this.label14.Text = "Total:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -583,9 +612,9 @@
             // LblTotal
             // 
             this.LblTotal.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotal.Location = new System.Drawing.Point(401, 10);
+            this.LblTotal.Location = new System.Drawing.Point(401, 17);
             this.LblTotal.Name = "LblTotal";
-            this.LblTotal.Size = new System.Drawing.Size(167, 67);
+            this.LblTotal.Size = new System.Drawing.Size(167, 36);
             this.LblTotal.TabIndex = 6;
             this.LblTotal.Text = "Precio";
             this.LblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -834,5 +863,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.CheckBox ChkNvoCli;
         private System.Windows.Forms.Button BtnBorrar;
+        private System.Windows.Forms.Label LblCantprod;
+        private System.Windows.Forms.Label label16;
     }
 }

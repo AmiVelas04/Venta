@@ -54,7 +54,7 @@
             this.BtnIniciar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnIniciar.Name = "BtnIniciar";
             this.BtnIniciar.Size = new System.Drawing.Size(140, 39);
-            this.BtnIniciar.TabIndex = 0;
+            this.BtnIniciar.TabIndex = 3;
             this.BtnIniciar.Text = "Iniciar";
             this.BtnIniciar.UseVisualStyleBackColor = false;
             this.BtnIniciar.Click += new System.EventHandler(this.button1_Click);
@@ -78,7 +78,8 @@
             this.BtnCerrar.Location = new System.Drawing.Point(219, 3);
             this.BtnCerrar.Name = "BtnCerrar";
             this.BtnCerrar.Size = new System.Drawing.Size(56, 49);
-            this.BtnCerrar.TabIndex = 0;
+            this.BtnCerrar.TabIndex = 9;
+            this.BtnCerrar.TabStop = false;
             this.BtnCerrar.UseVisualStyleBackColor = true;
             this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
@@ -99,7 +100,7 @@
             this.TxtUsu.Location = new System.Drawing.Point(42, 92);
             this.TxtUsu.Name = "TxtUsu";
             this.TxtUsu.Size = new System.Drawing.Size(192, 22);
-            this.TxtUsu.TabIndex = 3;
+            this.TxtUsu.TabIndex = 1;
             this.TxtUsu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
@@ -120,8 +121,9 @@
             this.TxtPass.Name = "TxtPass";
             this.TxtPass.PasswordChar = '*';
             this.TxtPass.Size = new System.Drawing.Size(192, 22);
-            this.TxtPass.TabIndex = 5;
+            this.TxtPass.TabIndex = 2;
             this.TxtPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPass_KeyDown);
             // 
             // Login
             // 
