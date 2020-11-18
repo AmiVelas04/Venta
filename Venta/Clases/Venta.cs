@@ -315,7 +315,7 @@ namespace Venta.Clases
                                "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
                                "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO "+
                                "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR "+
-                               "WHERE v.FECHA >= '"+fechini+"' AND v.FECHA <= '"+fechaFin+"'";
+                               "WHERE v.FECHA >= '"+fechini+"' AND v.FECHA <= '"+fechaFin+"' and Estado='Cancelado'";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             int cont, cant;
@@ -350,7 +350,7 @@ namespace Venta.Clases
             f2 = fecha + " 23:59:59";
             string consulta = "SELECT id_venta " +
                              "FROM venta " +
-                             "WHERE fecha>='"+f1+"' and fecha<='"+f2+"'";
+                             "WHERE fecha>='"+f1+"' and fecha<='"+f2+"' and Estado= 'Cancelado'";
             return buscar(consulta);
         }
         public DataTable ListVenFech(string fecha)
@@ -456,7 +456,7 @@ namespace Venta.Clases
             fechaf = fechaf + " 23:59:59";
             string Consulta= "SELECT DATE_FORMAT(v.fecha,'%Y/%m/%d') AS Fecha1, DATE_FORMAT(v.fecha,'%d/%m/%Y') AS Fecha2 "+
                               "FROM venta v "+
-                              "WHERE v.FECHA >= '"+Fechai+"' AND fecha <= '"+fechaf+"' "+
+                              "WHERE v.FECHA >= '"+Fechai+"' AND fecha <= '"+fechaf+ "' and estado!='Anulado' and estado!='Retorno' " +
                               "GROUP BY Fecha1";
             datos = buscar(Consulta);
             int cant, cont;
@@ -495,7 +495,7 @@ namespace Venta.Clases
                              "FROM venta_detalle vd " +
                              "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD " +
                              "INNER JOIN venta v ON v.ID_VENTA = vd.ID_VENTA " +
-                             "WHERE v.Fecha>='"+fechai+"' and v.fecha<='"+fechaf+"'"+
+                             "WHERE v.Fecha>='"+fechai+"' and v.fecha<='"+fechaf+ "' and estado!='Anulado' and estado!='Retorno' " +
                              "GROUP BY vd.ID_DETALLE";
             datos = buscar(consulta);
             decimal total = 0;
@@ -518,7 +518,7 @@ namespace Venta.Clases
                               "FROM venta_detalle vd " +
                               "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD " +
                               "INNER JOIN venta v ON v.ID_VENTA = vd.ID_VENTA " +
-                              "WHERE v.FECHA >= '"+fechai+"' AND v.fecha <= '"+fechaf+"' " +
+                              "WHERE v.FECHA >= '"+fechai+"' AND v.fecha <= '"+fechaf+ "' and estado!='Anulado' and estado!='Retorno'  " +
                               "GROUP BY v.FECHA";
             datos = buscar(consulta);
             decimal total = 0;
