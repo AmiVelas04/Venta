@@ -43,7 +43,7 @@ namespace Venta.Formularios
             CboCli.AutoCompleteCustomSource = coleccion;
             CboCli.AutoCompleteMode = AutoCompleteMode.Suggest;
             CboCli.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            if (datos.Rows.Count>0)  CboCli.SelectedIndex = 0;
+            if (datos.Rows.Count > 0) CboCli.SelectedIndex = 0;
         }
 
         private void CboCli_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace Venta.Formularios
 
         private void limpiarconce()
         {
-            int cont,total = CboConce.Items.Count;
+            int cont, total = CboConce.Items.Count;
 
             for (cont = 0; cont < total; cont++)
             {
@@ -88,15 +88,15 @@ namespace Venta.Formularios
             DataTable datos = new DataTable();
             datos = Conce.ProdConce(CboConce.Text);
             DgvProd.DataSource = datos;
-            int total= datos.Rows .Count, cont;
+            int total = datos.Rows.Count, cont;
             if (total > 0)
             {
-                decimal ValorTot=0;
+                decimal ValorTot = 0;
                 for (cont = 0; cont < total; cont++)
                 {
-                    ValorTot += decimal.Parse(datos .Rows[cont][7].ToString ());
+                    ValorTot += decimal.Parse(datos.Rows[cont][7].ToString());
                 }
-                TxtTotal.Text = ValorTot.ToString ();
+                TxtTotal.Text = ValorTot.ToString();
             }
         }
 
@@ -107,22 +107,22 @@ namespace Venta.Formularios
 
         private void vercant()
         {
-           
+
             int indice = DgvProd.CurrentRow.Index;
-            NudProd.Value = decimal.Parse(DgvProd.Rows [indice].Cells [5].ToString ());
+            NudProd.Value = decimal.Parse(DgvProd.Rows[indice].Cells[5].ToString());
         }
 
         private void calculartot()
         {
-            int total = DgvProd.RowCount, cont, cantp=0;
-            decimal precio = 0, todoven=0,TotGen=0;
+            int total = DgvProd.RowCount, cont, cantp = 0;
+            decimal precio = 0, todoven = 0, TotGen = 0;
             for (cont = 0; cont < total; cont++)
             {
-                cantp = int.Parse (DgvProd.Rows[cont].Cells[5].Value.ToString());
+                cantp = int.Parse(DgvProd.Rows[cont].Cells[5].Value.ToString());
                 precio = decimal.Parse(DgvProd.Rows[cont].Cells[6].Value.ToString());
                 todoven = cantp * precio;
                 TotGen += todoven;
-                DgvProd.Rows[cont].Cells[7].Value = Convert.ToString(todoven );
+                DgvProd.Rows[cont].Cells[7].Value = Convert.ToString(todoven);
             }
             TxtTotal.Text = TotGen.ToString();
         }
@@ -131,15 +131,22 @@ namespace Venta.Formularios
         {
             if (e.KeyCode == Keys.Return)
             {
-                int indice = DgvProd.CurrentRow.Index;
-                DgvProd.Rows[indice].Cells[5].Value = NudProd.Value;
+                cambiacant();
             }
             calculartot();
         }
 
+
+        private void cambiacant()
+        {
+            int indice = DgvProd.CurrentRow.Index;
+            DgvProd.Rows[indice].Cells[5].Value = NudProd.Value;
+
+        }
         private void BtnFacturar_Click(object sender, EventArgs e)
         {
             prepFact();
+            limpiardatos();
         }
 
         private void prepFact()
@@ -216,6 +223,27 @@ namespace Venta.Formularios
         {
             string idc= CboConce.Text;
             Conce.reimprimir(idc);
+        }
+
+        private void BtnCambaircant_Click(object sender, EventArgs e)
+        {
+            cambiacant();
+            calculartot();
+        }
+
+        private void limpiardatos()
+        {
+            while (DgvProd.RowCount > 0)
+            {
+                DgvProd.Rows.RemoveAt(0);
+            }
+            while (DgvProd.ColumnCount > 0)
+            {
+                DgvProd.Columns.RemoveAt(0);
+            }
+            
+            TxtTotal.Text = "0";
+            CargarCli();
         }
     }
 }

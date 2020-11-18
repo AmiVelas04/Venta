@@ -92,7 +92,7 @@ namespace Venta.Clases
             fechai = fecha + " 00:00:00";
             fechaf = fecha + " 23:59:59";
             string consulta = "Select Descripcion,Operacion,Monto,DATE_FORMAT(fecha,'%h:%i:%S') AS Hora from caja " +
-                              "where fecha>= '" + fechai + "' and fecha<='" + fechaf + "'";
+                              "where fecha>= '" + fechai + "' and fecha<='" + fechaf + "' and Operacion!='Cancelada'";
             return buscar(consulta);
         }
         public decimal Tentrada(string fecha)

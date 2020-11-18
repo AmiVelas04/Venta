@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Concesion));
             this.PanSup = new System.Windows.Forms.Panel();
             this.GbxConce = new System.Windows.Forms.GroupBox();
+            this.BtnImp = new System.Windows.Forms.Button();
             this.TxtTotal = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.CboConce = new System.Windows.Forms.ComboBox();
@@ -44,7 +45,7 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.PanMed = new System.Windows.Forms.Panel();
             this.DgvProd = new System.Windows.Forms.DataGridView();
-            this.BtnImp = new System.Windows.Forms.Button();
+            this.BtnCambaircant = new System.Windows.Forms.Button();
             this.PanSup.SuspendLayout();
             this.GbxConce.SuspendLayout();
             this.GbxCliente.SuspendLayout();
@@ -78,6 +79,19 @@
             this.GbxConce.TabIndex = 1;
             this.GbxConce.TabStop = false;
             this.GbxConce.Text = "Concesion";
+            // 
+            // BtnImp
+            // 
+            this.BtnImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnImp.Image")));
+            this.BtnImp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnImp.Location = new System.Drawing.Point(440, 38);
+            this.BtnImp.Name = "BtnImp";
+            this.BtnImp.Size = new System.Drawing.Size(133, 56);
+            this.BtnImp.TabIndex = 4;
+            this.BtnImp.Text = "Imprimir Concesion";
+            this.BtnImp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnImp.UseVisualStyleBackColor = true;
+            this.BtnImp.Click += new System.EventHandler(this.BtnImp_Click);
             // 
             // TxtTotal
             // 
@@ -147,6 +161,7 @@
             // 
             // PanInf
             // 
+            this.PanInf.Controls.Add(this.BtnCambaircant);
             this.PanInf.Controls.Add(this.NudProd);
             this.PanInf.Controls.Add(this.BtnFacturar);
             this.PanInf.Controls.Add(this.BtnEliminar);
@@ -218,18 +233,15 @@
             this.DgvProd.TabIndex = 0;
             this.DgvProd.Click += new System.EventHandler(this.DgvProd_Click);
             // 
-            // BtnImp
+            // BtnCambaircant
             // 
-            this.BtnImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnImp.Image")));
-            this.BtnImp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnImp.Location = new System.Drawing.Point(440, 38);
-            this.BtnImp.Name = "BtnImp";
-            this.BtnImp.Size = new System.Drawing.Size(133, 56);
-            this.BtnImp.TabIndex = 4;
-            this.BtnImp.Text = "Imprimir Concesion";
-            this.BtnImp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnImp.UseVisualStyleBackColor = true;
-            this.BtnImp.Click += new System.EventHandler(this.BtnImp_Click);
+            this.BtnCambaircant.Location = new System.Drawing.Point(427, 5);
+            this.BtnCambaircant.Name = "BtnCambaircant";
+            this.BtnCambaircant.Size = new System.Drawing.Size(98, 50);
+            this.BtnCambaircant.TabIndex = 5;
+            this.BtnCambaircant.Text = "Cambiar Cantidad";
+            this.BtnCambaircant.UseVisualStyleBackColor = true;
+            this.BtnCambaircant.Click += new System.EventHandler(this.BtnCambaircant_Click);
             // 
             // Concesion
             // 
@@ -277,5 +289,6 @@
         private System.Windows.Forms.NumericUpDown NudProd;
         private System.Windows.Forms.Button BtnEliminar;
         private System.Windows.Forms.Button BtnImp;
+        private System.Windows.Forms.Button BtnCambaircant;
     }
 }
