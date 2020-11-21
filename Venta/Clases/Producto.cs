@@ -396,7 +396,7 @@ namespace Venta.Clases
                              "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
                              "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                              "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
-                             "WHERE p.nombre LIKE '%" + nom + "%' OR e.estilo LIKE '%"+nom+"%' OR t.TIPO LIKE '%"+nom+"%' OR c.color LIKE '%"+nom+"%' OR p.TALLA LIKE '%"+nom+"%'";
+                             "WHERE p.id_prod like '%"+nom+"%' or p.nombre LIKE '%" + nom + "%' OR e.estilo LIKE '%"+nom+"%' OR t.TIPO LIKE '%"+nom+"%' OR c.color LIKE '%"+nom+"%' OR p.TALLA LIKE '%"+nom+"%'";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
@@ -408,7 +408,7 @@ namespace Venta.Clases
                                  "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
                                  "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                                  "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
-                                 "WHERE p.nombre LIKE '%" + nom + "%' and MateriaP=1";
+                                 "WHERE (p.id_prod like '%" + nom + "%' p.nombre LIKE '%" + nom + "%' OR e.estilo LIKE '%" + nom + "%' OR t.TIPO LIKE '%" + nom + "%' OR c.color LIKE '%" + nom + "%' OR p.TALLA LIKE '%" + nom + "%') and MateriaP =1";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
@@ -420,7 +420,7 @@ namespace Venta.Clases
                                  "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
                                  "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                                  "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
-                                 "WHERE p.nombre LIKE '%" + nom + "%' and materiaP=0";
+                                  "WHERE (p.id_prod like '%" + nom + "%' p.nombre LIKE '%" + nom + "%' OR e.estilo LIKE '%" + nom + "%' OR t.TIPO LIKE '%" + nom + "%' OR c.color LIKE '%" + nom + "%' OR p.TALLA LIKE '%" + nom + "%')  and materiaP=0";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;

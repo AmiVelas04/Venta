@@ -44,6 +44,7 @@
             this.LblUsu = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.PanCentral = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.PanLat.SuspendLayout();
             this.PanSup.SuspendLayout();
             this.SuspendLayout();
@@ -207,6 +208,7 @@
             // PanSup
             // 
             this.PanSup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(30)))), ((int)(((byte)(86)))));
+            this.PanSup.Controls.Add(this.label1);
             this.PanSup.Controls.Add(this.BtnMin);
             this.PanSup.Controls.Add(this.LblUsu);
             this.PanSup.Controls.Add(this.button1);
@@ -260,6 +262,17 @@
             this.PanCentral.Size = new System.Drawing.Size(1146, 629);
             this.PanCentral.TabIndex = 2;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(462, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(257, 39);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Tienda Central";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,5 +311,6 @@
         private System.Windows.Forms.Button BtnVent;
         private System.Windows.Forms.Button BtnMin;
         private System.Windows.Forms.Button BtnResp;
+        private System.Windows.Forms.Label label1;
     }
 }
