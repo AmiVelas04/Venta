@@ -321,7 +321,9 @@ namespace Venta.Formularios
             string MatP = "";
             if (RdbSi.Checked) { MatP = "1"; }
             else if (RdbNo.Checked) { MatP = "0"; }
-            if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
+
+            //if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
+            if (prod.hayprod(TxtCod.Text))
             {
                 string idp = prod.busc_codprod(Nomprod, idestilo, idtipo, idcolor, talla);
 
@@ -332,7 +334,7 @@ namespace Venta.Formularios
                     MessageBox.Show("Producto Actualizado correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PbxProd.InitialImage = null;
                     PbxProd.Image = null;
-                    ModifLista();
+                    if (DgvProd.Rows.Count>0) ModifLista();
                 }
                 else { MessageBox.Show("Error al actualizar", "revisar datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
