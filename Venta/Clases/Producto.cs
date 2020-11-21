@@ -310,10 +310,10 @@ namespace Venta.Clases
         }
         public bool ingreso_prod(string[] datos)
         {
-            string codpod="";
-            string est=datos[1];
-            string tipo= datos[2];
-            string color= datos[3];
+            string codpod = "";
+            string est = datos[1];
+            string tipo = datos[2];
+            string color = datos[3];
             string val;
             val = datos[10];
             //esta ingresado el estilo
@@ -321,7 +321,7 @@ namespace Venta.Clases
             {
                 if (datos[13] != "")
                 {
-                    est = ingreEstil(datos[13]).ToString ();
+                    est = ingreEstil(datos[13]).ToString();
                 }
             }
             //esta ingresado el tipo
@@ -330,7 +330,7 @@ namespace Venta.Clases
             {
                 if (datos[14] != "")
                 {
-                    tipo  = ingreTipo (datos[14]).ToString();
+                    tipo = ingreTipo(datos[14]).ToString();
                 }
             }
             //esta ingresado el color
@@ -342,7 +342,10 @@ namespace Venta.Clases
                     color = ingreColor(datos[15]).ToString();
                 }
             }
-            codpod =cod_prod(tipo,est,datos[4],datos[0]) + "-" + ConvCol(color);
+            //se cambio la busqueda del codigo del producto para las tiendas sucursales
+            codpod = datos[18];
+            //codpod=cod_prod(tipo,est,datos[4],datos[0]) + "-" + ConvCol(color);
+
             string nomcomp = datos[0] + est + tipo + color + datos[4];
             string imagen = revimagen(nomcomp, datos[12]);
             string consulta = "Insert into producto(id_prod,nombre,id_estilo,id_tipo,id_color,talla,cantidad,precio_cost,precio_m1,precio_m2,precio_v1,precio_v2,precio_v3,imagen,ubicacion,MATERIAP) " +

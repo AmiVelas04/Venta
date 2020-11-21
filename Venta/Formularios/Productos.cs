@@ -317,8 +317,9 @@ namespace Venta.Formularios
             }
             else
             {
+                string idp = "R"+TxtCod.Text;
                 imagen = OFD1.FileName;
-                string[] datosing = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, estilo, tipo, color, ubicacion, MatP };
+                string[] datosing = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, estilo, tipo, color, ubicacion, MatP,idp };
                 if (prod.ingreso_prod(datosing))
                 {
                     // MessageBox.Show("Producto ingresado correctamente");
