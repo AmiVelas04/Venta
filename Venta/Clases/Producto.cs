@@ -10,7 +10,7 @@ using MySql.Data.MySqlClient;
 using System.IO;
 namespace Venta.Clases
 {
-   
+
     class Producto
     {
         conexion conn = new conexion();
@@ -61,13 +61,13 @@ namespace Venta.Clases
         }
         #endregion
 
-        public bool prodexist(string nom,string est,string tip,string col,string tall)
+        public bool prodexist(string nom, string est, string tip, string col, string tall)
         {
-            string consulta = "Select count(*) from producto "+
-                              "where nombre='" + nom + "' and id_estilo=" + est + " and id_tipo=" + tip + " and id_color="+col +" and Talla='" + tall + "'" ;
+            string consulta = "Select count(*) from producto " +
+                              "where nombre='" + nom + "' and id_estilo=" + est + " and id_tipo=" + tip + " and id_color=" + col + " and Talla='" + tall + "'";
             DataTable datos = new DataTable();
-            datos = buscar(consulta );
-            if (datos.Rows[0][0].ToString ()== "0")
+            datos = buscar(consulta);
+            if (datos.Rows[0][0].ToString() == "0")
             {
                 return false;
             }
@@ -84,17 +84,17 @@ namespace Venta.Clases
             return buscar(consulta);
         }
 
-        public string busc_codprod(string nom,string est,string tip,string col,string tall)
+        public string busc_codprod(string nom, string est, string tip, string col, string tall)
         {
             string cod;
             string consulta = "Select id_prod from producto " +
                                "where nombre='" + nom + "' and id_estilo=" + est + " and id_tipo=" + tip + " and id_color=" + col + " and Talla='" + tall + "'";
-           DataTable datos = new DataTable();
+            DataTable datos = new DataTable();
             datos = buscar(consulta);
-            if (datos.Rows.Count >0)
+            if (datos.Rows.Count > 0)
             {
                 cod = (datos.Rows[0][0].ToString());
-               
+
             }
             else
             {
@@ -103,7 +103,19 @@ namespace Venta.Clases
             return cod;
 
         }
-
+        public bool hayprod(string cod)
+        {
+            string consulta;
+            bool resp;
+            DataTable datos = new DataTable();
+            consulta = "Select * from producto p where p.id_prod='" + cod + "'";
+            datos = buscar(consulta);
+            if (datos.Rows.Count > 0)
+            { resp = true; }
+            else
+                { resp = false; }
+            return resp;
+        }
         private int cant_prod(string cod)
         {
             int codigo;
