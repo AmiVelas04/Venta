@@ -37,8 +37,29 @@ namespace Venta.Formularios
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            guardar();
-            limpiar();
+
+            if (TxtCod.Text == "")
+            {
+                MessageBox.Show("¡No se ha ingresado el codigo del producto, porfavor ingrese un codigo valido!", "No codigo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                guardar();
+                limpiar();
+                /*string cod;
+                cod = TxtCod.Text;
+                cod = "R" + cod;
+                if (prod.hayprod(cod))
+                {
+                    MessageBox.Show("¡El codigo ingresado ya existe dentro del registro de productos, intente de nuevo!", "Codigo existente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                  
+                }*/
+            }
+
+            
         }
 
         private void TxtProdNom_TextChanged(object sender, EventArgs e)
@@ -300,7 +321,9 @@ namespace Venta.Formularios
             string MatP = "";
             if (RdbSi.Checked) { MatP = "1"; }
             else if (RdbNo.Checked) { MatP = "0"; }
-            if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
+
+            //if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
+            if (prod.hayprod("R"+TxtCod.Text))
             {
                 string idp = prod.busc_codprod(Nomprod, idestilo, idtipo, idcolor, talla);
 
@@ -317,8 +340,10 @@ namespace Venta.Formularios
             }
             else
             {
+                string idp = "R"+TxtCod.Text;
+                //Se ingresa directamente el codigo del producto para poder agregar producto ya existente en la tienda central
                 imagen = OFD1.FileName;
-                string[] datosing = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, estilo, tipo, color, ubicacion, MatP };
+                string[] datosing = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, estilo, tipo, color, ubicacion, MatP,idp };
                 if (prod.ingreso_prod(datosing))
                 {
                     // MessageBox.Show("Producto ingresado correctamente");
@@ -326,7 +351,7 @@ namespace Venta.Formularios
                 }
                 else
                 {
-                    MessageBox.Show("Error al ingresar producto", "revisar dartos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Error al ingresar producto", "revisar datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     //MessageBox.Show("Error al ingresar producto");
                 }
             }

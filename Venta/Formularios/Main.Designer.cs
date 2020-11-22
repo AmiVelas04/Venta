@@ -40,11 +40,11 @@
             this.BtnProd = new System.Windows.Forms.Button();
             this.BtnVenta = new System.Windows.Forms.Button();
             this.PanSup = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.BtnMin = new System.Windows.Forms.Button();
             this.LblUsu = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.PanCentral = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.PanLat.SuspendLayout();
             this.PanSup.SuspendLayout();
             this.SuspendLayout();
@@ -219,6 +219,17 @@
             this.PanSup.TabIndex = 1;
             this.PanSup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanSup_MouseDown);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(462, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(297, 39);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Sucursal Arcoiris";
+            // 
             // BtnMin
             // 
             this.BtnMin.FlatAppearance.BorderSize = 0;
@@ -261,17 +272,6 @@
             this.PanCentral.Name = "PanCentral";
             this.PanCentral.Size = new System.Drawing.Size(1146, 629);
             this.PanCentral.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(462, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(257, 39);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Tienda Central";
             // 
             // Main
             // 
