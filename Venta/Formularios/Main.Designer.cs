@@ -226,9 +226,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(462, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(297, 39);
+            this.label1.Size = new System.Drawing.Size(257, 39);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Sucursal Arcoiris";
+            this.label1.Text = "Tienda Central";
             // 
             // BtnMin
             // 
