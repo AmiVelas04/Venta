@@ -311,7 +311,7 @@ namespace Venta.Formularios
                     MessageBox.Show("Producto Actualizado correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PbxProd.InitialImage = null;
                     PbxProd.Image = null;
-                    ModifLista();
+                    if (DgvProd.Rows.Count>0) ModifLista();
                 }
                 else { MessageBox.Show("Error al actualizar", "revisar datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
