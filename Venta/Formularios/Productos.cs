@@ -323,7 +323,7 @@ namespace Venta.Formularios
             else if (RdbNo.Checked) { MatP = "0"; }
 
             //if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
-            if (prod.hayprod(TxtCod.Text))
+            if (prod.hayprod("R"+TxtCod.Text))
             {
                 string idp = prod.busc_codprod(Nomprod, idestilo, idtipo, idcolor, talla);
 
