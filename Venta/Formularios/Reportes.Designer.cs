@@ -47,6 +47,7 @@
             this.DtpIni = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.BtnRepconce = new System.Windows.Forms.Button();
             this.PanIz.SuspendLayout();
             this.GbxProd.SuspendLayout();
             this.GbxFaltantes.SuspendLayout();
@@ -163,6 +164,7 @@
             // 
             // GbxVentas
             // 
+            this.GbxVentas.Controls.Add(this.BtnRepconce);
             this.GbxVentas.Controls.Add(this.BtnGanacias);
             this.GbxVentas.Controls.Add(this.BtnSmp);
             this.GbxVentas.Controls.Add(this.BtnVenta);
@@ -194,7 +196,7 @@
             // 
             this.BtnSmp.Location = new System.Drawing.Point(396, 106);
             this.BtnSmp.Name = "BtnSmp";
-            this.BtnSmp.Size = new System.Drawing.Size(115, 53);
+            this.BtnSmp.Size = new System.Drawing.Size(126, 53);
             this.BtnSmp.TabIndex = 5;
             this.BtnSmp.Text = "Salida materia prima";
             this.BtnSmp.UseVisualStyleBackColor = true;
@@ -242,6 +244,16 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Fecha de inicio";
             // 
+            // BtnRepconce
+            // 
+            this.BtnRepconce.Location = new System.Drawing.Point(396, 193);
+            this.BtnRepconce.Name = "BtnRepconce";
+            this.BtnRepconce.Size = new System.Drawing.Size(126, 53);
+            this.BtnRepconce.TabIndex = 7;
+            this.BtnRepconce.Text = "Concesiones";
+            this.BtnRepconce.UseVisualStyleBackColor = true;
+            this.BtnRepconce.Click += new System.EventHandler(this.BtnRepconce_Click);
+            // 
             // Reportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -288,5 +300,6 @@
         private System.Windows.Forms.Button BtnSmp;
         private System.Windows.Forms.Button BtnGanacias;
         private System.Windows.Forms.Button BtnConteo;
+        private System.Windows.Forms.Button BtnRepconce;
     }
 }

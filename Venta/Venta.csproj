@@ -198,6 +198,12 @@
     </Compile>
     <Compile Include="Reportes\ConceDet.cs" />
     <Compile Include="Reportes\ConceEnc.cs" />
+    <Compile Include="Reportes\ConceRep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\ConceRep.Designer.cs">
+      <DependentUpon>ConceRep.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\Conces.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +333,10 @@
     <EmbeddedResource Include="Reportes\CantidadP.rdlc" />
     <EmbeddedResource Include="Reportes\CantidadP.resx">
       <DependentUpon>CantidadP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ConceRep.rdlc" />
+    <EmbeddedResource Include="Reportes\ConceRep.resx">
+      <DependentUpon>ConceRep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Conces.rdlc" />
     <EmbeddedResource Include="Reportes\Conces.resx">
