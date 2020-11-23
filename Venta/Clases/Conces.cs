@@ -245,5 +245,40 @@ namespace Venta.Clases
             return consulta_gen(consulta);
                 }
 
+        public void RepoConce(string Fechai, string fechaf)
+        {
+            DataTable datos = new DataTable();
+            Reportes.ConceEnc enca = new Reportes.ConceEnc();
+            enca.fecha = Fechai;
+            enca.tipo = fechaf;
+            enca.nombre = "Reporte de concesiones Activas";
+            string Consulta;
+            Fechai = Fechai + " 00:00:00";
+            fechaf = fechaf + " 23:59:59";
+            Consulta = "SELECT c.ID_CONC,  date_Format(c.FECHA,'%d/%m/%Y'), cli.NOMBRE, SUM(cd.Total) " +
+                       "FROM concesion c "+
+                       "INNER JOIN cliente cli ON cli.ID_CLIENTE = c.ID_CLIENTE "+
+                       "INNER JOIN conce_detalle cd ON cd.id_conc = c.ID_CONC "+
+                       "INNER JOIN producto p ON p.ID_PROD = cd.id_prod "+
+                       "WHERE c.FECHA >= '"+Fechai+"' AND c.FECHA <= '"+fechaf+"' AND c.ESTADO = 'Pendiente' "+
+                       "GROUP BY c.ID_CONC ";
+            datos = buscar(Consulta);
+            int cont,cant;
+            cant = datos.Rows.Count;
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.ConceDet deta = new Reportes.ConceDet();
+                deta.Numero =int.Parse(datos.Rows[cont][0].ToString());
+                deta.cod = datos.Rows[cont][1].ToString();
+                deta.descripcion = datos.Rows[cont][2].ToString();
+                deta.total = decimal.Parse(datos.Rows[cont][3].ToString());
+                enca.Detalle.Add(deta);
+            }
+            Reportes.ConceRep Repor = new Reportes.ConceRep();
+            Repor.Detalle = enca.Detalle;
+            Repor.Encabezado.Add(enca);
+            Repor.Show();
+        }
+
     }
 }

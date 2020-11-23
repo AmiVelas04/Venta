@@ -13,5 +13,6 @@ namespace Venta.Reportes
         public decimal Totalcosto { get; set; }
         public  decimal TotalGan { get; set; }
         public decimal TotalGene { get; set; }
+        public string Detalle { get; set; }
     }
 }

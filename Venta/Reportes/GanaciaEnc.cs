@@ -12,6 +12,6 @@ namespace Venta.Reportes
         public string FechaI { get; set; }
         public string FechaF { get; set; }
         
-                public List<GanaciaDet> Detalle = new List<GanaciaDet>();
+      public List<GanaciaDet> Detalle = new List<GanaciaDet>();
     }
 }

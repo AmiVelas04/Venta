@@ -15,6 +15,7 @@ namespace Venta.Formularios
         Clases.Producto prod = new Clases.Producto();
         Clases.Venta ven = new Clases.Venta();
         Clases.Salidaprod sprod = new Clases.Salidaprod();
+        Clases.Conces conce = new Clases.Conces();
         public Reportes()
         {
             InitializeComponent();
@@ -72,6 +73,14 @@ namespace Venta.Formularios
             fechai = DtpIni.Value.ToString("yyyy/MM/dd");
             fechaf = DtpFin.Value.ToString("yyyy/MM/dd");
             ven.Ganacia(fechai,fechaf);
+        }
+
+        private void BtnRepconce_Click(object sender, EventArgs e)
+        {
+            string fechai, fechaf;
+            fechai = DtpIni.Value.ToString("yyyy/MM/dd");
+            fechaf = DtpFin.Value.ToString("yyyy/MM/dd");
+            conce.RepoConce(fechai, fechaf);
         }
     }
 }
