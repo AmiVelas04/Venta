@@ -352,7 +352,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:v4.7.2   "
+                "FrameworkVersion" = "8:v4.7.2    "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=863262"
                 }
@@ -913,7 +913,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Tipicos"
         "ProductCode" = "8:{6E735FC8-8AAE-4D8F-932B-207EE54F67A7}"
-        "PackageCode" = "8:{3C94DB48-838A-4BE2-8B47-3D81392B7547}"
+        "PackageCode" = "8:{B39EDDFE-0A79-489C-BCEA-F85BB0B5143E}"
         "UpgradeCode" = "8:{A0140372-A10C-44BD-98E7-71E70E080B6C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
