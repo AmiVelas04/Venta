@@ -322,8 +322,8 @@ namespace Venta.Formularios
             if (RdbSi.Checked) { MatP = "1"; }
             else if (RdbNo.Checked) { MatP = "0"; }
 
-           if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
-            //if (prod.hayprod("R"+TxtCod.Text))
+           //if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
+            if (prod.hayprod("R"+TxtCod.Text))
             {
                 string idp = prod.busc_codprod(Nomprod, idestilo, idtipo, idcolor, talla);
 
@@ -347,10 +347,10 @@ namespace Venta.Formularios
             }
             else
             {
-               // string idp = "R"+TxtCod.Text;
+                string idp = "R"+TxtCod.Text;
                 //Se ingresa directamente el codigo del producto para poder agregar producto ya existente en la tienda central
                 imagen = OFD1.FileName;
-                string[] datosing = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, estilo, tipo, color, ubicacion, MatP,/*idp*/};
+                string[] datosing = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, estilo, tipo, color, ubicacion, MatP,idp};
                 if (prod.ingreso_prod(datosing))
                 {
                     // MessageBox.Show("¿Desea Imprimir Producto ingresado correctamente");
