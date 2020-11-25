@@ -96,12 +96,14 @@ namespace Venta.Formularios
         {
             DataTable saldo = new DataTable();
             saldo = cre.saldos(cred);
-            decimal sald=0, monto=0, anti=0;
+            decimal sald=0, monto=0, anti=0, ante=0;
             if (saldo.Rows[0][0] != DBNull.Value) sald = decimal.Parse(saldo.Rows[0][0].ToString());
             if (saldo.Rows[0][1] != DBNull.Value) anti = decimal.Parse(saldo.Rows[0][1].ToString());
             if (saldo.Rows[0][2] != DBNull.Value) monto = decimal.Parse(saldo.Rows[0][2].ToString());
+            if (saldo.Rows[0][3] != DBNull.Value) ante = decimal.Parse(saldo.Rows[0][3].ToString());
             TxtTot.Text = monto.ToString();
-            TxtSaldo.Text = Convert .ToString (monto - sald);
+            TxtSaldo.Text = Convert .ToString (monto - sald+ante);
+            TxtAnte.Text = ante.ToString();
             pagoslst(cred);
 
         }
@@ -117,6 +119,8 @@ namespace Venta.Formularios
         {
             pago();
             BtnPago.Enabled = false;
+            DataCred(CboCred.SelectedValue.ToString());
+            TxtPago.Clear();
         }
 
         private void pago()

@@ -58,6 +58,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.PanInf = new System.Windows.Forms.Panel();
             this.DgvPagos = new System.Windows.Forms.DataGridView();
+            this.label10 = new System.Windows.Forms.Label();
+            this.TxtAnte = new System.Windows.Forms.TextBox();
             this.PanSup.SuspendLayout();
             this.GbxClinete.SuspendLayout();
             this.PanMed.SuspendLayout();
@@ -105,7 +107,7 @@
             // TxtDpi
             // 
             this.TxtDpi.Enabled = false;
-            this.TxtDpi.Location = new System.Drawing.Point(446, 100);
+            this.TxtDpi.Location = new System.Drawing.Point(504, 102);
             this.TxtDpi.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TxtDpi.Name = "TxtDpi";
             this.TxtDpi.Size = new System.Drawing.Size(204, 26);
@@ -114,7 +116,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(456, 75);
+            this.label5.Location = new System.Drawing.Point(514, 77);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 19);
@@ -124,7 +126,7 @@
             // TxtNit
             // 
             this.TxtNit.Enabled = false;
-            this.TxtNit.Location = new System.Drawing.Point(298, 98);
+            this.TxtNit.Location = new System.Drawing.Point(356, 100);
             this.TxtNit.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TxtNit.Name = "TxtNit";
             this.TxtNit.Size = new System.Drawing.Size(124, 26);
@@ -133,7 +135,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(309, 75);
+            this.label4.Location = new System.Drawing.Point(367, 77);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 19);
@@ -143,7 +145,7 @@
             // TxtTel
             // 
             this.TxtTel.Enabled = false;
-            this.TxtTel.Location = new System.Drawing.Point(298, 47);
+            this.TxtTel.Location = new System.Drawing.Point(356, 49);
             this.TxtTel.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TxtTel.Name = "TxtTel";
             this.TxtTel.Size = new System.Drawing.Size(236, 26);
@@ -152,7 +154,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(309, 22);
+            this.label3.Location = new System.Drawing.Point(367, 24);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 19);
@@ -165,7 +167,7 @@
             this.TxtDir.Location = new System.Drawing.Point(5, 98);
             this.TxtDir.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TxtDir.Name = "TxtDir";
-            this.TxtDir.Size = new System.Drawing.Size(248, 26);
+            this.TxtDir.Size = new System.Drawing.Size(308, 26);
             this.TxtDir.TabIndex = 3;
             // 
             // label2
@@ -184,7 +186,7 @@
             this.CboCli.Location = new System.Drawing.Point(5, 47);
             this.CboCli.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.CboCli.Name = "CboCli";
-            this.CboCli.Size = new System.Drawing.Size(248, 27);
+            this.CboCli.Size = new System.Drawing.Size(308, 27);
             this.CboCli.TabIndex = 1;
             this.CboCli.SelectedIndexChanged += new System.EventHandler(this.CboCli_SelectedIndexChanged);
             // 
@@ -292,6 +294,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.TxtAnte);
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.TxtTot);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.TxtSaldo);
@@ -308,7 +312,7 @@
             // TxtTot
             // 
             this.TxtTot.Enabled = false;
-            this.TxtTot.Location = new System.Drawing.Point(307, 41);
+            this.TxtTot.Location = new System.Drawing.Point(297, 37);
             this.TxtTot.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TxtTot.Name = "TxtTot";
             this.TxtTot.Size = new System.Drawing.Size(164, 26);
@@ -317,7 +321,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(302, 18);
+            this.label8.Location = new System.Drawing.Point(303, 14);
             this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 19);
@@ -327,7 +331,7 @@
             // TxtSaldo
             // 
             this.TxtSaldo.Enabled = false;
-            this.TxtSaldo.Location = new System.Drawing.Point(5, 87);
+            this.TxtSaldo.Location = new System.Drawing.Point(9, 104);
             this.TxtSaldo.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TxtSaldo.Name = "TxtSaldo";
             this.TxtSaldo.Size = new System.Drawing.Size(164, 26);
@@ -336,7 +340,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 64);
+            this.label7.Location = new System.Drawing.Point(16, 79);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 19);
@@ -389,6 +393,23 @@
             this.DgvPagos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvPagos.Size = new System.Drawing.Size(1130, 293);
             this.DgvPagos.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(296, 79);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(121, 19);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Saldo Anterior";
+            // 
+            // TxtAnte
+            // 
+            this.TxtAnte.Enabled = false;
+            this.TxtAnte.Location = new System.Drawing.Point(297, 101);
+            this.TxtAnte.Name = "TxtAnte";
+            this.TxtAnte.Size = new System.Drawing.Size(164, 26);
+            this.TxtAnte.TabIndex = 9;
             // 
             // Creditos
             // 
@@ -452,5 +473,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView DgvPagos;
         private System.Windows.Forms.Button BtnReImp;
+        private System.Windows.Forms.TextBox TxtAnte;
+        private System.Windows.Forms.Label label10;
     }
 }

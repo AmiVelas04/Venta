@@ -653,12 +653,14 @@ namespace Venta.Formularios
                 CboPrecio.Enabled = false;
                 CboPrecioM.Enabled = true;
                 CboPrecioM.Visible = true;
+                CboPrecioM.Focus();
             }
             else
             {
                 CboPrecio.Enabled = true;
                 CboPrecioM.Enabled = false;
                 CboPrecioM.Visible = false;
+                CboPrecio.Focus();
             }
         }
 
@@ -820,6 +822,59 @@ namespace Venta.Formularios
                 agregarprod();
                 TxtCod.Focus();
 
+            }
+        }
+
+        private void CboPrecio_Click(object sender, EventArgs e)
+        {
+            CboPrecio.DroppedDown = true;
+        }
+
+        private void TxtSoli_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F12)
+            {
+                ventaportecla();
+            }
+        }
+
+        private void CboPrecioM_Enter(object sender, EventArgs e)
+        {
+            CboPrecioM.DroppedDown = true;
+        }
+
+        private void CboPrecioM_Click(object sender, EventArgs e)
+        {
+            CboPrecioM.DroppedDown = true;
+        }
+
+        private void CboPrecio_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.M)
+            {
+                ChkMay.Checked = true;
+            }
+        }
+
+        private void CboPrecioM_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.M)
+            {
+                ChkMay.Checked = false;
+            }
+        }
+
+        private void CboPrecioM_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            NudCant.Focus();
+        }
+
+        private void TxtMonto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.F12)
+
+            {
+                ventaportecla();
             }
         }
     }

@@ -334,6 +334,13 @@ namespace Venta.Formularios
                     MessageBox.Show("Producto Actualizado correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PbxProd.InitialImage = null;
                     PbxProd.Image = null;
+                    if (cantingre.ToString() != "0")
+                    {
+                        if (MessageBox.Show("¿Desea Imprimir " + cantingre.ToString() + " etiqueta(s)?", "Imprimir etiquetas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            ImpAlIngr(idp, cantingre);
+                        }
+                    }
                     if (DgvProd.Rows.Count>0) ModifLista();
                 }
                 else { MessageBox.Show("Error al actualizar", "revisar datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
@@ -346,7 +353,8 @@ namespace Venta.Formularios
                 string[] datosing = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, estilo, tipo, color, ubicacion, MatP,/*idp*/ };
                 if (prod.ingreso_prod(datosing))
                 {
-                    // MessageBox.Show("Producto ingresado correctamente");
+                    // MessageBox.Show("¿Desea Imprimir Producto ingresado correctamente");
+                  
                     buscar();
                 }
                 else
@@ -355,6 +363,8 @@ namespace Venta.Formularios
                     //MessageBox.Show("Error al ingresar producto");
                 }
             }
+
+           
         }
 
         private void Actualiz()
@@ -416,6 +426,13 @@ namespace Venta.Formularios
                 ModifLista();
                 PbxProd.InitialImage = null;
                 PbxProd.Image = null;
+                if (CantIng.ToString() != "0")
+                {
+                    if (MessageBox.Show("¿Desea Imprimir " + CantIng.ToString() + " etiqueta(s)?", "Imprimir etiquetas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        ImpAlIngr(idp, CantIng);
+                    }
+                }
             }
             else { MessageBox.Show("Error al actualizar", "revisar dartos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             /*  }
@@ -679,6 +696,75 @@ namespace Venta.Formularios
             if (DgvProd.Rows.Count > 0)
             { ImprimirEtiquetas(); }
             
+        }
+
+        private void ImpAlIngr(string cod, int cant)
+        {
+
+            DataTable datos = new DataTable();
+            datos = prod.PeticionProd(cod);
+            string nombre = datos.Rows[0][1].ToString()+ " " + datos.Rows[0][2].ToString() + " " + datos.Rows[0][3].ToString() + " " + datos.Rows[0][4].ToString() + " " + datos.Rows[0][5].ToString();
+            string Ltitulo = "Modas y Artesanias\n Veronica";
+            string Lprecio = datos.Rows[0][10].ToString();
+
+            int cantidad = cant;
+            int canfil = (cantidad - (cantidad % 4)) / 4;
+            int cantcolumn, ultcol;
+            if (cantidad % 4 > 0)
+            {
+                canfil++;
+                ultcol = cantidad % 4;
+            }
+            else
+            {
+                ultcol = 4;
+            }
+            int fila, columna;
+
+            string[,] titulo = new string[canfil, 4];
+            string[,] subtitulo = new string[canfil, 4];
+            string[,] codigo = new string[canfil, 4];
+            string[,] precio = new string[canfil, 4];
+
+            //iniciar varialbes
+            for (fila = 0; fila < canfil; fila++)
+            {
+                for (columna = 0; columna <= 3; columna++)
+                {
+                    titulo[fila, columna] = "";
+                    subtitulo[fila, columna] = "";
+                    codigo[fila, columna] = "";
+                    precio[fila, columna] = "";
+                }
+            }
+
+
+            //darle valor a todas las filas  ycolumnas
+            for (fila = 0; fila < canfil; fila++)
+            {
+                if (fila == (canfil - 1))
+                {
+                    for (columna = 0; columna < ultcol; columna++)
+                    {
+                        titulo[fila, columna] = Ltitulo;
+                        subtitulo[fila, columna] = nombre;
+                        codigo[fila, columna] = cod;
+                        precio[fila, columna] = "Q." + Lprecio;
+                    }
+                }
+                else
+                {
+                    for (columna = 0; columna <= 3; columna++)
+                    {
+                        titulo[fila, columna] = Ltitulo;
+                        subtitulo[fila, columna] = nombre;
+                        codigo[fila, columna] = cod;
+                        precio[fila, columna] = "Q." + Lprecio;
+                    }
+                }
+            }
+
+            prod.ImpEti(titulo, subtitulo, codigo, precio);
         }
 
         private void ImprimirEtiquetas()

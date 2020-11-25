@@ -91,7 +91,7 @@
             this.BtnVent.FlatAppearance.BorderSize = 0;
             this.BtnVent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnVent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVent.Location = new System.Drawing.Point(8, 195);
+            this.BtnVent.Location = new System.Drawing.Point(8, 150);
             this.BtnVent.Name = "BtnVent";
             this.BtnVent.Size = new System.Drawing.Size(120, 40);
             this.BtnVent.TabIndex = 2;
@@ -106,7 +106,7 @@
             this.BtnCaja.FlatAppearance.BorderSize = 0;
             this.BtnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCaja.Location = new System.Drawing.Point(8, 139);
+            this.BtnCaja.Location = new System.Drawing.Point(8, 100);
             this.BtnCaja.Name = "BtnCaja";
             this.BtnCaja.Size = new System.Drawing.Size(120, 40);
             this.BtnCaja.TabIndex = 1;
@@ -121,7 +121,7 @@
             this.BtnReportes.FlatAppearance.BorderSize = 0;
             this.BtnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnReportes.Location = new System.Drawing.Point(8, 484);
+            this.BtnReportes.Location = new System.Drawing.Point(8, 400);
             this.BtnReportes.Name = "BtnReportes";
             this.BtnReportes.Size = new System.Drawing.Size(120, 40);
             this.BtnReportes.TabIndex = 7;
@@ -136,7 +136,7 @@
             this.BtnCencesion.FlatAppearance.BorderSize = 0;
             this.BtnCencesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCencesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCencesion.Location = new System.Drawing.Point(8, 426);
+            this.BtnCencesion.Location = new System.Drawing.Point(8, 350);
             this.BtnCencesion.Name = "BtnCencesion";
             this.BtnCencesion.Size = new System.Drawing.Size(120, 40);
             this.BtnCencesion.TabIndex = 6;
@@ -151,7 +151,7 @@
             this.BtnCreditos.FlatAppearance.BorderSize = 0;
             this.BtnCreditos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCreditos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCreditos.Location = new System.Drawing.Point(8, 369);
+            this.BtnCreditos.Location = new System.Drawing.Point(8, 300);
             this.BtnCreditos.Name = "BtnCreditos";
             this.BtnCreditos.Size = new System.Drawing.Size(120, 40);
             this.BtnCreditos.TabIndex = 5;
@@ -166,7 +166,7 @@
             this.BtnCliente.FlatAppearance.BorderSize = 0;
             this.BtnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCliente.Location = new System.Drawing.Point(8, 314);
+            this.BtnCliente.Location = new System.Drawing.Point(8, 250);
             this.BtnCliente.Name = "BtnCliente";
             this.BtnCliente.Size = new System.Drawing.Size(120, 40);
             this.BtnCliente.TabIndex = 4;
@@ -181,7 +181,7 @@
             this.BtnProd.FlatAppearance.BorderSize = 0;
             this.BtnProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnProd.Location = new System.Drawing.Point(8, 252);
+            this.BtnProd.Location = new System.Drawing.Point(8, 200);
             this.BtnProd.Name = "BtnProd";
             this.BtnProd.Size = new System.Drawing.Size(120, 40);
             this.BtnProd.TabIndex = 3;
@@ -196,7 +196,7 @@
             this.BtnVenta.FlatAppearance.BorderSize = 0;
             this.BtnVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVenta.Location = new System.Drawing.Point(8, 85);
+            this.BtnVenta.Location = new System.Drawing.Point(8, 50);
             this.BtnVenta.Name = "BtnVenta";
             this.BtnVenta.Size = new System.Drawing.Size(120, 40);
             this.BtnVenta.TabIndex = 0;
@@ -215,7 +215,7 @@
             this.PanSup.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanSup.Location = new System.Drawing.Point(134, 0);
             this.PanSup.Name = "PanSup";
-            this.PanSup.Size = new System.Drawing.Size(1146, 51);
+            this.PanSup.Size = new System.Drawing.Size(1146, 50);
             this.PanSup.TabIndex = 1;
             this.PanSup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanSup_MouseDown);
             // 
@@ -224,7 +224,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(462, 9);
+            this.label1.Location = new System.Drawing.Point(462, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(257, 39);
             this.label1.TabIndex = 3;
@@ -268,9 +268,9 @@
             // PanCentral
             // 
             this.PanCentral.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanCentral.Location = new System.Drawing.Point(134, 51);
+            this.PanCentral.Location = new System.Drawing.Point(134, 50);
             this.PanCentral.Name = "PanCentral";
-            this.PanCentral.Size = new System.Drawing.Size(1146, 629);
+            this.PanCentral.Size = new System.Drawing.Size(1146, 630);
             this.PanCentral.TabIndex = 2;
             // 
             // Main

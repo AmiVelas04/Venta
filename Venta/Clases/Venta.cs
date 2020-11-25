@@ -175,15 +175,19 @@ namespace Venta.Clases
             string nombre = data.Rows[0][0].ToString();
             string fecha = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
             if (tipo=="Contado") RegVent(Nventa,Tvent.ToString (),vende);
-            genfact(datos, Nventa, cli, tipo,nombre);
+            if (MessageBox.Show("¿Desea imprimir comprobante?","Imprimir",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes) {
+                genfact(datos, Nventa, cli, tipo, nombre);
+            }
+            
             return true;
         }
 
         private bool RegCred(DataTable datos,string Nventa,string pago,string vende,string cli)
         {
-            string consulta,detalle,fecha;
+            string consulta,detalle,fecha,cancelant;
             fecha = DateTime.Now.ToString ("yyyy/MM/dd");
-            int id = cod_cred(),cont;
+            int id = cod_cred(),cont,idant;
+            decimal saldoant= SaldoAntCred(cli);
             detalle = "Anticipo de credito No." + id;
             int total = datos.Rows.Count;
             decimal valor = 0;
@@ -192,11 +196,58 @@ namespace Venta.Clases
                 valor += decimal.Parse(datos.Rows[cont][8].ToString ());
             }
             //ingresar el codigo del cliente
-            consulta = "insert into credito(id_credito, id_cliente, id_venta,Total, anticipo, Estado) " +
-                        "values("+id+","+cli+"," +Nventa+ ","+ valor+","+pago+",'Activo')";
-            consulta_gen(consulta);
-           string[] regi = {id.ToString(),pago,detalle,fecha,vende};
-           return  cre.RegPago(regi);
+            idant = codant(cli);
+            cancelant = "Update credito set estado='Cancelado' where id_credito=" + idant.ToString();
+            if (consulta_gen(cancelant))
+            {
+                consulta = "insert into credito(id_credito, id_cliente, id_venta,Total, anticipo,saldo_Ant, Estado) " +
+                            "values(" + id + "," + cli + "," + Nventa + "," + valor + "," + pago + "," + saldoant.ToString() + ",'Activo')";
+                if (consulta_gen(consulta))
+                {
+
+                    string[] regi = { id.ToString(), pago, detalle, fecha, vende };
+                    return (cre.RegPago(regi));
+                }
+            }
+            return false;
+        }
+
+        private decimal SaldoAntCred(string idccli)
+        {
+            string consulta, consultapg="0";
+            decimal anticipo=0, totalpagos=0, saldoant=0, saldo=0;
+            DataTable datospag = new DataTable();
+            DataTable datoscred = new DataTable();
+
+            consulta = "Select id_credito,saldo_ant,anticipo,total from credito where id_cliente="+idccli +" and estado='Activo'";
+            datoscred = buscar(consulta);
+            if (datoscred.Rows.Count > 0)
+            {
+                consultapg = "Select sum(monto) from pago where id_credito=" + datoscred.Rows[0][0].ToString();
+                datospag = buscar(consultapg);
+            }
+            if (datoscred.Rows.Count > 0)
+            {
+                saldo = decimal.Parse(datoscred.Rows[0][1].ToString()) + decimal.Parse(datoscred.Rows[0][3].ToString());
+                anticipo = decimal.Parse(datoscred.Rows[0][2].ToString());
+            }
+          if (datospag.Rows.Count>0) totalpagos = decimal.Parse(datospag.Rows[0][0].ToString());
+
+            saldoant = saldo - anticipo - totalpagos;
+
+            return saldoant;
+        }
+
+        private int codant(string cli)
+        {
+            int codigo=0;
+            string consulta = "Select id_credito from credito where id_cliente="+cli +" and estado='Activo'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows.Count > 0) codigo = int.Parse(datos.Rows[0][0].ToString());
+
+            return codigo;
+
         }
 
         private void genfact(DataTable datos,string Nventa,string clien,string tipo, string vendio)
