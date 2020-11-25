@@ -256,7 +256,7 @@ namespace Venta.Clases
             data = cli.buscli(clien);
             int cant=datos.Rows.Count,cont;
             Reportes.FactEnc Encab = new Reportes.FactEnc();
-            Encab .fecha = DateTime.Now.ToString("yyyyy/MM/dd hh:mm:ss");
+            Encab .fecha = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
             Encab.No = Nventa;
             Encab.tipo = tipo;
             Encab.direccion = data.Rows[0][0].ToString();
@@ -315,7 +315,7 @@ namespace Venta.Clases
                                "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                                "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
                                "WHERE vd.ID_VENTA ="+id;
-            string ConsulEnca = "select ven.NOMBRE AS cliente,c.nombre AS cliente,c.DIRECCION,c.NIT,v.fecha,v.Tipo FROM venta v " +
+            string ConsulEnca = "select ven.NOMBRE AS cliente,c.nombre AS cliente,c.DIRECCION,c.NIT,date_format(v.fecha,'%d/%m/%Y %H:%m:%s'),v.Tipo FROM venta v " +
                                 "INNER JOIN vendedor ven ON ven.ID_VENDEDOR = v.ID_VENDEDOR " +
                                 "INNER JOIN cliente c ON c.ID_CLIENTE = v.ID_CLI " +
                                 "WHERE v.ID_VENTA =" + id;

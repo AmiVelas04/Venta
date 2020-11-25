@@ -404,7 +404,7 @@ namespace Venta.Formularios
                     listarProd(tipo, estado, cli,total.ToString ());
                     LimpiarDatos();
                 }
-                else { MessageBox.Show("No exisiten productos","Sin existencias", MessageBoxButtons.OK,MessageBoxIcon.Exclamation); }
+                else { MessageBox.Show("No existen productos","Sin existencias", MessageBoxButtons.OK,MessageBoxIcon.Exclamation); }
             }
             else if (RdbCredito.Checked)
             {
