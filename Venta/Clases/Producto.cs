@@ -357,7 +357,10 @@ namespace Venta.Clases
             //se cambio la busqueda del codigo del producto para las tiendas sucursales
             //codpod = datos[18];
             codpod=cod_prod(tipo,est,datos[4],datos[0]) + "-" + ConvCol(color);
-
+            if (MessageBox.Show("¿Desea Imprimir " +   datos[5] + " etiqueta(s)?", "Imprimir etiquetas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ImpAlIngr(codpod,datos[5]);
+            }
             string nomcomp = datos[0] + est + tipo + color + datos[4];
             string imagen = revimagen(nomcomp, datos[12]);
             string consulta = "Insert into producto(id_prod,nombre,id_estilo,id_tipo,id_color,talla,cantidad,precio_cost,precio_m1,precio_m2,precio_v1,precio_v2,precio_v3,imagen,ubicacion,MATERIAP) " +
@@ -578,9 +581,78 @@ namespace Venta.Clases
             }
 
         }
+        private void ImpAlIngr(string cod, string cant)
+        {
+
+            DataTable datos = new DataTable();
+            datos = PeticionProd("R" + cod);
+            string nombre = datos.Rows[0][1].ToString() + " " + datos.Rows[0][2].ToString() + " " + datos.Rows[0][3].ToString() + " " + datos.Rows[0][4].ToString() + " " + datos.Rows[0][5].ToString();
+            string Ltitulo = "Modas y Artesanias\n Veronica";
+            string Lprecio = datos.Rows[0][10].ToString();
+
+            int cantidad = int.Parse(cant);
+            int canfil = (cantidad - (cantidad % 4)) / 4;
+            int cantcolumn, ultcol;
+            if (cantidad % 4 > 0)
+            {
+                canfil++;
+                ultcol = cantidad % 4;
+            }
+            else
+            {
+                ultcol = 4;
+            }
+            int fila, columna;
+
+            string[,] titulo = new string[canfil, 4];
+            string[,] subtitulo = new string[canfil, 4];
+            string[,] codigo = new string[canfil, 4];
+            string[,] precio = new string[canfil, 4];
+
+            //iniciar varialbes
+            for (fila = 0; fila < canfil; fila++)
+            {
+                for (columna = 0; columna <= 3; columna++)
+                {
+                    titulo[fila, columna] = "";
+                    subtitulo[fila, columna] = "";
+                    codigo[fila, columna] = "";
+                    precio[fila, columna] = "";
+                }
+            }
+
+
+            //darle valor a todas las filas  ycolumnas
+            for (fila = 0; fila < canfil; fila++)
+            {
+                if (fila == (canfil - 1))
+                {
+                    for (columna = 0; columna < ultcol; columna++)
+                    {
+                        titulo[fila, columna] = Ltitulo;
+                        subtitulo[fila, columna] = nombre;
+                        codigo[fila, columna] = cod;
+                        precio[fila, columna] = "Q." + Lprecio;
+                    }
+                }
+                else
+                {
+                    for (columna = 0; columna <= 3; columna++)
+                    {
+                        titulo[fila, columna] = Ltitulo;
+                        subtitulo[fila, columna] = nombre;
+                        codigo[fila, columna] = cod;
+                        precio[fila, columna] = "Q." + Lprecio;
+                    }
+                }
+            }
+
+           ImpEti(titulo, subtitulo, codigo, precio);
+        }
+
         #region "Datos de productos"
-        
-            
+
+
         public  bool devolverprod (string id, string cant)
         {
             string consultaCant;
@@ -686,7 +758,7 @@ namespace Venta.Clases
 
         public DataTable PeticionProd(string id)
         {
-            string consulta = "SELECT p.ID_PROD, p.NOMBRE, e.estilo,t.tipo,c.color,p.TALLA,p.CANTIDAD,p.PRECIO_COST,p.PRECIO_M1, p.PRECIO_M2,p.PRECIO_V1,p.PRECIO_V2,p.IMAGEN,p.UBICACION,e.ID_ESTILO,t.ID_TIPO,c.ID_COLOR,p.Ultcant " + 
+            string consulta = "SELECT p.ID_PROD, p.NOMBRE, e.estilo,t.tipo,c.color,p.TALLA,p.CANTIDAD,p.PRECIO_COST,p.PRECIO_M1, p.PRECIO_M2,p.PRECIO_V1,p.PRECIO_V2,p.IMAGEN,p.UBICACION,e.ID_ESTILO,t.ID_TIPO,c.ID_COLOR,p.Ultcant,p.PRECIO_V3 " + 
                                 "FROM producto p "+
                                 "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
                                 "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO "+ 

@@ -92,7 +92,7 @@ namespace Venta.Clases
 
         public DataTable saldos(string cred)
         {
-            string consulta = "SELECT SUM(p.Monto),c.anticipo,c.Total FROM pago p "+
+            string consulta = "SELECT SUM(p.Monto),c.anticipo,c.Total, Saldo_ant FROM pago p "+
                                "INNER JOIN credito c ON c.ID_CREDITO = p.id_credito "+
                                "WHERE p.id_credito ="+cred;
             return buscar(consulta);
@@ -109,8 +109,8 @@ namespace Venta.Clases
         {
             DataTable datos = new DataTable();
             DataTable pagos = new DataTable();
-            decimal total=0, anticipo=0, totalpag=0;
-            string consulta = "Select total, anticipo from credito where id_credito="+id +" and Estado ='Activo'";
+            decimal total=0, anticipo=0, totalpag=0,saldoant=0;
+            string consulta = "Select total, anticipo,saldo_ant from credito where id_credito="+id +" and Estado ='Activo'";
             string Consulpagos = "select sum(monto) from pago where id_credito="+id;
             datos = buscar(consulta);
             pagos = buscar(Consulpagos);
@@ -119,6 +119,7 @@ namespace Venta.Clases
             {
                 total = decimal.Parse(datos.Rows[0][0].ToString());
                 anticipo =decimal.Parse(datos.Rows[0][1].ToString());
+                saldoant = decimal.Parse(datos.Rows[0][2].ToString());
             }
             if (pagos.Rows[0][0] != DBNull.Value)
             {
@@ -126,7 +127,7 @@ namespace Venta.Clases
             }
 
             decimal saldo;
-            saldo = total - totalpag;
+            saldo = total +saldoant- totalpag-anticipo;
             return saldo;
         }
 

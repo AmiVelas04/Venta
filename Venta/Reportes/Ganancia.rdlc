@@ -165,7 +165,6 @@
                             <TextRun>
                               <Value>Orden</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
                               </Style>
@@ -202,7 +201,6 @@
                             <TextRun>
                               <Value>Fecha</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
                               </Style>
@@ -239,7 +237,6 @@
                             <TextRun>
                               <Value>Costo</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
                               </Style>
@@ -276,7 +273,6 @@
                             <TextRun>
                               <Value>Ganacia</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
                               </Style>
@@ -313,7 +309,6 @@
                             <TextRun>
                               <Value>Total Venta</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
                               </Style>
@@ -355,6 +350,7 @@
                             <TextRun>
                               <Value>=RowNumber("Detalle")</Value>
                               <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -389,6 +385,7 @@
                             <TextRun>
                               <Value>=Fields!Fecha.Value</Value>
                               <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -423,6 +420,7 @@
                             <TextRun>
                               <Value>=Fields!Totalcosto.Value</Value>
                               <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
@@ -459,6 +457,7 @@
                             <TextRun>
                               <Value>=Fields!TotalGan.Value</Value>
                               <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
@@ -495,6 +494,7 @@
                             <TextRun>
                               <Value>=Fields!TotalGene.Value</Value>
                               <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
@@ -536,7 +536,8 @@
                             <TextRun>
                               <Value>Totales</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Gill Sans MT</FontFamily>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -574,8 +575,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!Totalcosto.Value, "Detalle")</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
-                                <FontSize>8pt</FontSize>
+                                <FontFamily>Gill Sans MT</FontFamily>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>'Q'#,0.00</Format>
                                 <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
@@ -614,8 +615,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!TotalGan.Value, "Detalle")</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
-                                <FontSize>8pt</FontSize>
+                                <FontFamily>Gill Sans MT</FontFamily>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
@@ -653,8 +654,8 @@
                             <TextRun>
                               <Value>=Sum(Fields!TotalGene.Value, "Detalle")</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
-                                <FontSize>8pt</FontSize>
+                                <FontFamily>Gill Sans MT</FontFamily>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>'Q'#,0.00</Format>
                               </Style>

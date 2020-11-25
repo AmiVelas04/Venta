@@ -157,7 +157,11 @@ namespace Venta.Clases
                     return false;
                 }
             }
-            GenConce(datos, Conce,cli,vende);
+            if (MessageBox.Show("¿Desea imprimir comprobante?", "Imprimir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                GenConce(datos, Conce, cli, vende);
+            }
+          
             return true;
         }
 

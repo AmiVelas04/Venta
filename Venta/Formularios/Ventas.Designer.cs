@@ -210,6 +210,10 @@
             this.CboPrecioM.Size = new System.Drawing.Size(101, 23);
             this.CboPrecioM.TabIndex = 20;
             this.CboPrecioM.Visible = false;
+            this.CboPrecioM.SelectionChangeCommitted += new System.EventHandler(this.CboPrecioM_SelectionChangeCommitted);
+            this.CboPrecioM.Click += new System.EventHandler(this.CboPrecioM_Click);
+            this.CboPrecioM.Enter += new System.EventHandler(this.CboPrecioM_Enter);
+            this.CboPrecioM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CboPrecioM_KeyDown);
             // 
             // label12
             // 
@@ -229,7 +233,9 @@
             this.CboPrecio.Size = new System.Drawing.Size(121, 23);
             this.CboPrecio.TabIndex = 18;
             this.CboPrecio.SelectionChangeCommitted += new System.EventHandler(this.CboPrecio_SelectionChangeCommitted);
+            this.CboPrecio.Click += new System.EventHandler(this.CboPrecio_Click);
             this.CboPrecio.Enter += new System.EventHandler(this.CboPrecio_Enter);
+            this.CboPrecio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CboPrecio_KeyDown);
             // 
             // label11
             // 
@@ -608,6 +614,7 @@
             this.TxtMonto.Name = "TxtMonto";
             this.TxtMonto.Size = new System.Drawing.Size(198, 39);
             this.TxtMonto.TabIndex = 7;
+            this.TxtMonto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMonto_KeyDown);
             // 
             // LblTotal
             // 
@@ -653,10 +660,10 @@
             this.BtnGenVen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGenVen.ForeColor = System.Drawing.Color.White;
             this.BtnGenVen.Image = ((System.Drawing.Image)(resources.GetObject("BtnGenVen.Image")));
-            this.BtnGenVen.Location = new System.Drawing.Point(8, 22);
+            this.BtnGenVen.Location = new System.Drawing.Point(8, 10);
             this.BtnGenVen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnGenVen.Name = "BtnGenVen";
-            this.BtnGenVen.Size = new System.Drawing.Size(116, 58);
+            this.BtnGenVen.Size = new System.Drawing.Size(116, 78);
             this.BtnGenVen.TabIndex = 0;
             this.BtnGenVen.Text = "Generar Venta";
             this.BtnGenVen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -684,6 +691,7 @@
             this.TxtSoli.Size = new System.Drawing.Size(306, 23);
             this.TxtSoli.TabIndex = 10;
             this.TxtSoli.Visible = false;
+            this.TxtSoli.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSoli_KeyDown);
             // 
             // LblSoli
             // 
