@@ -87,16 +87,36 @@ namespace Venta.Formularios
 
             DataTable datos = new DataTable();
             datos = Conce.ProdConce(CboConce.Text);
-            DgvProd.DataSource = datos;
+            //DgvProd.DataSource = datos;
             int total = datos.Rows.Count, cont;
+            
             if (total > 0)
             {
                 decimal ValorTot = 0;
+
+                if (DgvProd.ColumnCount<=0)
+                {
+                    DgvProd.Columns.Add("Codigo","Codigo");
+                    DgvProd.Columns.Add("Producto", "Producto");
+                    DgvProd.Columns.Add("Estilo", "Estilo");
+                    DgvProd.Columns.Add("Tipo", "Tipo");
+                    DgvProd.Columns.Add("Color", "Color");
+                    DgvProd.Columns.Add("Talla", "Talla");
+                    DgvProd.Columns.Add("CantidadC", "Cant. Concedida");
+                    DgvProd.Columns.Add("CantidadR", "Cant. Vendida");
+                    DgvProd.Columns.Add("Precio", "Precio");
+                    DgvProd.Columns.Add("Total", "Total");
+                    
+                }
                 for (cont = 0; cont < total; cont++)
                 {
+                    DgvProd.Rows.Add(datos.Rows[cont][8].ToString(), datos.Rows[cont][0].ToString(), datos.Rows[cont][1].ToString(), datos.Rows[cont][2].ToString(), datos.Rows[cont][3].ToString(), datos.Rows[cont][4].ToString(), datos.Rows[cont][5].ToString(), datos.Rows[cont][5].ToString(), datos.Rows[cont][6].ToString(),datos.Rows[cont][7].ToString());
                     ValorTot += decimal.Parse(datos.Rows[cont][7].ToString());
                 }
                 TxtTotal.Text = ValorTot.ToString();
+
+                foreach (DataGridViewColumn c in DgvProd.Columns)
+                    if (c.Name != "CantidadR") c.ReadOnly = true;
             }
         }
 
@@ -118,11 +138,11 @@ namespace Venta.Formularios
             decimal precio = 0, todoven = 0, TotGen = 0;
             for (cont = 0; cont < total; cont++)
             {
-                cantp = int.Parse(DgvProd.Rows[cont].Cells[5].Value.ToString());
-                precio = decimal.Parse(DgvProd.Rows[cont].Cells[6].Value.ToString());
+                cantp = int.Parse(DgvProd.Rows[cont].Cells[7].Value.ToString());
+                precio = decimal.Parse(DgvProd.Rows[cont].Cells[8].Value.ToString());
                 todoven = cantp * precio;
                 TotGen += todoven;
-                DgvProd.Rows[cont].Cells[7].Value = Convert.ToString(todoven);
+                //DgvProd.Rows[cont].Cells[7].Value = Convert.ToString(todoven);
             }
             TxtTotal.Text = TotGen.ToString();
         }
@@ -169,12 +189,12 @@ namespace Venta.Formularios
             for (cont=0;cont<total;cont++)
             {
                 int cantAct, cantAnt, CantDvo;
-                cantAct = int.Parse(DgvProd.Rows[cont].Cells[5].Value.ToString());
-                string idP = DgvProd.Rows[cont].Cells[8].Value.ToString();
+                cantAct = int.Parse(DgvProd.Rows[cont].Cells[7].Value.ToString());
+                string idP = DgvProd.Rows[cont].Cells[0].Value.ToString();
                 if (cantAct > 0)
                 {
                     decimal totalp, precio;
-                    precio = decimal.Parse(DgvProd.Rows[cont].Cells[6].Value.ToString());
+                    precio = decimal.Parse(DgvProd.Rows[cont].Cells[8].Value.ToString());
                     cantAnt = int.Parse(Prefac.Rows[cont][5].ToString());
                     if (cantAct > cantAnt) return;
                     DataRow fila = Fact.NewRow();
@@ -244,6 +264,25 @@ namespace Venta.Formularios
             
             TxtTotal.Text = "0";
             CargarCli();
+        }
+
+        private void DgvProd_SelectionChanged(object sender, EventArgs e)
+        {
+         //   DgvProd.CurrentCell = DgvProd.CurrentRow.Cells["CantidadR"];
+            //DgvProd.BeginEdit(true);
+        }
+
+        private void DgvProd_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int indice = DgvProd.CurrentRow.Index;
+            int cant=0;
+            decimal precio=0, total=0;
+            cant = int.Parse(DgvProd.Rows[indice].Cells[7].Value.ToString());
+            precio = decimal.Parse(DgvProd.Rows[indice].Cells[8].Value.ToString());
+            total = cant * precio;
+            DgvProd.Rows[indice].Cells[9].Value = total.ToString();
+            calculartot();
+
         }
     }
 }

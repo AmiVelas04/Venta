@@ -40,12 +40,12 @@
             this.CboCli = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.PanInf = new System.Windows.Forms.Panel();
+            this.BtnCambaircant = new System.Windows.Forms.Button();
             this.NudProd = new System.Windows.Forms.NumericUpDown();
             this.BtnFacturar = new System.Windows.Forms.Button();
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.PanMed = new System.Windows.Forms.Panel();
             this.DgvProd = new System.Windows.Forms.DataGridView();
-            this.BtnCambaircant = new System.Windows.Forms.Button();
             this.PanSup.SuspendLayout();
             this.GbxConce.SuspendLayout();
             this.GbxCliente.SuspendLayout();
@@ -171,6 +171,17 @@
             this.PanInf.Size = new System.Drawing.Size(1130, 61);
             this.PanInf.TabIndex = 1;
             // 
+            // BtnCambaircant
+            // 
+            this.BtnCambaircant.Location = new System.Drawing.Point(427, 5);
+            this.BtnCambaircant.Name = "BtnCambaircant";
+            this.BtnCambaircant.Size = new System.Drawing.Size(98, 50);
+            this.BtnCambaircant.TabIndex = 5;
+            this.BtnCambaircant.Text = "Cambiar Cantidad";
+            this.BtnCambaircant.UseVisualStyleBackColor = true;
+            this.BtnCambaircant.Visible = false;
+            this.BtnCambaircant.Click += new System.EventHandler(this.BtnCambaircant_Click);
+            // 
             // NudProd
             // 
             this.NudProd.Location = new System.Drawing.Point(322, 18);
@@ -188,6 +199,7 @@
             0,
             0,
             0});
+            this.NudProd.Visible = false;
             this.NudProd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NudProd_KeyDown);
             // 
             // BtnFacturar
@@ -223,25 +235,18 @@
             // 
             this.DgvProd.AllowUserToAddRows = false;
             this.DgvProd.AllowUserToDeleteRows = false;
+            this.DgvProd.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.DgvProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvProd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvProd.Location = new System.Drawing.Point(0, 0);
+            this.DgvProd.MultiSelect = false;
             this.DgvProd.Name = "DgvProd";
-            this.DgvProd.ReadOnly = true;
             this.DgvProd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvProd.Size = new System.Drawing.Size(1130, 415);
             this.DgvProd.TabIndex = 0;
+            this.DgvProd.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProd_CellEndEdit);
+            this.DgvProd.SelectionChanged += new System.EventHandler(this.DgvProd_SelectionChanged);
             this.DgvProd.Click += new System.EventHandler(this.DgvProd_Click);
-            // 
-            // BtnCambaircant
-            // 
-            this.BtnCambaircant.Location = new System.Drawing.Point(427, 5);
-            this.BtnCambaircant.Name = "BtnCambaircant";
-            this.BtnCambaircant.Size = new System.Drawing.Size(98, 50);
-            this.BtnCambaircant.TabIndex = 5;
-            this.BtnCambaircant.Text = "Cambiar Cantidad";
-            this.BtnCambaircant.UseVisualStyleBackColor = true;
-            this.BtnCambaircant.Click += new System.EventHandler(this.BtnCambaircant_Click);
             // 
             // Concesion
             // 
