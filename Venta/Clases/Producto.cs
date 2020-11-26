@@ -588,7 +588,7 @@ namespace Venta.Clases
             datos = PeticionProd("R" + cod);
             string nombre = datos.Rows[0][1].ToString() + " " + datos.Rows[0][2].ToString() + " " + datos.Rows[0][3].ToString() + " " + datos.Rows[0][4].ToString() + " " + datos.Rows[0][5].ToString();
             string Ltitulo = "Modas y Artesanias\n Veronica";
-            string Lprecio = datos.Rows[0][10].ToString();
+            string Lprecio = datos.Rows[0][18].ToString();
 
             int cantidad = int.Parse(cant);
             int canfil = (cantidad - (cantidad % 4)) / 4;
