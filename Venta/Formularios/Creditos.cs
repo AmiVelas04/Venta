@@ -23,6 +23,7 @@ namespace Venta.Formularios
         private void Creditos_Load(object sender, EventArgs e)
         {
             Llenarcli();
+            CboTipop.SelectedIndex = 0;
         }
 
 
@@ -112,7 +113,7 @@ namespace Venta.Formularios
         {
             DataTable datos = new DataTable();
             datos = cre.pagos(cred);
-            DgvPagos.DataSource = datos;
+            LblDet.DataSource = datos;
         }
 
         private void BtnPago_Click(object sender, EventArgs e)
@@ -126,11 +127,21 @@ namespace Venta.Formularios
         private void pago()
         {
             string pago = "0";
+            string detallepago;
+            if (CboTipop.SelectedIndex == 0)
+            {
+                detallepago = "";
+            }
+            else
+            {
+                detallepago = TxtPagoDet.Text;
+            }
+           
             if (TxtPago.Text != "") { pago = TxtPago.Text; }
             string[] datos = new string[5];
             datos[0] = CboCred.SelectedValue.ToString();
             datos[1] = pago;
-            datos[2] = "Abono a Credito";
+            datos[2] = "Abono a Credito " + detallepago ;
             datos[3] = DateTime.Now.ToString("yyyy/MM/dd");
             datos[4] =Main.idvende;
             if (cre.RegPago(datos))
@@ -143,23 +154,36 @@ namespace Venta.Formularios
 
         private void BtnReImp_Click(object sender, EventArgs e)
         {
-            if (DgvPagos.Rows.Count > 0) {
+            if (LblDet.Rows.Count > 0) {
                 reimprimir();
             }
         }
         private void reimprimir()
         {
-            int indice = DgvPagos.CurrentRow.Index,idpago=0;
+            int indice = LblDet.CurrentRow.Index,idpago=0;
             string credito, monto, detalle, fecha, opero;
-            idpago = int.Parse(DgvPagos.Rows[indice].Cells[0].Value.ToString());
-            credito = DgvPagos.Rows[indice].Cells[1].Value.ToString();
-            monto = DgvPagos.Rows[indice].Cells[2].Value.ToString();
-            detalle = DgvPagos.Rows[indice].Cells[3].Value.ToString();
-            fecha = DgvPagos.Rows[indice].Cells[4].Value.ToString();
-            opero = DgvPagos.Rows[indice].Cells[5].Value.ToString();
+            idpago = int.Parse(LblDet.Rows[indice].Cells[0].Value.ToString());
+            credito = LblDet.Rows[indice].Cells[1].Value.ToString();
+            monto = LblDet.Rows[indice].Cells[2].Value.ToString();
+            detalle = LblDet.Rows[indice].Cells[3].Value.ToString();
+            fecha = LblDet.Rows[indice].Cells[4].Value.ToString();
+            opero = LblDet.Rows[indice].Cells[5].Value.ToString();
             string[] datos = { credito,monto,detalle,fecha,opero};
             cre.ReImp(idpago, datos);
         }
 
+        private void CboTipop_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (CboTipop.SelectedIndex == 0)
+            {
+                LblDet.Visible = false;
+                TxtPagoDet.Visible = false;
+            }
+            else
+            {
+                LblDet.Visible = true;
+                TxtPagoDet.Visible = true;
+            }
+        }
     }
 }
