@@ -638,9 +638,17 @@ namespace Venta.Formularios
             DataTable datos = new DataTable();
             datos = prod.prodId(cod);
             if (datos.Rows.Count > 0) {
-                CboProd.SelectedIndex = 0;
-                    CboProd.SelectedValue = cod;
-                CboPrecio.Focus();
+            CboProd.SelectedIndex = 0;
+            CboProd.SelectedValue = cod;
+                if (ChkMay.Checked)
+                { CboPrecioM.Focus(); }
+                else
+                {
+                    CboPrecio.Focus();
+                }
+
+                
+           CboPrecio.Focus();
             }
 
             else { MessageBox.Show("El codigo no esta registrado"); }

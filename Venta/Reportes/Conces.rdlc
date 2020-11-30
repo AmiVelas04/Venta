@@ -807,6 +807,46 @@
           </Border>
         </Style>
       </Image>
+      <Textbox Name="Textbox6">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>CAntidad de productos: </Value>
+                <Style>
+                  <FontFamily>Gill Sans MT</FontFamily>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Sum(Fields!cantidad.Value, "Detalle")</Value>
+                <Style>
+                  <FontFamily>Gill Sans MT</FontFamily>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox6</rd:DefaultName>
+        <Top>5.7653cm</Top>
+        <Height>0.6cm</Height>
+        <Width>6.01896cm</Width>
+        <ZIndex>9</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>2.6308in</Height>
     <Style />

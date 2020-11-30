@@ -113,7 +113,7 @@ namespace Venta.Formularios
         {
             DataTable datos = new DataTable();
             datos = cre.pagos(cred);
-            LblDet.DataSource = datos;
+            DgvPagos.DataSource = datos;
         }
 
         private void BtnPago_Click(object sender, EventArgs e)
@@ -121,7 +121,7 @@ namespace Venta.Formularios
             pago();
             BtnPago.Enabled = false;
             DataCred(CboCred.SelectedValue.ToString());
-            TxtPago.Clear();
+            
         }
 
         private void pago()
@@ -146,7 +146,12 @@ namespace Venta.Formularios
             datos[4] =Main.idvende;
             if (cre.RegPago(datos))
             {
-                MessageBox.Show("Pago Registrado"); }
+                MessageBox.Show("Pago Registrado");
+                TxtPago.Clear();
+                TxtPagoDet.Clear();
+                TxtPagoDet.Visible = false;
+                LblDet.Visible = false;
+            }
             else
             { MessageBox.Show("Error en pago"); }
 
@@ -154,20 +159,20 @@ namespace Venta.Formularios
 
         private void BtnReImp_Click(object sender, EventArgs e)
         {
-            if (LblDet.Rows.Count > 0) {
+            if (DgvPagos.Rows.Count > 0) {
                 reimprimir();
             }
         }
         private void reimprimir()
         {
-            int indice = LblDet.CurrentRow.Index,idpago=0;
+            int indice = DgvPagos.CurrentRow.Index,idpago=0;
             string credito, monto, detalle, fecha, opero;
-            idpago = int.Parse(LblDet.Rows[indice].Cells[0].Value.ToString());
-            credito = LblDet.Rows[indice].Cells[1].Value.ToString();
-            monto = LblDet.Rows[indice].Cells[2].Value.ToString();
-            detalle = LblDet.Rows[indice].Cells[3].Value.ToString();
-            fecha = LblDet.Rows[indice].Cells[4].Value.ToString();
-            opero = LblDet.Rows[indice].Cells[5].Value.ToString();
+            idpago = int.Parse(DgvPagos.Rows[indice].Cells[0].Value.ToString());
+            credito = DgvPagos.Rows[indice].Cells[1].Value.ToString();
+            monto = DgvPagos.Rows[indice].Cells[2].Value.ToString();
+            detalle = DgvPagos.Rows[indice].Cells[3].Value.ToString();
+            fecha = DgvPagos.Rows[indice].Cells[4].Value.ToString();
+            opero = DgvPagos.Rows[indice].Cells[5].Value.ToString();
             string[] datos = { credito,monto,detalle,fecha,opero};
             cre.ReImp(idpago, datos);
         }
@@ -176,8 +181,9 @@ namespace Venta.Formularios
         {
             if (CboTipop.SelectedIndex == 0)
             {
-                LblDet.Visible = false;
+               LblDet.Visible = false;
                 TxtPagoDet.Visible = false;
+                TxtPagoDet.Clear();
             }
             else
             {

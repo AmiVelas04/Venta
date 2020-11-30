@@ -357,10 +357,7 @@ namespace Venta.Clases
             //se cambio la busqueda del codigo del producto para las tiendas sucursales
            // codpod = datos[18];
             codpod=cod_prod(tipo,est,datos[4],datos[0]) + "-" + ConvCol(color);
-            if (MessageBox.Show("¿Desea Imprimir " +   datos[5] + " etiqueta(s)?", "Imprimir etiquetas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                ImpAlIngr(codpod,datos[5]);
-            }
+           
             string nomcomp = datos[0] + est + tipo + color + datos[4];
             string imagen = revimagen(nomcomp, datos[12]);
             string consulta = "Insert into producto(id_prod,nombre,id_estilo,id_tipo,id_color,talla,cantidad,precio_cost,precio_m1,precio_m2,precio_v1,precio_v2,precio_v3,imagen,ubicacion,MATERIAP) " +
@@ -368,7 +365,12 @@ namespace Venta.Clases
             if (consulta_gen(consulta))
             {
                 MessageBox.Show("Codigo: " + codpod + "\nProducto: " + datos[0]+ "\nEstilo: "+ datos[13] + "\nTipo: "+ datos[14] + "\nColor: "+datos[15] + "\nTalla: " + datos [4] + "\n¡Registro correcto!","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                if (MessageBox.Show("¿Desea Imprimir " + datos[5] + " etiqueta(s)?", "Imprimir etiquetas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ImpAlIngr(codpod, datos[5]);
+                }
                 return true;
+
             }
             else
             {return false; }
@@ -585,7 +587,7 @@ namespace Venta.Clases
         {
 
             DataTable datos = new DataTable();
-            datos = PeticionProd("R" + cod);
+            datos = PeticionProd(cod);
             string nombre = datos.Rows[0][1].ToString() + " " + datos.Rows[0][2].ToString() + " " + datos.Rows[0][3].ToString() + " " + datos.Rows[0][4].ToString() + " " + datos.Rows[0][5].ToString();
             string Ltitulo = "Modas y Artesanias\n Veronica";
             string Lprecio = datos.Rows[0][18].ToString();
