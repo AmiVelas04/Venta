@@ -355,8 +355,8 @@ namespace Venta.Clases
                 }
             }
             //se cambio la busqueda del codigo del producto para las tiendas sucursales
-           // codpod = datos[18];
-            codpod=cod_prod(tipo,est,datos[4],datos[0]) + "-" + ConvCol(color);
+            codpod = datos[18];
+           // codpod=cod_prod(tipo,est,datos[4],datos[0]) + "-" + ConvCol(color);
            
             string nomcomp = datos[0] + est + tipo + color + datos[4];
             string imagen = revimagen(nomcomp, datos[12]);
