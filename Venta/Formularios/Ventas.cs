@@ -315,10 +315,10 @@ namespace Venta.Formularios
                 }
                 else
                 {
-                  /*  decimal cambio;
-                    cambio = decimal.Parse(TxtMonto.Text) - decimal.Parse(LblTotal.Text);
-                    MessageBox.Show("Cambio: Q." + cambio.ToString());*/
-                    
+                    /*  decimal cambio;
+                      cambio = decimal.Parse(TxtMonto.Text) - decimal.Parse(LblTotal.Text);
+                      MessageBox.Show("Cambio: Q." + cambio.ToString());*/
+
                 }
                 if (TxtMonto.Text == "") TxtMonto.Text = "0";
                 pago();
@@ -337,42 +337,131 @@ namespace Venta.Formularios
             {
                 SalidaProd();
             }
+            else if (RdbEnvio.Checked)
+            { SalidaProd(); }
+            else if (Rdcoti.Checked)
+            {
+                cotiza();
+            }
         }
 
         private void SalidaProd()
         {
-            if (materiaprim())
+            if (RdbProd.Checked)
+            {
+                if (materiaprim())
+                {
+                    string vende = Main.idvende.ToString();
+                    string soli = TxtSoli.Text;
+                    int filas = DgvProd.Rows.Count;
+                    int cont, indice;
+                    indice = DgvProd.CurrentRow.Index;
+                    DataTable produ = new DataTable();
+                    produ.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+                    produ.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+                    string[] datos = { vende, soli };
+                    for (cont = 0; cont < filas; cont++)
+                    {
+                        DataRow fila = produ.NewRow();
+                        fila["codigo"] = DgvProd.Rows[cont].Cells[0].Value;
+                        fila["cantidad"] = DgvProd.Rows[cont].Cells[6].Value;
+                        produ.Rows.Add(fila);
+                    }
+                    if (sal.GenerarSalidaprod(datos, produ))
+                    {
+                        MessageBox.Show("Salida de producto registrada");
+                        LimpiarDatos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error de registro de salida");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se puede dar salida a productos que no sean materia prima");
+                }
+            }
+            else if (RdbEnvio.Checked)
             {
                 string vende = Main.idvende.ToString();
-                string soli = TxtSoli.Text;
                 int filas = DgvProd.Rows.Count;
                 int cont, indice;
                 indice = DgvProd.CurrentRow.Index;
                 DataTable produ = new DataTable();
                 produ.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+                produ.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+                produ.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+                produ.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+                produ.Columns.Add("color").DataType = System.Type.GetType("System.String");
+                produ.Columns.Add("talla").DataType = System.Type.GetType("System.String");
                 produ.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
-                string[] datos = { vende, soli };
+                produ.Columns.Add("precio").DataType = System.Type.GetType("System.String");
+                produ.Columns.Add("total").DataType = System.Type.GetType("System.String");
                 for (cont = 0; cont < filas; cont++)
                 {
                     DataRow fila = produ.NewRow();
                     fila["codigo"] = DgvProd.Rows[cont].Cells[0].Value;
+                    fila["producto"] = DgvProd.Rows[cont].Cells[1].Value;
+                    fila["estilo"] = DgvProd.Rows[cont].Cells[2].Value;
+                    fila["tipo"] = DgvProd.Rows[cont].Cells[3].Value;
+                    fila["color"] = DgvProd.Rows[cont].Cells[4].Value;
+                    fila["talla"] = DgvProd.Rows[cont].Cells[5].Value;
                     fila["cantidad"] = DgvProd.Rows[cont].Cells[6].Value;
+                    fila["precio"] = DgvProd.Rows[cont].Cells[7].Value;
+                    fila["total"] = DgvProd.Rows[cont].Cells[8].Value;
                     produ.Rows.Add(fila);
                 }
-                if (sal.GenerarSalidaprod(datos, produ))
+                if (sal.salidatienda(Main.idvende, produ))
                 {
-                    MessageBox.Show("Salida de producto registrada");
+                    MessageBox.Show("Salida registrada Correctamente", "Salida", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarDatos();
                 }
                 else
                 {
-                    MessageBox.Show("Error de registro de salida");
+                    MessageBox.Show("Error al registrar salida", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-            }
-            else
-            {
-                MessageBox.Show("No se puede dar salida a productos que no sean materia prima");
+                
+
             }
         }
+
+        private void cotiza()
+        {
+            string vende = Main.idvende.ToString();
+            string cli = CboNomCli.Text;
+            int filas = DgvProd.Rows.Count;
+            int cont, indice;
+            indice = DgvProd.CurrentRow.Index;
+            DataTable produ = new DataTable();
+            produ.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("color").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("precio").DataType = System.Type.GetType("System.String");
+            produ.Columns.Add("total").DataType = System.Type.GetType("System.String");
+            for (cont = 0; cont < filas; cont++)
+            {
+                DataRow fila = produ.NewRow();
+                fila["codigo"] = DgvProd.Rows[cont].Cells[0].Value;
+                fila["producto"] = DgvProd.Rows[cont].Cells[1].Value;
+                fila["estilo"] = DgvProd.Rows[cont].Cells[2].Value;
+                fila["tipo"] = DgvProd.Rows[cont].Cells[3].Value;
+                fila["color"] = DgvProd.Rows[cont].Cells[4].Value;
+                fila["talla"] = DgvProd.Rows[cont].Cells[5].Value;
+                fila["cantidad"] = DgvProd.Rows[cont].Cells[6].Value;
+                fila["precio"] = DgvProd.Rows[cont].Cells[7].Value;
+                fila["total"] = DgvProd.Rows[cont].Cells[8].Value;
+                produ.Rows.Add(fila);
+            }
+            sal.cotizagen(cli,produ);
+            LimpiarDatos();
+        }
+
+       
 
         private bool materiaprim()
         {

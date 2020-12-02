@@ -93,6 +93,7 @@
     <Compile Include="Clases\Conces.cs" />
     <Compile Include="Clases\conexion.cs" />
     <Compile Include="Clases\Credito.cs" />
+    <Compile Include="Clases\Errores.cs" />
     <Compile Include="Clases\Login.cs" />
     <Compile Include="Clases\Producto.cs" />
     <Compile Include="Clases\Salidaprod.cs" />
@@ -210,6 +211,12 @@
     <Compile Include="Reportes\Conces.Designer.cs">
       <DependentUpon>Conces.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Cotizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Cotizacion.Designer.cs">
+      <DependentUpon>Cotizacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\Etiqueta.cs" />
     <Compile Include="Reportes\Etiquetas.cs">
       <SubType>Form</SubType>
@@ -268,6 +275,14 @@
     </Compile>
     <Compile Include="Reportes\SalidaPdet.cs" />
     <Compile Include="Reportes\SalidaPEnc.cs" />
+    <Compile Include="Reportes\TiendaInter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\TiendaInter.Designer.cs">
+      <DependentUpon>TiendaInter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\TiendaInterDet.cs" />
+    <Compile Include="Reportes\TiendaInterEnca.cs" />
     <Compile Include="Reportes\VentasD.cs" />
     <Compile Include="Reportes\VentasDiarios.cs">
       <SubType>Form</SubType>
@@ -342,6 +357,10 @@
     <EmbeddedResource Include="Reportes\Conces.resx">
       <DependentUpon>Conces.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Cotizacion.rdlc" />
+    <EmbeddedResource Include="Reportes\Cotizacion.resx">
+      <DependentUpon>Cotizacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Etiquetas.rdlc" />
     <EmbeddedResource Include="Reportes\Etiquetas.resx">
       <DependentUpon>Etiquetas.cs</DependentUpon>
@@ -371,6 +390,10 @@
     <EmbeddedResource Include="Reportes\SalidaP.resx">
       <DependentUpon>SalidaP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\TiendaInter.rdlc" />
+    <EmbeddedResource Include="Reportes\TiendaInter.resx">
+      <DependentUpon>TiendaInter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\VentasDiarios.rdlc" />
     <EmbeddedResource Include="Reportes\VentasDiarios.resx">
       <DependentUpon>VentasDiarios.cs</DependentUpon>
@@ -397,6 +420,8 @@
     <None Include="Properties\DataSources\Venta.Reportes.RepSalGenEnc.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.SalidaPdet.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.SalidaPEnc.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.TiendaInterDet.datasource" />
+    <None Include="Properties\DataSources\Venta.Reportes.TiendaInterEnca.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.VentasD.datasource" />
     <None Include="Properties\DataSources\Venta.Reportes.VentasDiarios.datasource" />
     <None Include="Properties\Settings.settings">

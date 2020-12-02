@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Venta.Reportes
 {
-    class ConceDet
+    class TiendaInterDet
     {
-        public int Numero { get; set; }
         public string cod { get; set; }
-        public string descripcion { get; set; }
+        public string prod { get; set; }
+        public string estilo { get; set; }
         public int cantidad { get; set; }
-        public decimal precio { get; set; }
+        public decimal  precio { get; set; }
         public decimal total { get; set; }
-
     }
 }

@@ -18,6 +18,7 @@ namespace Venta.Clases
         Clientes cli = new Clientes();
         Credito cre = new Credito();
         Caja caj = new Caja();
+        Errores err = new Errores();
 
         #region "General"
         private DataTable buscar(string consulta)
@@ -32,8 +33,9 @@ namespace Venta.Clases
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                MessageBox.Show(consulta);
+                string mensaje = ex.ToString() + "\n" + consulta;
+                MessageBox.Show("Se presento un inconveniente en el proceso de venta ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                err.Grabar_Error(mensaje);
             }
             return datos;
 
@@ -56,8 +58,9 @@ namespace Venta.Clases
             catch (Exception ex)
             {
                 conn.conn.Close();
-                MessageBox.Show(ex.ToString());
-                MessageBox.Show(consulta);
+                string mensaje = ex.ToString() + "\n" + consulta;
+                MessageBox.Show("Se presento un inconveniente en el proceso de venta ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                err.Grabar_Error(mensaje);
                 return false;
             }
             return true;
@@ -173,7 +176,7 @@ namespace Venta.Clases
             DataTable data = new DataTable();
             data = buscar(ConsV);
             string nombre = data.Rows[0][0].ToString();
-            string fecha = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
+            string fecha = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             if (tipo=="Contado") RegVent(Nventa,Tvent.ToString (),vende);
             if (MessageBox.Show("¿Desea imprimir comprobante?","Imprimir",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes) {
                 genfact(datos, Nventa, cli, tipo, nombre);

@@ -14,6 +14,8 @@ namespace Venta.Clases
     {
         conexion conn = new conexion();
         Producto prod = new Producto();
+        Errores err = new Errores();
+        
         #region "General"
         private DataTable buscar(string consulta)
         {
@@ -27,8 +29,9 @@ namespace Venta.Clases
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                MessageBox.Show(consulta);
+                string mensaje = ex.ToString() + "\n" + consulta;
+                MessageBox.Show("Se presento un inconveniente en el proceso de salida de productos ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                err.Grabar_Error(mensaje);
             }
             return datos;
 
@@ -51,8 +54,9 @@ namespace Venta.Clases
             catch (Exception ex)
             {
                 conn.conn.Close();
-                MessageBox.Show(ex.ToString());
-                MessageBox.Show(consulta);
+                string mensaje = ex.ToString() + "\n" + consulta;
+                MessageBox.Show("Se presento un inconveniente en el proceso de salida de productos ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                err.Grabar_Error(mensaje);
                 return false;
             }
             return true;
@@ -94,6 +98,42 @@ namespace Venta.Clases
                 id++;
             }
             return id;
+        }
+        private int cod_salida_tienda()
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "Select Max(id_salida) from salida_tienda";
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] == DBNull.Value)
+            {
+                return 1;
+            }
+            else
+            {
+                int valor = int.Parse(datos.Rows[0][0].ToString());
+                valor++;
+                return valor;
+            }
+        }
+        private int cod_Salida_detalle()
+    {
+            string consulta;
+            DataTable datos = new DataTable();
+            int valor;
+            consulta = "Select Max(id_detalle) from salida_detalle";
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] == DBNull.Value)
+            {
+                valor= 1;
+            }
+            else
+            {
+                valor = int.Parse(datos.Rows[0][0].ToString());
+                valor++;
+               
+            }
+            return valor;
         }
 
         public bool GenerarSalidaprod(string [] sali, DataTable detalle)
@@ -178,6 +218,126 @@ namespace Venta.Clases
 
             return true;
         }
+
+        public bool cotizagen(string cli, DataTable datos)
+        {
+            try
+            {
+                Reportes.ConceEnc enca = new Reportes.ConceEnc();
+                enca.nombre = cli;
+                enca.fecha = DateTime.Now.ToString("yyyy/mm/dd");
+                int cont, cant;
+                cant = datos.Rows.Count;
+                for (cont = 0; cont < cant; cont++)
+                {
+                    Reportes.ConceDet deta = new Reportes.ConceDet();
+                    deta.cod = datos.Rows[cont][0].ToString();
+                    deta.descripcion = datos.Rows[cont][1].ToString() + ", " + datos.Rows[cont][2].ToString() + ", " + datos.Rows[cont][3].ToString() + ", " + datos.Rows[cont][4].ToString() + ", " + datos.Rows[cont][5].ToString();
+                    deta.cantidad = int.Parse(datos.Rows[cont][6].ToString());
+                    deta.precio = decimal.Parse(datos.Rows[cont][7].ToString());
+                    deta.total = decimal.Parse(datos.Rows[cont][8].ToString());
+                    enca.Detalle.Add(deta);
+                }
+                Reportes.Cotizacion Coti = new Reportes.Cotizacion();
+                Coti.Deta = enca.Detalle;
+                Coti.Enca.Add(enca);
+                Coti.Show();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                MessageBox.Show(ex.ToString());
+
+            }
+
+        }
+
+        public bool salidatienda(string idvende, DataTable datos)
+        {
+            string ConSaliGen, vendio,fecha,tienda;
+            string ConsulVen= "Select nombre from vendedor where id_vendedor = " + idvende;
+            DataTable vendi = new DataTable();
+            vendi = buscar(ConsulVen);
+            int num=cod_salida_tienda(); 
+
+            vendio = vendi.Rows[0][0].ToString(); 
+            tienda = "Sucursal Arociris";
+            fecha = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+               
+            ConSaliGen = "insert into Salida_tienda(id_salida, id_vende, fecha,estado) " +
+                         "values("+num+","+idvende+",'"+fecha+"','Enviado')";
+            if (consulta_gen(ConSaliGen))
+            {
+                if (intercambdetalle(num, datos))
+                {
+                    reportSali(fecha, vendio, tienda,num, datos);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                   
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        private bool intercambdetalle( int codC, DataTable datos)
+        {
+            int numer;
+            int cont, cant;
+            cant = datos.Rows.Count;
+            string idprod, canti, precio, total;
+            for (cont = 0; cont<cant; cont++)
+            {
+                string consulta;
+                numer=cod_Salida_detalle();
+                idprod = datos.Rows[cont][0].ToString();
+                canti = datos.Rows[cont][6].ToString();
+                precio = datos.Rows[cont][7].ToString();
+                total = datos.Rows[cont][8].ToString();
+                consulta = "insert into Salida_detalle(id_detalle,id_salida,id_prod,cantidad, precio, total) values(" +
+                          numer + "," + codC + ",'" + idprod + "'," + canti + "," + precio + "," + total + ")";
+                if (!consulta_gen(consulta) || !prod.descontarprod(idprod,canti))
+                {
+                    return false;
+                }
+            }
+            return true;
+                }
+
+        private void reportSali (string fecha, string vendio, string tienda,int salida , DataTable datos)
+            {
+            Reportes.TiendaInterEnca enca = new Reportes.TiendaInterEnca();
+            enca.vende = vendio;
+            enca.Fecha = fecha;
+            enca.Num = salida;
+            enca.Tienda = tienda;
+            int cont, cant;
+            cant = datos.Rows.Count;
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.TiendaInterDet deta = new Reportes.TiendaInterDet();
+                deta.cod = datos.Rows[cont][0].ToString();
+                deta.prod = datos.Rows[cont][1].ToString() + ", " + datos.Rows[cont][2].ToString() + ", " + datos.Rows[cont][3].ToString() + ", " + datos.Rows[cont][4].ToString() + ", " + datos.Rows[cont][4].ToString();
+                deta.cantidad = int.Parse(datos.Rows[cont][6].ToString());
+                enca.Detalle.Add(deta);
+            }
+            Reportes.TiendaInter ventana = new Reportes.TiendaInter();
+            ventana.Detalle = enca.Detalle;
+            ventana.Encabezado.Add(enca);
+            ventana.Show();
+            
+
+
+        }
+
+
        
     }
 }

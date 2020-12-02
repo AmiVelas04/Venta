@@ -14,6 +14,7 @@ namespace Venta.Clases
         conexion conec = new conexion();
         Producto prod = new Producto();
         Clientes cli = new Clientes();
+        Errores err = new Errores();
         Login log = new Login();
         #region "General"
         private DataTable buscar(string consulta)
@@ -28,8 +29,9 @@ namespace Venta.Clases
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                MessageBox.Show(consulta);
+                string mensaje = ex.ToString() + "\n" + consulta;
+                MessageBox.Show("Se presento un inconveniente en el proceso de concesion ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                err.Grabar_Error(mensaje);
             }
             return datos;
 
@@ -53,8 +55,9 @@ namespace Venta.Clases
             catch (Exception ex)
             {
                 conec.conn.Close();
-                MessageBox.Show(ex.ToString());
-                MessageBox.Show(consulta);
+                string mensaje = ex.ToString() + "\n" + consulta;
+                MessageBox.Show("Se presento un inconveniente en el proceso de concesion ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                err.Grabar_Error(mensaje);
                 return false;
             }
             return true;
