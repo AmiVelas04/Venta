@@ -54,6 +54,8 @@
             this.TxtPago = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.TxtGast = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.TxtAnte = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.TxtTot = new System.Windows.Forms.TextBox();
@@ -64,6 +66,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.PanInf = new System.Windows.Forms.Panel();
             this.DgvPagos = new System.Windows.Forms.DataGridView();
+            this.ChkEditar = new System.Windows.Forms.CheckBox();
             this.PanSup.SuspendLayout();
             this.GbxClinete.SuspendLayout();
             this.PanMed.SuspendLayout();
@@ -348,6 +351,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ChkEditar);
+            this.panel1.Controls.Add(this.TxtGast);
+            this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.TxtAnte);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.TxtTot);
@@ -362,6 +368,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(558, 134);
             this.panel1.TabIndex = 0;
+            // 
+            // TxtGast
+            // 
+            this.TxtGast.Enabled = false;
+            this.TxtGast.Location = new System.Drawing.Point(144, 101);
+            this.TxtGast.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.TxtGast.Name = "TxtGast";
+            this.TxtGast.Size = new System.Drawing.Size(164, 26);
+            this.TxtGast.TabIndex = 11;
+            this.TxtGast.DoubleClick += new System.EventHandler(this.TxtGast_DoubleClick);
+            this.TxtGast.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGast_KeyDown);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(151, 78);
+            this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(117, 19);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "Gastos Extras";
             // 
             // TxtAnte
             // 
@@ -465,6 +492,19 @@
             this.DgvPagos.Size = new System.Drawing.Size(1130, 293);
             this.DgvPagos.TabIndex = 0;
             // 
+            // ChkEditar
+            // 
+            this.ChkEditar.AutoSize = true;
+            this.ChkEditar.Location = new System.Drawing.Point(5, 103);
+            this.ChkEditar.Name = "ChkEditar";
+            this.ChkEditar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ChkEditar.Size = new System.Drawing.Size(131, 23);
+            this.ChkEditar.TabIndex = 12;
+            this.ChkEditar.Text = "Editar gastos";
+            this.ChkEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ChkEditar.UseVisualStyleBackColor = true;
+            this.ChkEditar.CheckedChanged += new System.EventHandler(this.ChkEditar_CheckedChanged);
+            // 
             // Creditos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -533,5 +573,8 @@
         private System.Windows.Forms.ComboBox CboTipop;
         private System.Windows.Forms.TextBox TxtPagoDet;
         private System.Windows.Forms.Label LblDet;
+        private System.Windows.Forms.TextBox TxtGast;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox ChkEditar;
     }
 }

@@ -203,8 +203,8 @@ namespace Venta.Clases
             cancelant = "Update credito set estado='Cancelado' where id_credito=" + idant.ToString();
             if (consulta_gen(cancelant))
             {
-                consulta = "insert into credito(id_credito, id_cliente, id_venta,Total, anticipo,saldo_Ant, Estado) " +
-                            "values(" + id + "," + cli + "," + Nventa + "," + valor + "," + pago + "," + saldoant.ToString() + ",'Activo')";
+                consulta = "insert into credito(id_credito, id_cliente, id_venta,Total, anticipo,saldo_Ant, Estado, gastos) " +
+                            "values(" + id + "," + cli + "," + Nventa + "," + valor + "," + pago + "," + saldoant.ToString() + ",'Activo',0)";
                 if (consulta_gen(consulta))
                 {
 
@@ -222,7 +222,7 @@ namespace Venta.Clases
             DataTable datospag = new DataTable();
             DataTable datoscred = new DataTable();
 
-            consulta = "Select id_credito,saldo_ant,anticipo,total from credito where id_cliente="+idccli +" and estado='Activo'";
+            consulta = "Select id_credito,saldo_ant,anticipo,total,gastos from credito where id_cliente="+idccli +" and estado='Activo'";
             datoscred = buscar(consulta);
             if (datoscred.Rows.Count > 0)
             {
@@ -231,7 +231,7 @@ namespace Venta.Clases
             }
             if (datoscred.Rows.Count > 0)
             {
-                saldo = decimal.Parse(datoscred.Rows[0][1].ToString()) + decimal.Parse(datoscred.Rows[0][3].ToString());
+                saldo = decimal.Parse(datoscred.Rows[0][1].ToString()) + decimal.Parse(datoscred.Rows[0][3].ToString())+decimal.Parse(datoscred.Rows[0][4].ToString());
                 anticipo = decimal.Parse(datoscred.Rows[0][2].ToString());
             }
           if (datospag.Rows.Count>0) totalpagos = decimal.Parse(datospag.Rows[0][0].ToString());

@@ -45,6 +45,7 @@
             this.LblUsu = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.PanCentral = new System.Windows.Forms.Panel();
+            this.BtnIngrerap = new System.Windows.Forms.Button();
             this.PanLat.SuspendLayout();
             this.PanSup.SuspendLayout();
             this.SuspendLayout();
@@ -52,6 +53,7 @@
             // PanLat
             // 
             this.PanLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.PanLat.Controls.Add(this.BtnIngrerap);
             this.PanLat.Controls.Add(this.BtnResp);
             this.PanLat.Controls.Add(this.BtnVent);
             this.PanLat.Controls.Add(this.BtnCaja);
@@ -273,6 +275,20 @@
             this.PanCentral.Size = new System.Drawing.Size(1146, 630);
             this.PanCentral.TabIndex = 2;
             // 
+            // BtnIngrerap
+            // 
+            this.BtnIngrerap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnIngrerap.FlatAppearance.BorderSize = 0;
+            this.BtnIngrerap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnIngrerap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnIngrerap.Location = new System.Drawing.Point(8, 591);
+            this.BtnIngrerap.Name = "BtnIngrerap";
+            this.BtnIngrerap.Size = new System.Drawing.Size(120, 40);
+            this.BtnIngrerap.TabIndex = 9;
+            this.BtnIngrerap.Text = "Ingreso rápido de productos";
+            this.BtnIngrerap.UseVisualStyleBackColor = false;
+            this.BtnIngrerap.Click += new System.EventHandler(this.BtnIngrerap_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,5 +328,6 @@
         private System.Windows.Forms.Button BtnMin;
         private System.Windows.Forms.Button BtnResp;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BtnIngrerap;
     }
 }

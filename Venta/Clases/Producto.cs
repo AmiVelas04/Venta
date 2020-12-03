@@ -806,6 +806,22 @@ namespace Venta.Clases
             return consulta_gen(consulupd);
         }
 
+        public bool aumentarprod(string id, string cant)
+        {
+            string consultaCant;
+            int canti = 0;
+            consultaCant = "Select cantidad from producto where id_Prod='" + id + "'";
+            DataTable datos = new DataTable();
+            datos = buscar(consultaCant);
+            if (datos.Rows.Count <= 0) return false;
+            canti = int.Parse(datos.Rows[0][0].ToString());
+            canti += int.Parse(cant);
+            string consulupd = "Update producto set cantidad=" + canti + " where id_prod='" + id + "'";
+            return consulta_gen(consulupd);
+        }
+
+      
+
 
         #region "Reportes"
         public void inventario()

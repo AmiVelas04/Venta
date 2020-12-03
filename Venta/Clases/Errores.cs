@@ -18,7 +18,9 @@ namespace Venta.Clases
         {
             try
             {
-                string ruta = @"C:\log.txt";
+                string BasePAth = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                string ruta = @"DatosSistemaVentas\log.txt";
+                ruta = Path.Combine(BasePAth ,ruta);
                 string fecha = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
                 if (!File.Exists(ruta))
                 {
@@ -40,7 +42,7 @@ namespace Venta.Clases
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Advertencia de registro, consulte con su admininstrador de sistema" + ex.ToString(),"Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show("Advertencia de registro, consulte con su admininstrador de sistema \n" + ex.ToString(),"Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
         }
     }

@@ -95,14 +95,14 @@ namespace Venta.Clases
 
         public DataTable saldos(string cred)
         {
-            string consulta = "SELECT SUM(p.Monto),c.anticipo,c.Total, Saldo_ant FROM pago p "+
+            string consulta = "SELECT SUM(p.Monto),c.anticipo,c.Total, Saldo_ant, gastos FROM pago p "+
                                "INNER JOIN credito c ON c.ID_CREDITO = p.id_credito "+
                                "WHERE p.id_credito ="+cred;
             return buscar(consulta);
         }
         public DataTable pagos(string cred)
         {
-            string consulta = "SELECT p.Id_pago as Codigo,p.id_credito as Credito,p.Monto,p.Detalle,p.Fecha,v.Nombre "+
+            string consulta = "SELECT p.Id_pago as Codigo,p.id_credito as Credito,p.Monto,p.Detalle,date_format(p.Fecha,'%d/%m/%y') as Fecha,v.Nombre "+
                                "FROM pago p "+
                                "INNER JOIN vendedor v ON v.ID_VENDEDOR = p.id_vende "+
                                "WHERE p.id_credito ="+cred;
@@ -112,8 +112,8 @@ namespace Venta.Clases
         {
             DataTable datos = new DataTable();
             DataTable pagos = new DataTable();
-            decimal total=0, anticipo=0, totalpag=0,saldoant=0;
-            string consulta = "Select total, anticipo,saldo_ant from credito where id_credito="+id +" and Estado ='Activo'";
+            decimal total=0, anticipo=0, totalpag=0,saldoant=0,gastos=0;
+            string consulta = "Select total, anticipo,saldo_ant ,gastos from credito where id_credito="+id +" and Estado ='Activo'";
             string Consulpagos = "select sum(monto) from pago where id_credito="+id;
             datos = buscar(consulta);
             pagos = buscar(Consulpagos);
@@ -123,6 +123,7 @@ namespace Venta.Clases
                 total = decimal.Parse(datos.Rows[0][0].ToString());
                 anticipo =decimal.Parse(datos.Rows[0][1].ToString());
                 saldoant = decimal.Parse(datos.Rows[0][2].ToString());
+                gastos = decimal.Parse(datos.Rows[0][3].ToString());
             }
             if (pagos.Rows[0][0] != DBNull.Value)
             {
@@ -130,7 +131,7 @@ namespace Venta.Clases
             }
 
             decimal saldo;
-            saldo = total +saldoant- totalpag-anticipo;
+            saldo = total +saldoant+gastos- totalpag-anticipo;
             return saldo;
         }
 
@@ -211,6 +212,11 @@ namespace Venta.Clases
             string fecha = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
             string[] datos = { pago, detalle, operacion, fecha, vende };
             return caj.Regcaja(datos);
+        }
+        public bool ingresogasto(string cod, string gasto)
+        {
+            string consulta = "update credito set gastos=" + gasto + " where id_credito=" + cod;
+            return consulta_gen(consulta);
         }
     }
 }

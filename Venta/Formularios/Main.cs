@@ -235,5 +235,11 @@ namespace Venta.Formularios
             this.BtnReportes.BackColor = Color.FromArgb(255, 172, 65);
             this.BtnResp.BackColor = Color.FromArgb(255, 30, 86);
         }
+
+        private void BtnIngrerap_Click(object sender, EventArgs e)
+        {
+            IngresoRapidoProd ingre = new IngresoRapidoProd();
+            ingre.ShowDialog();
+        }
     }
 }
