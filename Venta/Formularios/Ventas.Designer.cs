@@ -736,7 +736,7 @@
             // 
             this.Rdcoti.AutoSize = true;
             this.Rdcoti.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rdcoti.Location = new System.Drawing.Point(158, 65);
+            this.Rdcoti.Location = new System.Drawing.Point(11, 66);
             this.Rdcoti.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Rdcoti.Name = "Rdcoti";
             this.Rdcoti.Size = new System.Drawing.Size(105, 22);
@@ -749,7 +749,7 @@
             // 
             this.RdbEnvio.AutoSize = true;
             this.RdbEnvio.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RdbEnvio.Location = new System.Drawing.Point(11, 65);
+            this.RdbEnvio.Location = new System.Drawing.Point(158, 67);
             this.RdbEnvio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RdbEnvio.Name = "RdbEnvio";
             this.RdbEnvio.Size = new System.Drawing.Size(131, 22);
