@@ -358,8 +358,8 @@ namespace Venta.Clases
                 }
             }
             //se cambio la busqueda del codigo del producto para las tiendas sucursales
-            codpod = datos[18];
-           // codpod=cod_prod(tipo,est,datos[4],datos[0]) + "-" + ConvCol(color);
+            //codpod = datos[18];
+           codpod=cod_prod(tipo,est,datos[4],datos[0]) + "-" + ConvCol(color);
            
             string nomcomp = datos[0] + est + tipo + color + datos[4];
             string imagen = revimagen(nomcomp, datos[12]);
@@ -816,7 +816,7 @@ namespace Venta.Clases
             if (datos.Rows.Count <= 0) return false;
             canti = int.Parse(datos.Rows[0][0].ToString());
             canti += int.Parse(cant);
-            string consulupd = "Update producto set cantidad=" + canti + " where id_prod='" + id + "'";
+            string consulupd = "Update producto set cantidad=" + canti + ", ultcant="+canti+" where id_prod='" + id + "'";
             return consulta_gen(consulupd);
         }
 

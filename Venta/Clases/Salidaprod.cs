@@ -225,7 +225,7 @@ namespace Venta.Clases
             {
                 Reportes.ConceEnc enca = new Reportes.ConceEnc();
                 enca.nombre = cli;
-                enca.fecha = DateTime.Now.ToString("yyyy/mm/dd");
+                enca.fecha = DateTime.Now.ToString("yyyy/MM/dd");
                 int cont, cant;
                 cant = datos.Rows.Count;
                 for (cont = 0; cont < cant; cont++)

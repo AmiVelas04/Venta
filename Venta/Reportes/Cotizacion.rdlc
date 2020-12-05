@@ -454,6 +454,13 @@
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
+                              <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
+                                <Format>'Q'#,0.00</Format>
+                              </Style>
+                            </TextRun>
                           </TextRuns>
                           <Style>
                             <TextAlign>Right</TextAlign>
@@ -485,6 +492,13 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!total.Value</Value>
+                              <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
+                                <Format>'Q'#,0.00</Format>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontFamily>Gill Sans MT</FontFamily>
                                 <Format>'Q'#,0.00</Format>
@@ -564,6 +578,13 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Sum(Fields!total.Value, "Detalle")</Value>
+                              <Style>
+                                <FontFamily>Gill Sans MT</FontFamily>
+                                <Format>'Q'#,0.00</Format>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontFamily>Gill Sans MT</FontFamily>
                                 <Format>'Q'#,0.00</Format>
