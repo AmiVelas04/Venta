@@ -40,6 +40,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PanDer = new System.Windows.Forms.Panel();
             this.GbxVentas = new System.Windows.Forms.GroupBox();
+            this.BtnSalTien = new System.Windows.Forms.Button();
+            this.BtnRepconce = new System.Windows.Forms.Button();
             this.BtnGanacias = new System.Windows.Forms.Button();
             this.BtnSmp = new System.Windows.Forms.Button();
             this.BtnVenta = new System.Windows.Forms.Button();
@@ -47,7 +49,6 @@
             this.DtpIni = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.BtnRepconce = new System.Windows.Forms.Button();
             this.PanIz.SuspendLayout();
             this.GbxProd.SuspendLayout();
             this.GbxFaltantes.SuspendLayout();
@@ -164,6 +165,7 @@
             // 
             // GbxVentas
             // 
+            this.GbxVentas.Controls.Add(this.BtnSalTien);
             this.GbxVentas.Controls.Add(this.BtnRepconce);
             this.GbxVentas.Controls.Add(this.BtnGanacias);
             this.GbxVentas.Controls.Add(this.BtnSmp);
@@ -182,9 +184,29 @@
             this.GbxVentas.TabStop = false;
             this.GbxVentas.Text = "Ventas/Salidas";
             // 
+            // BtnSalTien
+            // 
+            this.BtnSalTien.Location = new System.Drawing.Point(396, 176);
+            this.BtnSalTien.Name = "BtnSalTien";
+            this.BtnSalTien.Size = new System.Drawing.Size(126, 53);
+            this.BtnSalTien.TabIndex = 8;
+            this.BtnSalTien.Text = "Salida de productos a tienda";
+            this.BtnSalTien.UseVisualStyleBackColor = true;
+            this.BtnSalTien.Click += new System.EventHandler(this.BtnSalTien_Click);
+            // 
+            // BtnRepconce
+            // 
+            this.BtnRepconce.Location = new System.Drawing.Point(72, 256);
+            this.BtnRepconce.Name = "BtnRepconce";
+            this.BtnRepconce.Size = new System.Drawing.Size(126, 53);
+            this.BtnRepconce.TabIndex = 7;
+            this.BtnRepconce.Text = "Concesiones";
+            this.BtnRepconce.UseVisualStyleBackColor = true;
+            this.BtnRepconce.Click += new System.EventHandler(this.BtnRepconce_Click);
+            // 
             // BtnGanacias
             // 
-            this.BtnGanacias.Location = new System.Drawing.Point(72, 191);
+            this.BtnGanacias.Location = new System.Drawing.Point(72, 176);
             this.BtnGanacias.Name = "BtnGanacias";
             this.BtnGanacias.Size = new System.Drawing.Size(126, 53);
             this.BtnGanacias.TabIndex = 6;
@@ -244,16 +266,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Fecha de inicio";
             // 
-            // BtnRepconce
-            // 
-            this.BtnRepconce.Location = new System.Drawing.Point(396, 193);
-            this.BtnRepconce.Name = "BtnRepconce";
-            this.BtnRepconce.Size = new System.Drawing.Size(126, 53);
-            this.BtnRepconce.TabIndex = 7;
-            this.BtnRepconce.Text = "Concesiones";
-            this.BtnRepconce.UseVisualStyleBackColor = true;
-            this.BtnRepconce.Click += new System.EventHandler(this.BtnRepconce_Click);
-            // 
             // Reportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -285,21 +297,22 @@
         private System.Windows.Forms.Panel PanIz;
         private System.Windows.Forms.Panel PanDer;
         private System.Windows.Forms.GroupBox GbxProd;
-        private System.Windows.Forms.GroupBox GbxVentas;
         private System.Windows.Forms.Button BtnInventario;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox GbxFaltantes;
+        private System.Windows.Forms.Button BtnVer;
+        private System.Windows.Forms.TextBox TxtCant;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button BtnConteo;
+        private System.Windows.Forms.GroupBox GbxVentas;
+        private System.Windows.Forms.Button BtnSalTien;
+        private System.Windows.Forms.Button BtnRepconce;
+        private System.Windows.Forms.Button BtnGanacias;
+        private System.Windows.Forms.Button BtnSmp;
         private System.Windows.Forms.Button BtnVenta;
         private System.Windows.Forms.DateTimePicker DtpFin;
         private System.Windows.Forms.DateTimePicker DtpIni;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox GbxFaltantes;
-        private System.Windows.Forms.Button BtnVer;
-        private System.Windows.Forms.TextBox TxtCant;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button BtnSmp;
-        private System.Windows.Forms.Button BtnGanacias;
-        private System.Windows.Forms.Button BtnConteo;
-        private System.Windows.Forms.Button BtnRepconce;
     }
 }

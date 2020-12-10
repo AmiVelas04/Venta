@@ -273,6 +273,12 @@
     </Compile>
     <Compile Include="Reportes\RepSalGenDet.cs" />
     <Compile Include="Reportes\RepSalGenEnc.cs" />
+    <Compile Include="Reportes\RepSalTien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\RepSalTien.Designer.cs">
+      <DependentUpon>RepSalTien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\SalidaP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -387,6 +393,9 @@
       <DependentUpon>Inventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\MasVendi.rdlc" />
+    <EmbeddedResource Include="Reportes\MasVendi.resx">
+      <DependentUpon>MasVendi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RepCaja.rdlc" />
     <EmbeddedResource Include="Reportes\RepCaja.resx">
       <DependentUpon>RepCaja.cs</DependentUpon>
@@ -394,6 +403,10 @@
     <EmbeddedResource Include="Reportes\RepSalGen.rdlc" />
     <EmbeddedResource Include="Reportes\RepSalGen.resx">
       <DependentUpon>RepSalGen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RepSalTien.rdlc" />
+    <EmbeddedResource Include="Reportes\RepSalTien.resx">
+      <DependentUpon>RepSalTien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\SalidaP.rdlc" />
     <EmbeddedResource Include="Reportes\SalidaP.resx">

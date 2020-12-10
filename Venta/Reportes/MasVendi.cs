@@ -16,5 +16,10 @@ namespace Venta.Reportes
         {
             InitializeComponent();
         }
+
+        private void MasVendi_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

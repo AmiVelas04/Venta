@@ -338,6 +338,42 @@ namespace Venta.Clases
         }
 
 
-       
+        public void RepSalidaTien(string fechai, string fechaf)
+        {
+            DataTable datos = new DataTable();
+            Reportes.RepSalGenEnc Enc = new Reportes.RepSalGenEnc();
+            string consulta = "SELECT st.id_salida,satd.id_detalle, CONCAT(p.NOMBRE, ' - ',e.ESTILO, ' - ',t.TIPO, ' - ',c.COLOR, ' - ',p.TALLA)  AS Productos,ven.NOMBRE,satd.Cantidad  " +
+                              "FROM salida_tienda st "+
+                              "INNER JOIN vendedor ven ON ven.ID_VENDEDOR = st.id_vende "+
+                              "INNER JOIN salida_detalle satd ON satd.id_salida = st.id_salida "+
+                              "INNER JOIN producto p ON satd.id_prod = p.ID_PROD "+
+                              "INNER JOIN estilo e ON p.ID_ESTILO = e.ID_ESTILO "+
+                              "INNER JOIN tipo t ON p.ID_TIPO = t.ID_TIPO "+
+                              "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR "+
+                              "WHERE st.fecha >= '"+fechai+"' AND fecha>= '"+fechaf+"' "+
+                              "GROUP BY  satd.id_detalle";
+            datos = buscar(consulta);
+            Enc.fechai = fechai;
+            Enc.fechaf = fechaf;
+            int cont, cant;
+            cant = datos.Rows.Count;
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.RepSalGenDet deta = new Reportes.RepSalGenDet();
+                deta.idSalida = int.Parse(datos.Rows[cont][0].ToString());
+                deta.Sdet = int.Parse(datos.Rows[cont][1].ToString());
+                deta.Producto = datos.Rows[cont][2].ToString();
+                deta.cantidad = int.Parse(datos.Rows[cont][4].ToString());
+                deta.Solicito = "Sucursal Aroiris";
+                deta.Atendio = datos.Rows[cont][3].ToString();
+                Enc.Detalle.Add(deta);
+            }
+            Reportes.RepSalTien report = new Reportes.RepSalTien();
+            report.Encabezado.Add(Enc);
+            report.Detalle = Enc.Detalle;
+            report.Show();
+        }
+
+
     }
 }

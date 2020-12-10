@@ -14,6 +14,7 @@ namespace Venta.Reportes
         public string salida { get; set; }
         public string Solicitante { get; set; }
         public string Opero { get; set; }
+
         public List<SalidaPdet> Detalle = new List<SalidaPdet>();
         public List<Etiqueta> Etiqueta = new List<Reportes.Etiqueta>();
     }

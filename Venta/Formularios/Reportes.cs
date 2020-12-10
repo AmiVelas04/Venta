@@ -82,5 +82,13 @@ namespace Venta.Formularios
             fechaf = DtpFin.Value.ToString("yyyy/MM/dd");
             conce.RepoConce(fechai, fechaf);
         }
+
+        private void BtnSalTien_Click(object sender, EventArgs e)
+        {
+            string fechai, fechaf;
+            fechai = DtpIni.Value.ToString("yyyy/MM/dd");
+            fechaf = DtpFin.Value.ToString("yyyy/MM/dd");
+            sprod.RepSalidaTien(fechai,fechaf);
+        }
     }
 }

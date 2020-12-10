@@ -1,6 +1,6 @@
 ﻿namespace Venta.Reportes
 {
-    partial class MasVendi
+    partial class RepSalTien
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.Rpv1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
-            // MasVendi
+            // Rpv1
+            // 
+            this.Rpv1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Rpv1.LocalReport.ReportEmbeddedResource = "Venta.Reportes.RepSalTien.rdlc";
+            this.Rpv1.Location = new System.Drawing.Point(0, 0);
+            this.Rpv1.Name = "Rpv1";
+            this.Rpv1.Size = new System.Drawing.Size(921, 369);
+            this.Rpv1.TabIndex = 0;
+            // 
+            // RepSalTien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "MasVendi";
-            this.Text = "MasVendi";
-            this.Load += new System.EventHandler(this.MasVendi_Load);
+            this.ClientSize = new System.Drawing.Size(921, 369);
+            this.Controls.Add(this.Rpv1);
+            this.Name = "RepSalTien";
+            this.Text = "Reporte salida a tiendas";
+            this.Load += new System.EventHandler(this.RepSalTien_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private Microsoft.Reporting.WinForms.ReportViewer Rpv1;
     }
 }
