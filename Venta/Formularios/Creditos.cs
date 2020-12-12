@@ -14,6 +14,12 @@ namespace Venta.Formularios
     {
         Clases.Clientes cli = new Clases.Clientes();
         Clases.Credito cre = new Clases.Credito();
+        private void AyudaControles()
+        {
+         HelpProvider AyudaBot = new HelpProvider();
+            AyudaBot.SetShowHelp(BtnCompro,true);
+            AyudaBot.SetHelpString(BtnCompro,"Imprimir Comprobante de credito");
+        }
         
         public Creditos()
         {
@@ -23,6 +29,7 @@ namespace Venta.Formularios
         private void Creditos_Load(object sender, EventArgs e)
         {
             Llenarcli();
+            AyudaControles();
             CboTipop.SelectedIndex = 0;
         }
 
@@ -228,6 +235,17 @@ namespace Venta.Formularios
             {
                 TxtGast.Enabled = false;
             }
+        }
+
+       private void ReimpCompro()
+      {
+           
+        }
+
+        private void BtnCompro_Click(object sender, EventArgs e)
+        {
+            cre.reimpCompro(CboCred.Text,"Vendiendo");
+            
         }
     }
 }

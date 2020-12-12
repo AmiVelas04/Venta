@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Registro de venta</Value>
+                <Value>=First(Fields!nombre.Value, "Encabezado")</Value>
                 <Style>
                   <FontFamily>Microsoft Sans Serif</FontFamily>
                   <FontSize>14pt</FontSize>
@@ -24,9 +24,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.26141cm</Top>
-        <Left>7.35162cm</Left>
+        <Left>6.50495cm</Left>
         <Height>0.86458cm</Height>
-        <Width>4.45792cm</Width>
+        <Width>6.01068cm</Width>
         <Style>
           <Border>
             <Style>None</Style>

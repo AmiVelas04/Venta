@@ -156,7 +156,7 @@
             this.BtnCencesion.Name = "BtnCencesion";
             this.BtnCencesion.Size = new System.Drawing.Size(120, 40);
             this.BtnCencesion.TabIndex = 6;
-            this.BtnCencesion.Text = "Concesion";
+            this.BtnCencesion.Text = "Consignación";
             this.BtnCencesion.UseVisualStyleBackColor = false;
             this.BtnCencesion.Click += new System.EventHandler(this.BtnCencesion_Click);
             this.BtnCencesion.Enter += new System.EventHandler(this.BtnCencesion_Enter);

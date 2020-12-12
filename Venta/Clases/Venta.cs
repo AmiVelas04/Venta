@@ -369,7 +369,7 @@ namespace Venta.Clases
                                "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO "+
                                "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO "+
                                "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR "+
-                               "WHERE v.FECHA >= '"+fechini+"' AND v.FECHA <= '"+fechaFin+"' and Estado='Cancelado'";
+                               "WHERE v.FECHA >= '"+fechini+"' AND v.FECHA <= '"+fechaFin+"' and v.Estado='Cancelado'";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             int cont, cant;
@@ -377,6 +377,7 @@ namespace Venta.Clases
             Reportes.ConceEnc Encab = new Reportes.ConceEnc();
             Encab.direccion = fechini;
             Encab.vendedor = fechaFin;
+            Encab.nombre = "Registro de ventas";
 
             for (cont = 0; cont < cant; cont++)
             {
@@ -394,8 +395,47 @@ namespace Venta.Clases
             Fventa.Enca.Add(Encab);
             Fventa.venta = Encab.Venta;
             Fventa.Show();
-
         }
+
+        public void CreditosAct(string fechini, string fechaFin)
+        {
+            string consulta = "SELECT V.id_venta, Concat(p.nombre, ' - ', e.ESTILO, ' - ', t.TIPO, ' - ', c.COLOR, ' - Talla: ', p.TALLA) AS nombre, vd.cantidad,vd.precio,vd.total,Date_format(v.FECHA,'%d/%m/%Y'), p.id_prod " +
+                               "FROM venta v " +
+                               "INNER JOIN venta_detalle vd ON vd.ID_VENTA = v.ID_VENTA " +
+                               "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD " +
+                               "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
+                               "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
+                               "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
+                               "WHERE v.FECHA >= '" + fechini + "' AND v.FECHA <= '" + fechaFin + "' and V.Tipo='Credito' and v.Estado='Pendiente'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            int cont, cant;
+            cant = datos.Rows.Count;
+            Reportes.ConceEnc Encab = new Reportes.ConceEnc();
+            Encab.direccion = fechini;
+            Encab.vendedor = fechaFin;
+            Encab.nombre = "Registro de Creditos";
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.VentasD ven = new Reportes.VentasD();
+                ven.codigo = datos.Rows[cont][6].ToString();
+                ven.venta = int.Parse(datos.Rows[cont][0].ToString());
+                ven.producto = datos.Rows[cont][1].ToString();
+                ven.cantidad = int.Parse(datos.Rows[cont][2].ToString());
+                ven.precio = decimal.Parse(datos.Rows[cont][3].ToString());
+                ven.total = decimal.Parse(datos.Rows[cont][4].ToString());
+                ven.fecha = datos.Rows[cont][5].ToString();
+                Encab.Venta.Add(ven);
+            }
+            Reportes.VentasDiarios Fventa = new Reportes.VentasDiarios();
+            Fventa.Enca.Add(Encab);
+            Fventa.venta = Encab.Venta;
+            Fventa.Show();
+        }
+
+
+
+
 
         public DataTable  listavent()
         {
@@ -496,11 +536,7 @@ namespace Venta.Clases
             Fact.Enca.Add(Encab);
             Fact.Deta = Encab.Detalle;
             Fact.Show();
-
-
-
-
-        }
+                    }
 
         public void Ganacia(string Fechai, string fechaf)
         {

@@ -14,6 +14,7 @@ namespace Venta.Clases
         conexion conec = new conexion();
         Caja caj = new Caja();
         Errores err = new Errores();
+        Clientes cli = new Clientes();
       
         #region "General"
         private DataTable buscar(string consulta)
@@ -151,7 +152,7 @@ namespace Venta.Clases
             decimal monto = saldo(datos[0]);
             decimal total, pago;
             pago = decimal.Parse(datos[1]);
-            total = monto - pago;
+            total = monto /*- pago*/;
             Reportes.Boleta bol = new Reportes.Boleta();
             bol.NoBol = id.ToString ();
             bol.NoCre = datos[0];
@@ -184,15 +185,44 @@ namespace Venta.Clases
             Bolet.bol.Add(bol);
             Bolet.Show();
         }
-      
+
+        private string idVentDeCredi(string idcred)
+        {
+            string consulta = "SELECT c.id_venta FROM   credito c "+
+                              "WHERE c.ID_CREDITO=" + idcred;
+            string idv;
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] == DBNull.Value)
+            {
+                idv = "0";
+            }
+            else
+            {
+                idv = datos.Rows[0][0].ToString();
+            }
+            return idv;
+              
+        }
         public string VendePorCre(string idcre)
         {
+            DataTable datos = new DataTable();
+            string vende = "";
             string consulta = "SELECT ven.nombre FROM vendedor ven " +
                                 "INNER JOIN venta v ON v.ID_VENDEDOR = ven.ID_VENDEDOR " +
                                 "INNER JOIN credito cre ON cre.id_venta = v.ID_VENTA " +
                                 "WHERE cre.ID_CREDITO =" + idcre;
+            datos = buscar(consulta);
+            if (datos.Rows.Count<=0)
+            {
+                vende = "Vendedor";
+            }
+            else {
+                vende = datos.Rows[0][0].ToString();
+            }
 
-            return buscar(consulta).Rows[0][0].ToString();
+
+            return vende;
         }
         private bool RpagoCre(string idp,string cre,string pago,string vende)
         {
@@ -217,6 +247,54 @@ namespace Venta.Clases
         {
             string consulta = "update credito set gastos=" + gasto + " where id_credito=" + cod;
             return consulta_gen(consulta);
+        }
+
+        public void reimpCompro(string idc, string atendio)
+        {
+            DataTable venta = new DataTable();
+            DataTable detalle = new DataTable();
+            DataTable data = new DataTable();
+
+            string idv = idVentDeCredi(idc); 
+            string consultaV = "SELECT id_vendedor,id_cli,Date_format(fecha,'%d/%M/%y %H:%m:%s'),tipo FROM venta " +
+                              "WHERE id_venta =" + idv;
+            string ConsutaDet = "SELECT Concat(p.nombre,' - ',e.estilo,' - ',t.tipo,' - ',c.color,' - ',p.talla) AS nombre,vd.cantidad,vd.precio,vd.total,p.id_prod " +
+                                "FROM venta_detalle vd " +
+                                "INNER JOIN producto p ON p.ID_PROD = vd.ID_PROD " +
+                                "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
+                                "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
+                                "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
+                                "WHERE vd.ID_VENTA = " + idv;
+            venta = buscar(consultaV);
+            detalle = buscar(ConsutaDet);
+            int cant, cont;
+            string idcli = venta.Rows[0][1].ToString();
+            data = cli.buscli(idcli);
+            cant = detalle.Rows.Count;
+            Reportes.FactEnc Encab = new Reportes.FactEnc();
+            Encab.fecha = venta.Rows[0][2].ToString();
+            Encab.No = idv;
+            Encab.tipo = venta.Rows[0][3].ToString();
+            Encab.direccion = data.Rows[0][0].ToString();
+            Encab.nit = data.Rows[0][1].ToString();
+            Encab.nombre = data.Rows[0][3].ToString();
+            Encab.vendedor = atendio;
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.FactDet Deta = new Reportes.FactDet();
+                Deta.Numero = cont + 1;
+                Deta.codigo = detalle.Rows[cont][4].ToString();
+                Deta.descripcion = detalle.Rows[cont][0].ToString();
+                Deta.cantidad = Int32.Parse(detalle.Rows[cont][1].ToString());
+                Deta.precio = decimal.Parse(detalle.Rows[cont][2].ToString());
+                Deta.total = decimal.Parse(detalle.Rows[cont][3].ToString());
+                Encab.Detalle.Add(Deta);
+            }
+            Reportes.Factura Fact = new Reportes.Factura();
+            Fact.Enca.Add(Encab);
+            Fact.Deta = Encab.Detalle;
+            Fact.Show();
+
         }
     }
 }

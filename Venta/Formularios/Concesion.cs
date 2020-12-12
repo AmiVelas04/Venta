@@ -79,6 +79,10 @@ namespace Venta.Formularios
 
         private void CboVenta_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (DgvProd.Rows.Count > 0)
+            {
+                limpiardatos();
+            }
             Buscarprod();
         }
 
@@ -93,7 +97,6 @@ namespace Venta.Formularios
             if (total > 0)
             {
                 decimal ValorTot = 0;
-
                 if (DgvProd.ColumnCount<=0)
                 {
                     DgvProd.Columns.Add("Codigo","Codigo");
@@ -102,8 +105,8 @@ namespace Venta.Formularios
                     DgvProd.Columns.Add("Tipo", "Tipo");
                     DgvProd.Columns.Add("Color", "Color");
                     DgvProd.Columns.Add("Talla", "Talla");
-                    DgvProd.Columns.Add("CantidadC", "Cant. Concedida");
-                    DgvProd.Columns.Add("CantidadR", "Cant. Vendida");
+                    DgvProd.Columns.Add("CantidadC", "Conc.");
+                    DgvProd.Columns.Add("CantidadR", "Vend.");
                     DgvProd.Columns.Add("Precio", "Precio");
                     DgvProd.Columns.Add("Total", "Total");
                     
@@ -263,7 +266,7 @@ namespace Venta.Formularios
             }
             
             TxtTotal.Text = "0";
-            CargarCli();
+            //CargarCli();
         }
 
         private void DgvProd_SelectionChanged(object sender, EventArgs e)

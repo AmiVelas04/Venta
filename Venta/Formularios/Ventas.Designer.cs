@@ -792,10 +792,10 @@
             this.RdbConce.Location = new System.Drawing.Point(158, 15);
             this.RdbConce.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RdbConce.Name = "RdbConce";
-            this.RdbConce.Size = new System.Drawing.Size(104, 22);
+            this.RdbConce.Size = new System.Drawing.Size(127, 22);
             this.RdbConce.TabIndex = 6;
             this.RdbConce.TabStop = true;
-            this.RdbConce.Text = "Concesion";
+            this.RdbConce.Text = "Consignación";
             this.RdbConce.UseVisualStyleBackColor = true;
             // 
             // RdbCredito

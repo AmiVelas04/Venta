@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PanDer = new System.Windows.Forms.Panel();
             this.GbxVentas = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.BtnSalTien = new System.Windows.Forms.Button();
             this.BtnRepconce = new System.Windows.Forms.Button();
             this.BtnGanacias = new System.Windows.Forms.Button();
@@ -165,6 +166,7 @@
             // 
             // GbxVentas
             // 
+            this.GbxVentas.Controls.Add(this.button1);
             this.GbxVentas.Controls.Add(this.BtnSalTien);
             this.GbxVentas.Controls.Add(this.BtnRepconce);
             this.GbxVentas.Controls.Add(this.BtnGanacias);
@@ -184,9 +186,19 @@
             this.GbxVentas.TabStop = false;
             this.GbxVentas.Text = "Ventas/Salidas";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(396, 106);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 53);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Ver Creditos";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // BtnSalTien
             // 
-            this.BtnSalTien.Location = new System.Drawing.Point(396, 176);
+            this.BtnSalTien.Location = new System.Drawing.Point(396, 246);
             this.BtnSalTien.Name = "BtnSalTien";
             this.BtnSalTien.Size = new System.Drawing.Size(126, 53);
             this.BtnSalTien.TabIndex = 8;
@@ -196,11 +208,11 @@
             // 
             // BtnRepconce
             // 
-            this.BtnRepconce.Location = new System.Drawing.Point(72, 256);
+            this.BtnRepconce.Location = new System.Drawing.Point(72, 246);
             this.BtnRepconce.Name = "BtnRepconce";
             this.BtnRepconce.Size = new System.Drawing.Size(126, 53);
             this.BtnRepconce.TabIndex = 7;
-            this.BtnRepconce.Text = "Concesiones";
+            this.BtnRepconce.Text = "Consiganciones";
             this.BtnRepconce.UseVisualStyleBackColor = true;
             this.BtnRepconce.Click += new System.EventHandler(this.BtnRepconce_Click);
             // 
@@ -216,7 +228,7 @@
             // 
             // BtnSmp
             // 
-            this.BtnSmp.Location = new System.Drawing.Point(396, 106);
+            this.BtnSmp.Location = new System.Drawing.Point(396, 176);
             this.BtnSmp.Name = "BtnSmp";
             this.BtnSmp.Size = new System.Drawing.Size(126, 53);
             this.BtnSmp.TabIndex = 5;
@@ -314,5 +326,6 @@
         private System.Windows.Forms.DateTimePicker DtpIni;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }
