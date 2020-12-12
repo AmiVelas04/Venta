@@ -267,8 +267,8 @@ namespace Venta.Clases
                        "INNER JOIN cliente cli ON cli.ID_CLIENTE = c.ID_CLIENTE " +
                        "INNER JOIN conce_detalle cd ON cd.id_conc = c.ID_CONC " +
                        "INNER JOIN producto p ON p.ID_PROD = cd.id_prod " +
-                       "WHERE c.Estado='Pendiente' "+
-                       //c.FECHA >= '"+Fechai+"' AND c.FECHA <= '"+fechaf+"' AND c.ESTADO = 'Pendiente' "+
+                      // "WHERE c.Estado='Pendiente' "+
+                       "c.FECHA >= '"+Fechai+"' AND c.FECHA <= '"+fechaf+"' AND c.ESTADO = 'Pendiente' "+
                        "GROUP BY c.ID_CONC ";
             datos = buscar(Consulta);
             int cont,cant;
