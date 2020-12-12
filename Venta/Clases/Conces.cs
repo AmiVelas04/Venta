@@ -258,16 +258,17 @@ namespace Venta.Clases
             Reportes.ConceEnc enca = new Reportes.ConceEnc();
             enca.fecha = Fechai;
             enca.tipo = fechaf;
-            enca.nombre = "Reporte de concesiones Activas";
+            enca.nombre = "Reporte de consignaciones activas";
             string Consulta;
             Fechai = Fechai + " 00:00:00";
             fechaf = fechaf + " 23:59:59";
             Consulta = "SELECT c.ID_CONC,  date_Format(c.FECHA,'%d/%m/%Y'), cli.NOMBRE, SUM(cd.Total) " +
-                       "FROM concesion c "+
-                       "INNER JOIN cliente cli ON cli.ID_CLIENTE = c.ID_CLIENTE "+
-                       "INNER JOIN conce_detalle cd ON cd.id_conc = c.ID_CONC "+
-                       "INNER JOIN producto p ON p.ID_PROD = cd.id_prod "+
-                       "WHERE c.FECHA >= '"+Fechai+"' AND c.FECHA <= '"+fechaf+"' AND c.ESTADO = 'Pendiente' "+
+                       "FROM concesion c " +
+                       "INNER JOIN cliente cli ON cli.ID_CLIENTE = c.ID_CLIENTE " +
+                       "INNER JOIN conce_detalle cd ON cd.id_conc = c.ID_CONC " +
+                       "INNER JOIN producto p ON p.ID_PROD = cd.id_prod " +
+                       "WHERE c.Estado='Pendiente' "+
+                       //c.FECHA >= '"+Fechai+"' AND c.FECHA <= '"+fechaf+"' AND c.ESTADO = 'Pendiente' "+
                        "GROUP BY c.ID_CONC ";
             datos = buscar(Consulta);
             int cont,cant;
