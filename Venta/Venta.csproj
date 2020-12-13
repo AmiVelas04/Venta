@@ -265,6 +265,12 @@
     <Compile Include="Reportes\RepCaja.Designer.cs">
       <DependentUpon>RepCaja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\RepCredi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\RepCredi.Designer.cs">
+      <DependentUpon>RepCredi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\RepSalGen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -399,6 +405,10 @@
     <EmbeddedResource Include="Reportes\RepCaja.rdlc" />
     <EmbeddedResource Include="Reportes\RepCaja.resx">
       <DependentUpon>RepCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RepCredi.rdlc" />
+    <EmbeddedResource Include="Reportes\RepCredi.resx">
+      <DependentUpon>RepCredi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RepSalGen.rdlc" />
     <EmbeddedResource Include="Reportes\RepSalGen.resx">

@@ -16,6 +16,7 @@ namespace Venta.Formularios
         Clases.Venta ven = new Clases.Venta();
         Clases.Salidaprod sprod = new Clases.Salidaprod();
         Clases.Conces conce = new Clases.Conces();
+        Clases.Credito cre = new Clases.Credito();
         public Reportes()
         {
             InitializeComponent();
@@ -91,14 +92,9 @@ namespace Venta.Formularios
             sprod.RepSalidaTien(fechai,fechaf);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnRepCredi_Click(object sender, EventArgs e)
         {
-            string fechi, fechaf;
-            fechi = DtpIni.Value.ToString("yyyy/MM/dd");
-            fechaf = DtpFin.Value.ToString("yyyy/MM/dd");
-            fechi = fechi + " 00:00:00";
-            fechaf = fechaf + " 23:59:59";
-            ven.CreditosAct(fechi, fechaf);
+            cre.ReporteCredi();
         }
     }
 }

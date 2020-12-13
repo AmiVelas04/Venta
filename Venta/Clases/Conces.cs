@@ -268,7 +268,7 @@ namespace Venta.Clases
                        "INNER JOIN conce_detalle cd ON cd.id_conc = c.ID_CONC " +
                        "INNER JOIN producto p ON p.ID_PROD = cd.id_prod " +
                       // "WHERE c.Estado='Pendiente' "+
-                       "c.FECHA >= '"+Fechai+"' AND c.FECHA <= '"+fechaf+"' AND c.ESTADO = 'Pendiente' "+
+                       "Where c.FECHA >= '"+Fechai+"' AND c.FECHA <= '"+fechaf+"' AND c.ESTADO = 'Pendiente' "+
                        "GROUP BY c.ID_CONC ";
             datos = buscar(Consulta);
             int cont,cant;

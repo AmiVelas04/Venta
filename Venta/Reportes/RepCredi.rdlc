@@ -8,7 +8,7 @@
         <Sizing>Fit</Sizing>
         <Left>7.00828cm</Left>
         <Height>1.5cm</Height>
-        <Width>4.9925cm</Width>
+        <Width>4.96604cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -26,7 +26,6 @@
                 <Style>
                   <FontFamily>Gill Sans MT</FontFamily>
                   <FontSize>16pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -36,88 +35,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>1.67639cm</Top>
-        <Left>3.90037cm</Left>
+        <Top>1.60583cm</Top>
+        <Left>4.04495cm</Left>
         <Height>0.6cm</Height>
-        <Width>12.03729cm</Width>
+        <Width>11.94562cm</Width>
         <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox2">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=CDate(First(Fields!fecha.Value, "Encabezado"))</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                  <Format>d' de 'MMMM' de 'yyyy</Format>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>2.85433cm</Top>
-        <Left>0.34078cm</Left>
-        <Height>0.6cm</Height>
-        <Width>5.62208cm</Width>
-        <ZIndex>2</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox3">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=CDate(First(Fields!tipo.Value, "Encabezado"))</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                  <Format>d' de 'MMMM' de 'yyyy</Format>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                  <Format>d' de 'MMMM' de 'yyyy</Format>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>2.85433cm</Top>
-        <Left>14.44308cm</Left>
-        <Height>0.6cm</Height>
-        <Width>5.27812cm</Width>
-        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -132,19 +54,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.45458cm</Width>
+              <Width>1.75917cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.76458cm</Width>
+              <Width>8.29437cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.88125cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>3.71708cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>3.135cm</Width>
+              <Width>4.14042cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -153,17 +69,15 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox12">
+                    <Textbox Name="Textbox2">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>No.</Value>
+                              <Value>Credito</Value>
                               <Style>
-                                <FontFamily>Gill Sans MT</FontFamily>
-                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -173,13 +87,13 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox12</rd:DefaultName>
+                      <rd:DefaultName>Textbox2</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <BackgroundColor>Silver</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -197,10 +111,8 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Concesión</Value>
+                              <Value>Cliente</Value>
                               <Style>
-                                <FontFamily>Gill Sans MT</FontFamily>
-                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -216,7 +128,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <BackgroundColor>Silver</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -234,17 +146,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Fecha</Value>
+                              <Value>Saldo</Value>
                               <Style>
-                                <FontFamily>Gill Sans MT</FontFamily>
-                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
+                          <Style />
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox6</rd:DefaultName>
@@ -253,81 +161,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>LightGrey</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox8">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Cliente</Value>
-                              <Style>
-                                <FontFamily>Gill Sans MT</FontFamily>
-                                <FontSize>12pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox8</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>LightGrey</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox10">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Monto</Value>
-                              <Style>
-                                <FontFamily>Gill Sans MT</FontFamily>
-                                <FontSize>12pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox10</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <BackgroundColor>Silver</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -343,74 +177,6 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox13">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=RowNumber("Detalle")</Value>
-                              <Style>
-                                <FontFamily>Gill Sans MT</FontFamily>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox13</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Numero">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!Numero.Value</Value>
-                              <Style>
-                                <FontFamily>Gill Sans MT</FontFamily>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Numero</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="cod">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -418,11 +184,8 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=CDate(Fields!cod.Value)</Value>
-                              <Style>
-                                <FontFamily>Gill Sans MT</FontFamily>
-                                <Format>d' de 'MMMM' de 'yyyy</Format>
-                              </Style>
+                              <Value>=Fields!cod.Value</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -454,14 +217,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!descripcion.Value</Value>
-                              <Style>
-                                <FontFamily>Gill Sans MT</FontFamily>
-                              </Style>
+                              <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
+                          <Style />
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>descripcion</rd:DefaultName>
@@ -489,14 +248,12 @@
                             <TextRun>
                               <Value>=Fields!total.Value</Value>
                               <Style>
-                                <FontFamily>Gill Sans MT</FontFamily>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                             <TextRun>
                               <Value xml:space="preserve"> </Value>
                               <Style>
-                                <FontFamily>Gill Sans MT</FontFamily>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
@@ -530,8 +287,6 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
-            <TablixMember />
-            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -545,18 +300,18 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>Detalle</DataSetName>
-        <Top>3.95675cm</Top>
-        <Left>2.44579cm</Left>
+        <Top>2.69558cm</Top>
+        <Left>2.28578cm</Left>
         <Height>1.2cm</Height>
-        <Width>15.95249cm</Width>
-        <ZIndex>4</ZIndex>
+        <Width>14.19396cm</Width>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
-      <Textbox Name="Textbox5">
+      <Textbox Name="Textbox8">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
@@ -565,26 +320,18 @@
               <TextRun>
                 <Value>Total: </Value>
                 <Style>
-                  <FontFamily>Gill Sans MT</FontFamily>
-                  <FontSize>12pt</FontSize>
                   <Format>'Q'#,0.00</Format>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=Sum(Fields!total.Value, "Detalle")</Value>
                 <Style>
-                  <FontFamily>Gill Sans MT</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
                   <Format>'Q'#,0.00</Format>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value xml:space="preserve"> </Value>
                 <Style>
-                  <FontFamily>Gill Sans MT</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
                   <Format>'Q'#,0.00</Format>
                 </Style>
               </TextRun>
@@ -594,12 +341,12 @@
             </Style>
           </Paragraph>
         </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>5.29786cm</Top>
-        <Left>13.59641cm</Left>
+        <rd:DefaultName>Textbox8</rd:DefaultName>
+        <Top>4.07196cm</Top>
+        <Left>12.33933cm</Left>
         <Height>0.6cm</Height>
-        <Width>4.80188cm</Width>
-        <ZIndex>5</ZIndex>
+        <Width>4.14042cm</Width>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -612,7 +359,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>2.48497in</Height>
+    <Height>2.05789in</Height>
     <Style />
   </Body>
   <Width>20cm</Width>
@@ -633,14 +380,14 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>97b03f0b-8c14-4779-8bf3-1ee17c99d9c5</rd:DataSourceID>
+      <rd:DataSourceID>9eb0f06c-8267-4651-a646-1c510df811f0</rd:DataSourceID>
     </DataSource>
     <DataSource Name="VentaReportes1">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>9e271441-e55e-47f4-8ea2-db6d72f2247b</rd:DataSourceID>
+      <rd:DataSourceID>f3b47dee-3f67-4415-abf5-fd05cd8c1385</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -875,5 +622,5 @@ Spdzw1wyVNJN1HtmvwdFXJKJoqnH7RyNJV7Rx8lPMA0XgoYxEwBQKQLe691ZDWbY21kdt1Gzcht7B120
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>60afe146-bf9a-426c-b799-6abdd49aee15</rd:ReportID>
+  <rd:ReportID>566a18d1-484f-432f-8972-e0626de5e1f6</rd:ReportID>
 </Report>

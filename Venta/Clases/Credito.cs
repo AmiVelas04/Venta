@@ -268,6 +268,13 @@ namespace Venta.Clases
             venta = buscar(consultaV);
             detalle = buscar(ConsutaDet);
             int cant, cont;
+            if (venta.Rows.Count<=0)
+            {
+                MessageBox.Show("No existe comprobante registrado");
+                return;
+            }
+
+
             string idcli = venta.Rows[0][1].ToString();
             data = cli.buscli(idcli);
             cant = detalle.Rows.Count;
@@ -294,6 +301,37 @@ namespace Venta.Clases
             Fact.Enca.Add(Encab);
             Fact.Deta = Encab.Detalle;
             Fact.Show();
+
+        }
+
+        public void ReporteCredi()
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "SELECT c.id_credito, cli.NOMBRE FROM credito c " +
+                      "INNER JOIN cliente cli ON cli.ID_CLIENTE = c.ID_CLIENTE " +
+                      "WHERE c.ESTADO = 'Activo' "+
+                      "GROUP BY c.ID_CREDITO";
+            datos = buscar(consulta);
+            Reportes.ConceEnc enca = new Reportes.ConceEnc();
+            enca.nombre = "Reporte de Creditos Activos";
+            int cant, cont;
+            cant = datos.Rows.Count;
+            for (cont= 0; cont<cant;cont++)
+            {
+                Reportes.ConceDet deta = new Reportes.ConceDet();
+                deta.cod = datos.Rows[cont][0].ToString();
+                deta.descripcion = datos.Rows[cont][1].ToString();
+                decimal saldocred = 0;
+               saldocred = saldo(datos.Rows[cont][0].ToString());
+                deta.total = saldocred;
+                enca.Detalle.Add(deta);
+            }
+            Reportes.RepCredi Repo = new Reportes.RepCredi();
+            Repo.Detalle = enca.Detalle;
+            Repo.Encabezado.Add(enca);
+            Repo.Show();
+
 
         }
     }

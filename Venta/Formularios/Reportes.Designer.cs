@@ -40,7 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PanDer = new System.Windows.Forms.Panel();
             this.GbxVentas = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnRepCredi = new System.Windows.Forms.Button();
             this.BtnSalTien = new System.Windows.Forms.Button();
             this.BtnRepconce = new System.Windows.Forms.Button();
             this.BtnGanacias = new System.Windows.Forms.Button();
@@ -166,7 +166,7 @@
             // 
             // GbxVentas
             // 
-            this.GbxVentas.Controls.Add(this.button1);
+            this.GbxVentas.Controls.Add(this.BtnRepCredi);
             this.GbxVentas.Controls.Add(this.BtnSalTien);
             this.GbxVentas.Controls.Add(this.BtnRepconce);
             this.GbxVentas.Controls.Add(this.BtnGanacias);
@@ -186,15 +186,15 @@
             this.GbxVentas.TabStop = false;
             this.GbxVentas.Text = "Ventas/Salidas";
             // 
-            // button1
+            // BtnRepCredi
             // 
-            this.button1.Location = new System.Drawing.Point(396, 106);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 53);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Ver Creditos";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BtnRepCredi.Location = new System.Drawing.Point(396, 106);
+            this.BtnRepCredi.Name = "BtnRepCredi";
+            this.BtnRepCredi.Size = new System.Drawing.Size(126, 53);
+            this.BtnRepCredi.TabIndex = 9;
+            this.BtnRepCredi.Text = "Ver Creditos";
+            this.BtnRepCredi.UseVisualStyleBackColor = true;
+            this.BtnRepCredi.Click += new System.EventHandler(this.BtnRepCredi_Click);
             // 
             // BtnSalTien
             // 
@@ -326,6 +326,6 @@
         private System.Windows.Forms.DateTimePicker DtpIni;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnRepCredi;
     }
 }
