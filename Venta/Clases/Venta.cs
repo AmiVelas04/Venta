@@ -354,7 +354,7 @@ namespace Venta.Clases
             DataTable data = new DataTable();
             data = buscar(ConsV);
             string nombre = data.Rows[0][0].ToString();
-            string detalle = "Registro de venta No." + venta.ToString();
+            string detalle = "Registro de venta No." + venta.ToString()+ " Hecha por: " + nombre;
             string operacion = "Entrada";
             string fecha = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
             string[] datos = {pago,detalle,operacion,fecha,vende };

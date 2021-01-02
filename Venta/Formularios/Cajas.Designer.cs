@@ -50,6 +50,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PanInf = new System.Windows.Forms.Panel();
             this.DgvCaja = new System.Windows.Forms.DataGridView();
+            this.CboVende = new System.Windows.Forms.ComboBox();
             this.PanSup.SuspendLayout();
             this.PanInf.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCaja)).BeginInit();
@@ -57,6 +58,7 @@
             // 
             // PanSup
             // 
+            this.PanSup.Controls.Add(this.CboVende);
             this.PanSup.Controls.Add(this.BtnImp);
             this.PanSup.Controls.Add(this.TxtTotal);
             this.PanSup.Controls.Add(this.label8);
@@ -167,7 +169,7 @@
             // 
             // BtnAgr
             // 
-            this.BtnAgr.Location = new System.Drawing.Point(420, 45);
+            this.BtnAgr.Location = new System.Drawing.Point(389, 19);
             this.BtnAgr.Name = "BtnAgr";
             this.BtnAgr.Size = new System.Drawing.Size(106, 48);
             this.BtnAgr.TabIndex = 8;
@@ -177,7 +179,7 @@
             // 
             // TxtDesc
             // 
-            this.TxtDesc.Location = new System.Drawing.Point(220, 96);
+            this.TxtDesc.Location = new System.Drawing.Point(201, 96);
             this.TxtDesc.Name = "TxtDesc";
             this.TxtDesc.Size = new System.Drawing.Size(157, 26);
             this.TxtDesc.TabIndex = 7;
@@ -185,7 +187,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(227, 74);
+            this.label4.Location = new System.Drawing.Point(208, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 19);
             this.label4.TabIndex = 6;
@@ -193,7 +195,7 @@
             // 
             // TxtMonto
             // 
-            this.TxtMonto.Location = new System.Drawing.Point(220, 31);
+            this.TxtMonto.Location = new System.Drawing.Point(201, 31);
             this.TxtMonto.Name = "TxtMonto";
             this.TxtMonto.Size = new System.Drawing.Size(157, 26);
             this.TxtMonto.TabIndex = 5;
@@ -201,7 +203,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(227, 9);
+            this.label3.Location = new System.Drawing.Point(208, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 19);
             this.label3.TabIndex = 4;
@@ -276,6 +278,16 @@
             this.DgvCaja.Size = new System.Drawing.Size(1033, 455);
             this.DgvCaja.TabIndex = 0;
             // 
+            // CboVende
+            // 
+            this.CboVende.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboVende.FormattingEnabled = true;
+            this.CboVende.Location = new System.Drawing.Point(389, 95);
+            this.CboVende.Name = "CboVende";
+            this.CboVende.Size = new System.Drawing.Size(170, 27);
+            this.CboVende.TabIndex = 18;
+            this.CboVende.SelectedIndexChanged += new System.EventHandler(this.CboVende_SelectedIndexChanged);
+            // 
             // Cajas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -320,5 +332,6 @@
         private System.Windows.Forms.TextBox TxtSencillo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button BtnImp;
+        private System.Windows.Forms.ComboBox CboVende;
     }
 }

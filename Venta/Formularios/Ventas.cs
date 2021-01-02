@@ -710,8 +710,8 @@ namespace Venta.Formularios
             {
                 Busc_press();
             }
-            else if(e.KeyCode==Keys.F12)
-                {
+            else if (e.KeyCode == Keys.F12)
+            {
                 if (MessageBox.Show("¿Desea realizar la Venta?", "Hacer venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 { ventaportecla(); }
                 else
@@ -719,6 +719,8 @@ namespace Venta.Formularios
 
                 }
             }
+            else if (e.KeyCode==Keys.F5)
+            { }
         }
 
         private void Busc_press()

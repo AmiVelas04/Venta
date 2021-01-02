@@ -26,6 +26,7 @@ namespace Venta.Formularios
             DataTable datos = new DataTable();
             datos=Caj.buscar_ope(DateTime.Now.ToString("yyyy/MM/dd"));
             DgvCaja.DataSource = datos;
+            cargarvende();
             busqueda();
         }
 
@@ -78,8 +79,35 @@ namespace Venta.Formularios
             TxtSalida.Text ="Q."+ egresos.ToString ();
             TxtVenta.Text = "Q. " + ventas.ToString();
             total = ventas+500 - egresos;
+            TxtSencillo.Text = "Q. 500.00";
             TxtTotal.Text ="Q. " +total.ToString();
+        }
 
+        private void busquedaporven(string id)
+        {
+            string fecha = DtpCaja.Value.ToString("yyyy/MM/dd");
+            DataTable datos = new DataTable();
+            decimal ventas = 0, egresos = 0, total = 0;
+            datos = Caj.oper_vende(id, fecha);
+            DgvCaja.DataSource = datos;
+            egresos = Caj.Salid_vend(fecha, id);
+            ventas = Caj.Entrad_vende(fecha, id);
+            TxtSalida.Text = "Q." + egresos.ToString();
+            TxtVenta.Text = "Q. " + ventas.ToString();
+            total = ventas - egresos;
+            TxtSencillo.Text = "Q. 0.00";
+            TxtTotal.Text = "Q. " + total.ToString();
+
+        }
+
+        private void cargarvende()
+        {
+            DataTable dt = new DataTable();
+            dt = Caj.Vendedores();
+            CboVende.DataSource = dt;
+            CboVende.DisplayMember = "NOMBRE";
+            CboVende.ValueMember = "ID";
+           
         }
 
         private void BtnImp_Click(object sender, EventArgs e)
@@ -118,6 +146,21 @@ namespace Venta.Formularios
             }
             Caj.imprep(datos);
             
+        }
+
+        private void CboVende_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboVende.SelectedValue.ToString()=="System.Data.DataRowView")
+            { }
+            else if (CboVende.SelectedValue.ToString() == "0")
+            {
+                busqueda();
+            }
+            else
+            {
+                string id = CboVende.SelectedValue.ToString();
+                busquedaporven(id);
+            }
         }
     }
 }
