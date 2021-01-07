@@ -96,5 +96,13 @@ namespace Venta.Formularios
         {
             cre.ReporteCredi();
         }
+
+        private void Reportes_Load(object sender, EventArgs e)
+        {
+            if (Main.nivel == "1")
+            {
+                BtnGanacias.Visible = true;
+            }
+        }
     }
 }

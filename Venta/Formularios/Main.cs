@@ -73,7 +73,14 @@ namespace Venta.Formularios
                 BtnReportes.Visible = false;
                 BtnVent.Visible = false;
                 BtnResp.Visible = false;
+                BtnUsu.Visible = false;
             }
+            if (nivel.Equals("2"))
+            {
+                BtnUsu.Visible = false;
+            }
+
+
         }
 
         private void BtnCreditos_Click(object sender, EventArgs e)
@@ -240,6 +247,19 @@ namespace Venta.Formularios
         {
             IngresoRapidoProd ingre = new IngresoRapidoProd();
             ingre.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ControlUsu Usu = new ControlUsu();
+            Usu.ShowDialog();
+        }
+
+        private void BtnUsu_Click(object sender, EventArgs e)
+        {
+
+            ControlUsu Usu = new ControlUsu();
+            Usu.ShowDialog();
         }
     }
 }

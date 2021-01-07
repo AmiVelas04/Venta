@@ -198,7 +198,7 @@
             // 
             // BtnSalTien
             // 
-            this.BtnSalTien.Location = new System.Drawing.Point(396, 246);
+            this.BtnSalTien.Location = new System.Drawing.Point(72, 245);
             this.BtnSalTien.Name = "BtnSalTien";
             this.BtnSalTien.Size = new System.Drawing.Size(126, 53);
             this.BtnSalTien.TabIndex = 8;
@@ -208,7 +208,7 @@
             // 
             // BtnRepconce
             // 
-            this.BtnRepconce.Location = new System.Drawing.Point(72, 246);
+            this.BtnRepconce.Location = new System.Drawing.Point(72, 176);
             this.BtnRepconce.Name = "BtnRepconce";
             this.BtnRepconce.Size = new System.Drawing.Size(126, 53);
             this.BtnRepconce.TabIndex = 7;
@@ -218,12 +218,13 @@
             // 
             // BtnGanacias
             // 
-            this.BtnGanacias.Location = new System.Drawing.Point(72, 176);
+            this.BtnGanacias.Location = new System.Drawing.Point(396, 245);
             this.BtnGanacias.Name = "BtnGanacias";
             this.BtnGanacias.Size = new System.Drawing.Size(126, 53);
             this.BtnGanacias.TabIndex = 6;
             this.BtnGanacias.Text = "Reporte de Ganacia";
             this.BtnGanacias.UseVisualStyleBackColor = true;
+            this.BtnGanacias.Visible = false;
             this.BtnGanacias.Click += new System.EventHandler(this.BtnGanacias_Click);
             // 
             // BtnSmp
@@ -292,6 +293,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Reportes";
             this.Text = "Reportes";
+            this.Load += new System.EventHandler(this.Reportes_Load);
             this.PanIz.ResumeLayout(false);
             this.GbxProd.ResumeLayout(false);
             this.GbxProd.PerformLayout();

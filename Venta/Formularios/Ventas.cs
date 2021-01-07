@@ -720,7 +720,12 @@ namespace Venta.Formularios
                 }
             }
             else if (e.KeyCode==Keys.F5)
-            { }
+            {
+                BuscProdRap busc = new BuscProdRap();
+                busc.Mostrarprodu += new BuscProdRap.permiso(codivent);
+                busc.ShowDialog();
+                Busc_press();
+            }
         }
 
         private void Busc_press()
@@ -743,6 +748,12 @@ namespace Venta.Formularios
             }
 
             else { MessageBox.Show("El codigo no esta registrado"); }
+        }
+
+        public void codivent(string cod)
+        {
+            char[] elim = { 'r', 'R' };
+            TxtCod.Text = cod.TrimStart(elim);
         }
 
         private void ChkMay_CheckedChanged(object sender, EventArgs e)

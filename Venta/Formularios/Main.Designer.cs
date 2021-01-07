@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PanLat = new System.Windows.Forms.Panel();
+            this.BtnUsu = new System.Windows.Forms.Button();
             this.BtnIngrerap = new System.Windows.Forms.Button();
             this.BtnResp = new System.Windows.Forms.Button();
             this.BtnVent = new System.Windows.Forms.Button();
@@ -53,6 +54,7 @@
             // PanLat
             // 
             this.PanLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.PanLat.Controls.Add(this.BtnUsu);
             this.PanLat.Controls.Add(this.BtnIngrerap);
             this.PanLat.Controls.Add(this.BtnResp);
             this.PanLat.Controls.Add(this.BtnVent);
@@ -68,6 +70,21 @@
             this.PanLat.Name = "PanLat";
             this.PanLat.Size = new System.Drawing.Size(134, 680);
             this.PanLat.TabIndex = 0;
+            // 
+            // BtnUsu
+            // 
+            this.BtnUsu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(172)))), ((int)(((byte)(65)))));
+            this.BtnUsu.FlatAppearance.BorderSize = 0;
+            this.BtnUsu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnUsu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnUsu.Image = ((System.Drawing.Image)(resources.GetObject("BtnUsu.Image")));
+            this.BtnUsu.Location = new System.Drawing.Point(78, 637);
+            this.BtnUsu.Name = "BtnUsu";
+            this.BtnUsu.Size = new System.Drawing.Size(50, 40);
+            this.BtnUsu.TabIndex = 10;
+            this.BtnUsu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnUsu.UseVisualStyleBackColor = false;
+            this.BtnUsu.Click += new System.EventHandler(this.BtnUsu_Click);
             // 
             // BtnIngrerap
             // 
@@ -90,12 +107,10 @@
             this.BtnResp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnResp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnResp.Image = ((System.Drawing.Image)(resources.GetObject("BtnResp.Image")));
-            this.BtnResp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnResp.Location = new System.Drawing.Point(8, 637);
             this.BtnResp.Name = "BtnResp";
-            this.BtnResp.Size = new System.Drawing.Size(120, 40);
+            this.BtnResp.Size = new System.Drawing.Size(50, 40);
             this.BtnResp.TabIndex = 8;
-            this.BtnResp.Text = "Respaldo";
             this.BtnResp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnResp.UseVisualStyleBackColor = false;
             this.BtnResp.Click += new System.EventHandler(this.BtnResp_Click);
@@ -329,5 +344,6 @@
         private System.Windows.Forms.Button BtnResp;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnIngrerap;
+        private System.Windows.Forms.Button BtnUsu;
     }
 }
