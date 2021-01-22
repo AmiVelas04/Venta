@@ -460,7 +460,7 @@ namespace Venta.Formularios
             string NombreFull, ruta, alterno = "";
             NombreFull = imagen + extension;
             string imgdefecto = prod.imagen(id);
-            ruta = Path.GetFullPath(@".\imagen\" + NombreFull);
+            ruta = Path.GetFullPath(@"//LAPTOP//Prods//" + NombreFull);
 
             if (File.Exists(ruta))
             {
@@ -474,9 +474,9 @@ namespace Venta.Formularios
                         FileStream archi = new FileStream("./imagen/" + imagen + extension,FileMode.Create);
                         archi.Write(contenido, 0, contenido.Length);
                         archi.Close();*/
-                        File.Copy(OFD1.FileName, "./imagen/" + imagen + extension);
+                        File.Copy(OFD1.FileName, @"//LAPTOP//Prods//" + imagen + extension);
 
-                        alterno = "./imagen/" + imagen + "B" + extension;
+                        alterno = @"//LAPTOP//Prods//" + imagen + "B" + extension;
                     }
                     catch (Exception Ex)
                     {
@@ -493,7 +493,8 @@ namespace Venta.Formularios
             {
                 if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
                 {
-                    File.Copy(OFD1.FileName, "./imagen/" + imagen + extension);
+                    File.Copy(OFD1.FileName, @"//LAPTOP//Prods//" + imagen + extension);
+                   // File.Copy(OFD1.FileName, @"//LAPTOP//Prods//pruebacopuy.jpg");
                 }
                 else
                 {
@@ -590,6 +591,7 @@ namespace Venta.Formularios
                 //mostrar imagen
                 try
                 {
+                    // using (var stream = File.Open(@".\imagen\" + imag, FileMode.Open))
                     using (var stream = File.Open(@".\imagen\" + imag, FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
