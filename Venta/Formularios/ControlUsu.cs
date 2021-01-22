@@ -136,5 +136,9 @@ namespace Venta.Formularios
             }
         }
 
+        private void BtnNuevo_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
     }
 }

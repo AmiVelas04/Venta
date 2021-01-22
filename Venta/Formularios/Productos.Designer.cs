@@ -187,6 +187,11 @@
             // NudIngreso
             // 
             this.NudIngreso.Location = new System.Drawing.Point(15, 231);
+            this.NudIngreso.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.NudIngreso.Name = "NudIngreso";
             this.NudIngreso.Size = new System.Drawing.Size(97, 23);
             this.NudIngreso.TabIndex = 38;

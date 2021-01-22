@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.PanCentral = new System.Windows.Forms.Panel();
+            this.BtnNuevo = new System.Windows.Forms.Button();
             this.LblId = new System.Windows.Forms.Label();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnEditar = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.CboUsu = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnNuevo = new System.Windows.Forms.Button();
             this.PanCentral.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +72,17 @@
             this.PanCentral.Name = "PanCentral";
             this.PanCentral.Size = new System.Drawing.Size(534, 342);
             this.PanCentral.TabIndex = 0;
+            // 
+            // BtnNuevo
+            // 
+            this.BtnNuevo.Location = new System.Drawing.Point(32, 133);
+            this.BtnNuevo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BtnNuevo.Name = "BtnNuevo";
+            this.BtnNuevo.Size = new System.Drawing.Size(100, 27);
+            this.BtnNuevo.TabIndex = 15;
+            this.BtnNuevo.Text = "Nuevo";
+            this.BtnNuevo.UseVisualStyleBackColor = true;
+            this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
             // 
             // LblId
             // 
@@ -219,16 +230,6 @@
             this.label1.Size = new System.Drawing.Size(64, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Usuarios";
-            // 
-            // BtnNuevo
-            // 
-            this.BtnNuevo.Location = new System.Drawing.Point(32, 133);
-            this.BtnNuevo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.BtnNuevo.Name = "BtnNuevo";
-            this.BtnNuevo.Size = new System.Drawing.Size(100, 27);
-            this.BtnNuevo.TabIndex = 15;
-            this.BtnNuevo.Text = "Nuevo";
-            this.BtnNuevo.UseVisualStyleBackColor = true;
             // 
             // ControlUsu
             // 
