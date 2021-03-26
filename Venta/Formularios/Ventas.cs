@@ -72,27 +72,27 @@ namespace Venta.Formularios
             CboPrecio.SelectedIndex = 2;
             LblPosi.Text = "Ubicación: " + datos.Rows[0][15].ToString();
             try
-            {
-                using (var stream = File.Open(@".\" + @".\imagen\" + prod.imagen(id), FileMode.Open))
+            {//Ubicacion de imagenes en produccion: @".\imagen\"
+                using (var stream = File.Open(@"\\192.168.0.100\imagenes\" + prod.imagen(id), FileMode.Open))
                 {
                     Bitmap archivo = new Bitmap(stream);
                     Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                     PicExemp.Image = muestra;
                 }
                 //   PicExemp.Image = Image.FromFile();
-                PicExemp.Tag = @".\imagen\" + prod.imagen(id);
+                PicExemp.Tag = @"\\192.168.0.100\imagenes\" + prod.imagen(id);
 
             }
             catch (FileNotFoundException ex)
             {
-                using (var stream = File.Open(@".\" + @".\imagen\0.jpg", FileMode.Open))
+                using (var stream = File.Open(@"\\192.168.0.100\imagenes\0.jpg", FileMode.Open))
                 {
                     Bitmap archivo = new Bitmap(stream);
                     Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                     PicExemp.Image = muestra;
                 }
                 //   PicExemp.Image = Image.FromFile();
-                PicExemp.Tag = @".\imagen\" + prod.imagen(id);
+                PicExemp.Tag = @"\\192.168.0.100\imagenes\" + prod.imagen(id);
 
             }
             int total = prod.cantidadprod(id);
@@ -461,9 +461,7 @@ namespace Venta.Formularios
             sal.cotizagen(cli,produ);
             LimpiarDatos();
         }
-
-       
-
+   
         private bool materiaprim()
         {
             int cant, cont;
@@ -804,7 +802,7 @@ namespace Venta.Formularios
         private void ImgAum()
         {
             ImagenPic img = new ImagenPic();
-            if (PicExemp.Image == null) { ImagenPic.ponerimg = @".\imagen\0.jpg"; }
+            if (PicExemp.Image == null) { ImagenPic.ponerimg = @"\\192.168.0.100\imagenes\0.jpg"; }
             else { ImagenPic.ponerimg = PicExemp.Tag.ToString();  }
             img.Show();
         }

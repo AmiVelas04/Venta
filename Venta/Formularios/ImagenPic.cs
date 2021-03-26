@@ -28,7 +28,7 @@ namespace Venta.Formularios
            // LblCerrar.Parent = panel1;
 
             LblCerrar.BackColor = Color.FromArgb(1, Color.Blue);
-            using (var stream = File.Open(@".\" + ponerimg, FileMode.Open))
+            using (var stream = File.Open(ponerimg, FileMode.Open))
             {
                 Bitmap archivo = new Bitmap(stream);
                 Bitmap muestra = new Bitmap(RedimImage(archivo, 800, 600));

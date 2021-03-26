@@ -74,24 +74,24 @@ namespace Venta.Formularios
                 string imag = produ.imagen(id);
                 //mostrar imagen
                 try
-                {
-                    using (var stream = File.Open(@".\imagen\" + imag, FileMode.Open))
+                {//Directorio de produccion: @".\imagen\"
+                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\" + imag, FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PicImagen.Image = muestra;
-                        PicImagen.Tag = @".\imagen\" + imag;
+                        PicImagen.Tag = @"\\192.168.0.100\imagenes\" + imag;
                     }
                 }
                 catch (FileNotFoundException ex)
                 {
                     MessageBox.Show("¡Imagen no encontrada!", "No imagen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    using (var stream = File.Open(@".\imagen\0.jpg", FileMode.Open))
+                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\0.jpg", FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PicImagen.Image = muestra;
-                        PicImagen.Tag = @".\imagen\" + imag;
+                        PicImagen.Tag = @"\\192.168.0.100\imagenes\" + imag;
                     }
 
                 }

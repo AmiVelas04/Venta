@@ -455,12 +455,12 @@ namespace Venta.Formularios
 
         private string revimagen(string imagen, string id)
         {
+            //Ruta de produccion:@"//LAPTOP//Prods//"
             string extension = Path.GetExtension(OFD1.FileName);
-
             string NombreFull, ruta, alterno = "";
             NombreFull = imagen + extension;
             string imgdefecto = prod.imagen(id);
-            ruta = Path.GetFullPath(@"//LAPTOP//Prods//" + NombreFull);
+            ruta = Path.GetFullPath(@"\\192.168.01\imagenes\" + NombreFull);
 
             if (File.Exists(ruta))
             {
@@ -474,9 +474,9 @@ namespace Venta.Formularios
                         FileStream archi = new FileStream("./imagen/" + imagen + extension,FileMode.Create);
                         archi.Write(contenido, 0, contenido.Length);
                         archi.Close();*/
-                        File.Copy(OFD1.FileName, @"//LAPTOP//Prods//" + imagen + extension);
+                        File.Copy(OFD1.FileName, @"\\192.168.01\imagenes\" + imagen + extension);
 
-                        alterno = @"//LAPTOP//Prods//" + imagen + "B" + extension;
+                        alterno = @"\\192.168.01\imagenes\" + imagen + "B" + extension;
                     }
                     catch (Exception Ex)
                     {
@@ -493,7 +493,7 @@ namespace Venta.Formularios
             {
                 if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
                 {
-                    File.Copy(OFD1.FileName, @"//LAPTOP//Prods//" + imagen + extension);
+                    File.Copy(OFD1.FileName, @"\\192.168.01\imagenes\" + imagen + extension);
                    // File.Copy(OFD1.FileName, @"//LAPTOP//Prods//pruebacopuy.jpg");
                 }
                 else
@@ -532,7 +532,7 @@ namespace Venta.Formularios
                 try
                 {
                     //mostrar imagen
-                    using (var stream = File.Open(@".\imagen\" + imag, FileMode.Open))
+                    using (var stream = File.Open(@"\\192.168.01\imagenes\" + imag, FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
@@ -542,7 +542,7 @@ namespace Venta.Formularios
                 catch (FileNotFoundException ex)
                 {
                     // MessageBox.Show("¡Imagen no encontrada!", "No imagen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    using (var stream = File.Open(@".\imagen\0.jpg", FileMode.Open))
+                    using (var stream = File.Open(@"\\192.168.01\imagenes\", FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
@@ -592,23 +592,23 @@ namespace Venta.Formularios
                 try
                 {
                     // using (var stream = File.Open(@".\imagen\" + imag, FileMode.Open))
-                    using (var stream = File.Open(@".\imagen\" + imag, FileMode.Open))
+                    using (var stream = File.Open(@"\\192.168.01\imagenes\" + imag, FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PbxProd.Image = muestra;
-                        PbxProd.Tag = @".\imagen\" + imag;
+                        PbxProd.Tag = @"\\192.168.01\imagenes\" + imag;
                     }
                 }
                 catch (FileNotFoundException ex)
                 {
                     MessageBox.Show("¡Imagen no encontrada!", "No imagen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    using (var stream = File.Open(@".\imagen\0.jpg", FileMode.Open))
+                    using (var stream = File.Open(@"\\192.168.01\imagenes\0.jpg", FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PbxProd.Image = muestra;
-                        PbxProd.Tag = @".\imagen\" + imag;
+                        PbxProd.Tag = @"\\192.168.01\imagenes\" + imag;
                     }
 
                 }
@@ -688,7 +688,7 @@ namespace Venta.Formularios
         private void ImgAum()
         {
             ImagenPic img = new ImagenPic();
-            if (PbxProd.Image == null) { ImagenPic.ponerimg = @".\imagen\0.jpg"; }
+            if (PbxProd.Image == null) { ImagenPic.ponerimg = @"\\192.168.01\imagenes\0.jpg"; }
             else { ImagenPic.ponerimg = PbxProd.Tag.ToString(); }
             img.Show();
         }
