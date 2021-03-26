@@ -912,13 +912,17 @@ namespace Venta.Clases
             string NombreFull, ruta;
             string extension = Path.GetExtension(origen);
             NombreFull = imagen + extension;
-            if (Directory.Exists(@"//LAPTOP//Prods//"))
+
+            //Direccion de imagenes en servidor :@\\192.168.0.100\imagenes\
+            //direccion de imagenes en produccion: @"//LAPTOP//Prods//
+
+            if (Directory.Exists(@"\\192.168.0.100\imagenes\"))
             { }
             else
             {
-                Directory.CreateDirectory(@"//LAPTOP//Prods//");
+                Directory.CreateDirectory(@"\\192.168.0.100\imagenes\");
             }
-            ruta = Path.GetFullPath(@"//LAPTOP//Prods//" + NombreFull);
+            ruta = Path.GetFullPath(@"\\192.168.0.100\imagenes\" + NombreFull);
             if (File.Exists(ruta))
             {
                 System.IO.File.Delete(ruta);
@@ -926,7 +930,7 @@ namespace Venta.Clases
                 {
                     try
                     {
-                        File.Copy(origen, @"//LAPTOP//Prods//" + imagen + extension);
+                        File.Copy(origen, @"\\192.168.0.100\imagenes\" + imagen + extension);
                     }
                     catch (Exception Ex)
                     {
@@ -944,7 +948,7 @@ namespace Venta.Clases
             {
                 if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
                 {
-                    File.Copy(origen, @"//LAPTOP//Prods//" + imagen + extension);
+                    File.Copy(origen, @"\\192.168.0.100\imagenes\" + imagen + extension);
                 }
                 else
                 {

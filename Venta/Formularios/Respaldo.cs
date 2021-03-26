@@ -34,11 +34,11 @@ namespace Venta.Formularios
 
             if (carpeta.ShowDialog() == DialogResult.OK)
             {
-                carpetaOrig = @".\imagen";
+                carpetaOrig = @"//LAPTOP//Prods//";
                 CarpetaDest = @"\Respaldo Tipicos";
                 TxtRuta.Text = carpeta.SelectedPath;
                 miCarpeta = carpeta.SelectedPath;
-                destino = miCarpeta.Trim() + CarpetaDest + "\\RespaldoBd_" + MiFecha + ".sql";
+                destino = miCarpeta.Trim() + CarpetaDest + "\\RespaldoBdTipicos_" + MiFecha + ".sql";
 
             }
         }

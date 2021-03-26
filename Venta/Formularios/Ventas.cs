@@ -326,6 +326,7 @@ namespace Venta.Formularios
             else if (RdbCredito.Checked)
             {
                 if (TxtMonto.Text == "") TxtMonto.Text = "0";
+
                 pago();
             }
             else if (RdbConce.Checked)
@@ -480,6 +481,7 @@ namespace Venta.Formularios
                 MessageBox.Show("No se pudo encontrar al cliente");
                 return;
             }
+           
             
             string estado = "", tipo = "";
             decimal total;
@@ -497,6 +499,11 @@ namespace Venta.Formularios
             }
             else if (RdbCredito.Checked)
             {
+                if (cli == "1")
+                {
+                                       MessageBox.Show("No se puede asignar credito a consumidor final","Credito no asignado",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    return;
+                }
                 tipo = "Credito";
                 estado = "Pendiente";
                 if (DgvProd.Rows.Count > 0)
