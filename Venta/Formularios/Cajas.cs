@@ -12,6 +12,8 @@ namespace Venta.Formularios
 {
     public partial class Cajas : Form
     {
+        string nivel,id;
+        
         Clases.Caja Caj = new Clases.Caja();
         public Cajas()
         {
@@ -20,15 +22,41 @@ namespace Venta.Formularios
 
         private void Cajas_Load(object sender, EventArgs e)
         {
+            nivel = Main.nivel;
+            id = Main.idvende;
+            if (nivel.Equals("1") || nivel.Equals("2"))
+            {
+                busquetodo();
+            }
+            else if (nivel.Equals("3"))
+            {
+                busqueprop();
+            }
+        }
+
+        private void busquetodo()
+        {
             CboOpe.Items.Add("Entrada");
             CboOpe.Items.Add("Salida");
             CboOpe.SelectedIndex = 0;
             DataTable datos = new DataTable();
-            datos=Caj.buscar_ope(DateTime.Now.ToString("yyyy/MM/dd"));
+            datos = Caj.buscar_ope(DateTime.Now.ToString("yyyy/MM/dd"));
             DgvCaja.DataSource = datos;
             cargarvende();
             busqueda();
         }
+        private void busqueprop()
+        {
+            CboOpe.Items.Add("Entrada");
+            CboOpe.Items.Add("Salida");
+            string fecha;
+            fecha = DateTime.Now.ToString("yyyy/MM/dd");
+            CboOpe.SelectedIndex = 0;
+            DataTable datos = new DataTable();
+            datos = Caj.oper_vende(id ,fecha);
+            DgvCaja.DataSource = datos;
+            cargarvende();
+       }
 
         private void BtnAgr_Click(object sender, EventArgs e)
         {
@@ -103,7 +131,10 @@ namespace Venta.Formularios
         private void cargarvende()
         {
             DataTable dt = new DataTable();
-            dt = Caj.Vendedores();
+            string nivel, id;
+            nivel = Main.nivel;
+            id = Main.idvende;
+            dt = Caj.Vendedores(nivel,id);
             CboVende.DataSource = dt;
             CboVende.DisplayMember = "NOMBRE";
             CboVende.ValueMember = "ID";
@@ -158,8 +189,8 @@ namespace Venta.Formularios
             }
             else
             {
-                string id = CboVende.SelectedValue.ToString();
-                busquedaporven(id);
+                string id_V = CboVende.SelectedValue.ToString();
+                busquedaporven(id_V);
             }
         }
     }

@@ -34,7 +34,7 @@ namespace Venta.Formularios
 
             if (carpeta.ShowDialog() == DialogResult.OK)
             {
-                carpetaOrig = @"//LAPTOP//Prods//";
+                carpetaOrig = @"\192.168.0.100\imagenes\";
                 CarpetaDest = @"\Respaldo Tipicos";
                 TxtRuta.Text = carpeta.SelectedPath;
                 miCarpeta = carpeta.SelectedPath;
@@ -57,8 +57,8 @@ namespace Venta.Formularios
 
         private void Respaldo_Load(object sender, EventArgs e)
         {
-            //string cadena_conn = "server=Localhost;  database=tienda; user id=creditos; password=Cre-2020-Sis; port=3306; allow zero Datetime= true";
-            string cadena_conn = "server=Localhost;  database=Bdtipicos; user id=Tipicos; password=Venta_2020_Sis; port=3306; allow zero Datetime= true";
+            string cadena_conn = "server=192.168.0.100; database = bdtipicos; user id = ClienteRed; password = Ventas_Tip_Red; allow zero Datetime = true";
+           // string cadena_conn = "server=192.168.0.100;  database=Bdtipicos; user id=Tipicos; password=Venta_2020_Sis; port=3306; allow zero Datetime= true";
             conn.ConnectionString = cadena_conn;
         }
 

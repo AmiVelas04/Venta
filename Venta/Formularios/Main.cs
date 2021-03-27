@@ -101,6 +101,7 @@ namespace Venta.Formularios
         private void BtnCaja_Click(object sender, EventArgs e)
         {
             abrir_form(new Cajas());
+            
         }
 
         private void BtnVent_Click(object sender, EventArgs e)

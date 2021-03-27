@@ -108,7 +108,8 @@ namespace Venta.Clases
                               "where fecha>= '" + fechai + "' and fecha<='" + fechaf + "' and Operacion!='Cancelada'";
             return buscar(consulta);
         }
-        public DataTable oper_vende(string id,string fecha)
+
+             public DataTable oper_vende(string id,string fecha)
         {
             string fechai, fechaf, consulta;
             fechai = fecha + " 00:00:00";
@@ -240,15 +241,30 @@ namespace Venta.Clases
         }
 
 
-        public DataTable Vendedores()
+        public DataTable Vendedores(string nivel,string id)
         {
             string consulta;
+            if (nivel.Equals("1") || nivel.Equals("2"))
+            {
+                consulta = "SELECT v.ID_VENDEDOR as ID,v.NOMBRE " +
+                          "FROM vendedor v " +
+                          "WHERE v.ID_VENDEDOR > 1";
+            }
+            else if (nivel.Equals("3"))
+            {
+                consulta = "SELECT v.ID_VENDEDOR as ID,v.NOMBRE " +
+                          "FROM vendedor v " +
+                          "WHERE v.ID_VENDEDOR ="+id;
+            }
+
+            else
+            {
+                consulta = "";
+            }
+
             DataTable datos = new DataTable();
-            consulta = "SELECT v.ID_VENDEDOR as ID,v.NOMBRE "+
-                       "FROM vendedor v "+
-                       "WHERE v.ID_VENDEDOR > 1";
             datos= buscar(consulta);
-            datos.Rows.Add(0,"Todos");
+            if (nivel.Equals("1") || nivel.Equals("2")) datos.Rows.Add(0,"Todos");
             return datos;
         }
     }
