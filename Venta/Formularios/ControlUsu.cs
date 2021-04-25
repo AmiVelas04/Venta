@@ -69,7 +69,7 @@ namespace Venta.Formularios
             { nivel = "2"; }
             else
             {
-                nivel = "2";
+                nivel = "3";
             }
             string[] datos = { LblId.Text, TxtNom.Text, TxtUsu.Text, TxtPass2.Text, nivel };
             if (usu.existe(LblId.Text))
