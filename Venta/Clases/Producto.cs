@@ -23,7 +23,6 @@ namespace Venta.Clases
             DataTable datos = new DataTable();
             try
             {
-
                 MySqlDataAdapter adap = new MySqlDataAdapter(consulta, conn.conn);
                 adap.Fill(datos);
             }
@@ -772,12 +771,17 @@ namespace Venta.Clases
             return buscar(consulta);
          
         }
-        public string imagen(string id)
+        public string imagendar(string id)
         {
             string consulta = "Select imagen from producto where id_prod='" + id + "'";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
-            if (datos.Rows.Count > 0) { return datos.Rows[0][0].ToString(); }
+            if (datos.Rows.Count > 0) {
+                string ima;
+                ima= datos.Rows[0][0].ToString();
+                return ima;
+            }
+          
             else { return "0.jpg"; }
         }
 

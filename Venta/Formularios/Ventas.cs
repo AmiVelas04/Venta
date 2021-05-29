@@ -73,14 +73,14 @@ namespace Venta.Formularios
             LblPosi.Text = "Ubicación: " + datos.Rows[0][15].ToString();
             try
             {//Ubicacion de imagenes en produccion: @".\imagen\"
-                using (var stream = File.Open(@"\\192.168.0.100\imagenes\" + prod.imagen(id), FileMode.Open))
+                using (var stream = File.Open(@"\\192.168.0.100\imagenes\" + prod.imagendar(id), FileMode.Open))
                 {
                     Bitmap archivo = new Bitmap(stream);
                     Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                     PicExemp.Image = muestra;
                 }
                 //   PicExemp.Image = Image.FromFile();
-                PicExemp.Tag = @"\\192.168.0.100\imagenes\" + prod.imagen(id);
+                PicExemp.Tag = @"\\192.168.0.100\imagenes\" + prod.imagendar(id);
 
             }
             catch (FileNotFoundException ex)
@@ -92,7 +92,7 @@ namespace Venta.Formularios
                     PicExemp.Image = muestra;
                 }
                 //   PicExemp.Image = Image.FromFile();
-                PicExemp.Tag = @"\\192.168.0.100\imagenes\" + prod.imagen(id);
+                PicExemp.Tag = @"\\192.168.0.100\imagenes\" + prod.imagendar(id);
 
             }
             int total = prod.cantidadprod(id);
@@ -669,24 +669,24 @@ namespace Venta.Formularios
                 CboPrecio.SelectedIndex = 1;
                 try
                 {
-                    using (var stream = File.Open(@".\" + @".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString()), FileMode.Open))
+                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\" + prod.imagendar(CboTalla.SelectedValue.ToString()), FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PicExemp.Image = muestra;
                     }
                     //PicExemp.Image = Image.FromFile(@".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString ()));
-                    PicExemp.Tag = prod.imagen(CboTalla.SelectedValue.ToString());
+                    PicExemp.Tag = prod.imagendar(CboTalla.SelectedValue.ToString());
                 }
                 catch (FileNotFoundException ex){
-                    using (var stream = File.Open(@".\" + @".\imagen\0.jpg", FileMode.Open))
+                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\0.jpg", FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PicExemp.Image = muestra;
                     }
                     //PicExemp.Image = Image.FromFile(@".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString ()));
-                    PicExemp.Tag = prod.imagen(CboTalla.SelectedValue.ToString());
+                    PicExemp.Tag = prod.imagendar(CboTalla.SelectedValue.ToString());
                 }
 
                 }

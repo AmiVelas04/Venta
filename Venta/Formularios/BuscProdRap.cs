@@ -71,7 +71,7 @@ namespace Venta.Formularios
                 PicImagen.Image = null;
                 string id = Dgv1.Rows[Dgv1.CurrentRow.Index].Cells[0].Value.ToString();
                 //  TxtCod.Text = id;
-                string imag = produ.imagen(id);
+                string imag = produ.imagendar(id);
                 //mostrar imagen
                 try
                 {//Directorio de produccion: @".\imagen\"

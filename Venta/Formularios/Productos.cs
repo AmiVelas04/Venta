@@ -459,8 +459,8 @@ namespace Venta.Formularios
             string extension = Path.GetExtension(OFD1.FileName);
             string NombreFull, ruta, alterno = "";
             NombreFull = imagen + extension;
-            string imgdefecto = prod.imagen(id);
-            ruta = Path.GetFullPath(@"\\192.168.01\imagenes\" + NombreFull);
+            string imgdefecto = prod.imagendar(id);
+            ruta = Path.GetFullPath(@"\\192.168.0.100\imagenes\" + NombreFull);
 
             if (File.Exists(ruta))
             {
@@ -474,9 +474,9 @@ namespace Venta.Formularios
                         FileStream archi = new FileStream("./imagen/" + imagen + extension,FileMode.Create);
                         archi.Write(contenido, 0, contenido.Length);
                         archi.Close();*/
-                        File.Copy(OFD1.FileName, @"\\192.168.01\imagenes\" + imagen + extension);
+                        File.Copy(OFD1.FileName, @"\\192.168.0.100\imagenes\" + imagen + extension);
 
-                        alterno = @"\\192.168.01\imagenes\" + imagen + "B" + extension;
+                        alterno = @"\\192.168.0.100\imagenes\" + imagen + "B" + extension;
                     }
                     catch (Exception Ex)
                     {
@@ -493,7 +493,7 @@ namespace Venta.Formularios
             {
                 if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
                 {
-                    File.Copy(OFD1.FileName, @"\\192.168.01\imagenes\" + imagen + extension);
+                    File.Copy(OFD1.FileName, @"\\192.168.0.100\imagenes\" + imagen + extension);
                    // File.Copy(OFD1.FileName, @"//LAPTOP//Prods//pruebacopuy.jpg");
                 }
                 else
@@ -528,11 +528,11 @@ namespace Venta.Formularios
                 TxtUltimoIng.Text = datos.Rows[0][17].ToString();
                 string id = "R" + TxtCod.Text;
                 //  TxtCod.Text = id;
-                string imag = prod.imagen(id);
+                string imag = prod.imagendar(id);
                 try
                 {
                     //mostrar imagen
-                    using (var stream = File.Open(@"\\192.168.01\imagenes\" + imag, FileMode.Open))
+                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\" + imag, FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
@@ -542,7 +542,7 @@ namespace Venta.Formularios
                 catch (FileNotFoundException ex)
                 {
                     // MessageBox.Show("¡Imagen no encontrada!", "No imagen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    using (var stream = File.Open(@"\\192.168.01\imagenes\", FileMode.Open))
+                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\0.jpg", FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
@@ -587,28 +587,28 @@ namespace Venta.Formularios
                 PbxProd.Image = null;
                 string id = DgvProd.Rows[DgvProd.CurrentRow.Index].Cells[0].Value.ToString();
                 //  TxtCod.Text = id;
-                string imag = prod.imagen(id);
+                string imag = prod.imagendar(id);
                 //mostrar imagen
                 try
                 {
                     // using (var stream = File.Open(@".\imagen\" + imag, FileMode.Open))
-                    using (var stream = File.Open(@"\\192.168.01\imagenes\" + imag, FileMode.Open))
+                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\" + imag, FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PbxProd.Image = muestra;
-                        PbxProd.Tag = @"\\192.168.01\imagenes\" + imag;
+                        PbxProd.Tag = @"\\192.168.0.100\imagenes\" + imag;
                     }
                 }
                 catch (FileNotFoundException ex)
                 {
                     MessageBox.Show("¡Imagen no encontrada!", "No imagen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    using (var stream = File.Open(@"\\192.168.01\imagenes\0.jpg", FileMode.Open))
+                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\0.jpg", FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PbxProd.Image = muestra;
-                        PbxProd.Tag = @"\\192.168.01\imagenes\" + imag;
+                        PbxProd.Tag = @"\\192.168.0.100\imagenes\" + imag;
                     }
 
                 }
@@ -688,7 +688,7 @@ namespace Venta.Formularios
         private void ImgAum()
         {
             ImagenPic img = new ImagenPic();
-            if (PbxProd.Image == null) { ImagenPic.ponerimg = @"\\192.168.01\imagenes\0.jpg"; }
+            if (PbxProd.Image == null) { ImagenPic.ponerimg = @"\\192.168.0.100\imagenes\0.jpg"; }
             else { ImagenPic.ponerimg = PbxProd.Tag.ToString(); }
             img.Show();
         }
