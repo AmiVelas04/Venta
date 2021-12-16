@@ -332,6 +332,7 @@ namespace Venta.Formularios
                 if (prod.upd_prod(datosupd))
                 {
                     MessageBox.Show("Producto Actualizado correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     PbxProd.InitialImage = null;
                     PbxProd.Image = null;
                     if (cantingre.ToString() != "0")

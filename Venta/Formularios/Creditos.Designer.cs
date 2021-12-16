@@ -28,9 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Creditos));
             this.PanSup = new System.Windows.Forms.Panel();
             this.GbxClinete = new System.Windows.Forms.GroupBox();
+            this.PanCompAnte = new System.Windows.Forms.Panel();
+            this.GbxComprante = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.CboCompAnte = new System.Windows.Forms.ComboBox();
+            this.BtnAnte = new System.Windows.Forms.Button();
             this.TxtDpi = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.TxtNit = new System.Windows.Forms.TextBox();
@@ -54,6 +60,8 @@
             this.TxtPago = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnPagH = new System.Windows.Forms.Button();
+            this.BtnCompro = new System.Windows.Forms.Button();
             this.ChkEditar = new System.Windows.Forms.CheckBox();
             this.TxtGast = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -67,9 +75,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.PanInf = new System.Windows.Forms.Panel();
             this.DgvPagos = new System.Windows.Forms.DataGridView();
-            this.BtnCompro = new System.Windows.Forms.Button();
+            this.ttMensaje = new System.Windows.Forms.ToolTip(this.components);
             this.PanSup.SuspendLayout();
             this.GbxClinete.SuspendLayout();
+            this.PanCompAnte.SuspendLayout();
+            this.GbxComprante.SuspendLayout();
             this.PanMed.SuspendLayout();
             this.GbxCredito.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -91,6 +101,7 @@
             // 
             // GbxClinete
             // 
+            this.GbxClinete.Controls.Add(this.PanCompAnte);
             this.GbxClinete.Controls.Add(this.TxtDpi);
             this.GbxClinete.Controls.Add(this.label5);
             this.GbxClinete.Controls.Add(this.TxtNit);
@@ -111,6 +122,56 @@
             this.GbxClinete.TabIndex = 0;
             this.GbxClinete.TabStop = false;
             this.GbxClinete.Text = "Cliente";
+            // 
+            // PanCompAnte
+            // 
+            this.PanCompAnte.Controls.Add(this.GbxComprante);
+            this.PanCompAnte.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PanCompAnte.Location = new System.Drawing.Point(777, 23);
+            this.PanCompAnte.Name = "PanCompAnte";
+            this.PanCompAnte.Size = new System.Drawing.Size(348, 109);
+            this.PanCompAnte.TabIndex = 11;
+            // 
+            // GbxComprante
+            // 
+            this.GbxComprante.Controls.Add(this.label13);
+            this.GbxComprante.Controls.Add(this.CboCompAnte);
+            this.GbxComprante.Controls.Add(this.BtnAnte);
+            this.GbxComprante.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GbxComprante.Location = new System.Drawing.Point(0, 0);
+            this.GbxComprante.Name = "GbxComprante";
+            this.GbxComprante.Size = new System.Drawing.Size(348, 109);
+            this.GbxComprante.TabIndex = 0;
+            this.GbxComprante.TabStop = false;
+            this.GbxComprante.Text = "Comprobantes anteriores";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(11, 46);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(56, 19);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "Fecha";
+            // 
+            // CboCompAnte
+            // 
+            this.CboCompAnte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboCompAnte.FormattingEnabled = true;
+            this.CboCompAnte.Location = new System.Drawing.Point(15, 68);
+            this.CboCompAnte.Name = "CboCompAnte";
+            this.CboCompAnte.Size = new System.Drawing.Size(175, 27);
+            this.CboCompAnte.TabIndex = 11;
+            // 
+            // BtnAnte
+            // 
+            this.BtnAnte.Location = new System.Drawing.Point(262, 68);
+            this.BtnAnte.Name = "BtnAnte";
+            this.BtnAnte.Size = new System.Drawing.Size(77, 27);
+            this.BtnAnte.TabIndex = 10;
+            this.BtnAnte.Text = "Ver";
+            this.BtnAnte.UseVisualStyleBackColor = true;
+            this.BtnAnte.Click += new System.EventHandler(this.BtnAnte_Click);
             // 
             // TxtDpi
             // 
@@ -352,6 +413,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.BtnPagH);
             this.panel1.Controls.Add(this.BtnCompro);
             this.panel1.Controls.Add(this.ChkEditar);
             this.panel1.Controls.Add(this.TxtGast);
@@ -370,6 +432,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(558, 134);
             this.panel1.TabIndex = 0;
+            // 
+            // BtnPagH
+            // 
+            this.BtnPagH.Enabled = false;
+            this.BtnPagH.Image = ((System.Drawing.Image)(resources.GetObject("BtnPagH.Image")));
+            this.BtnPagH.Location = new System.Drawing.Point(483, 78);
+            this.BtnPagH.Name = "BtnPagH";
+            this.BtnPagH.Size = new System.Drawing.Size(64, 44);
+            this.BtnPagH.TabIndex = 14;
+            this.BtnPagH.UseVisualStyleBackColor = true;
+            this.BtnPagH.Click += new System.EventHandler(this.BtnPagH_Click);
+            // 
+            // BtnCompro
+            // 
+            this.BtnCompro.Image = ((System.Drawing.Image)(resources.GetObject("BtnCompro.Image")));
+            this.BtnCompro.Location = new System.Drawing.Point(483, 19);
+            this.BtnCompro.Name = "BtnCompro";
+            this.BtnCompro.Size = new System.Drawing.Size(64, 44);
+            this.BtnCompro.TabIndex = 13;
+            this.BtnCompro.UseVisualStyleBackColor = true;
+            this.BtnCompro.Click += new System.EventHandler(this.BtnCompro_Click);
             // 
             // ChkEditar
             // 
@@ -390,7 +473,7 @@
             this.TxtGast.Location = new System.Drawing.Point(144, 101);
             this.TxtGast.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TxtGast.Name = "TxtGast";
-            this.TxtGast.Size = new System.Drawing.Size(145, 26);
+            this.TxtGast.Size = new System.Drawing.Size(124, 26);
             this.TxtGast.TabIndex = 11;
             this.TxtGast.DoubleClick += new System.EventHandler(this.TxtGast_DoubleClick);
             this.TxtGast.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGast_KeyDown);
@@ -408,7 +491,7 @@
             // TxtAnte
             // 
             this.TxtAnte.Enabled = false;
-            this.TxtAnte.Location = new System.Drawing.Point(330, 101);
+            this.TxtAnte.Location = new System.Drawing.Point(295, 103);
             this.TxtAnte.Name = "TxtAnte";
             this.TxtAnte.Size = new System.Drawing.Size(145, 26);
             this.TxtAnte.TabIndex = 9;
@@ -416,7 +499,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(335, 78);
+            this.label10.Location = new System.Drawing.Point(300, 80);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(121, 19);
             this.label10.TabIndex = 8;
@@ -444,7 +527,7 @@
             // TxtSaldo
             // 
             this.TxtSaldo.Enabled = false;
-            this.TxtSaldo.Location = new System.Drawing.Point(330, 37);
+            this.TxtSaldo.Location = new System.Drawing.Point(295, 39);
             this.TxtSaldo.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TxtSaldo.Name = "TxtSaldo";
             this.TxtSaldo.Size = new System.Drawing.Size(145, 26);
@@ -453,7 +536,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(335, 14);
+            this.label7.Location = new System.Drawing.Point(300, 16);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 19);
@@ -466,7 +549,7 @@
             this.CboCred.Location = new System.Drawing.Point(5, 37);
             this.CboCred.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.CboCred.Name = "CboCred";
-            this.CboCred.Size = new System.Drawing.Size(101, 27);
+            this.CboCred.Size = new System.Drawing.Size(93, 27);
             this.CboCred.TabIndex = 3;
             this.CboCred.SelectedIndexChanged += new System.EventHandler(this.CboCred_SelectedIndexChanged);
             // 
@@ -507,15 +590,9 @@
             this.DgvPagos.Size = new System.Drawing.Size(1130, 293);
             this.DgvPagos.TabIndex = 0;
             // 
-            // BtnCompro
+            // ttMensaje
             // 
-            this.BtnCompro.Image = ((System.Drawing.Image)(resources.GetObject("BtnCompro.Image")));
-            this.BtnCompro.Location = new System.Drawing.Point(483, 42);
-            this.BtnCompro.Name = "BtnCompro";
-            this.BtnCompro.Size = new System.Drawing.Size(64, 55);
-            this.BtnCompro.TabIndex = 13;
-            this.BtnCompro.UseVisualStyleBackColor = true;
-            this.BtnCompro.Click += new System.EventHandler(this.BtnCompro_Click);
+            this.ttMensaje.IsBalloon = true;
             // 
             // Creditos
             // 
@@ -535,6 +612,9 @@
             this.PanSup.ResumeLayout(false);
             this.GbxClinete.ResumeLayout(false);
             this.GbxClinete.PerformLayout();
+            this.PanCompAnte.ResumeLayout(false);
+            this.GbxComprante.ResumeLayout(false);
+            this.GbxComprante.PerformLayout();
             this.PanMed.ResumeLayout(false);
             this.GbxCredito.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -589,5 +669,12 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox ChkEditar;
         private System.Windows.Forms.Button BtnCompro;
+        private System.Windows.Forms.Button BtnAnte;
+        private System.Windows.Forms.Panel PanCompAnte;
+        private System.Windows.Forms.GroupBox GbxComprante;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox CboCompAnte;
+        private System.Windows.Forms.Button BtnPagH;
+        private System.Windows.Forms.ToolTip ttMensaje;
     }
 }

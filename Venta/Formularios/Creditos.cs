@@ -14,6 +14,7 @@ namespace Venta.Formularios
     {
         Clases.Clientes cli = new Clases.Clientes();
         Clases.Credito cre = new Clases.Credito();
+       
         private void AyudaControles()
         {
          HelpProvider AyudaBot = new HelpProvider();
@@ -24,6 +25,7 @@ namespace Venta.Formularios
         public Creditos()
         {
             InitializeComponent();
+            this.ttMensaje.SetToolTip(this.BtnPagH, "Este boton muestra Todos los pagos realizados por este cliente a su cuenta general");
         }
 
         private void Creditos_Load(object sender, EventArgs e)
@@ -56,7 +58,10 @@ namespace Venta.Formularios
         private void CboCli_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CboCli.Text != "" && CboCli.SelectedValue.ToString() != "System.Data.DataRowView")
-            { buscardata(CboCli.SelectedValue.ToString()); }
+            { buscardata(CboCli.SelectedValue.ToString());
+                buscarComproAnte(CboCli.SelectedValue.ToString());
+                BtnPagH.Enabled = true;
+            }
             else
             { }
         }
@@ -70,6 +75,15 @@ namespace Venta.Formularios
             TxtTel.Text = datos.Rows[0][4].ToString();
             TxtDpi.Text = datos.Rows[0][5].ToString();
             buscarcredi(idcli);
+        }
+        private void buscarComproAnte(string idcli)
+        {
+            DataTable datos = new DataTable();
+            datos = cre.ultimos3cred(idcli);
+            CboCompAnte.DataSource = datos;
+            CboCompAnte.DisplayMember = "fecha";
+            CboCompAnte.ValueMember = "id";
+
         }
 
         private void buscarcredi(string idC)
@@ -246,6 +260,23 @@ namespace Venta.Formularios
         {
             cre.reimpCompro(CboCred.Text,"Vendiendo");
             
+        }
+
+        private void BtnAnte_Click(object sender, EventArgs e)
+        {
+            if (CboCompAnte.Text != "" && CboCred.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                cre.reimpCompro2(CboCompAnte.SelectedValue.ToString());
+                //BtnPago.Enabled = true;
+            }
+        }
+
+        private void BtnPagH_Click(object sender, EventArgs e)
+        {
+            if (CboCli.Text != "" && CboCli.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                cre.ReportePagos(CboCli.SelectedValue.ToString());
+            }
         }
     }
 }

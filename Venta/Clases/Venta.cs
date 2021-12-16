@@ -433,10 +433,6 @@ namespace Venta.Clases
             Fventa.Show();
         }
 
-
-
-
-
         public DataTable  listavent()
         {
             string f1,f2, fecha = DateTime.Now.ToString("yyyy/MM/dd");
@@ -620,5 +616,7 @@ namespace Venta.Clases
             }
             return total;
         }
+
+      
     }
 }

@@ -1,0 +1,14 @@
+archivo de compras(con cantidad de productos anteriores)
+cambio de cantidades de pro administrador()
+proveedor sin necesidad
+reporte de compras por producto(posiblemente )
+rastreo de productos
+
+
+
+archivo de ventas
+
+cuadres
+
+recepcion de consignacion
+
