@@ -361,6 +361,8 @@
             // 
             this.BtnAgr.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BtnAgr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAgr.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgr.Image")));
+            this.BtnAgr.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnAgr.Location = new System.Drawing.Point(4, 426);
             this.BtnAgr.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnAgr.Name = "BtnAgr";

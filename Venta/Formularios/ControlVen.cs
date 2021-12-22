@@ -13,6 +13,7 @@ namespace Venta.Formularios
     public partial class ControlVen : Form
     {
         Clases.Venta ven = new Clases.Venta();
+        string level = Main.nivel;
         public ControlVen()
         {
             InitializeComponent();
@@ -21,6 +22,14 @@ namespace Venta.Formularios
         private void ControlVen_Load(object sender, EventArgs e)
         {
             listarven();
+            if (level.Equals("1") || level.Equals("2"))
+            {
+                BtnSuprVen.Visible = true;
+            }
+            else
+            {
+                BtnSuprVen.Visible = false;
+            }
         }
         private void listarven()
         {
@@ -104,11 +113,12 @@ namespace Venta.Formularios
         private void eliminar()
         {
             int cont, cant;
+            string idv = Main.idvende,venta=CboVenta.Text;
             cant = DgvDatos.Rows.Count;
             for (cont= 0; cont<cant;cont++)
             { string id = DgvDatos.Rows[cont].Cells[0].Value.ToString();
               string cantprod= DgvDatos.Rows[cont].Cells[2].Value.ToString();
-              if (!ven.devolver(id, cantprod)) return;
+              if (!ven.devolver(id, cantprod,idv,venta)) return;
             }
             if (!ven.cambvent(CboVenta .Text)) return;
             decimal monto = decimal.Parse(Lblt.Text);

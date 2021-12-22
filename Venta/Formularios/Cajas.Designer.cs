@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cajas));
             this.PanSup = new System.Windows.Forms.Panel();
+            this.CboVende = new System.Windows.Forms.ComboBox();
             this.BtnImp = new System.Windows.Forms.Button();
             this.TxtTotal = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -50,7 +51,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PanInf = new System.Windows.Forms.Panel();
             this.DgvCaja = new System.Windows.Forms.DataGridView();
-            this.CboVende = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.TxtTotCaj = new System.Windows.Forms.TextBox();
             this.PanSup.SuspendLayout();
             this.PanInf.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCaja)).BeginInit();
@@ -58,6 +60,8 @@
             // 
             // PanSup
             // 
+            this.PanSup.Controls.Add(this.TxtTotCaj);
+            this.PanSup.Controls.Add(this.label9);
             this.PanSup.Controls.Add(this.CboVende);
             this.PanSup.Controls.Add(this.BtnImp);
             this.PanSup.Controls.Add(this.TxtTotal);
@@ -84,6 +88,16 @@
             this.PanSup.Size = new System.Drawing.Size(1033, 156);
             this.PanSup.TabIndex = 0;
             // 
+            // CboVende
+            // 
+            this.CboVende.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboVende.FormattingEnabled = true;
+            this.CboVende.Location = new System.Drawing.Point(389, 95);
+            this.CboVende.Name = "CboVende";
+            this.CboVende.Size = new System.Drawing.Size(170, 27);
+            this.CboVende.TabIndex = 18;
+            this.CboVende.SelectedIndexChanged += new System.EventHandler(this.CboVende_SelectedIndexChanged);
+            // 
             // BtnImp
             // 
             this.BtnImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnImp.Image")));
@@ -100,33 +114,32 @@
             // TxtTotal
             // 
             this.TxtTotal.Enabled = false;
-            this.TxtTotal.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTotal.Location = new System.Drawing.Point(872, 31);
+            this.TxtTotal.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTotal.Location = new System.Drawing.Point(688, 112);
             this.TxtTotal.Name = "TxtTotal";
-            this.TxtTotal.Size = new System.Drawing.Size(149, 36);
+            this.TxtTotal.Size = new System.Drawing.Size(125, 26);
             this.TxtTotal.TabIndex = 16;
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(926, 9);
+            this.label8.Location = new System.Drawing.Point(588, 104);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 19);
+            this.label8.Size = new System.Drawing.Size(89, 42);
             this.label8.TabIndex = 15;
-            this.label8.Text = "Total";
+            this.label8.Text = "Total Vendedor";
             // 
             // TxtSalida
             // 
             this.TxtSalida.Enabled = false;
-            this.TxtSalida.Location = new System.Drawing.Point(693, 123);
+            this.TxtSalida.Location = new System.Drawing.Point(688, 74);
             this.TxtSalida.Name = "TxtSalida";
-            this.TxtSalida.Size = new System.Drawing.Size(119, 26);
+            this.TxtSalida.Size = new System.Drawing.Size(125, 26);
             this.TxtSalida.TabIndex = 14;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(609, 126);
+            this.label7.Location = new System.Drawing.Point(588, 77);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 19);
             this.label7.TabIndex = 13;
@@ -135,15 +148,15 @@
             // TxtVenta
             // 
             this.TxtVenta.Enabled = false;
-            this.TxtVenta.Location = new System.Drawing.Point(690, 65);
+            this.TxtVenta.Location = new System.Drawing.Point(688, 41);
             this.TxtVenta.Name = "TxtVenta";
-            this.TxtVenta.Size = new System.Drawing.Size(122, 26);
+            this.TxtVenta.Size = new System.Drawing.Size(125, 26);
             this.TxtVenta.TabIndex = 12;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(606, 68);
+            this.label6.Location = new System.Drawing.Point(588, 44);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(62, 19);
             this.label6.TabIndex = 11;
@@ -154,14 +167,14 @@
             this.TxtSencillo.Enabled = false;
             this.TxtSencillo.Location = new System.Drawing.Point(688, 9);
             this.TxtSencillo.Name = "TxtSencillo";
-            this.TxtSencillo.Size = new System.Drawing.Size(124, 26);
+            this.TxtSencillo.Size = new System.Drawing.Size(125, 26);
             this.TxtSencillo.TabIndex = 10;
             this.TxtSencillo.Text = "Q.500.00";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(604, 12);
+            this.label5.Location = new System.Drawing.Point(588, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 19);
             this.label5.TabIndex = 9;
@@ -278,15 +291,23 @@
             this.DgvCaja.Size = new System.Drawing.Size(1033, 455);
             this.DgvCaja.TabIndex = 0;
             // 
-            // CboVende
+            // label9
             // 
-            this.CboVende.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboVende.FormattingEnabled = true;
-            this.CboVende.Location = new System.Drawing.Point(389, 95);
-            this.CboVende.Name = "CboVende";
-            this.CboVende.Size = new System.Drawing.Size(170, 27);
-            this.CboVende.TabIndex = 18;
-            this.CboVende.SelectedIndexChanged += new System.EventHandler(this.CboVende_SelectedIndexChanged);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(888, 12);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(91, 19);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Total Caja";
+            // 
+            // TxtTotCaj
+            // 
+            this.TxtTotCaj.Enabled = false;
+            this.TxtTotCaj.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTotCaj.Location = new System.Drawing.Point(877, 34);
+            this.TxtTotCaj.Name = "TxtTotCaj";
+            this.TxtTotCaj.Size = new System.Drawing.Size(144, 36);
+            this.TxtTotCaj.TabIndex = 20;
             // 
             // Cajas
             // 
@@ -333,5 +354,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button BtnImp;
         private System.Windows.Forms.ComboBox CboVende;
+        private System.Windows.Forms.TextBox TxtTotCaj;
+        private System.Windows.Forms.Label label9;
     }
 }

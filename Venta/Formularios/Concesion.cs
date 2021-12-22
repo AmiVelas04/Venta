@@ -168,15 +168,16 @@ namespace Venta.Formularios
         }
         private void BtnFacturar_Click(object sender, EventArgs e)
         {
-            prepFact();
+            string idv = Main.idvende;
+            prepFact(idv);
             limpiardatos();
         }
 
-        private void prepFact()
+        private void prepFact(string idv)
         {
             DataTable Prefac = new DataTable();
             DataTable Fact = new DataTable();
-            string cliente=cli .CliporConce(CboConce .Text).ToString (), vende= Main.idvende.ToString ();
+            string cliente=cli.CliporConce(CboConce .Text).ToString (), vende= Main.idvende.ToString (), conce= CboConce.Text;
             Prefac = Conce.ProdConce(CboConce.Text);
             int cont;decimal Vtotal = decimal.Parse(TxtTotal.Text);
             var total = Prefac.Rows.Count;
@@ -203,7 +204,7 @@ namespace Venta.Formularios
                     DataRow fila = Fact.NewRow();
                     CantDvo = cantAnt; //- cantAct;
                     totalp = precio * cantAct;
-                    prod.devolverprod(idP, CantDvo.ToString());
+                    prod.devolverprod(idP, CantDvo.ToString(),6,idv,conce);
                     fila["codigo"] = idP.ToString();
                     fila["producto"] = Prefac.Rows[cont][0].ToString();
                     fila["estilo"] = Prefac.Rows[cont][1].ToString();
@@ -218,7 +219,7 @@ namespace Venta.Formularios
                 else
                 {
                     CantDvo = int.Parse(Prefac.Rows[cont][5].ToString());
-                    prod.devolverprod(idP, CantDvo.ToString());
+                    prod.devolverprod(idP, CantDvo.ToString(),6,idv,conce);
                 }
             }
             if (ven.generar_V(Fact, vende,cliente, "Cancelado", "Contado", Vtotal.ToString()))

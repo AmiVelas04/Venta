@@ -18,6 +18,7 @@ namespace Venta.Clases
         Clientes cli = new Clientes();
         Credito cre = new Credito();
         Caja caj = new Caja();
+        RastreoProd track = new RastreoProd();
         Errores err = new Errores();
 
         #region "General"
@@ -154,25 +155,60 @@ namespace Venta.Clases
 
         private bool generar_det(DataTable datos, string Nventa,string cli,string tipo,string pago,string vende)
         {
-            int id, total, cont;
-            string consulta;
+            int id, total, cont,otra=0;
+            string consulta, docu = "";
             total = datos.Rows.Count;
             decimal Tvent = 0;
+            string ConsV = "Select nombre from vendedor where id_vendedor=" + vende;
             for (cont =0; cont<total;cont++) { 
             id = cod_detalle();
             string idpord = datos.Rows[cont][0].ToString();
                 string cant = datos.Rows[cont][6].ToString();
             consulta = "insert into venta_detalle(id_detalle,id_venta,id_prod,cantidad,precio,total) " +
                                "values(" + id + "," + Nventa + ",'" +datos.Rows[cont][0].ToString () + "', "+ datos.Rows[cont][6].ToString() +","+ datos.Rows[cont][7].ToString()+","+ datos.Rows[cont][8].ToString() + ")";
+                int anterior = prod.cantidadprod(datos.Rows[cont][0].ToString());
                 if (!consulta_gen(consulta))
                 {
                     return false;
                 }
                 if (!prod.descontarprod(idpord, cant))
                 { return false; }
+                //
+                if (tipo.Equals("Contado"))
+                {
+                    otra = 1;
+                    docu = Nventa;
+                }
+                else if (tipo.Equals("Credito"))
+                {
+                    otra = 2;
+                    docu = cod_cred().ToString();
+                }
+               
+                //Generar datatable para guardar el rastreo del producto
+                DataTable datoes = new DataTable();
+                datoes.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("color").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("cantante").DataType = System.Type.GetType("System.String");
+                DataRow fila = datoes.NewRow();
+                fila["codigo"] = datos.Rows[cont][0].ToString();
+                fila["producto"] = "";
+                fila["estilo"] = "";
+                fila["tipo"] = "";
+                fila["color"] = "";
+                fila["talla"] = "";
+                fila["cantidad"] = datos.Rows[cont][6].ToString();
+                fila["Cantante"] = anterior.ToString();
+                datoes.Rows.Add(fila);
+                track.Movimiento(datoes,otra,vende,anterior,docu);
                 Tvent += decimal.Parse(datos.Rows[cont][8].ToString());
             }
-            string ConsV = "Select nombre from vendedor where id_vendedor=" + vende;
+           
             DataTable data = new DataTable();
             data = buscar(ConsV);
             string nombre = data.Rows[0][0].ToString();
@@ -181,7 +217,6 @@ namespace Venta.Clases
             if (MessageBox.Show("¿Desea imprimir comprobante?","Imprimir",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes) {
                 genfact(datos, Nventa, cli, tipo, nombre);
             }
-            
             return true;
         }
 
@@ -207,7 +242,6 @@ namespace Venta.Clases
                             "values(" + id + "," + cli + "," + Nventa + "," + valor + "," + pago + "," + saldoant.ToString() + ",'Activo',0)";
                 if (consulta_gen(consulta))
                 {
-
                     string[] regi = { id.ToString(), pago, detalle, fecha, vende };
                     return (cre.RegPago(regi));
                 }
@@ -479,9 +513,10 @@ namespace Venta.Clases
             return consulta_gen(consulta);
         }
 
-        public bool devolver(string id, string cant)
+        public bool devolver(string id, string cant,string idv, string venta)
         {
-            return prod.devolverprod(id, cant);
+            
+            return prod.devolverprod(id, cant,7,idv,venta);
         }
 
         public bool regcaja(string [] datos)

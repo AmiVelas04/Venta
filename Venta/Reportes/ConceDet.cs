@@ -14,6 +14,7 @@ namespace Venta.Reportes
         public int cantidad { get; set; }
         public decimal precio { get; set; }
         public decimal total { get; set; }
+        public string ubi { get; set; }
 
     }
 }

@@ -91,6 +91,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.DgvProd = new System.Windows.Forms.DataGridView();
             this.OFD1 = new System.Windows.Forms.OpenFileDialog();
+            this.BtnTrack = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudIngreso)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -250,9 +251,9 @@
             // 
             this.BtnLimp.Image = ((System.Drawing.Image)(resources.GetObject("BtnLimp.Image")));
             this.BtnLimp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.BtnLimp.Location = new System.Drawing.Point(318, 139);
+            this.BtnLimp.Location = new System.Drawing.Point(321, 115);
             this.BtnLimp.Name = "BtnLimp";
-            this.BtnLimp.Size = new System.Drawing.Size(75, 54);
+            this.BtnLimp.Size = new System.Drawing.Size(75, 45);
             this.BtnLimp.TabIndex = 32;
             this.BtnLimp.Text = "Limpiar";
             this.BtnLimp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -398,12 +399,15 @@
             // 
             // BtnImagen
             // 
-            this.BtnImagen.Location = new System.Drawing.Point(304, 380);
+            this.BtnImagen.Image = ((System.Drawing.Image)(resources.GetObject("BtnImagen.Image")));
+            this.BtnImagen.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnImagen.Location = new System.Drawing.Point(289, 380);
             this.BtnImagen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnImagen.Name = "BtnImagen";
-            this.BtnImagen.Size = new System.Drawing.Size(54, 27);
+            this.BtnImagen.Size = new System.Drawing.Size(89, 27);
             this.BtnImagen.TabIndex = 14;
             this.BtnImagen.Text = "Subir";
+            this.BtnImagen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnImagen.UseVisualStyleBackColor = true;
             this.BtnImagen.Click += new System.EventHandler(this.BtnImagen_Click);
             // 
@@ -497,6 +501,8 @@
             // BtnGuardar
             // 
             this.BtnGuardar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BtnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("BtnGuardar.Image")));
+            this.BtnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnGuardar.Location = new System.Drawing.Point(0, 545);
             this.BtnGuardar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BtnGuardar.Name = "BtnGuardar";
@@ -617,6 +623,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.BtnTrack);
             this.panel2.Controls.Add(this.NudEtiqueta);
             this.panel2.Controls.Add(this.BtnLblPrint);
             this.panel2.Controls.Add(this.BtnModif);
@@ -658,7 +665,7 @@
             this.BtnLblPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnLblPrint.Location = new System.Drawing.Point(260, 18);
             this.BtnLblPrint.Name = "BtnLblPrint";
-            this.BtnLblPrint.Size = new System.Drawing.Size(113, 42);
+            this.BtnLblPrint.Size = new System.Drawing.Size(110, 45);
             this.BtnLblPrint.TabIndex = 3;
             this.BtnLblPrint.Text = "Imprimir etiquetas";
             this.BtnLblPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -670,9 +677,9 @@
             // 
             this.BtnModif.Image = ((System.Drawing.Image)(resources.GetObject("BtnModif.Image")));
             this.BtnModif.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnModif.Location = new System.Drawing.Point(144, 18);
+            this.BtnModif.Location = new System.Drawing.Point(123, 18);
             this.BtnModif.Name = "BtnModif";
-            this.BtnModif.Size = new System.Drawing.Size(102, 42);
+            this.BtnModif.Size = new System.Drawing.Size(105, 45);
             this.BtnModif.TabIndex = 2;
             this.BtnModif.Text = "Modificar Datos";
             this.BtnModif.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -683,9 +690,9 @@
             // 
             this.BtnNvo.Image = ((System.Drawing.Image)(resources.GetObject("BtnNvo.Image")));
             this.BtnNvo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnNvo.Location = new System.Drawing.Point(553, 18);
+            this.BtnNvo.Location = new System.Drawing.Point(620, 18);
             this.BtnNvo.Name = "BtnNvo";
-            this.BtnNvo.Size = new System.Drawing.Size(102, 42);
+            this.BtnNvo.Size = new System.Drawing.Size(95, 45);
             this.BtnNvo.TabIndex = 1;
             this.BtnNvo.Text = "Nuevo";
             this.BtnNvo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -699,7 +706,7 @@
             this.BtnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnEditar.Location = new System.Drawing.Point(12, 18);
             this.BtnEditar.Name = "BtnEditar";
-            this.BtnEditar.Size = new System.Drawing.Size(102, 42);
+            this.BtnEditar.Size = new System.Drawing.Size(90, 45);
             this.BtnEditar.TabIndex = 0;
             this.BtnEditar.Text = "Editar";
             this.BtnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -817,6 +824,19 @@
             // 
             this.OFD1.FileName = "Seleccionar imagen";
             // 
+            // BtnTrack
+            // 
+            this.BtnTrack.Image = ((System.Drawing.Image)(resources.GetObject("BtnTrack.Image")));
+            this.BtnTrack.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnTrack.Location = new System.Drawing.Point(465, 18);
+            this.BtnTrack.Name = "BtnTrack";
+            this.BtnTrack.Size = new System.Drawing.Size(100, 45);
+            this.BtnTrack.TabIndex = 5;
+            this.BtnTrack.Text = "Rastrear";
+            this.BtnTrack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnTrack.UseVisualStyleBackColor = true;
+            this.BtnTrack.Click += new System.EventHandler(this.BtnTrack_Click);
+            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -915,5 +935,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox TxtUltimoIng;
         private System.Windows.Forms.CheckBox ChkCantCamb;
+        private System.Windows.Forms.Button BtnTrack;
     }
 }

@@ -15,6 +15,8 @@ namespace Venta.Clases
     {
         conexion conn = new conexion();
         Errores err = new Errores();
+        RastreoProd track = new RastreoProd();
+        
 
         #region "General"
         private DataTable buscar(string consulta)
@@ -322,7 +324,7 @@ namespace Venta.Clases
             return NvoCol;
 
         }
-        public bool ingreso_prod(string[] datos)
+        public bool ingreso_prod(string[] datos,string idv)
         {
             string codpod = "";
             string est = datos[1];
@@ -362,8 +364,30 @@ namespace Venta.Clases
            
             string nomcomp = datos[0] + est + tipo + color + datos[4];
             string imagen = revimagen(nomcomp, datos[12]);
+            DataTable datoes = new DataTable();
+            datoes.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("color").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("cantante").DataType = System.Type.GetType("System.String");
+            DataRow fila = datoes.NewRow();
+            fila["codigo"] = codpod;
+            fila["producto"] = "";
+            fila["estilo"] = "";
+            fila["tipo"] = "";
+            fila["color"] = "";
+            fila["talla"] = "";
+            fila["cantidad"] = datos[5];
+            fila["Cantante"] = "0";
+            datoes.Rows.Add(fila);
+
             string consulta = "Insert into producto(id_prod,nombre,id_estilo,id_tipo,id_color,talla,cantidad,precio_cost,precio_m1,precio_m2,precio_v1,precio_v2,precio_v3,imagen,ubicacion,MATERIAP) " +
                                "values ('"+codpod+"','"+datos[0] + "','"+est + "','"+ tipo + "','"+color + "','"+datos[4] + "',"+datos[5] + ","+datos[6] + "," + datos[7] +  "," + datos[8] +"," +datos[9]+ ","+datos[10]+","+datos[11]+",'" + imagen +"','"+datos[16]+"',"+datos[17]+ ")";
+           
+            track.Movimiento(datoes,3,idv,0,null);
             if (consulta_gen(consulta))
             {
                 MessageBox.Show("Codigo: " + codpod + "\nProducto: " + datos[0]+ "\nEstilo: "+ datos[13] + "\nTipo: "+ datos[14] + "\nColor: "+datos[15] + "\nTalla: " + datos [4] + "\n¡Registro correcto!","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -377,27 +401,70 @@ namespace Venta.Clases
             else
             {return false; }
         }
-        public bool upd_prod(string[] datos)
+        public bool upd_prod(string[] datos, string idv,int ope)
         {
+            DataTable datoes = new DataTable();
+            datoes.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("color").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("cantante").DataType = System.Type.GetType("System.String");
+
+            DataRow fila = datoes.NewRow();
             int cantant,cantnova;
             string consulta,codprod;
             codprod =datos[15];
             cantant = Int32.Parse(datos[5]);
             cantnova = Int32.Parse(datos[16]);
+            fila["codigo"] = codprod;
+            fila["producto"] = "";
+            fila["estilo"] = "";
+            fila["tipo"] = "";
+            fila["color"] = "";
+            fila["talla"] = "";
+            fila["cantidad"] =cantnova.ToString() ;
+            fila["Cantante"] = datos[5];
+            datoes.Rows.Add(fila);
             cantnova +=cantant;
+            cantant = cantidadprod(codprod);
+            track.Movimiento(datoes, ope,idv ,cantant, null);
             consulta = "Update producto set cantidad=" + cantnova +", precio_cost="+datos[6]+ ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] +", precio_v3="+ datos [11]+", imagen='" +datos[12]+"', ubicacion = '"+datos[13]+"', Materiap="+datos[14]+", Ultcant="+datos[16]+" where id_Prod='" + codprod+ "'"; 
+
             return consulta_gen(consulta);
         }
 
-        public bool mod_prod(string [] datos)
+        public bool mod_prod(string [] datos,string idv)
         {
             int cantant, cantnova;
             string consulta, codprod;
+            DataTable datoes = new DataTable();
+            datoes.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("color").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("cantante").DataType = System.Type.GetType("System.String");
+            DataRow fila = datoes.NewRow();
+            fila["codigo"] = datos[15];
+            fila["producto"] = "";
+            fila["estilo"] = "";
+            fila["tipo"] = "";
+            fila["color"] = "";
+            fila["talla"] = "";
+            fila["cantidad"] = datos[16];
+            fila["Cantante"] = datos[5];
+            datoes.Rows.Add(fila);
             codprod =  datos[15];
             cantant = Int32.Parse(datos[5]);
             cantnova = Int32.Parse(datos[16]);
             cantnova += cantant;
             consulta = "Update producto set nombre='"+datos[0]+"', id_estilo="+datos [1]+", id_tipo="+datos[2]+", id_color="+datos[3]+", talla='"+datos[4]+"', cantidad=" + cantnova + ", precio_cost=" + datos[6] + ", precio_M1=" + datos[7] + ", precio_M2=" + datos[8] + ", precio_v1=" + datos[9] + ", precio_v2=" + datos[10] + ", precio_v3=" + datos[11] + ", imagen='" + datos[12] + "', ubicacion = '" + datos[13] + "', Materiap=" + datos[14] + ",Ultcant=" + datos[16] + " where id_Prod='" + codprod + "'";
+            track.Movimiento(datoes, 4, idv, 0,null);
             return consulta_gen(consulta);
         }
 
@@ -448,14 +515,14 @@ namespace Venta.Clases
             return datos;
         }
 
-        public DataTable BuscaProdCant(string nom,string est, string tip, string color,string talla,string cant)
+        public DataTable BuscaProdCant(string nom,string est, string tip, string color,string talla,string cant,string ubi)
         {
-            string consulta = "SELECT p.id_prod AS Codigo,p.nombre AS Nombre,e.estilo AS Estilo,t.tipo AS Tipo,c.color AS Color,p.talla AS Talla,p.cantidad as Cantidad " +
+            string consulta = "SELECT p.id_prod AS Codigo,p.nombre AS Nombre,e.estilo AS Estilo,t.tipo AS Tipo,c.color AS Color,p.talla AS Talla,p.cantidad as Cantidad ,p.ubicacion as Ubicacion " +
                               "FROM producto p " +
                               "INNER JOIN estilo e ON e.ID_ESTILO = p.ID_ESTILO " +
                               "INNER JOIN tipo t ON t.ID_TIPO = p.ID_TIPO " +
                               "INNER JOIN color c ON c.ID_COLOR = p.ID_COLOR " +
-                              "WHERE (p.nombre LIKE '%" + nom + "%' and e.estilo LIKE '%" + est + "%' and t.TIPO LIKE '%" + tip + "%' and c.color LIKE '%" + color + "%' and p.TALLA LIKE '%" + talla + "%') and p.cantidad<="+ cant;
+                              "WHERE (p.nombre LIKE '%" + nom + "%' and e.estilo LIKE '%" + est + "%' and t.TIPO LIKE '%" + tip + "%' and c.color LIKE '%" + color + "%' and p.TALLA LIKE '%" + talla + "%' and p.ubicacion LIKE '%"+ubi+"%') and p.cantidad<="+cant;
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
@@ -520,19 +587,22 @@ namespace Venta.Clases
             return resp;
         }
 
+
+
+        #region Cods
         public string codestilo(string idprod)
         {
             string id;
             DataTable datos = new DataTable();
             string consulta = "SELECT id_estilo from producto where id_prod='" + idprod + "'";
             datos = buscar(consulta);
-            if (datos.Rows .Count<=0)
+            if (datos.Rows.Count <= 0)
             {
                 id = "0";
             }
             else
             {
-                id = datos.Rows[0][0].ToString ();
+                id = datos.Rows[0][0].ToString();
             }
             return id.ToString();
         }
@@ -558,7 +628,7 @@ namespace Venta.Clases
         {
             string id;
             DataTable datos = new DataTable();
-            string consulta = "SELECT id_tipo from producto where id_prod='" + idprod +"'";
+            string consulta = "SELECT id_tipo from producto where id_prod='" + idprod + "'";
             datos = buscar(consulta);
             if (datos.Rows.Count <= 0)
             {
@@ -573,18 +643,20 @@ namespace Venta.Clases
 
         private bool existecod(string codigo)
         {
-            string consulta="select * from producto where id_prod='"+codigo+"'";
+            string consulta = "select * from producto where id_prod='" + codigo + "'";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             if (datos.Rows.Count > 0)
             {
                 return true;
             }
-            else {
+            else
+            {
                 return false;
             }
 
         }
+        #endregion
         private void ImpAlIngr(string cod, string cant)
         {
 
@@ -657,17 +729,39 @@ namespace Venta.Clases
         #region "Datos de productos"
 
 
-        public  bool devolverprod (string id, string cant)
+        public  bool devolverprod (string id, string cant,int ope,string idv,string venta)
         {
+            DataTable datoes = new DataTable();
+            datoes.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("color").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+            datoes.Columns.Add("cantante").DataType = System.Type.GetType("System.String");
+            DataRow fila = datoes.NewRow();
+            fila["codigo"] = id;
+            fila["producto"] = "";
+            fila["estilo"] = "";
+            fila["tipo"] = "";
+            fila["color"] = "";
+            fila["talla"] = "";
+            fila["cantidad"] = cant;
+           
             string consultaCant;
             int canti=0;
             consultaCant = "Select cantidad from producto where id_Prod='" + id +"'";
             DataTable datos = new DataTable();
             datos = buscar(consultaCant);
+            fila["Cantante"] = datos.Rows[0][0].ToString();
+            datoes.Rows.Add(fila);
             if (datos.Rows.Count<=0) return false;
             canti = int.Parse(datos.Rows[0][0].ToString ());
             canti += int.Parse(cant);
+            int ante = int.Parse(datos.Rows[0][0].ToString());
             string consulupd = "Update producto set cantidad="+canti +" where id_prod='"+id +"'";
+            track.Movimiento(datoes, ope, idv,ante,venta);
             return consulta_gen(consulupd);
         }
         //Listado para escoger productos
@@ -902,6 +996,7 @@ namespace Venta.Clases
                 deta.descripcion = datos.Rows[cont][1].ToString() ;
                 deta.cantidad = int.Parse(datos.Rows[cont][2].ToString());
                 deta.precio = costo;
+                deta.ubi = datos.Rows[cont][3].ToString();
                 titulo.Detalle.Add(deta);
             }
             Reportes.CantidadP cantid = new Reportes.CantidadP();

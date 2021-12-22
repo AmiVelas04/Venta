@@ -18,11 +18,230 @@ namespace Venta.Formularios
         Clases.Clientes cli = new Clases.Clientes();
         Clases.Conces Conc = new Clases.Conces();
         Clases.Salidaprod sal = new Clases.Salidaprod();
-
+        string rutaimg1 = @".\imagen\", rutaimg2 = @"\\192.168.0.100\imagenes\";
         public Ventas()
         {
             InitializeComponent();
         }
+
+        #region Controles
+        private void CboPrecio_Enter(object sender, EventArgs e)
+        {
+            CboPrecio.DroppedDown = true;
+        }
+
+        private void CboPrecio_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            NudCant.Focus();
+        }
+
+        private void NudCant_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                agregarprod();
+                TxtCod.Focus();
+
+            }
+        }
+
+        private void CboPrecio_Click(object sender, EventArgs e)
+        {
+            CboPrecio.DroppedDown = true;
+        }
+
+        private void TxtSoli_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F12)
+            {
+                ventaportecla();
+            }
+        }
+
+        private void CboPrecioM_Enter(object sender, EventArgs e)
+        {
+            CboPrecioM.DroppedDown = true;
+        }
+
+        private void CboPrecioM_Click(object sender, EventArgs e)
+        {
+            CboPrecioM.DroppedDown = true;
+        }
+
+        private void CboPrecio_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.M)
+            {
+                ChkMay.Checked = true;
+            }
+        }
+
+        private void CboPrecioM_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.M)
+            {
+                ChkMay.Checked = false;
+            }
+        }
+
+        private void CboPrecioM_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            NudCant.Focus();
+        }
+
+        private void TxtMonto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F12)
+
+            {
+                ventaportecla();
+            }
+        }
+
+        private void CboProd_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboProd.Text != "" && CboProd.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                busqueda(CboProd.SelectedValue.ToString());
+            }
+            else
+            { }
+        }
+
+        private void BtnAgr_Click(object sender, EventArgs e)
+        {
+            agregarprod();
+        }
+
+
+        private void BtnGenVen_Click(object sender, EventArgs e)
+        {
+            if (TxtMonto.Text == "") TxtMonto.Text = "0";
+            //if (DgvProd.Rows.Count > 0)
+            venta();
+            cargarcli();
+            ChkNvoCli.Checked = false;
+
+        }
+
+        private void CboNomCli_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboNomCli.Text != "" && CboNomCli.SelectedValue.ToString() != "System.Data.DataRowView")
+            { busquedacli(CboNomCli.SelectedValue.ToString()); }
+            else
+            { busquedacli("0"); }
+
+        }
+        private void Cancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarDatos();
+        }
+        private void CboTipo_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (CboTipo.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                string nombrepod = prod.nomprod(CboProd.SelectedValue.ToString());
+                llenarestilo(CboProd.SelectedValue.ToString(), nombrepod);
+            }
+        }
+        private void CboEstilo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboEstilo.Text != "" && CboEstilo.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                string nombrepod = prod.nomprod(CboProd.SelectedValue.ToString());
+                llenarcolor("", nombrepod);
+            }
+        }
+        private void CboColor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboColor.Text != "" && CboColor.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                string nombrepod = prod.nomprod(CboProd.SelectedValue.ToString());
+                llenarTalla(CboProd.SelectedValue.ToString(), nombrepod);
+            }
+        }
+
+        private void CboTalla_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboTalla.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                DataTable datos = new DataTable();
+                datos = prod.prodId(CboTalla.SelectedValue.ToString());
+                while (CboPrecio.Items.Count > 0)
+                { CboPrecio.Items.RemoveAt(0); }
+                CboPrecio.Items.Add(datos.Rows[0][2].ToString());
+                CboPrecio.Items.Add(datos.Rows[0][3].ToString());
+                CboPrecio.SelectedIndex = 1;
+                try
+                {
+                    using (var stream = File.Open(rutaimg1 + prod.imagendar(CboTalla.SelectedValue.ToString()), FileMode.Open))
+                    {
+                        Bitmap archivo = new Bitmap(stream);
+                        Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
+                        PicExemp.Image = muestra;
+                    }
+                    //PicExemp.Image = Image.FromFile(@".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString ()));
+                    PicExemp.Tag = prod.imagendar(CboTalla.SelectedValue.ToString());
+                }
+                catch (FileNotFoundException ex)
+                {
+                    using (var stream = File.Open(rutaimg1 + "0.jpg", FileMode.Open))
+                    {
+                        Bitmap archivo = new Bitmap(stream);
+                        Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
+                        PicExemp.Image = muestra;
+                    }
+                    //PicExemp.Image = Image.FromFile(@".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString ()));
+                    PicExemp.Tag = prod.imagendar(CboTalla.SelectedValue.ToString());
+                }
+
+            }
+        }
+
+        private void BtnUltVent_Click(object sender, EventArgs e)
+        {
+            if (CboNomCli.Text != "")
+            {
+                int idVenta = vent.idVentaCliente(CboNomCli.SelectedValue.ToString());
+                if (idVenta <= 0)
+                {
+                    MessageBox.Show("No existen ventas anteriores de este cliente");
+                }
+                else
+                {
+                    //Mostrar ultima venta
+                    vent.RegenFact(idVenta.ToString());
+                }
+            }
+
+        }
+
+        private void TxtCod_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                Busc_press();
+            }
+            else if (e.KeyCode == Keys.F12)
+            {
+                if (MessageBox.Show("¿Desea realizar la Venta?", "Hacer venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                { ventaportecla(); }
+                else
+                {
+
+                }
+            }
+            else if (e.KeyCode == Keys.F5)
+            {
+                BuscProdRap busc = new BuscProdRap();
+                busc.Mostrarprodu += new BuscProdRap.permiso(codivent);
+                busc.ShowDialog();
+                Busc_press();
+            }
+        }
+
+        #endregion
+
         private void Ventas_Load(object sender, EventArgs e)
         {
             LblTotal.Text = "0";
@@ -34,14 +253,7 @@ namespace Venta.Formularios
 
         }
 
-        private void CboProd_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (CboProd.Text != "" && CboProd.SelectedValue.ToString() != "System.Data.DataRowView")
-            { busqueda(CboProd.SelectedValue.ToString());
-            }
-            else
-            { }
-        }
+      
         //busca producto
         private void busqueda(string id)
         {
@@ -73,26 +285,28 @@ namespace Venta.Formularios
             LblPosi.Text = "Ubicación: " + datos.Rows[0][15].ToString();
             try
             {//Ubicacion de imagenes en produccion: @".\imagen\"
-                using (var stream = File.Open(@"\\192.168.0.100\imagenes\" + prod.imagendar(id), FileMode.Open))
+                
+
+                using (var stream = File.Open(rutaimg1 + prod.imagendar(id), FileMode.Open))
                 {
                     Bitmap archivo = new Bitmap(stream);
                     Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                     PicExemp.Image = muestra;
                 }
                 //   PicExemp.Image = Image.FromFile();
-                PicExemp.Tag = @"\\192.168.0.100\imagenes\" + prod.imagendar(id);
+                PicExemp.Tag = rutaimg1 + prod.imagendar(id);
 
             }
             catch (FileNotFoundException ex)
             {
-                using (var stream = File.Open(@"\\192.168.0.100\imagenes\0.jpg", FileMode.Open))
+                using (var stream = File.Open(rutaimg1+"0.jpg", FileMode.Open))
                 {
                     Bitmap archivo = new Bitmap(stream);
                     Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                     PicExemp.Image = muestra;
                 }
                 //   PicExemp.Image = Image.FromFile();
-                PicExemp.Tag = @"\\192.168.0.100\imagenes\" + prod.imagendar(id);
+                PicExemp.Tag = rutaimg1 + prod.imagendar(id);
 
             }
             int total = prod.cantidadprod(id);
@@ -195,10 +409,7 @@ namespace Venta.Formularios
 
         #endregion
 
-        private void BtnAgr_Click(object sender, EventArgs e)
-        {
-            agregarprod();
-        }
+     
 
         private void agregarprod()
         {
@@ -273,15 +484,7 @@ namespace Venta.Formularios
            
         }
 
-        private void BtnGenVen_Click(object sender, EventArgs e)
-        {
-            if (TxtMonto.Text == "") TxtMonto.Text = "0";
-            //if (DgvProd.Rows.Count > 0)
-            venta();
-            cargarcli();
-            ChkNvoCli.Checked = false;
-
-        }
+    
 
         private void ventaportecla()
         {
@@ -479,8 +682,7 @@ namespace Venta.Formularios
                 MessageBox.Show("No se pudo encontrar al cliente");
                 return;
             }
-           
-            
+
             string estado = "", tipo = "";
             decimal total;
             total = decimal.Parse(TxtMonto.Text);
@@ -490,7 +692,7 @@ namespace Venta.Formularios
                 estado = "Cancelado";
                 if (DgvProd.Rows.Count > 0)
                 {
-                    listarProd(tipo, estado, cli,total.ToString ());
+                    listarProd(tipo, estado, cli,total.ToString());
                     LimpiarDatos();
                 }
                 else { MessageBox.Show("No existen productos","Sin existencias", MessageBoxButtons.OK,MessageBoxIcon.Exclamation); }
@@ -513,6 +715,11 @@ namespace Venta.Formularios
             }
             else if (RdbConce.Checked)
             {
+                if (cli == "1")
+                {
+                    MessageBox.Show("No se puede asignar Consignacion a consumidor final", "Consignación no asignado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
                 estado = "Pendiente";
                 if (DgvProd.Rows.Count > 0)
                 {
@@ -556,12 +763,12 @@ namespace Venta.Formularios
             if (Conc.GenConc(produ, cli,vende, estado ))
             {
 
-                MessageBox.Show("Concesion registrada con exito");
+                MessageBox.Show("Consignación registrada con exito","Exito",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 //vent.genfact(produ, "1", estado, tipo);
             }
             else
             {
-                MessageBox.Show("Error en la Concesion");
+                MessageBox.Show("Error en la consignación","Error",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
         }
         private void listarProd(string tipo,string estado,string cli,string pago)
@@ -619,119 +826,7 @@ namespace Venta.Formularios
             LblTotal.Text = "0";
             TxtMonto.Text = "0";
         }
-        private void CboNomCli_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (CboNomCli.Text != "" && CboNomCli.SelectedValue.ToString() != "System.Data.DataRowView")
-            { busquedacli(CboNomCli.SelectedValue.ToString()); }
-            else
-            { busquedacli("0"); }
-
-        }
-        private void Cancelar_Click(object sender, EventArgs e)
-        {
-            LimpiarDatos();
-        }
-        private void CboTipo_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (CboTipo.SelectedValue.ToString() != "System.Data.DataRowView")
-            {
-                string nombrepod = prod.nomprod(CboProd.SelectedValue.ToString());
-                llenarestilo(CboProd.SelectedValue.ToString(),nombrepod);
-           }
-        }
-        private void CboEstilo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (CboEstilo.Text != "" && CboEstilo.SelectedValue.ToString() != "System.Data.DataRowView")
-            {
-                string nombrepod = prod.nomprod(CboProd.SelectedValue.ToString());
-                llenarcolor("", nombrepod);
-            }
-        }
-        private void CboColor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (CboColor.Text != "" && CboColor.SelectedValue.ToString() != "System.Data.DataRowView")
-            {
-                string nombrepod = prod.nomprod(CboProd.SelectedValue.ToString());
-                llenarTalla(CboProd.SelectedValue .ToString (), nombrepod);
-            }
-        }
-
-        private void CboTalla_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if ( CboTalla.SelectedValue .ToString () != "System.Data.DataRowView" )
-            {
-                DataTable datos = new DataTable();
-                datos = prod.prodId(CboTalla.SelectedValue.ToString());
-                while (CboPrecio.Items.Count > 0)
-                { CboPrecio.Items.RemoveAt(0); }
-                CboPrecio.Items.Add(datos.Rows[0][2].ToString());
-                CboPrecio.Items.Add(datos.Rows[0][3].ToString());
-                CboPrecio.SelectedIndex = 1;
-                try
-                {
-                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\" + prod.imagendar(CboTalla.SelectedValue.ToString()), FileMode.Open))
-                    {
-                        Bitmap archivo = new Bitmap(stream);
-                        Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
-                        PicExemp.Image = muestra;
-                    }
-                    //PicExemp.Image = Image.FromFile(@".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString ()));
-                    PicExemp.Tag = prod.imagendar(CboTalla.SelectedValue.ToString());
-                }
-                catch (FileNotFoundException ex){
-                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\0.jpg", FileMode.Open))
-                    {
-                        Bitmap archivo = new Bitmap(stream);
-                        Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
-                        PicExemp.Image = muestra;
-                    }
-                    //PicExemp.Image = Image.FromFile(@".\imagen\" + prod.imagen(CboTalla.SelectedValue.ToString ()));
-                    PicExemp.Tag = prod.imagendar(CboTalla.SelectedValue.ToString());
-                }
-
-                }
-        }
-
-        private void BtnUltVent_Click(object sender, EventArgs e)
-        {
-            if (CboNomCli.Text != "") { 
-            int idVenta = vent.idVentaCliente(CboNomCli.SelectedValue.ToString());
-            if (idVenta <= 0)
-            {
-                MessageBox.Show("No existen ventas anteriores de este cliente");
-            }
-            else
-            {
-                //Mostrar ultima venta
-                vent.RegenFact(idVenta.ToString());
-            }
-            }
-
-        }
-
-        private void TxtCod_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                Busc_press();
-            }
-            else if (e.KeyCode == Keys.F12)
-            {
-                if (MessageBox.Show("¿Desea realizar la Venta?", "Hacer venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                { ventaportecla(); }
-                else
-                {
-
-                }
-            }
-            else if (e.KeyCode==Keys.F5)
-            {
-                BuscProdRap busc = new BuscProdRap();
-                busc.Mostrarprodu += new BuscProdRap.permiso(codivent);
-                busc.ShowDialog();
-                Busc_press();
-            }
-        }
+      
 
         private void Busc_press()
         {
@@ -802,7 +897,7 @@ namespace Venta.Formularios
         private void ImgAum()
         {
             ImagenPic img = new ImagenPic();
-            if (PicExemp.Image == null) { ImagenPic.ponerimg = @"\\192.168.0.100\imagenes\0.jpg"; }
+            if (PicExemp.Image == null) { ImagenPic.ponerimg =rutaimg1+"0.jpg"; }
             else { ImagenPic.ponerimg = PicExemp.Tag.ToString();  }
             img.Show();
         }
@@ -920,77 +1015,6 @@ namespace Venta.Formularios
 
         }
 
-        private void CboPrecio_Enter(object sender, EventArgs e)
-        {
-            CboPrecio.DroppedDown = true;
-        }
-
-        private void CboPrecio_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            NudCant.Focus();
-        }
-
-        private void NudCant_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                agregarprod();
-                TxtCod.Focus();
-
-            }
-        }
-
-        private void CboPrecio_Click(object sender, EventArgs e)
-        {
-            CboPrecio.DroppedDown = true;
-        }
-
-        private void TxtSoli_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F12)
-            {
-                ventaportecla();
-            }
-        }
-
-        private void CboPrecioM_Enter(object sender, EventArgs e)
-        {
-            CboPrecioM.DroppedDown = true;
-        }
-
-        private void CboPrecioM_Click(object sender, EventArgs e)
-        {
-            CboPrecioM.DroppedDown = true;
-        }
-
-        private void CboPrecio_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode==Keys.M)
-            {
-                ChkMay.Checked = true;
-            }
-        }
-
-        private void CboPrecioM_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.M)
-            {
-                ChkMay.Checked = false;
-            }
-        }
-
-        private void CboPrecioM_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            NudCant.Focus();
-        }
-
-        private void TxtMonto_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode==Keys.F12)
-
-            {
-                ventaportecla();
-            }
-        }
+     
     }
 }

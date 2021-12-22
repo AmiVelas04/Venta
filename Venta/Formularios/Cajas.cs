@@ -27,11 +27,13 @@ namespace Venta.Formularios
             if (nivel.Equals("1") || nivel.Equals("2"))
             {
                 busquetodo();
+      
             }
             else if (nivel.Equals("3"))
             {
                 busqueprop();
             }
+            Total();
         }
 
         private void busquetodo()
@@ -94,6 +96,7 @@ namespace Venta.Formularios
         private void DtpCaja_ValueChanged(object sender, EventArgs e)
         {
             busqueda();
+            Total();
         }
 
         private void busqueda()
@@ -109,6 +112,18 @@ namespace Venta.Formularios
             total = ventas+500 - egresos;
             TxtSencillo.Text = "Q. 500.00";
             TxtTotal.Text ="Q. " +total.ToString();
+        }
+
+        private void Total()
+        {
+            DataTable datos = new DataTable();
+            decimal ventas = 0, egresos = 0, total = 0;
+            datos = Caj.buscar_ope(DtpCaja.Value.ToString("yyyy/MM/dd"));
+            DgvCaja.DataSource = datos;
+            egresos = Caj.Tsalida(DtpCaja.Value.ToString("yyyy/MM/dd"));
+            ventas = Caj.Tentrada(DtpCaja.Value.ToString("yyyy/MM/dd"));
+            total = ventas + 500 - egresos;
+            TxtTotCaj.Text = total.ToString();
         }
 
         private void busquedaporven(string id)

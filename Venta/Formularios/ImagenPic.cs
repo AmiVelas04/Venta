@@ -18,6 +18,7 @@ namespace Venta.Formularios
         [DllImport("User32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
         public static string ponerimg { get; set; }
+      
         public ImagenPic()
         {
             InitializeComponent();

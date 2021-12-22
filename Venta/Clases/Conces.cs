@@ -12,10 +12,11 @@ namespace Venta.Clases
     class Conces
     {
         conexion conec = new conexion();
-        Producto prod = new Producto();
+        Producto produc = new Producto();
         Clientes cli = new Clientes();
         Errores err = new Errores();
         Login log = new Login();
+        RastreoProd track = new RastreoProd();
         #region "General"
         private DataTable buscar(string consulta)
         {
@@ -144,15 +145,37 @@ namespace Venta.Clases
             total = datos.Rows.Count;
             for (cont = 0; cont < total; cont++)
             {
+                DataTable datoes = new DataTable();
+                datoes.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("color").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("cantante").DataType = System.Type.GetType("System.String");
+                DataRow fila = datoes.NewRow();
+                fila["producto"] = "";
+                fila["estilo"] = "";
+                fila["tipo"] = "";
+                fila["color"] = "";
+                fila["talla"] = "";
+               
                 int totalP,Resto;
                 DataTable prod = new DataTable();
                 id = cod_cetConc();
                 totprod = "Select Cantidad from producto where id_Prod='"+datos.Rows[cont][0].ToString()+"'";
                 prod = buscar(totprod);
+                fila["codigo"] = datos.Rows[cont][0].ToString();
+                fila["cantidad"] = datos.Rows[cont][6].ToString();
+                fila["Cantante"] = prod.Rows[0][0].ToString();
+                datoes.Rows.Add(fila);
                 totalP = int.Parse(prod.Rows[0][0].ToString());
                 Resto = totalP - int.Parse(datos.Rows[cont][6].ToString());
                 consulta = "insert into conce_detalle(conc_detalle,id_conc,id_prod,cantidad,precio,total) " +
                                    "values(" + id + "," + Conce + ",'" + datos.Rows[cont][0].ToString() + "', " + datos.Rows[cont][6].ToString() + "," + datos.Rows[cont][7].ToString() + "," + datos.Rows[cont][8].ToString() + ")";
+                int anterior =produc.cantidadprod(datos.Rows[cont][0].ToString());
+                track.Movimiento(datoes, 5, vende, anterior,Conce);
                 CambioProd = "Update Producto set cantidad= " + Resto +" where id_prod='"+ datos.Rows[cont][0].ToString()+"'";
 
                 if (!consulta_gen(consulta)|| !consulta_gen(CambioProd))

@@ -18,6 +18,10 @@ namespace Venta.Formularios
     {
         Clases.conexion conn = new Clases.conexion();
         Clases.Producto prod = new Clases.Producto();
+        private Clases.RastreoProd track = new Clases.RastreoProd();
+        public string idven= Main.idvende;
+        public string vende= Main.nombrev;
+        string rutaimg1 = @".\imagen\", rutaimg2 = @"\\192.168.0.100\imagenes\";
         public Productos()
         {
             InitializeComponent();
@@ -283,7 +287,33 @@ namespace Venta.Formularios
 
         }
 
+        private void PbxProd_DoubleClick(object sender, EventArgs e)
+        {
+            ImgAum();
+        }
 
+        private void BtnLblPrint_Click(object sender, EventArgs e)
+        {
+            if (DgvProd.Rows.Count > 0)
+            { ImprimirEtiquetas(); }
+
+        }
+
+        private void ChkCantCamb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkCantCamb.Checked)
+            {
+                NudCantidad.Enabled = true;
+                NudIngreso.Value = 0;
+                NudIngreso.Enabled = false;
+            }
+            else
+            {
+                NudCantidad.Enabled = false;
+                NudIngreso.Value = 0;
+                NudIngreso.Enabled = true;
+            }
+        }
         #endregion
 
         #region "Funciones"
@@ -294,15 +324,17 @@ namespace Venta.Formularios
             string idtipo = CboTipo.SelectedValue != null ? CboTipo.SelectedValue.ToString() : "0";
             string idcolor = CboColor.SelectedValue != null ? CboColor.SelectedValue.ToString() : "0";
             string talla = TxtTalla.Text;
-            int cantidad, cantingre;
+            int cantidad, cantingre,tipoT;
             cantidad = Int32.Parse(NudCantidad.Value.ToString());
             if (ChkCantCamb.Checked)
             {
                 cantingre = 0;
+                tipoT = 3;
             }
             else
             {
                 cantingre = Int32.Parse(NudIngreso.Value.ToString());
+                tipoT = 4;
             }
             
             
@@ -329,8 +361,10 @@ namespace Venta.Formularios
 
                 imagen = revimagen(Nomprod + idestilo + idtipo + idcolor + talla, idp); ;
                 string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, ubicacion, MatP, idp,cantingre.ToString()};
-                if (prod.upd_prod(datosupd))
+
+                if (prod.upd_prod(datosupd,idven,tipoT))
                 {
+                    
                     MessageBox.Show("Producto Actualizado correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     PbxProd.InitialImage = null;
@@ -352,7 +386,7 @@ namespace Venta.Formularios
                 //Se ingresa directamente el codigo del producto para poder agregar producto ya existente en la tienda central
                 imagen = OFD1.FileName;
                 string[] datosing = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, estilo, tipo, color, ubicacion, MatP,/*idp*/};
-                if (prod.ingreso_prod(datosing))
+                if (prod.ingreso_prod(datosing,idven))
                 {
                     // MessageBox.Show("¿Desea Imprimir Producto ingresado correctamente");
                   
@@ -421,7 +455,7 @@ namespace Venta.Formularios
             imagen = revimagen(Nomprod + idestilo + idtipo + idcolor + talla, idp); ;
             string[] datosupd = { Nomprod, idestilo, idtipo, idcolor, talla, cantidad.ToString(), precio_c.ToString(), precio_m1.ToString(), precio_m2.ToString(), precio_v1.ToString(), precio_v2.ToString(), precio_v3.ToString(), imagen, ubicacion, MatP, idp,CantIng.ToString() };
             string[] datoscamb = { idp, Nomprod, idestilo, Nestilo, idtipo, Ntipo, idcolor, NColor };
-            if (prod.mod_prod(datosupd) && prod.Modnoms(datoscamb))
+            if (prod.mod_prod(datosupd,idven) && prod.Modnoms(datoscamb))
             {
                 MessageBox.Show("Producto Actualizado correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ModifLista();
@@ -533,7 +567,7 @@ namespace Venta.Formularios
                 try
                 {
                     //mostrar imagen
-                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\" + imag, FileMode.Open))
+                    using (var stream = File.Open(rutaimg1 + imag, FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
@@ -543,7 +577,7 @@ namespace Venta.Formularios
                 catch (FileNotFoundException ex)
                 {
                     // MessageBox.Show("¡Imagen no encontrada!", "No imagen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\0.jpg", FileMode.Open))
+                    using (var stream = File.Open(rutaimg1+"0.jpg", FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
@@ -593,23 +627,23 @@ namespace Venta.Formularios
                 try
                 {
                     // using (var stream = File.Open(@".\imagen\" + imag, FileMode.Open))
-                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\" + imag, FileMode.Open))
+                    using (var stream = File.Open(rutaimg1 + imag, FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PbxProd.Image = muestra;
-                        PbxProd.Tag = @"\\192.168.0.100\imagenes\" + imag;
+                        PbxProd.Tag = rutaimg1 + imag;
                     }
                 }
                 catch (FileNotFoundException ex)
                 {
                     MessageBox.Show("¡Imagen no encontrada!", "No imagen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    using (var stream = File.Open(@"\\192.168.0.100\imagenes\0.jpg", FileMode.Open))
+                    using (var stream = File.Open(rutaimg1+"0.jpg", FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);
                         Bitmap muestra = new Bitmap(RedimImage(archivo, 200, 150));
                         PbxProd.Image = muestra;
-                        PbxProd.Tag = @"\\192.168.0.100\imagenes\" + imag;
+                        PbxProd.Tag = rutaimg1 + imag;
                     }
 
                 }
@@ -682,10 +716,7 @@ namespace Venta.Formularios
 
         #endregion
 
-        private void PbxProd_DoubleClick(object sender, EventArgs e)
-        {
-            ImgAum();
-        }
+      
         private void ImgAum()
         {
             ImagenPic img = new ImagenPic();
@@ -694,12 +725,7 @@ namespace Venta.Formularios
             img.Show();
         }
 
-        private void BtnLblPrint_Click(object sender, EventArgs e)
-        {
-            if (DgvProd.Rows.Count > 0)
-            { ImprimirEtiquetas(); }
-            
-        }
+    
 
         private void ImpAlIngr(string cod, int cant)
         {
@@ -770,6 +796,11 @@ namespace Venta.Formularios
             prod.ImpEti(titulo, subtitulo, codigo, precio);
         }
 
+        private void BtnTrack_Click(object sender, EventArgs e)
+        {
+            tracking();
+        }
+
         private void ImprimirEtiquetas()
         {
             int indice = DgvProd.CurrentRow.Index;
@@ -838,19 +869,19 @@ namespace Venta.Formularios
             prod.ImpEti(titulo,subtitulo,codigo,precio);
         }
 
-        private void ChkCantCamb_CheckedChanged(object sender, EventArgs e)
+        private void tracking()
         {
-            if (ChkCantCamb.Checked)
-            { NudCantidad.Enabled = true;
-                NudIngreso.Value = 0;
-                NudIngreso.Enabled = false;
-            }
-            else
+            string idprod;
+            if (DgvProd.Rows.Count > 0)
             {
-                NudCantidad.Enabled =false;
-                NudIngreso.Value = 0;
-                NudIngreso.Enabled = true;
+                int indice;
+                indice = DgvProd.CurrentRow.Index;
+                idprod = DgvProd.Rows[indice].Cells[0].Value.ToString();
+                track.ReportTrack(idprod);
+
             }
         }
+
+
     }
 }

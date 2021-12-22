@@ -30,6 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConteoP));
             this.PanSup = new System.Windows.Forms.Panel();
+            this.BtnTrack = new System.Windows.Forms.Button();
+            this.TxtUbi = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TxtTalla = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.Txtcolor = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TxtTipo = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TxtEstilo = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.BtnPrint = new System.Windows.Forms.Button();
             this.BtnBusca = new System.Windows.Forms.Button();
             this.NudCant = new System.Windows.Forms.NumericUpDown();
@@ -38,14 +49,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PanCent = new System.Windows.Forms.Panel();
             this.DgvProd = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TxtEstilo = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.TxtTipo = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.Txtcolor = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.TxtTalla = new System.Windows.Forms.TextBox();
             this.PanSup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudCant)).BeginInit();
             this.PanCent.SuspendLayout();
@@ -54,6 +57,9 @@
             // 
             // PanSup
             // 
+            this.PanSup.Controls.Add(this.BtnTrack);
+            this.PanSup.Controls.Add(this.TxtUbi);
+            this.PanSup.Controls.Add(this.label7);
             this.PanSup.Controls.Add(this.TxtTalla);
             this.PanSup.Controls.Add(this.label6);
             this.PanSup.Controls.Add(this.Txtcolor);
@@ -75,13 +81,106 @@
             this.PanSup.Size = new System.Drawing.Size(732, 109);
             this.PanSup.TabIndex = 0;
             // 
+            // BtnTrack
+            // 
+            this.BtnTrack.Image = ((System.Drawing.Image)(resources.GetObject("BtnTrack.Image")));
+            this.BtnTrack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnTrack.Location = new System.Drawing.Point(620, 12);
+            this.BtnTrack.Name = "BtnTrack";
+            this.BtnTrack.Size = new System.Drawing.Size(100, 36);
+            this.BtnTrack.TabIndex = 16;
+            this.BtnTrack.Text = "Rastrear";
+            this.BtnTrack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnTrack.UseVisualStyleBackColor = true;
+            this.BtnTrack.Click += new System.EventHandler(this.BtnTrack_Click);
+            // 
+            // TxtUbi
+            // 
+            this.TxtUbi.Location = new System.Drawing.Point(567, 70);
+            this.TxtUbi.Name = "TxtUbi";
+            this.TxtUbi.Size = new System.Drawing.Size(134, 23);
+            this.TxtUbi.TabIndex = 15;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(569, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(71, 15);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Ubicación";
+            // 
+            // TxtTalla
+            // 
+            this.TxtTalla.Location = new System.Drawing.Point(427, 70);
+            this.TxtTalla.Name = "TxtTalla";
+            this.TxtTalla.Size = new System.Drawing.Size(113, 23);
+            this.TxtTalla.TabIndex = 13;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(429, 52);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 15);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Talla";
+            // 
+            // Txtcolor
+            // 
+            this.Txtcolor.Location = new System.Drawing.Point(291, 70);
+            this.Txtcolor.Name = "Txtcolor";
+            this.Txtcolor.Size = new System.Drawing.Size(117, 23);
+            this.Txtcolor.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(288, 52);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 15);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Color";
+            // 
+            // TxtTipo
+            // 
+            this.TxtTipo.Location = new System.Drawing.Point(162, 70);
+            this.TxtTipo.Name = "TxtTipo";
+            this.TxtTipo.Size = new System.Drawing.Size(105, 23);
+            this.TxtTipo.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(159, 52);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(36, 15);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Tipo";
+            // 
+            // TxtEstilo
+            // 
+            this.TxtEstilo.Location = new System.Drawing.Point(22, 70);
+            this.TxtEstilo.Name = "TxtEstilo";
+            this.TxtEstilo.Size = new System.Drawing.Size(109, 23);
+            this.TxtEstilo.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(19, 52);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 15);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Estilo";
+            // 
             // BtnPrint
             // 
             this.BtnPrint.Image = ((System.Drawing.Image)(resources.GetObject("BtnPrint.Image")));
             this.BtnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnPrint.Location = new System.Drawing.Point(599, 12);
+            this.BtnPrint.Location = new System.Drawing.Point(489, 13);
             this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(121, 37);
+            this.BtnPrint.Size = new System.Drawing.Size(112, 36);
             this.BtnPrint.TabIndex = 5;
             this.BtnPrint.Text = "Imprimir";
             this.BtnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -92,9 +191,9 @@
             // 
             this.BtnBusca.Image = ((System.Drawing.Image)(resources.GetObject("BtnBusca.Image")));
             this.BtnBusca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnBusca.Location = new System.Drawing.Point(484, 12);
+            this.BtnBusca.Location = new System.Drawing.Point(380, 12);
             this.BtnBusca.Name = "BtnBusca";
-            this.BtnBusca.Size = new System.Drawing.Size(109, 36);
+            this.BtnBusca.Size = new System.Drawing.Size(91, 36);
             this.BtnBusca.TabIndex = 4;
             this.BtnBusca.Text = "Buscar";
             this.BtnBusca.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -103,7 +202,12 @@
             // 
             // NudCant
             // 
-            this.NudCant.Location = new System.Drawing.Point(354, 25);
+            this.NudCant.Location = new System.Drawing.Point(291, 25);
+            this.NudCant.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.NudCant.Name = "NudCant";
             this.NudCant.Size = new System.Drawing.Size(64, 23);
             this.NudCant.TabIndex = 3;
@@ -111,7 +215,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(351, 7);
+            this.label2.Location = new System.Drawing.Point(288, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 2;
@@ -121,7 +225,7 @@
             // 
             this.TxtProd.Location = new System.Drawing.Point(22, 26);
             this.TxtProd.Name = "TxtProd";
-            this.TxtProd.Size = new System.Drawing.Size(304, 23);
+            this.TxtProd.Size = new System.Drawing.Size(245, 23);
             this.TxtProd.TabIndex = 1;
             // 
             // label1
@@ -158,70 +262,6 @@
             this.DgvProd.Size = new System.Drawing.Size(732, 449);
             this.DgvProd.TabIndex = 0;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 52);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 15);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Estilo";
-            // 
-            // TxtEstilo
-            // 
-            this.TxtEstilo.Location = new System.Drawing.Point(22, 70);
-            this.TxtEstilo.Name = "TxtEstilo";
-            this.TxtEstilo.Size = new System.Drawing.Size(143, 23);
-            this.TxtEstilo.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(191, 52);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 15);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Tipo";
-            // 
-            // TxtTipo
-            // 
-            this.TxtTipo.Location = new System.Drawing.Point(194, 70);
-            this.TxtTipo.Name = "TxtTipo";
-            this.TxtTipo.Size = new System.Drawing.Size(132, 23);
-            this.TxtTipo.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(351, 52);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 15);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Color";
-            // 
-            // Txtcolor
-            // 
-            this.Txtcolor.Location = new System.Drawing.Point(354, 70);
-            this.Txtcolor.Name = "Txtcolor";
-            this.Txtcolor.Size = new System.Drawing.Size(154, 23);
-            this.Txtcolor.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(542, 52);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 15);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Talla";
-            // 
-            // TxtTalla
-            // 
-            this.TxtTalla.Location = new System.Drawing.Point(540, 70);
-            this.TxtTalla.Name = "TxtTalla";
-            this.TxtTalla.Size = new System.Drawing.Size(157, 23);
-            this.TxtTalla.TabIndex = 13;
-            // 
             // ConteoP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -234,6 +274,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ConteoP";
             this.Text = "Conteo de productos";
+            this.Load += new System.EventHandler(this.ConteoP_Load);
             this.PanSup.ResumeLayout(false);
             this.PanSup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudCant)).EndInit();
@@ -262,5 +303,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TxtEstilo;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TxtUbi;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button BtnTrack;
     }
 }
