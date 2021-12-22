@@ -76,6 +76,7 @@
             this.LblNomProd = new System.Windows.Forms.Label();
             this.TxtProdNom = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BtnTrack = new System.Windows.Forms.Button();
             this.NudEtiqueta = new System.Windows.Forms.NumericUpDown();
             this.BtnLblPrint = new System.Windows.Forms.Button();
             this.BtnModif = new System.Windows.Forms.Button();
@@ -91,7 +92,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.DgvProd = new System.Windows.Forms.DataGridView();
             this.OFD1 = new System.Windows.Forms.OpenFileDialog();
-            this.BtnTrack = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudIngreso)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -165,6 +165,7 @@
             this.ChkCantCamb.TabIndex = 41;
             this.ChkCantCamb.Text = "Editar";
             this.ChkCantCamb.UseVisualStyleBackColor = true;
+            this.ChkCantCamb.Visible = false;
             this.ChkCantCamb.CheckedChanged += new System.EventHandler(this.ChkCantCamb_CheckedChanged);
             // 
             // TxtUltimoIng
@@ -636,6 +637,19 @@
             this.panel2.Size = new System.Drawing.Size(722, 72);
             this.panel2.TabIndex = 1;
             // 
+            // BtnTrack
+            // 
+            this.BtnTrack.Image = ((System.Drawing.Image)(resources.GetObject("BtnTrack.Image")));
+            this.BtnTrack.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnTrack.Location = new System.Drawing.Point(465, 18);
+            this.BtnTrack.Name = "BtnTrack";
+            this.BtnTrack.Size = new System.Drawing.Size(100, 45);
+            this.BtnTrack.TabIndex = 5;
+            this.BtnTrack.Text = "Rastrear";
+            this.BtnTrack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnTrack.UseVisualStyleBackColor = true;
+            this.BtnTrack.Click += new System.EventHandler(this.BtnTrack_Click);
+            // 
             // NudEtiqueta
             // 
             this.NudEtiqueta.Location = new System.Drawing.Point(379, 30);
@@ -823,19 +837,6 @@
             // OFD1
             // 
             this.OFD1.FileName = "Seleccionar imagen";
-            // 
-            // BtnTrack
-            // 
-            this.BtnTrack.Image = ((System.Drawing.Image)(resources.GetObject("BtnTrack.Image")));
-            this.BtnTrack.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnTrack.Location = new System.Drawing.Point(465, 18);
-            this.BtnTrack.Name = "BtnTrack";
-            this.BtnTrack.Size = new System.Drawing.Size(100, 45);
-            this.BtnTrack.TabIndex = 5;
-            this.BtnTrack.Text = "Rastrear";
-            this.BtnTrack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnTrack.UseVisualStyleBackColor = true;
-            this.BtnTrack.Click += new System.EventHandler(this.BtnTrack_Click);
             // 
             // Productos
             // 

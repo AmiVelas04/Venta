@@ -102,8 +102,12 @@ namespace Venta.Clases
                 idprod = datos.Rows[i][0].ToString();
                 idtrack = cod().ToString();
                 int ante=anter, posti=0;
-               // ante = prod.cantidadprod(idprod);
-                canti = int.Parse(datos.Rows[i][6].ToString());
+                // ante = prod.cantidadprod(idprod);
+                if (ope==8)
+                { canti = int.Parse(datos.Rows[i][1].ToString()); }
+                else
+                { canti = int.Parse(datos.Rows[i][6].ToString()); }
+              
                 if (ope == 1)
                 {
                     posti = ante - canti;
@@ -116,23 +120,23 @@ namespace Venta.Clases
                 }
                 else if (ope == 3)
                 {
-                   // ante = int.Parse(datos.Rows[i][6].ToString());
-                    canti= int.Parse(datos.Rows[i][7].ToString());
+                    // ante = int.Parse(datos.Rows[i][6].ToString());
+                    canti = int.Parse(datos.Rows[i][7].ToString());
                     posti = canti;
                     opera = "Se modificó manualmente la cantidad de producto manualmente";
 
                 }
                 else if (ope == 4)
                 {
-                   // ante = int.Parse(datos.Rows[i][6].ToString());
-                    canti= int.Parse(datos.Rows[i][6].ToString());
+                    // ante = int.Parse(datos.Rows[i][6].ToString());
+                    canti = int.Parse(datos.Rows[i][6].ToString());
                     opera = "Se agrego la cantidad de producto existente";
-                    posti = ante+canti;
+                    posti = ante + canti;
 
                 }
                 else if (ope == 5)
                 {
-                   // ante = int.Parse(datos.Rows[i][6].ToString());
+                    // ante = int.Parse(datos.Rows[i][6].ToString());
                     posti = ante - canti;
                     opera = "Se realizo una consignación con número " + venta;
 
@@ -144,10 +148,23 @@ namespace Venta.Clases
                 }
                 else if (ope == 7)
                 {
-                  //  ante = int.Parse(datos.Rows[i][6].ToString());
+                    //  ante = int.Parse(datos.Rows[i][6].ToString());
                     posti = ante + canti;
                     opera = "Se Canceló una venta con Numero " + venta;
                 }
+                else if (ope==8)
+                {
+                    //  ante = int.Parse(datos.Rows[i][6].ToString());
+                    posti = ante - canti;
+                    opera = "Se generó una salida a producción, con numero " + venta;
+                }
+                else if (ope == 9)
+                {
+                    //  ante = int.Parse(datos.Rows[i][6].ToString());
+                    posti = ante - canti;
+                    opera = "Se generó una salida a Tienda, con No. " + venta;
+                }
+
                 consulta = "Insert into rastreo(id_track,fecha,cantprev,canti,operacion,Cantpost,tipoOpe,id_prod,id_vende) "+
                     "values("+ idtrack + ",'" +fechastr + "'," + ante.ToString() +","+canti+ ",'" + opera + "'," + posti +","+ ope +",'" +idprod +"',"+idvende+")";
                 if (!consulta_gen(consulta))
@@ -218,6 +235,15 @@ namespace Venta.Clases
                 {
                     operacion = "Entrada/Cancelación Venta";
                 }
+                else if (ope == 8)
+                {
+                    operacion = "Salida/Produccion";
+                }
+                else if (ope == 9)
+                {
+                    operacion = "Salida/Tienda";
+                }
+
                 Reportes.TrackDet det = new Reportes.TrackDet();
                 det.Numero = i+1;
                 det.fecha = datos.Rows[i][1].ToString();

@@ -37,6 +37,11 @@ namespace Venta.Formularios
             TxtProdNom.AutoCompleteCustomSource = prod.Productos();
             TxtProdNom.AutoCompleteMode = AutoCompleteMode.Suggest;
             TxtProdNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            if (Main.nivel.Equals("1"))
+            {
+                ChkCantCamb.Visible = true;
+            }
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -317,6 +322,8 @@ namespace Venta.Formularios
         #endregion
 
         #region "Funciones"
+
+        
         private void guardar()
         {
             string Nomprod = TxtProdNom.Text;

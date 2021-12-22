@@ -616,6 +616,7 @@ namespace Venta.Formularios
                     fila["total"] = DgvProd.Rows[cont].Cells[8].Value;
                     produ.Rows.Add(fila);
                 }
+
                 if (sal.salidatienda(Main.idvende, produ))
                 {
                     MessageBox.Show("Salida registrada Correctamente", "Salida", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -14,6 +14,7 @@ namespace Venta.Clases
     {
         conexion conn = new conexion();
         Producto prod = new Producto();
+        RastreoProd track = new RastreoProd();
         Errores err = new Errores();
         
         #region "General"
@@ -146,7 +147,7 @@ namespace Venta.Clases
                         "("+idsal +",'"+fecha+"',"+ vende+ ",'"+solicito+"')";
             if (consulta_gen(consulta))
             {
-                return GenerarSalidaDetalle(detalle,idsal.ToString());
+                return GenerarSalidaDetalle(detalle,idsal.ToString(),vende);
             }
             else
             {
@@ -154,7 +155,7 @@ namespace Venta.Clases
             }
         }
 
-        public bool GenerarSalidaDetalle(DataTable detalle, string salida)
+        public bool GenerarSalidaDetalle(DataTable detalle, string salida, string idv)
         {
             int id, cont, cant;
             cant = detalle.Rows.Count;
@@ -165,6 +166,8 @@ namespace Venta.Clases
                 string canti = detalle.Rows[cont][1].ToString();
                 string consulta = "insert into sproddet(id_sdet,id_sprod,id_prod,cant) values"+
                                   "("+id+ ","+salida+ ",'"+ idprod +"',"+canti+")";
+                int ante=prod.cantidadprod(idprod);
+                track.Movimiento(detalle, 8, idv, ante, salida);
                 if (!consulta_gen(consulta))
                 {
                     return false;
@@ -269,7 +272,7 @@ namespace Venta.Clases
                          "values("+num+","+idvende+",'"+fecha+"','Enviado')";
             if (consulta_gen(ConSaliGen))
             {
-                if (intercambdetalle(num, datos))
+                if (intercambdetalle(num, datos,idvende))
                 {
                     reportSali(fecha, vendio, tienda,num, datos);
                     return true;
@@ -287,7 +290,7 @@ namespace Venta.Clases
             
         }
 
-        private bool intercambdetalle( int codC, DataTable datos)
+        private bool intercambdetalle( int codC, DataTable datos,string idv)
         {
             int numer;
             int cont, cant;
@@ -303,6 +306,8 @@ namespace Venta.Clases
                 total = datos.Rows[cont][8].ToString();
                 consulta = "insert into Salida_detalle(id_detalle,id_salida,id_prod,cantidad, precio, total) values(" +
                           numer + "," + codC + ",'" + idprod + "'," + canti + "," + precio + "," + total + ")";
+                int ante = prod.cantidadprod(idprod);
+                track.Movimiento(datos, 9, idv, ante, codC.ToString());
                 if (!consulta_gen(consulta) || !prod.descontarprod(idprod,canti))
                 {
                     return false;
