@@ -18,7 +18,7 @@ namespace Venta.Formularios
         Clases.Clientes cli = new Clases.Clientes();
         Clases.Conces Conc = new Clases.Conces();
         Clases.Salidaprod sal = new Clases.Salidaprod();
-        string rutaimg1 = @".\imagen\", rutaimg2 = @"\\192.168.0.100\imagenes\";
+        string rutaimg1 = Main.rutaimg1;
         public Ventas()
         {
             InitializeComponent();
@@ -561,14 +561,16 @@ namespace Venta.Formularios
                     int cont, indice;
                     indice = DgvProd.CurrentRow.Index;
                     DataTable produ = new DataTable();
-                    produ.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
-                    produ.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+                    produ.Columns.Add("codigo").DataType = Type.GetType("System.String");
+                    produ.Columns.Add("cantidad").DataType = Type.GetType("System.String");
+                    produ.Columns.Add("Producto").DataType = Type.GetType("System.String");
                     string[] datos = { vende, soli };
                     for (cont = 0; cont < filas; cont++)
                     {
                         DataRow fila = produ.NewRow();
                         fila["codigo"] = DgvProd.Rows[cont].Cells[0].Value;
                         fila["cantidad"] = DgvProd.Rows[cont].Cells[6].Value;
+                        fila["Producto"] = DgvProd.Rows[cont].Cells[1].Value.ToString() + ", " + DgvProd.Rows[cont].Cells[2].Value.ToString() + ", " + DgvProd.Rows[cont].Cells[3].Value.ToString() + ", " + DgvProd.Rows[cont].Cells[4].Value.ToString() + ", " + DgvProd.Rows[cont].Cells[5].Value.ToString();
                         produ.Rows.Add(fila);
                     }
                     if (sal.GenerarSalidaprod(datos, produ))

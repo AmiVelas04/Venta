@@ -296,6 +296,11 @@ namespace Venta.Clases
             Encab .fecha = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
             Encab.No = Nventa;
             Encab.tipo = tipo;
+            if (tipo == "Credito")
+            {
+                Encab.firma = "F._____________________";
+                Encab.Recibi = "Recibí conforme";
+            }
             Encab.direccion = data.Rows[0][0].ToString();
             Encab .nit= data.Rows[0][1].ToString();
             Encab.nombre = data.Rows[0][3].ToString();

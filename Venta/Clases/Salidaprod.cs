@@ -141,13 +141,24 @@ namespace Venta.Clases
         {
             int idsal = cod_salida();
             string fecha = DateTime.Now.ToString("yyyy/MM/dd ");
-            string vende = sali[0];
+            string vende = sali[0],vendio;
+            string ConsulVen = "Select nombre from vendedor where id_vendedor = " + vende;
+            DataTable vendi = new DataTable();
+            vendi = buscar(ConsulVen);
+            vendio = vendi.Rows[0][0].ToString();
             string solicito = sali [1];
             string consulta= "insert into sprod(id_sprod,fecha,id_vende,solicito) values"+
                         "("+idsal +",'"+fecha+"',"+ vende+ ",'"+solicito+"')";
             if (consulta_gen(consulta))
             {
-                return GenerarSalidaDetalle(detalle,idsal.ToString(),vende);
+
+                if (GenerarSalidaDetalle(detalle, idsal.ToString(), vende))
+                {
+                    DocSalidaprod(fecha, vendio, solicito, idsal, detalle);
+                    return true;
+                }
+                else
+                { return false; }
             }
             else
             {
@@ -167,7 +178,26 @@ namespace Venta.Clases
                 string consulta = "insert into sproddet(id_sdet,id_sprod,id_prod,cant) values"+
                                   "("+id+ ","+salida+ ",'"+ idprod +"',"+canti+")";
                 int ante=prod.cantidadprod(idprod);
-                track.Movimiento(detalle, 8, idv, ante, salida);
+                DataTable datoes = new DataTable();
+                datoes.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("color").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("cantante").DataType = System.Type.GetType("System.String");
+                DataRow fila = datoes.NewRow();
+                fila["codigo"] = idprod;
+                fila["producto"] = "";
+                fila["estilo"] = "";
+                fila["tipo"] = "";
+                fila["color"] = "";
+                fila["talla"] = "";
+                fila["cantidad"] = canti;
+                fila["Cantante"] = "0";
+                datoes.Rows.Add(fila);
+                track.Movimiento(datoes, 8, idv, ante, salida);
                 if (!consulta_gen(consulta))
                 {
                     return false;
@@ -265,7 +295,7 @@ namespace Venta.Clases
             int num=cod_salida_tienda(); 
 
             vendio = vendi.Rows[0][0].ToString(); 
-            tienda = "Sucursal Arociris";
+            tienda = "Sucursal Arcociris";
             fecha = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
                
             ConSaliGen = "insert into Salida_tienda(id_salida, id_vende, fecha,estado) " +
@@ -306,8 +336,27 @@ namespace Venta.Clases
                 total = datos.Rows[cont][8].ToString();
                 consulta = "insert into Salida_detalle(id_detalle,id_salida,id_prod,cantidad, precio, total) values(" +
                           numer + "," + codC + ",'" + idprod + "'," + canti + "," + precio + "," + total + ")";
+                DataTable datoes = new DataTable();
+                datoes.Columns.Add("codigo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("producto").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("estilo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("tipo").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("color").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("talla").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("cantidad").DataType = System.Type.GetType("System.String");
+                datoes.Columns.Add("cantante").DataType = System.Type.GetType("System.String");
+                DataRow fila = datoes.NewRow();
+                fila["codigo"] = idprod;
+                fila["producto"] = "";
+                fila["estilo"] = "";
+                fila["tipo"] = "";
+                fila["color"] = "";
+                fila["talla"] = "";
+                fila["cantidad"] = canti;
+                fila["Cantante"] = "0";
+                datoes.Rows.Add(fila);
                 int ante = prod.cantidadprod(idprod);
-                track.Movimiento(datos, 9, idv, ante, codC.ToString());
+                track.Movimiento(datoes, 9, idv, ante, codC.ToString());
                 if (!consulta_gen(consulta) || !prod.descontarprod(idprod,canti))
                 {
                     return false;
@@ -315,6 +364,29 @@ namespace Venta.Clases
             }
             return true;
                 }
+
+        private void DocSalidaprod(string fecha, string vendio, string soli, int salida, DataTable datos)
+        {
+            Reportes.TiendaInterEnca enca = new Reportes.TiendaInterEnca();
+            enca.vende = vendio;
+            enca.Fecha = fecha;
+            enca.Num = salida;
+            enca.Tienda = soli;
+            int cont, cant;
+            cant = datos.Rows.Count;
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.TiendaInterDet deta = new Reportes.TiendaInterDet();
+                deta.cod = datos.Rows[cont][0].ToString();
+                deta.prod = datos.Rows[cont][2].ToString();
+                deta.cantidad = int.Parse(datos.Rows[cont][1].ToString());
+                enca.Detalle.Add(deta);
+            }
+            Reportes.ProducSalida ventana = new Reportes.ProducSalida();
+            ventana.Detalle = enca.Detalle;
+            ventana.Encabezado.Add(enca);
+            ventana.Show();
+        }
 
         private void reportSali (string fecha, string vendio, string tienda,int salida , DataTable datos)
             {
@@ -337,9 +409,6 @@ namespace Venta.Clases
             ventana.Detalle = enca.Detalle;
             ventana.Encabezado.Add(enca);
             ventana.Show();
-            
-
-
         }
 
 

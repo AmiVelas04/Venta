@@ -288,6 +288,12 @@
     </Compile>
     <Compile Include="Reportes\PagosrepoDet.cs" />
     <Compile Include="Reportes\PagosrepoEnc.cs" />
+    <Compile Include="Reportes\ProducSalida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\ProducSalida.Designer.cs">
+      <DependentUpon>ProducSalida.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\RepCaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -452,6 +458,9 @@
       <DependentUpon>PagoHechos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\PagosRepo.rdlc" />
+    <EmbeddedResource Include="Reportes\ProducSalida.resx">
+      <DependentUpon>ProducSalida.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RepCaja.rdlc" />
     <EmbeddedResource Include="Reportes\RepCaja.resx">
       <DependentUpon>RepCaja.cs</DependentUpon>
@@ -472,6 +481,7 @@
     <EmbeddedResource Include="Reportes\SalidaP.resx">
       <DependentUpon>SalidaP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ProducSalida.rdlc" />
     <EmbeddedResource Include="Reportes\TiendaInter.rdlc" />
     <EmbeddedResource Include="Reportes\TiendaInter.resx">
       <DependentUpon>TiendaInter.cs</DependentUpon>

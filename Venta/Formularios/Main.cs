@@ -21,9 +21,14 @@ namespace Venta.Formularios
         public static string idvende { get; set; }
         public static string nombrev { get; set; }
         public static string nivel { get; set; }
+        //public string 
+            public static string rutaimg1 { get; set; }
         public Main()
         {
             InitializeComponent();
+           rutaimg1 = @"\\192.168.0.100\imagenes\";
+           // rutaimg1 = @".\imagen\";
+
         }
 
        

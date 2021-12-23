@@ -21,7 +21,7 @@ namespace Venta.Formularios
         private Clases.RastreoProd track = new Clases.RastreoProd();
         public string idven= Main.idvende;
         public string vende= Main.nombrev;
-        string rutaimg1 = @".\imagen\", rutaimg2 = @"\\192.168.0.100\imagenes\";
+        string rutaimg1 = Main.rutaimg1;
         public Productos()
         {
             InitializeComponent();

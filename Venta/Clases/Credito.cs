@@ -91,13 +91,13 @@ namespace Venta.Clases
             string consulta;
             consulta = "SELECT id_credito " +
                        "FROM credito " +
-                       "WHERE id_cliente =" + cli + " order by id_credito  desc limit 3";
+                       "WHERE id_cliente =" + cli + " order by id_credito desc limit 3";
             return buscar(consulta);
         }
 
         public DataTable saldos(string cred)
         {
-            string consulta = "SELECT SUM(p.Monto),c.anticipo,c.Total, Saldo_ant, gastos FROM pago p " +
+            string consulta = "SELECT SUM(p.Monto),c.anticipo,c.Total, Saldo_ant, gastos,c.estado FROM pago p " +
                                "INNER JOIN credito c ON c.ID_CREDITO = p.id_credito " +
                                "WHERE p.id_credito =" + cred;
             return buscar(consulta);
@@ -115,7 +115,7 @@ namespace Venta.Clases
             DataTable datos = new DataTable();
             DataTable pagos = new DataTable();
             decimal total = 0, anticipo = 0, totalpag = 0, saldoant = 0, gastos = 0;
-            string consulta = "Select total, anticipo,saldo_ant ,gastos from credito where id_credito=" + id + " and Estado ='Activo'";
+            string consulta = "Select total, anticipo,saldo_ant ,gastos from credito where id_credito=" + id + "";
             string Consulpagos = "select sum(monto) from pago where id_credito=" + id;
             datos = buscar(consulta);
             pagos = buscar(Consulpagos);
@@ -143,7 +143,25 @@ namespace Venta.Clases
             string consulta = "insert into pago(id_pago,id_credito,Monto,detalle,fecha,id_vende) " +
                  "Values(" + id + "," + datos[0] + "," + datos[1] + ",'" + datos[2] + "','" + datos[3] + "'," + datos[4] + ")";
 
-            consulta_gen(consulta);
+            if (consulta_gen(consulta))
+            {
+                if (saldo(datos[0]) <= 0)
+                {
+                    try
+                    {
+                        string consul = "update credito set estado='Cancelado' where id_credito=" + datos[0];
+                        if (consulta_gen(consul))
+                        {
+                            MessageBox.Show("El credito ha sido Cancelador en su totalidad", "Pagado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        err.Grabar_Error(ex.ToString());
+                    }
+                }
+            }
+
             imprimirBoleta(id, datos);
             return RpagoCre(id.ToString(), datos[0], datos[1], datos[4]);
         }
@@ -151,9 +169,11 @@ namespace Venta.Clases
         public void imprimirBoleta(int id, string[] datos)
         {
             decimal monto = saldo(datos[0]);
+           
             decimal total, pago;
             pago = decimal.Parse(datos[1]);
             total = monto /*- pago*/;
+            if (total <= 0) total = 0.00M;
             Reportes.Boleta bol = new Reportes.Boleta();
             bol.NoBol = id.ToString();
             bol.NoCre = datos[0];
@@ -218,7 +238,8 @@ namespace Venta.Clases
             {
                 vende = "Vendedor";
             }
-            else {
+            else
+            {
                 vende = datos.Rows[0][0].ToString();
             }
 
@@ -405,26 +426,26 @@ namespace Venta.Clases
         }
 
         public void ReportePagos(string idcli)
-            {
+        {
             string consulta;
             int cant, cont;
-            consulta = "SELECT p.Id_pago AS id,c.ID_CREDITO AS CreditoNum,c.id_venta AS compro,p.Monto,date_format(p.Fecha,'%d/%M/%Y') AS fecha, cli.NOMBRE,cli.DIRECCION, p.detalle "+
-                       "FROM pago p "+
-                       "INNER JOIN credito c ON c.ID_CREDITO = p.id_credito "+
-                       "INNER JOIN vendedor ven ON ven.ID_VENDEDOR = p.id_vende "+
-                       "INNER JOIN cliente cli ON cli.ID_CLIENTE = c.ID_CLIENTE "+
-                       "WHERE cli.ID_CLIENTE = "+idcli+" AND p.Monto > 0";
+            consulta = "SELECT p.Id_pago AS id,c.ID_CREDITO AS CreditoNum,c.id_venta AS compro,p.Monto,date_format(p.Fecha,'%d/%M/%Y') AS fecha, cli.NOMBRE,cli.DIRECCION, p.detalle " +
+                       "FROM pago p " +
+                       "INNER JOIN credito c ON c.ID_CREDITO = p.id_credito " +
+                       "INNER JOIN vendedor ven ON ven.ID_VENDEDOR = p.id_vende " +
+                       "INNER JOIN cliente cli ON cli.ID_CLIENTE = c.ID_CLIENTE " +
+                       "WHERE cli.ID_CLIENTE = " + idcli + " AND p.Monto > 0";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             cant = datos.Rows.Count;
             Reportes.PagosrepoEnc enca = new Reportes.PagosrepoEnc();
-            for (cont= 0;cont<cant;cont++)
+            for (cont = 0; cont < cant; cont++)
             {
                 Reportes.PagosrepoDet deta = new Reportes.PagosrepoDet();
                 deta.Idpag = Int32.Parse(datos.Rows[cont][0].ToString());
                 deta.Credito = Int32.Parse(datos.Rows[cont][1].ToString());
-                deta.Compro= Int32.Parse(datos.Rows[cont][2].ToString());
-                deta.Monto= decimal.Parse(datos.Rows[cont][3].ToString());
+                deta.Compro = Int32.Parse(datos.Rows[cont][2].ToString());
+                deta.Monto = decimal.Parse(datos.Rows[cont][3].ToString());
                 deta.fecha = (datos.Rows[cont][4].ToString());
                 deta.detalle = datos.Rows[cont][7].ToString();
                 enca.Detalle.Add(deta);
@@ -437,6 +458,6 @@ namespace Venta.Clases
             repo.detalle = enca.Detalle;
             repo.Show();
 
-            }
+        }
     }
 }

@@ -118,15 +118,27 @@ namespace Venta.Formularios
         {
             DataTable saldo = new DataTable();
             saldo = cre.saldos(cred);
-            decimal sald=0, monto=0, anti=0, ante=0,gasto=0;
+            decimal sald = 0, monto = 0, anti = 0, ante = 0, gasto = 0;
             if (saldo.Rows[0][0] != DBNull.Value) sald = decimal.Parse(saldo.Rows[0][0].ToString());
             if (saldo.Rows[0][1] != DBNull.Value) anti = decimal.Parse(saldo.Rows[0][1].ToString());
             if (saldo.Rows[0][2] != DBNull.Value) monto = decimal.Parse(saldo.Rows[0][2].ToString());
             if (saldo.Rows[0][3] != DBNull.Value) ante = decimal.Parse(saldo.Rows[0][3].ToString());
             if (saldo.Rows[0][4] != DBNull.Value) gasto = decimal.Parse(saldo.Rows[0][4].ToString());
 
+            if (saldo.Rows[0][5].ToString() == "Activo")
+            {
+                GbxPago.Enabled = true;
+                TxtSaldo.Text = Convert.ToString(monto + gasto + ante - (sald));
+            }
+            else
+            {
+                MessageBox.Show("El credito seleccionado esta pagado","Pagado",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            GbxPago.Enabled = false;
+                TxtSaldo.Text ="0";
+            }
+           
             TxtTot.Text = monto.ToString();
-            TxtSaldo.Text = Convert .ToString (monto+gasto+ante - (sald));
+          //  TxtSaldo.Text = Convert .ToString (monto+gasto+ante - (sald));
             TxtAnte.Text = ante.ToString();
             TxtGast.Text = gasto.ToString();
             pagoslst(cred);

@@ -103,10 +103,8 @@ namespace Venta.Clases
                 idtrack = cod().ToString();
                 int ante=anter, posti=0;
                 // ante = prod.cantidadprod(idprod);
-                if (ope==8)
-                { canti = int.Parse(datos.Rows[i][1].ToString()); }
-                else
-                { canti = int.Parse(datos.Rows[i][6].ToString()); }
+            
+             canti = int.Parse(datos.Rows[i][6].ToString()); 
               
                 if (ope == 1)
                 {
@@ -130,6 +128,7 @@ namespace Venta.Clases
                 {
                     // ante = int.Parse(datos.Rows[i][6].ToString());
                     canti = int.Parse(datos.Rows[i][6].ToString());
+//                    if (canti == 0) return true;
                     opera = "Se agrego la cantidad de producto existente";
                     posti = ante + canti;
 

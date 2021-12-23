@@ -15,6 +15,8 @@ namespace Venta.Reportes
         public string vendedor { get; set; }
         public string tipo { get; set; }
         public string fecha { get; set; }
+        public string firma { get; set; }
+        public string Recibi { get; set; }
 
         public List<FactDet> Detalle = new List<FactDet>();
         public List<ListaProd> Prod = new List<ListaProd>();

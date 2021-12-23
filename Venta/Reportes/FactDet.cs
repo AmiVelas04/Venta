@@ -15,5 +15,7 @@ namespace Venta.Reportes
         public decimal precio { get; set; }
         public decimal total { get; set; }
         
+   
+        
     }
 }
