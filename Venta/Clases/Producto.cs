@@ -16,6 +16,7 @@ namespace Venta.Clases
         conexion conn = new conexion();
         Errores err = new Errores();
         RastreoProd track = new RastreoProd();
+        public string rutaimg{ get; set; }
         
 
         #region "General"
@@ -1014,14 +1015,15 @@ namespace Venta.Clases
 
             //Direccion de imagenes en servidor :@\\192.168.0.100\imagenes\
             //direccion de imagenes en produccion: @"//LAPTOP//Prods//
+            //Direccion nueva tienda rutaimg1 = @".\imagen\";
 
-            if (Directory.Exists(@"\\192.168.0.100\imagenes\"))
+            if (Directory.Exists(@".\imagen\"))
             { }
             else
             {
-                Directory.CreateDirectory(@"\\192.168.0.100\imagenes\");
+                Directory.CreateDirectory(@".\imagen\");
             }
-            ruta = Path.GetFullPath(@"\\192.168.0.100\imagenes\" + NombreFull);
+            ruta = Path.GetFullPath(@".\imagen\" + NombreFull);
             if (File.Exists(ruta))
             {
                 System.IO.File.Delete(ruta);
@@ -1029,7 +1031,7 @@ namespace Venta.Clases
                 {
                     try
                     {
-                        File.Copy(origen, @"\\192.168.0.100\imagenes\" + imagen + extension);
+                        File.Copy(origen, (@".\imagen\" + imagen + extension));
                     }
                     catch (Exception Ex)
                     {
@@ -1047,7 +1049,7 @@ namespace Venta.Clases
             {
                 if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
                 {
-                    File.Copy(origen, @"\\192.168.0.100\imagenes\" + imagen + extension);
+                    File.Copy(origen, (@".\imagen\" + imagen + extension));
                 }
                 else
                 {
