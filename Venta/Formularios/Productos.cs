@@ -502,7 +502,7 @@ namespace Venta.Formularios
             string NombreFull, ruta, alterno = "";
             NombreFull = imagen + extension;
             string imgdefecto = prod.imagendar(id);
-            ruta = Path.GetFullPath(@"\\192.168.0.100\imagenes\" + NombreFull);
+            ruta = Path.GetFullPath(rutaimg1 + NombreFull);
 
             if (File.Exists(ruta))
             {
@@ -516,9 +516,9 @@ namespace Venta.Formularios
                         FileStream archi = new FileStream("./imagen/" + imagen + extension,FileMode.Create);
                         archi.Write(contenido, 0, contenido.Length);
                         archi.Close();*/
-                        File.Copy(OFD1.FileName, @"\\192.168.0.100\imagenes\" + imagen + extension);
+                        File.Copy(OFD1.FileName, rutaimg1 + imagen + extension);
 
-                        alterno = @"\\192.168.0.100\imagenes\" + imagen + "B" + extension;
+                        alterno = rutaimg1 + imagen + "B" + extension;
                     }
                     catch (Exception Ex)
                     {
@@ -535,7 +535,7 @@ namespace Venta.Formularios
             {
                 if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
                 {
-                    File.Copy(OFD1.FileName, @"\\192.168.0.100\imagenes\" + imagen + extension);
+                    File.Copy(OFD1.FileName,rutaimg1 + imagen + extension);
                    // File.Copy(OFD1.FileName, @"//LAPTOP//Prods//pruebacopuy.jpg");
                 }
                 else
