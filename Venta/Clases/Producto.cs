@@ -32,7 +32,7 @@ namespace Venta.Clases
             catch (Exception ex)
             {
                 string mensaje = ex.ToString() + "\n" + consulta;
-                MessageBox.Show("Se presento un inconveniente en el proceso de productos ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+             //   MessageBox.Show("Se presento un inconveniente en el proceso de productos ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 err.Grabar_Error(mensaje);
             }
             return datos;
@@ -167,9 +167,11 @@ namespace Venta.Clases
                 int totprod = codtod.Rows.Count;
                 int cont, contacolor;
                 string caract="",primcod="", colcod="";
+             //   MessageBox.Show("El numero de codigos es:" + totprod.ToString());
                 for (cont = 1; cont <= totprod; cont++)
                 {
-                    primcod = cont.ToString();
+                    int num = cont + 1;
+                    primcod = num.ToString();
                     /* if (cont < 10)
                      { primcod = "000" + cont.ToString(); }
                      else if (cont < 100)
@@ -388,16 +390,16 @@ namespace Venta.Clases
             string consulta = "Insert into producto(id_prod,nombre,id_estilo,id_tipo,id_color,talla,cantidad,precio_cost,precio_m1,precio_m2,precio_v1,precio_v2,precio_v3,imagen,ubicacion,MATERIAP) " +
                                "values ('"+codpod+"','"+datos[0] + "','"+est + "','"+ tipo + "','"+color + "','"+datos[4] + "',"+datos[5] + ","+datos[6] + "," + datos[7] +  "," + datos[8] +"," +datos[9]+ ","+datos[10]+","+datos[11]+",'" + imagen +"','"+datos[16]+"',"+datos[17]+ ")";
            
-            track.Movimiento(datoes,3,idv,0,null);
+           
             if (consulta_gen(consulta))
             {
+                track.Movimiento(datoes, 3, idv, 0, null);
                 MessageBox.Show("Codigo: " + codpod + "\nProducto: " + datos[0]+ "\nEstilo: "+ datos[13] + "\nTipo: "+ datos[14] + "\nColor: "+datos[15] + "\nTalla: " + datos [4] + "\n¡Registro correcto!","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 if (MessageBox.Show("¿Desea Imprimir " + datos[5] + " etiqueta(s)?", "Imprimir etiquetas", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     ImpAlIngr(codpod, datos[5]);
                 }
                 return true;
-
             }
             else
             {return false; }

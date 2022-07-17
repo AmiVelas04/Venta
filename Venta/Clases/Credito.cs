@@ -57,7 +57,7 @@ namespace Venta.Clases
             {
                 conec.conn.Close();
                 string mensaje = ex.ToString() + "\n" + consulta;
-                MessageBox.Show("Se presento un inconveniente en el proceso de credito ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Se presento un inconveniente en el proceso de credito " + mensaje, "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 err.Grabar_Error(mensaje);
                 return false;
             }

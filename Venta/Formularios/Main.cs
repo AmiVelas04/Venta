@@ -27,7 +27,7 @@ namespace Venta.Formularios
         {
             InitializeComponent();
            rutaimg1 = @"\\192.168.0.100\imagenes\";
-           rutaimg1 = @".\imagen\";
+          // rutaimg1 = @".\imagen\";
 
         }
 

@@ -813,7 +813,7 @@ namespace Venta.Formularios
             int indice = DgvProd.CurrentRow.Index;
             string cod = DgvProd.Rows[indice].Cells[0].Value.ToString();
             string nombre = DgvProd.Rows[indice].Cells[1].Value.ToString() +" " + DgvProd.Rows[indice].Cells[2].Value.ToString() + " " + DgvProd.Rows[indice].Cells[3].Value.ToString() + " " + DgvProd.Rows[indice].Cells[4].Value.ToString() + " " + DgvProd.Rows[indice].Cells[5].Value.ToString();
-            string Ltitulo = "Modas Ma'li";
+            string Ltitulo = "Modas y Artesanias\n Veronica";
             string Lprecio = DgvProd.Rows[indice].Cells[12].Value.ToString();
            
             int cantidad = int.Parse(NudEtiqueta.Value.ToString());

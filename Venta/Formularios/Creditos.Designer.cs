@@ -326,6 +326,7 @@
             // TxtPagoDet
             // 
             this.TxtPagoDet.Location = new System.Drawing.Point(106, 78);
+            this.TxtPagoDet.MaxLength = 200;
             this.TxtPagoDet.Multiline = true;
             this.TxtPagoDet.Name = "TxtPagoDet";
             this.TxtPagoDet.Size = new System.Drawing.Size(298, 49);

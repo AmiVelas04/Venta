@@ -18,11 +18,11 @@ namespace Venta.Clases
         {
             try
             {
-                string BasePAth = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                string ruta = @"DatosSistemaVentas\log.txt";
+                string BasePAth = Application.StartupPath;
+                string ruta = "log.txt";
                 //string ruta = @"D:\log.txt";
 
-                ruta = Path.Combine(BasePAth ,ruta);
+                //ruta = Path.Combine(BasePAth ,ruta);
                 string fecha = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
                 if (!File.Exists(ruta))
                 {

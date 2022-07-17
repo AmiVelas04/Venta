@@ -30,7 +30,7 @@ namespace Venta.Clases
             catch (Exception ex)
             {
                 string mensaje = ex.ToString() + "\n" + consulta;
-                MessageBox.Show("Se presento un inconveniente en el Rastreo de productos ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+               // MessageBox.Show("Se presento un inconveniente en el Rastreo de productos ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 err.Grabar_Error(mensaje);
 
             }
@@ -57,7 +57,7 @@ namespace Venta.Clases
             {
                 conec.conn.Close();
                 string mensaje = ex.ToString() + "\n" + consulta;
-                MessageBox.Show("Se presento un inconveniente en el Rastreo de productos ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+              //  MessageBox.Show("Se presento un inconveniente en el Rastreo de productos ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 err.Grabar_Error(mensaje);
                 return false;
             }
@@ -73,7 +73,7 @@ namespace Venta.Clases
         {
             string consulta;
             int cod;
-            consulta = "Select count(*) from rastreo";
+            consulta = "Select MAX(ras.id_track) from rastreo ras";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             if (datos.Rows.Count > 0)
