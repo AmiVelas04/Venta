@@ -57,8 +57,9 @@ namespace Venta.Formularios
 
         private void Respaldo_Load(object sender, EventArgs e)
         {
-            string cadena_conn = "server=192.168.0.100; database = bdtipicos; user id = ClienteRed; password = Ventas_Tip_Red; allow zero Datetime = true";
-           // string cadena_conn = "server=192.168.0.100;  database=Bdtipicos; user id=Tipicos; password=Venta_2020_Sis; port=3306; allow zero Datetime= true";
+            // string cadena_conn = "server=192.168.0.100; database = bdtipicos; user id = ClienteRed; password = Ventas_Tip_Red; allow zero Datetime = true";
+            // string cadena_conn = "server=192.168.0.100;  database=Bdtipicos; user id=Tipicos; password=Venta_2020_Sis; port=3306; allow zero Datetime= true";
+            string cadena_conn = "server=localhost;  database=bdtipicos; user id=Tipicos; password=Venta_2020_Sis;  allow zero Datetime= true";
             conn.ConnectionString = cadena_conn;
         }
 

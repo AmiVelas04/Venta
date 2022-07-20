@@ -15,7 +15,7 @@ namespace Venta.Formularios
     {
         public delegate void permiso(string codi);
         public event permiso Mostrarprodu;
-        Clases.Producto produ = new Clases.Producto();
+        Clases.Producto produ = new Clases.Producto(Main.rutaimg1);
         public BuscProdRap()
         {
             InitializeComponent();

@@ -16,8 +16,14 @@ namespace Venta.Clases
         conexion conn = new conexion();
         Errores err = new Errores();
         RastreoProd track = new RastreoProd();
+        private Func<string> toString;
+
         public string rutaimg{ get; set; }
-        
+
+       public Producto(string imga)
+        { this.rutaimg = imga; }
+
+      
 
         #region "General"
         private DataTable buscar(string consulta)
@@ -1019,13 +1025,13 @@ namespace Venta.Clases
             //direccion de imagenes en produccion: @"//LAPTOP//Prods//
             //Direccion nueva tienda rutaimg1 = @".\imagen\";
 
-            if (Directory.Exists(@".\imagen\"))
+            if (Directory.Exists(rutaimg))
             { }
             else
             {
-                Directory.CreateDirectory(@".\imagen\");
+                Directory.CreateDirectory(rutaimg);
             }
-            ruta = Path.GetFullPath(@".\imagen\" + NombreFull);
+            ruta = Path.GetFullPath(rutaimg + NombreFull);
             if (File.Exists(ruta))
             {
                 System.IO.File.Delete(ruta);
@@ -1033,11 +1039,11 @@ namespace Venta.Clases
                 {
                     try
                     {
-                        File.Copy(origen, (@".\imagen\" + imagen + extension));
+                        File.Copy(origen, (rutaimg + imagen + extension));
                     }
                     catch (Exception Ex)
                     {
-                        MessageBox.Show("./imagen/" + imagen + extension);
+                        MessageBox.Show( imagen + extension);
                         MessageBox.Show(Ex.ToString());
                     }
                 }
@@ -1051,7 +1057,7 @@ namespace Venta.Clases
             {
                 if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
                 {
-                    File.Copy(origen, (@".\imagen\" + imagen + extension));
+                    File.Copy(origen, (rutaimg + imagen + extension));
                 }
                 else
                 {

@@ -17,7 +17,7 @@ namespace Venta.Formularios
     public partial class Productos : Form
     {
         Clases.conexion conn = new Clases.conexion();
-        Clases.Producto prod = new Clases.Producto();
+        Clases.Producto prod = new Clases.Producto(Main.rutaimg1);
         private Clases.RastreoProd track = new Clases.RastreoProd();
         public string idven= Main.idvende;
         public string vende= Main.nombrev;

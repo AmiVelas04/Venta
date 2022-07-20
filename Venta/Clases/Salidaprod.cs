@@ -13,7 +13,7 @@ namespace Venta.Clases
     class Salidaprod
     {
         conexion conn = new conexion();
-        Producto prod = new Producto();
+        Producto prod = new Producto("");
         RastreoProd track = new RastreoProd();
         Errores err = new Errores();
         

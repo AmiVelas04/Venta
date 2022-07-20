@@ -14,7 +14,7 @@ namespace Venta.Formularios
     {
         Clases.Clientes cli = new Clases.Clientes();
         Clases.Conces Conce = new Clases.Conces();
-        Clases.Producto prod = new Clases.Producto();
+        Clases.Producto prod = new Clases.Producto("");
         Clases.Venta ven = new Clases.Venta();
 
         public Concesion()

@@ -12,7 +12,7 @@ namespace Venta.Formularios
 {
     public partial class ConteoP : Form
     {
-        private Clases.Producto Produ = new Clases.Producto();
+        private Clases.Producto Produ = new Clases.Producto("");
         private Clases.RastreoProd track = new Clases.RastreoProd();
         public ConteoP()
         {

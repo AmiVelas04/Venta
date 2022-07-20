@@ -14,7 +14,7 @@ namespace Venta.Clases
     {
       
         conexion conn = new Clases.conexion();
-        Producto prod = new Producto();
+        Producto prod = new Producto("");
         Clientes cli = new Clientes();
         Credito cre = new Credito();
         Caja caj = new Caja();

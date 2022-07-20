@@ -12,7 +12,7 @@ namespace Venta.Clases
     class Conces
     {
         conexion conec = new conexion();
-        Producto produc = new Producto();
+        Producto produc = new Producto("");
         Clientes cli = new Clientes();
         Errores err = new Errores();
         Login log = new Login();

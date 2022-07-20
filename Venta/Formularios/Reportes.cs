@@ -12,7 +12,7 @@ namespace Venta.Formularios
 {
     public partial class Reportes : Form
     {
-        Clases.Producto prod = new Clases.Producto();
+        Clases.Producto prod = new Clases.Producto("");
         Clases.Venta ven = new Clases.Venta();
         Clases.Salidaprod sprod = new Clases.Salidaprod();
         Clases.Conces conce = new Clases.Conces();

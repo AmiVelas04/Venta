@@ -12,7 +12,7 @@ namespace Venta.Formularios
 {
     public partial class IngresoRapidoProd : Form
     {
-        Clases.Producto prod = new Clases.Producto();
+        Clases.Producto prod = new Clases.Producto("");
         public IngresoRapidoProd()
         {
             InitializeComponent();

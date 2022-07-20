@@ -78,8 +78,16 @@ namespace Venta.Clases
             datos = buscar(consulta);
             if (datos.Rows.Count > 0)
             {
-                cod = int.Parse(datos.Rows[0][0].ToString());
-                cod++;
+                if (datos.Rows[0][0] != DBNull.Value)
+                { 
+                    cod = int.Parse(datos.Rows[0][0].ToString());
+                    cod++;
+                }
+                else
+                {
+                    cod = 1;
+                }
+                   
             }
             else
             {
