@@ -351,6 +351,18 @@
     <Compile Include="Reportes\VentasDiarios.Designer.cs">
       <DependentUpon>VentasDiarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubForms\FrmCostoCh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForms\FrmCostoCh.Designer.cs">
+      <DependentUpon>FrmCostoCh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForms\VentaSalvarTemp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForms\VentaSalvarTemp.Designer.cs">
+      <DependentUpon>VentaSalvarTemp.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -493,6 +505,12 @@
     <EmbeddedResource Include="Reportes\VentasDiarios.rdlc" />
     <EmbeddedResource Include="Reportes\VentasDiarios.resx">
       <DependentUpon>VentasDiarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForms\FrmCostoCh.resx">
+      <DependentUpon>FrmCostoCh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForms\VentaSalvarTemp.resx">
+      <DependentUpon>VentaSalvarTemp.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Venta.Reportes.Boleta.datasource" />

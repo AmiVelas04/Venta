@@ -87,5 +87,10 @@ namespace Venta.Formularios
         {
             limpiar();
         }
+
+        private void IngresoRapidoProd_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

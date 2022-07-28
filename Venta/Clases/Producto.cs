@@ -64,7 +64,7 @@ namespace Venta.Clases
             {
                 conn.conn.Close();
                 string mensaje = ex.ToString() + "\n" + consulta;
-                MessageBox.Show("Se presento un inconveniente en el proceso de productos ", "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Se presento un inconveniente en el proceso de productos \n"+mensaje, "Adevertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 err.Grabar_Error(mensaje);
                 return false;
             }
@@ -94,6 +94,82 @@ namespace Venta.Clases
                               "where nombre='" + nom + "' and id_estilo=" + est + " and id_tipo=" + tip + " and id_color=" + col + " and Talla='" + tall + "'";
             return buscar(consulta);
         }
+
+        public decimal CostoProd(string idprod)
+        {
+            DataTable datos = new DataTable();
+            string consulta = "Select total from costoprod where id_prod='"+idprod + "'";
+            datos = buscar(consulta);
+            if (datos.Rows.Count>0)
+            {
+                return (decimal.Parse(datos.Rows[0][0].ToString()));
+            }
+            else
+            { return -1; }
+            
+        }
+
+        public DataTable IdTodCostos(string id)
+        {
+            DataTable datos = new DataTable();
+            string consulta = "Select id_costo from costoprod where id_prod='" + id + "'";
+            return buscar(consulta);
+            
+        }
+
+        public DataTable TodosCostos(string idprod)
+        {
+            DataTable datos = new DataTable();
+            string consulta = "Select * from costoprod where id_prod='" + idprod + "'";
+            return buscar(consulta);
+        }
+
+        public bool savecosto(string[] datos)
+        {
+            int cod = cod_Costo();
+            string consulta = "Insert into costoprod(id_costo,id_prod,Detalle,valor,total) " +
+                "Values("+cod+",'"+datos[0]+"','"+datos[1]+"',"+ datos[2]+","+datos[3]+ " )";
+            return consulta_gen(consulta);
+        }
+
+        public bool updatecosto(List<string[]> datos, string codi)
+        {
+            DataTable ids = new DataTable();
+            bool estado = false;
+            int cant = 0;
+            ids = IdTodCostos(codi);
+            int conteo = 0;
+            foreach (var item in datos)
+            {
+                string consul = "update costoprod set detalle='"+item[0]+"',valor="+item[1]+",total="+item[2]+
+                    " Where id_costo="+ids.Rows[conteo][0].ToString();
+                conteo++;
+                estado = consulta_gen(consul);
+                if (!estado) return false;
+            }
+            return estado;
+        }
+
+        private int cod_Costo()
+        {
+            int id;
+            DataTable datos = new DataTable();
+            string consulta;
+            consulta = "Select max(id_Costo) from Costoprod";
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] == DBNull.Value)
+            {
+                id = 1;
+            }
+            else
+            {
+                id = Int32.Parse(datos.Rows[0][0].ToString());
+                id++;
+            }
+            return id;
+        }
+
+
 
         public string busc_codprod(string nom, string est, string tip, string col, string tall)
         {

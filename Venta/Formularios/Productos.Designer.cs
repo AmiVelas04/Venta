@@ -92,6 +92,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.DgvProd = new System.Windows.Forms.DataGridView();
             this.OFD1 = new System.Windows.Forms.OpenFileDialog();
+            this.BtnAddCosto = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudIngreso)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -106,6 +107,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.BtnAddCosto);
             this.panel1.Controls.Add(this.ChkCantCamb);
             this.panel1.Controls.Add(this.TxtUltimoIng);
             this.panel1.Controls.Add(this.label17);
@@ -434,6 +436,7 @@
             // 
             // TxtPrecio_C
             // 
+            this.TxtPrecio_C.Enabled = false;
             this.TxtPrecio_C.Location = new System.Drawing.Point(210, 186);
             this.TxtPrecio_C.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio_C.Name = "TxtPrecio_C";
@@ -838,6 +841,19 @@
             // 
             this.OFD1.FileName = "Seleccionar imagen";
             // 
+            // BtnAddCosto
+            // 
+            this.BtnAddCosto.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddCosto.Image")));
+            this.BtnAddCosto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnAddCosto.Location = new System.Drawing.Point(321, 166);
+            this.BtnAddCosto.Name = "BtnAddCosto";
+            this.BtnAddCosto.Size = new System.Drawing.Size(75, 44);
+            this.BtnAddCosto.TabIndex = 42;
+            this.BtnAddCosto.Text = "Costo +";
+            this.BtnAddCosto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnAddCosto.UseVisualStyleBackColor = true;
+            this.BtnAddCosto.Click += new System.EventHandler(this.BtnAddCosto_Click);
+            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -937,5 +953,6 @@
         private System.Windows.Forms.TextBox TxtUltimoIng;
         private System.Windows.Forms.CheckBox ChkCantCamb;
         private System.Windows.Forms.Button BtnTrack;
+        private System.Windows.Forms.Button BtnAddCosto;
     }
 }

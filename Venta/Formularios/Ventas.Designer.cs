@@ -78,6 +78,7 @@
             this.Cancelar = new System.Windows.Forms.Button();
             this.BtnGenVen = new System.Windows.Forms.Button();
             this.PanArriba = new System.Windows.Forms.Panel();
+            this.BtnSaveSale = new System.Windows.Forms.Button();
             this.TxtSoli = new System.Windows.Forms.TextBox();
             this.LblSoli = new System.Windows.Forms.Label();
             this.BtnUltVent = new System.Windows.Forms.Button();
@@ -88,6 +89,7 @@
             this.RdbContado = new System.Windows.Forms.RadioButton();
             this.RdbConce = new System.Windows.Forms.RadioButton();
             this.RdbCredito = new System.Windows.Forms.RadioButton();
+            this.BtnCharSale = new System.Windows.Forms.Button();
             this.PanData.SuspendLayout();
             this.Gbx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicExemp)).BeginInit();
@@ -677,6 +679,8 @@
             // 
             // PanArriba
             // 
+            this.PanArriba.Controls.Add(this.BtnCharSale);
+            this.PanArriba.Controls.Add(this.BtnSaveSale);
             this.PanArriba.Controls.Add(this.TxtSoli);
             this.PanArriba.Controls.Add(this.LblSoli);
             this.PanArriba.Controls.Add(this.BtnUltVent);
@@ -688,9 +692,23 @@
             this.PanArriba.Size = new System.Drawing.Size(774, 100);
             this.PanArriba.TabIndex = 0;
             // 
+            // BtnSaveSale
+            // 
+            this.BtnSaveSale.Image = ((System.Drawing.Image)(resources.GetObject("BtnSaveSale.Image")));
+            this.BtnSaveSale.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnSaveSale.Location = new System.Drawing.Point(130, 54);
+            this.BtnSaveSale.Name = "BtnSaveSale";
+            this.BtnSaveSale.Size = new System.Drawing.Size(101, 40);
+            this.BtnSaveSale.TabIndex = 11;
+            this.BtnSaveSale.Text = "Guardar venta";
+            this.BtnSaveSale.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnSaveSale.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnSaveSale.UseVisualStyleBackColor = true;
+            this.BtnSaveSale.Click += new System.EventHandler(this.BtnSaveSale_Click);
+            // 
             // TxtSoli
             // 
-            this.TxtSoli.Location = new System.Drawing.Point(132, 27);
+            this.TxtSoli.Location = new System.Drawing.Point(130, 25);
             this.TxtSoli.Name = "TxtSoli";
             this.TxtSoli.Size = new System.Drawing.Size(306, 23);
             this.TxtSoli.TabIndex = 10;
@@ -700,7 +718,7 @@
             // LblSoli
             // 
             this.LblSoli.AutoSize = true;
-            this.LblSoli.Location = new System.Drawing.Point(129, 9);
+            this.LblSoli.Location = new System.Drawing.Point(127, 7);
             this.LblSoli.Name = "LblSoli";
             this.LblSoli.Size = new System.Drawing.Size(153, 15);
             this.LblSoli.TabIndex = 9;
@@ -813,6 +831,20 @@
             this.RdbCredito.Text = "Credito";
             this.RdbCredito.UseVisualStyleBackColor = true;
             // 
+            // BtnCharSale
+            // 
+            this.BtnCharSale.Image = ((System.Drawing.Image)(resources.GetObject("BtnCharSale.Image")));
+            this.BtnCharSale.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnCharSale.Location = new System.Drawing.Point(237, 54);
+            this.BtnCharSale.Name = "BtnCharSale";
+            this.BtnCharSale.Size = new System.Drawing.Size(101, 40);
+            this.BtnCharSale.TabIndex = 12;
+            this.BtnCharSale.Text = "Cargar venta";
+            this.BtnCharSale.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnCharSale.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnCharSale.UseVisualStyleBackColor = true;
+            this.BtnCharSale.Click += new System.EventHandler(this.BtnCharSale_Click);
+            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -907,5 +939,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.RadioButton RdbEnvio;
         private System.Windows.Forms.RadioButton Rdcoti;
+        private System.Windows.Forms.Button BtnSaveSale;
+        private System.Windows.Forms.Button BtnCharSale;
     }
 }

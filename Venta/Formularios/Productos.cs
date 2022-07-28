@@ -156,12 +156,25 @@ namespace Venta.Formularios
                 string idtipo = CboTipo.SelectedValue != null ? CboTipo.SelectedValue.ToString() : "0";
                 string idcolor = CboColor.SelectedValue != null ? CboColor.SelectedValue.ToString() : "0";
                 string talla = TxtTalla.Text;
+                decimal costo;
+                
                 if (prod.prodexist(Nomprod, idestilo, idtipo, idcolor, talla))
                 {
                     DataTable datos = new DataTable();
                     datos = prod.DatosRestant(Nomprod, idestilo, idtipo, idcolor, talla);
                     NudCantidad.Value = decimal.Parse(datos.Rows[0][0].ToString());
-                    TxtPrecio_C.Text = datos.Rows[0][1].ToString();
+                    costo = prod.CostoProd(datos.Rows[0][10].ToString());
+                    if (costo == -1)
+                    {
+                        TxtPrecio_C.Text = "S/C";
+                        TxtPrecio_C.Tag = costo;
+                    }
+                    else
+                    {
+                        TxtPrecio_C.Text = costo.ToString();
+                        TxtPrecio_C.Tag = costo;
+                    }
+                    
                     TxtPrecio_M1.Text = datos.Rows[0][2].ToString();
                     TxtPrecio_M2.Text = datos.Rows[0][3].ToString();
                     TxtPrecio_V1.Text = datos.Rows[0][4].ToString();
@@ -889,6 +902,12 @@ namespace Venta.Formularios
             }
         }
 
-
+        private void BtnAddCosto_Click(object sender, EventArgs e)
+        {
+            SubForms.FrmCostoCh cost = new SubForms.FrmCostoCh();
+            cost.id = "R" + TxtCod.Text ;
+            cost.Nom = TxtProdNom.Text;
+            cost.ShowDialog();
+        }
     }
 }

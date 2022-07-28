@@ -31,13 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IngresoRapidoProd));
             this.PanCentral = new System.Windows.Forms.Panel();
             this.GbxProd = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TxtCod = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.NudCant = new System.Windows.Forms.NumericUpDown();
-            this.BtnAgre = new System.Windows.Forms.Button();
-            this.BtnLimpiar = new System.Windows.Forms.Button();
             this.LblDatos = new System.Windows.Forms.Label();
+            this.BtnLimpiar = new System.Windows.Forms.Button();
+            this.BtnAgre = new System.Windows.Forms.Button();
+            this.NudCant = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtCod = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.PanCentral.SuspendLayout();
             this.GbxProd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudCant)).BeginInit();
@@ -48,7 +48,7 @@
             this.PanCentral.Controls.Add(this.GbxProd);
             this.PanCentral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanCentral.Location = new System.Drawing.Point(0, 0);
-            this.PanCentral.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanCentral.Margin = new System.Windows.Forms.Padding(4);
             this.PanCentral.Name = "PanCentral";
             this.PanCentral.Size = new System.Drawing.Size(349, 227);
             this.PanCentral.TabIndex = 0;
@@ -70,51 +70,13 @@
             this.GbxProd.TabStop = false;
             this.GbxProd.Text = "Datos del producto";
             // 
-            // label1
+            // LblDatos
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Codigo";
-            // 
-            // TxtCod
-            // 
-            this.TxtCod.Location = new System.Drawing.Point(12, 44);
-            this.TxtCod.Name = "TxtCod";
-            this.TxtCod.Size = new System.Drawing.Size(140, 22);
-            this.TxtCod.TabIndex = 1;
-            this.TxtCod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCod_KeyDown);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 168);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 16);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Cantidad";
-            // 
-            // NudCant
-            // 
-            this.NudCant.Location = new System.Drawing.Point(12, 187);
-            this.NudCant.Name = "NudCant";
-            this.NudCant.Size = new System.Drawing.Size(83, 22);
-            this.NudCant.TabIndex = 5;
-            // 
-            // BtnAgre
-            // 
-            this.BtnAgre.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgre.Image")));
-            this.BtnAgre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAgre.Location = new System.Drawing.Point(102, 186);
-            this.BtnAgre.Name = "BtnAgre";
-            this.BtnAgre.Size = new System.Drawing.Size(113, 35);
-            this.BtnAgre.TabIndex = 6;
-            this.BtnAgre.Text = "Agregar";
-            this.BtnAgre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnAgre.UseVisualStyleBackColor = true;
-            this.BtnAgre.Click += new System.EventHandler(this.BtnAgre_Click);
+            this.LblDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblDatos.Location = new System.Drawing.Point(12, 69);
+            this.LblDatos.Name = "LblDatos";
+            this.LblDatos.Size = new System.Drawing.Size(322, 99);
+            this.LblDatos.TabIndex = 8;
             // 
             // BtnLimpiar
             // 
@@ -129,13 +91,51 @@
             this.BtnLimpiar.UseVisualStyleBackColor = true;
             this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
-            // LblDatos
+            // BtnAgre
             // 
-            this.LblDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblDatos.Location = new System.Drawing.Point(12, 69);
-            this.LblDatos.Name = "LblDatos";
-            this.LblDatos.Size = new System.Drawing.Size(322, 99);
-            this.LblDatos.TabIndex = 8;
+            this.BtnAgre.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgre.Image")));
+            this.BtnAgre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnAgre.Location = new System.Drawing.Point(102, 186);
+            this.BtnAgre.Name = "BtnAgre";
+            this.BtnAgre.Size = new System.Drawing.Size(113, 35);
+            this.BtnAgre.TabIndex = 6;
+            this.BtnAgre.Text = "Agregar";
+            this.BtnAgre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnAgre.UseVisualStyleBackColor = true;
+            this.BtnAgre.Click += new System.EventHandler(this.BtnAgre_Click);
+            // 
+            // NudCant
+            // 
+            this.NudCant.Location = new System.Drawing.Point(12, 187);
+            this.NudCant.Name = "NudCant";
+            this.NudCant.Size = new System.Drawing.Size(83, 22);
+            this.NudCant.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 168);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 16);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Cantidad";
+            // 
+            // TxtCod
+            // 
+            this.TxtCod.Location = new System.Drawing.Point(12, 44);
+            this.TxtCod.Name = "TxtCod";
+            this.TxtCod.Size = new System.Drawing.Size(140, 22);
+            this.TxtCod.TabIndex = 1;
+            this.TxtCod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCod_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Codigo";
             // 
             // IngresoRapidoProd
             // 
@@ -145,12 +145,13 @@
             this.Controls.Add(this.PanCentral);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "IngresoRapidoProd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ingreso rápido de productos";
+            this.Load += new System.EventHandler(this.IngresoRapidoProd_Load);
             this.PanCentral.ResumeLayout(false);
             this.GbxProd.ResumeLayout(false);
             this.GbxProd.PerformLayout();

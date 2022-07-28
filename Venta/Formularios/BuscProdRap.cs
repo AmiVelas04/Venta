@@ -41,18 +41,9 @@ namespace Venta.Formularios
             Dgv1.Columns[8].Visible = false;
             Dgv1.Columns[7].Visible = false;
             Dgv1.Columns[6].Visible = false;
-            
+                    }
 
-
-
-        }
-
-        private void mostrar()
-        {
-           
-         
-        }
-
+        
         private void ponerdatos() {
             string nom, cod;
             int indice;
