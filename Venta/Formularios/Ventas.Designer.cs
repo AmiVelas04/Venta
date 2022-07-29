@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ventas));
             this.PanData = new System.Windows.Forms.Panel();
             this.Gbx2 = new System.Windows.Forms.GroupBox();
+            this.ChkFree = new System.Windows.Forms.CheckBox();
+            this.TxtFreePri = new System.Windows.Forms.TextBox();
+            this.LblPrecioFree = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.lbldisp = new System.Windows.Forms.Label();
             this.LblPosi = new System.Windows.Forms.Label();
@@ -38,7 +41,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.ChkMay = new System.Windows.Forms.CheckBox();
             this.CboPrecioM = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.LblPrecioM = new System.Windows.Forms.Label();
             this.CboPrecio = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.CboTalla = new System.Windows.Forms.ComboBox();
@@ -49,7 +52,7 @@
             this.CboEstilo = new System.Windows.Forms.ComboBox();
             this.CboTipo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.LblPrecio = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.PicExemp = new System.Windows.Forms.PictureBox();
             this.BtnAgr = new System.Windows.Forms.Button();
@@ -78,6 +81,7 @@
             this.Cancelar = new System.Windows.Forms.Button();
             this.BtnGenVen = new System.Windows.Forms.Button();
             this.PanArriba = new System.Windows.Forms.Panel();
+            this.BtnCharSale = new System.Windows.Forms.Button();
             this.BtnSaveSale = new System.Windows.Forms.Button();
             this.TxtSoli = new System.Windows.Forms.TextBox();
             this.LblSoli = new System.Windows.Forms.Label();
@@ -89,7 +93,6 @@
             this.RdbContado = new System.Windows.Forms.RadioButton();
             this.RdbConce = new System.Windows.Forms.RadioButton();
             this.RdbCredito = new System.Windows.Forms.RadioButton();
-            this.BtnCharSale = new System.Windows.Forms.Button();
             this.PanData.SuspendLayout();
             this.Gbx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicExemp)).BeginInit();
@@ -115,6 +118,9 @@
             // 
             // Gbx2
             // 
+            this.Gbx2.Controls.Add(this.ChkFree);
+            this.Gbx2.Controls.Add(this.TxtFreePri);
+            this.Gbx2.Controls.Add(this.LblPrecioFree);
             this.Gbx2.Controls.Add(this.label15);
             this.Gbx2.Controls.Add(this.lbldisp);
             this.Gbx2.Controls.Add(this.LblPosi);
@@ -122,7 +128,7 @@
             this.Gbx2.Controls.Add(this.label13);
             this.Gbx2.Controls.Add(this.ChkMay);
             this.Gbx2.Controls.Add(this.CboPrecioM);
-            this.Gbx2.Controls.Add(this.label12);
+            this.Gbx2.Controls.Add(this.LblPrecioM);
             this.Gbx2.Controls.Add(this.CboPrecio);
             this.Gbx2.Controls.Add(this.label11);
             this.Gbx2.Controls.Add(this.CboTalla);
@@ -133,7 +139,7 @@
             this.Gbx2.Controls.Add(this.CboEstilo);
             this.Gbx2.Controls.Add(this.CboTipo);
             this.Gbx2.Controls.Add(this.label3);
-            this.Gbx2.Controls.Add(this.label2);
+            this.Gbx2.Controls.Add(this.LblPrecio);
             this.Gbx2.Controls.Add(this.label1);
             this.Gbx2.Controls.Add(this.PicExemp);
             this.Gbx2.Controls.Add(this.BtnAgr);
@@ -148,6 +154,34 @@
             this.Gbx2.TabIndex = 1;
             this.Gbx2.TabStop = false;
             this.Gbx2.Text = "Producto";
+            // 
+            // ChkFree
+            // 
+            this.ChkFree.AutoSize = true;
+            this.ChkFree.Location = new System.Drawing.Point(18, 265);
+            this.ChkFree.Name = "ChkFree";
+            this.ChkFree.Size = new System.Drawing.Size(15, 14);
+            this.ChkFree.TabIndex = 29;
+            this.ChkFree.UseVisualStyleBackColor = true;
+            this.ChkFree.CheckedChanged += new System.EventHandler(this.ChkFree_CheckedChanged);
+            // 
+            // TxtFreePri
+            // 
+            this.TxtFreePri.Enabled = false;
+            this.TxtFreePri.Location = new System.Drawing.Point(14, 290);
+            this.TxtFreePri.Name = "TxtFreePri";
+            this.TxtFreePri.Size = new System.Drawing.Size(103, 23);
+            this.TxtFreePri.TabIndex = 28;
+            this.TxtFreePri.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFreePri_KeyDown);
+            // 
+            // LblPrecioFree
+            // 
+            this.LblPrecioFree.AutoSize = true;
+            this.LblPrecioFree.Location = new System.Drawing.Point(35, 264);
+            this.LblPrecioFree.Name = "LblPrecioFree";
+            this.LblPrecioFree.Size = new System.Drawing.Size(82, 15);
+            this.LblPrecioFree.TabIndex = 27;
+            this.LblPrecioFree.Text = "Precio libre";
             // 
             // label15
             // 
@@ -171,7 +205,7 @@
             // 
             this.LblPosi.AutoSize = true;
             this.LblPosi.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPosi.Location = new System.Drawing.Point(45, 269);
+            this.LblPosi.Location = new System.Drawing.Point(208, 276);
             this.LblPosi.Name = "LblPosi";
             this.LblPosi.Size = new System.Drawing.Size(77, 19);
             this.LblPosi.TabIndex = 24;
@@ -219,14 +253,14 @@
             this.CboPrecioM.Enter += new System.EventHandler(this.CboPrecioM_Enter);
             this.CboPrecioM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CboPrecioM_KeyDown);
             // 
-            // label12
+            // LblPrecioM
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(188, 211);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(119, 15);
-            this.label12.TabIndex = 19;
-            this.label12.Text = "Precio Mayorista";
+            this.LblPrecioM.AutoSize = true;
+            this.LblPrecioM.Location = new System.Drawing.Point(188, 211);
+            this.LblPrecioM.Name = "LblPrecioM";
+            this.LblPrecioM.Size = new System.Drawing.Size(119, 15);
+            this.LblPrecioM.TabIndex = 19;
+            this.LblPrecioM.Text = "Precio Mayorista";
             // 
             // CboPrecio
             // 
@@ -327,15 +361,15 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Cantidad/Disponible";
             // 
-            // label2
+            // LblPrecio
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 211);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 15);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Precio";
+            this.LblPrecio.AutoSize = true;
+            this.LblPrecio.Location = new System.Drawing.Point(20, 211);
+            this.LblPrecio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblPrecio.Name = "LblPrecio";
+            this.LblPrecio.Size = new System.Drawing.Size(48, 15);
+            this.LblPrecio.TabIndex = 7;
+            this.LblPrecio.Text = "Precio";
             // 
             // label1
             // 
@@ -350,7 +384,7 @@
             // PicExemp
             // 
             this.PicExemp.ErrorImage = null;
-            this.PicExemp.Location = new System.Drawing.Point(72, 295);
+            this.PicExemp.Location = new System.Drawing.Point(130, 298);
             this.PicExemp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PicExemp.Name = "PicExemp";
             this.PicExemp.Size = new System.Drawing.Size(203, 125);
@@ -692,6 +726,20 @@
             this.PanArriba.Size = new System.Drawing.Size(774, 100);
             this.PanArriba.TabIndex = 0;
             // 
+            // BtnCharSale
+            // 
+            this.BtnCharSale.Image = ((System.Drawing.Image)(resources.GetObject("BtnCharSale.Image")));
+            this.BtnCharSale.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnCharSale.Location = new System.Drawing.Point(237, 54);
+            this.BtnCharSale.Name = "BtnCharSale";
+            this.BtnCharSale.Size = new System.Drawing.Size(101, 40);
+            this.BtnCharSale.TabIndex = 12;
+            this.BtnCharSale.Text = "Cargar venta";
+            this.BtnCharSale.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnCharSale.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnCharSale.UseVisualStyleBackColor = true;
+            this.BtnCharSale.Click += new System.EventHandler(this.BtnCharSale_Click);
+            // 
             // BtnSaveSale
             // 
             this.BtnSaveSale.Image = ((System.Drawing.Image)(resources.GetObject("BtnSaveSale.Image")));
@@ -831,20 +879,6 @@
             this.RdbCredito.Text = "Credito";
             this.RdbCredito.UseVisualStyleBackColor = true;
             // 
-            // BtnCharSale
-            // 
-            this.BtnCharSale.Image = ((System.Drawing.Image)(resources.GetObject("BtnCharSale.Image")));
-            this.BtnCharSale.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCharSale.Location = new System.Drawing.Point(237, 54);
-            this.BtnCharSale.Name = "BtnCharSale";
-            this.BtnCharSale.Size = new System.Drawing.Size(101, 40);
-            this.BtnCharSale.TabIndex = 12;
-            this.BtnCharSale.Text = "Cargar venta";
-            this.BtnCharSale.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCharSale.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnCharSale.UseVisualStyleBackColor = true;
-            this.BtnCharSale.Click += new System.EventHandler(this.BtnCharSale_Click);
-            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -899,7 +933,7 @@
         private System.Windows.Forms.TextBox TxtTotal;
         private System.Windows.Forms.PictureBox PicExemp;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblPrecio;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -922,7 +956,7 @@
         private System.Windows.Forms.Button BtnUltVent;
         private System.Windows.Forms.ComboBox CboPrecio;
         private System.Windows.Forms.ComboBox CboPrecioM;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label LblPrecioM;
         private System.Windows.Forms.CheckBox ChkMay;
         private System.Windows.Forms.TextBox TxtCod;
         private System.Windows.Forms.Label label13;
@@ -941,5 +975,8 @@
         private System.Windows.Forms.RadioButton Rdcoti;
         private System.Windows.Forms.Button BtnSaveSale;
         private System.Windows.Forms.Button BtnCharSale;
+        private System.Windows.Forms.CheckBox ChkFree;
+        private System.Windows.Forms.TextBox TxtFreePri;
+        private System.Windows.Forms.Label LblPrecioFree;
     }
 }

@@ -35,6 +35,7 @@ namespace Venta.Formularios
                 CboPrecioM.Enabled = true;
                 CboPrecioM.Visible = true;
                 CboPrecioM.Focus();
+                TxtFreePri.Text = CboPrecioM.Text;
             }
             else
             {
@@ -42,6 +43,7 @@ namespace Venta.Formularios
                 CboPrecioM.Enabled = false;
                 CboPrecioM.Visible = false;
                 CboPrecio.Focus();
+                TxtFreePri.Text = CboPrecio.Text;
             }
         }
 
@@ -74,6 +76,7 @@ namespace Venta.Formularios
         private void CboPrecio_SelectionChangeCommitted(object sender, EventArgs e)
         {
             NudCant.Focus();
+            TxtFreePri.Text = CboPrecio.Text;
         }
 
         private void NudCant_KeyDown(object sender, KeyEventArgs e)
@@ -128,6 +131,7 @@ namespace Venta.Formularios
         private void CboPrecioM_SelectionChangeCommitted(object sender, EventArgs e)
         {
             NudCant.Focus();
+            TxtFreePri.Text = CboPrecioM.Text;
         }
 
         private void TxtMonto_KeyDown(object sender, KeyEventArgs e)
@@ -349,11 +353,27 @@ namespace Venta.Formularios
             { CboPrecio.Items.RemoveAt(0); }
             while (CboPrecioM.Items.Count > 0)
             { CboPrecioM.Items.RemoveAt(0); }
+            LblPrecioM.Tag = datos.Rows[0][2].ToString();
+            if (Main.nivel.Equals("1"))
+            {
+                decimal costo = prod.CostoProd(id);
+                if (costo < 0)
+                {
+                    CboPrecioM.Items.Add("0");
+                    LblPrecioM.Tag = costo;
+                }
+                else
+                {
+                    CboPrecioM.Items.Add(costo);
+                }
+            }
             CboPrecioM.Items.Add(datos.Rows[0][2].ToString());
             CboPrecioM.Items.Add(datos.Rows[0][3].ToString());
+            LblPrecio.Tag = datos.Rows[0][6].ToString();
+            TxtFreePri.Text= datos.Rows[0][6].ToString();
             CboPrecio.Items.Add(datos.Rows[0][4].ToString());
             CboPrecio.Items.Add(datos.Rows[0][5].ToString());
-            CboPrecio.Items.Add(datos.Rows[0][6].ToString());
+            CboPrecio.Items.Add(datos.Rows[0][6].ToString()); 
             char[] elim = { 'r', 'R' };
             TxtCod.Text = datos.Rows[0][0].ToString().TrimStart(elim);
             CboPrecioM.SelectedIndex = 1;
@@ -551,16 +571,27 @@ namespace Venta.Formularios
             string tipo = dt.Rows[0][9].ToString();
             string estilo = dt.Rows[0][13].ToString();
             string precio = "0";
-            if (ChkMay.Checked)
-            { precio = CboPrecioM.Text; }
-            else { precio = CboPrecio.Text; }
+            decimal testp=0;
+            /* if (ChkMay.Checked)
+             { precio = CboPrecioM.Text; }
+             else { precio = CboPrecio.Text; }*/
+            if (!decimal.TryParse(TxtFreePri.Text, out testp))
+            {
+                MessageBox.Show("En valor ingresado es invalido", "Valor incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (decimal.Parse(TxtFreePri.Text) < decimal.Parse(LblPrecioM.Tag.ToString()))
+            {
+                MessageBox.Show("El precio es menor al minimo aceptado, porfavor revise el precio", "Precio incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            precio = TxtFreePri.Text;
             string materia = "";
             if (dt.Rows[0][16].ToString() == "True") { materia = "Si"; }
             else { materia = "No"; }
             DgvProd.Rows.Add(dt.Rows[0][0].ToString(), dt.Rows[0][14].ToString(), estilo, tipo, color, CboTalla.Text, NudCant.Value, precio, (decimal.Parse(NudCant.Value.ToString()) * decimal.Parse(precio)), materia);
             total += (decimal.Parse(NudCant.Value.ToString()) * decimal.Parse(precio));
             Tprod += decimal.Parse(NudCant.Value.ToString());
-
             LblTotal.Text = total.ToString();
             LblCantprod.Text = Tprod.ToString();
 
@@ -1162,6 +1193,44 @@ namespace Venta.Formularios
             ListarProdTemp(datos);
            
            
+        }
+
+        private void ChkFree_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkFree.Checked)
+            {
+                if (ChkMay.Checked)
+                {
+                    TxtFreePri.Text = CboPrecioM.Text;
+                }
+                else
+                {
+                    TxtFreePri.Text = CboPrecio.Text;
+                }
+               // ChkMay.Checked = false;
+                TxtFreePri.Enabled = true;
+            }
+            else
+                { TxtFreePri.Enabled = false; }
+        }
+
+        private void TxtFreePri_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                decimal precio, minimo;
+                minimo = decimal.Parse(LblPrecioM.Tag.ToString());
+                if (!decimal.TryParse(TxtFreePri.Text, out precio))
+                {
+                    MessageBox.Show("En valor ingresado es invalido", "Valor incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                if (decimal.Parse(TxtFreePri.Text)<decimal.Parse(LblPrecioM.Tag.ToString())) {
+                    MessageBox.Show("El precio es menor al minimo aceptado, porfavor revise el precio", "Precio incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                NudCant.Focus();
+            }
         }
     }
 }
