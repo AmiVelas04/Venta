@@ -1148,7 +1148,9 @@ namespace Venta.Clases
         {
             Reportes.SalidaPEnc enc = new Reportes.SalidaPEnc();
             int fila, columna,tfila;
+           
             tfila = titulo.Length/4;
+
             for (fila=0;fila<tfila;fila++)
             {
                 Reportes.Etiqueta etiqu = new Reportes.Etiqueta();
@@ -1172,6 +1174,8 @@ namespace Venta.Clases
                 etiqu.precio3 = precio[fila, 2];
                 etiqu.precio4 = precio[fila, 3];
 
+              
+
                 enc.Etiqueta.Add(etiqu);
                                             }
             Reportes.Etiquetas Ventana = new Reportes.Etiquetas();
@@ -1180,6 +1184,68 @@ namespace Venta.Clases
 
 
         }
+
+        public void ImpEtiM(string[,] titulo, string[,] prod, string[,] codigo, string[,] precio,string[,] Manu)
+        {
+            Reportes.SalidaPEnc enc = new Reportes.SalidaPEnc();
+            int fila, columna, tfila;
+
+            tfila = titulo.Length / 4;
+
+            for (fila = 0; fila < tfila; fila++)
+            {
+                Reportes.EtiquetaM etiqu = new Reportes.EtiquetaM();
+                etiqu.titulo1 = titulo[fila, 0];
+                etiqu.titulo2 = titulo[fila, 1];
+                etiqu.titulo3 = titulo[fila, 2];
+                etiqu.titulo4 = titulo[fila, 3];
+
+                etiqu.subtitulo1 = prod[fila, 0];
+                etiqu.subtitulo2 = prod[fila, 1];
+                etiqu.subtitulo3 = prod[fila, 2];
+                etiqu.subtitulo4 = prod[fila, 3];
+
+                etiqu.codigo1 = codigo[fila, 0];
+                etiqu.codigo2 = codigo[fila, 1];
+                etiqu.codigo3 = codigo[fila, 2];
+                etiqu.codigo4 = codigo[fila, 3];
+
+                etiqu.precio1 = precio[fila, 0];
+                etiqu.precio2 = precio[fila, 1];
+                etiqu.precio3 = precio[fila, 2];
+                etiqu.precio4 = precio[fila, 3];
+
+                etiqu.Manu1 = Manu[fila,0];
+                etiqu.Manu2 = Manu[fila, 0];
+                etiqu.Manu3 = Manu[fila, 0];
+                etiqu.Manu4 = Manu[fila, 0];
+
+                enc.EtiquetaM.Add(etiqu);
+            }
+            Reportes.EtiquetasM Ventana = new Reportes.EtiquetasM();
+            Ventana.Etiq = enc.EtiquetaM;
+            Ventana.Show();
+
+
+        }
+
+
+
+        #region Control de inventario
+
+        public bool inv_camb_prods(string id, int cantante, int cantcamb)
+        {
+            int cantactual = cantidadprod(id);
+            int cantreal = cantcamb - (cantante - cantactual);
+            string consulta = "";
+            consulta = "update producto set cantidad=" + cantreal + " where id_prod='"+id+"'";
+            return consulta_gen(consulta);
+          
+
+        }
+
+      
+        #endregion
 
     }
 }

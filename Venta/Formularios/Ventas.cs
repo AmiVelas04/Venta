@@ -359,7 +359,7 @@ namespace Venta.Formularios
                 decimal costo = prod.CostoProd(id);
                 if (costo < 0)
                 {
-                    CboPrecioM.Items.Add("0");
+                    CboPrecioM.Items.Add(datos.Rows[0][1].ToString());
                     LblPrecioM.Tag = costo;
                 }
                 else
@@ -1230,6 +1230,26 @@ namespace Venta.Formularios
                     return;
                 }
                 NudCant.Focus();
+            }
+        }
+
+        private void TxtFreePri_TextChanged(object sender, EventArgs e)
+        {
+           string[] precios= new string[3];
+            CboPrecioM.Items.CopyTo(precios, 0);
+
+            decimal precio;
+            if (decimal.TryParse(TxtFreePri.Text, out precio))
+            {
+                BtnAgr.Enabled = true;
+            }
+             else
+            { BtnAgr.Enabled = false; }
+            if (precio < decimal.Parse(precios[0]))
+            { BtnAgr.Enabled = false; }
+            else
+            {
+                BtnAgr.Enabled = true;
             }
         }
     }

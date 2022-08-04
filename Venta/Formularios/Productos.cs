@@ -166,7 +166,7 @@ namespace Venta.Formularios
                     costo = prod.CostoProd(datos.Rows[0][10].ToString());
                     if (costo == -1)
                     {
-                        TxtPrecio_C.Text = "S/C";
+                        TxtPrecio_C.Text = datos.Rows[0][1].ToString();
                         TxtPrecio_C.Tag = costo;
                     }
                     else
@@ -301,7 +301,13 @@ namespace Venta.Formularios
 
         private void TxtBuscNom_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Return) buscar();
+            if (e.KeyCode == Keys.Return)
+            {
+                buscar();
+                BtnLblPrint.Visible = true;
+                NudEtiqueta.Visible = true;
+            }
+            
 
         }
 
@@ -313,7 +319,7 @@ namespace Venta.Formularios
         private void BtnLblPrint_Click(object sender, EventArgs e)
         {
             if (DgvProd.Rows.Count > 0)
-            { ImprimirEtiquetas(); }
+            { ImprimirEtiquetas(TxtManu.Text); }
 
         }
 
@@ -604,7 +610,6 @@ namespace Venta.Formularios
                         PbxProd.Image = muestra;
                     }
                 }
-
             }
             else { }
         }
@@ -812,8 +817,7 @@ namespace Venta.Formularios
                     }
                 }
             }
-
-            prod.ImpEti(titulo, subtitulo, codigo, precio);
+                        prod.ImpEti(titulo, subtitulo, codigo, precio);
         }
 
         private void BtnTrack_Click(object sender, EventArgs e)
@@ -821,14 +825,14 @@ namespace Venta.Formularios
             tracking();
         }
 
-        private void ImprimirEtiquetas()
+        private void ImprimirEtiquetas(string manu)
         {
             int indice = DgvProd.CurrentRow.Index;
             string cod = DgvProd.Rows[indice].Cells[0].Value.ToString();
             string nombre = DgvProd.Rows[indice].Cells[1].Value.ToString() +" " + DgvProd.Rows[indice].Cells[2].Value.ToString() + " " + DgvProd.Rows[indice].Cells[3].Value.ToString() + " " + DgvProd.Rows[indice].Cells[4].Value.ToString() + " " + DgvProd.Rows[indice].Cells[5].Value.ToString();
             string Ltitulo = "Modas y Artesanias\n Veronica";
             string Lprecio = DgvProd.Rows[indice].Cells[12].Value.ToString();
-           
+            string Manu=manu;
             int cantidad = int.Parse(NudEtiqueta.Value.ToString());
             int canfil = (cantidad - (cantidad % 4)) / 4;
             int cantcolumn,ultcol;
@@ -847,6 +851,7 @@ namespace Venta.Formularios
             string[,] subtitulo = new string[canfil, 4];
             string[,] codigo = new string[canfil, 4];
             string[,] precio = new string[canfil, 4];
+            string[,] Man = new string[canfil, 4];
 
             //iniciar varialbes
             for (fila=0;fila<canfil;fila++)
@@ -857,6 +862,7 @@ namespace Venta.Formularios
                     subtitulo[fila, columna] = "";
                     codigo[fila, columna] = "";
                     precio[fila, columna] = "";
+                    Man[fila, columna] = "";
                 }
             }
 
@@ -872,6 +878,7 @@ namespace Venta.Formularios
                         subtitulo[fila, columna] = nombre;
                         codigo[fila, columna] = cod;
                         precio[fila, columna] = "Q."+Lprecio;
+                        Man[fila, columna] = Manu;
                     }
                 }
                 else
@@ -882,11 +889,12 @@ namespace Venta.Formularios
                         subtitulo[fila, columna] = nombre;
                         codigo[fila, columna] = cod;
                         precio[fila, columna] = "Q." + Lprecio;
+                        Man[fila, columna] = Manu;
                     }
                 }
             }
 
-            prod.ImpEti(titulo,subtitulo,codigo,precio);
+            prod.ImpEtiM(titulo,subtitulo,codigo,precio,Man);
         }
 
         private void tracking()

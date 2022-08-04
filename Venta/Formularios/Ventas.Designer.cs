@@ -172,6 +172,7 @@
             this.TxtFreePri.Name = "TxtFreePri";
             this.TxtFreePri.Size = new System.Drawing.Size(103, 23);
             this.TxtFreePri.TabIndex = 28;
+            this.TxtFreePri.TextChanged += new System.EventHandler(this.TxtFreePri_TextChanged);
             this.TxtFreePri.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtFreePri_KeyDown);
             // 
             // LblPrecioFree

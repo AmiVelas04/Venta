@@ -50,6 +50,7 @@
             this.DtpIni = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.BtnRev = new System.Windows.Forms.Button();
             this.PanIz.SuspendLayout();
             this.GbxProd.SuspendLayout();
             this.GbxFaltantes.SuspendLayout();
@@ -69,6 +70,7 @@
             // 
             // GbxProd
             // 
+            this.GbxProd.Controls.Add(this.BtnRev);
             this.GbxProd.Controls.Add(this.GbxFaltantes);
             this.GbxProd.Controls.Add(this.BtnInventario);
             this.GbxProd.Controls.Add(this.label1);
@@ -137,7 +139,7 @@
             // 
             // BtnInventario
             // 
-            this.BtnInventario.Location = new System.Drawing.Point(205, 60);
+            this.BtnInventario.Location = new System.Drawing.Point(23, 75);
             this.BtnInventario.Name = "BtnInventario";
             this.BtnInventario.Size = new System.Drawing.Size(126, 50);
             this.BtnInventario.TabIndex = 1;
@@ -279,6 +281,16 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Fecha de inicio";
             // 
+            // BtnRev
+            // 
+            this.BtnRev.Location = new System.Drawing.Point(366, 75);
+            this.BtnRev.Name = "BtnRev";
+            this.BtnRev.Size = new System.Drawing.Size(126, 50);
+            this.BtnRev.TabIndex = 3;
+            this.BtnRev.Text = "Revisar inventario";
+            this.BtnRev.UseVisualStyleBackColor = true;
+            this.BtnRev.Click += new System.EventHandler(this.BtnRev_Click);
+            // 
             // Reportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -329,5 +341,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnRepCredi;
+        private System.Windows.Forms.Button BtnRev;
     }
 }

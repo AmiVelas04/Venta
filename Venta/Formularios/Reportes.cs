@@ -104,5 +104,11 @@ namespace Venta.Formularios
                 BtnGanacias.Visible = true;
             }
         }
+
+        private void BtnRev_Click(object sender, EventArgs e)
+        {
+            SubForms.InvProd revis = new SubForms.InvProd();
+            revis.Show();
+        }
     }
 }

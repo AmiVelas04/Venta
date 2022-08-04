@@ -17,5 +17,6 @@ namespace Venta.Reportes
 
         public List<SalidaPdet> Detalle = new List<SalidaPdet>();
         public List<Etiqueta> Etiqueta = new List<Reportes.Etiqueta>();
+        public List<EtiquetaM> EtiquetaM = new List<EtiquetaM>();
     }
 }

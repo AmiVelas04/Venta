@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Productos));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnAddCosto = new System.Windows.Forms.Button();
             this.ChkCantCamb = new System.Windows.Forms.CheckBox();
             this.TxtUltimoIng = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -76,6 +77,8 @@
             this.LblNomProd = new System.Windows.Forms.Label();
             this.TxtProdNom = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.TxtManu = new System.Windows.Forms.TextBox();
             this.BtnTrack = new System.Windows.Forms.Button();
             this.NudEtiqueta = new System.Windows.Forms.NumericUpDown();
             this.BtnLblPrint = new System.Windows.Forms.Button();
@@ -92,7 +95,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.DgvProd = new System.Windows.Forms.DataGridView();
             this.OFD1 = new System.Windows.Forms.OpenFileDialog();
-            this.BtnAddCosto = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudIngreso)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -157,6 +159,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(408, 590);
             this.panel1.TabIndex = 0;
+            // 
+            // BtnAddCosto
+            // 
+            this.BtnAddCosto.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddCosto.Image")));
+            this.BtnAddCosto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnAddCosto.Location = new System.Drawing.Point(321, 166);
+            this.BtnAddCosto.Name = "BtnAddCosto";
+            this.BtnAddCosto.Size = new System.Drawing.Size(75, 44);
+            this.BtnAddCosto.TabIndex = 42;
+            this.BtnAddCosto.Text = "Costo +";
+            this.BtnAddCosto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnAddCosto.UseVisualStyleBackColor = true;
+            this.BtnAddCosto.Click += new System.EventHandler(this.BtnAddCosto_Click);
             // 
             // ChkCantCamb
             // 
@@ -436,7 +451,6 @@
             // 
             // TxtPrecio_C
             // 
-            this.TxtPrecio_C.Enabled = false;
             this.TxtPrecio_C.Location = new System.Drawing.Point(210, 186);
             this.TxtPrecio_C.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TxtPrecio_C.Name = "TxtPrecio_C";
@@ -627,6 +641,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.TxtManu);
             this.panel2.Controls.Add(this.BtnTrack);
             this.panel2.Controls.Add(this.NudEtiqueta);
             this.panel2.Controls.Add(this.BtnLblPrint);
@@ -640,11 +656,27 @@
             this.panel2.Size = new System.Drawing.Size(722, 72);
             this.panel2.TabIndex = 1;
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(321, 17);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(91, 15);
+            this.label18.TabIndex = 7;
+            this.label18.Text = "Manufacturó";
+            // 
+            // TxtManu
+            // 
+            this.TxtManu.Location = new System.Drawing.Point(322, 39);
+            this.TxtManu.Name = "TxtManu";
+            this.TxtManu.Size = new System.Drawing.Size(151, 23);
+            this.TxtManu.TabIndex = 6;
+            // 
             // BtnTrack
             // 
             this.BtnTrack.Image = ((System.Drawing.Image)(resources.GetObject("BtnTrack.Image")));
             this.BtnTrack.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnTrack.Location = new System.Drawing.Point(465, 18);
+            this.BtnTrack.Location = new System.Drawing.Point(496, 17);
             this.BtnTrack.Name = "BtnTrack";
             this.BtnTrack.Size = new System.Drawing.Size(100, 45);
             this.BtnTrack.TabIndex = 5;
@@ -655,7 +687,7 @@
             // 
             // NudEtiqueta
             // 
-            this.NudEtiqueta.Location = new System.Drawing.Point(379, 30);
+            this.NudEtiqueta.Location = new System.Drawing.Point(418, 15);
             this.NudEtiqueta.Maximum = new decimal(new int[] {
             36000,
             0,
@@ -680,9 +712,9 @@
             // 
             this.BtnLblPrint.Image = ((System.Drawing.Image)(resources.GetObject("BtnLblPrint.Image")));
             this.BtnLblPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnLblPrint.Location = new System.Drawing.Point(260, 18);
+            this.BtnLblPrint.Location = new System.Drawing.Point(210, 18);
             this.BtnLblPrint.Name = "BtnLblPrint";
-            this.BtnLblPrint.Size = new System.Drawing.Size(110, 45);
+            this.BtnLblPrint.Size = new System.Drawing.Size(105, 45);
             this.BtnLblPrint.TabIndex = 3;
             this.BtnLblPrint.Text = "Imprimir etiquetas";
             this.BtnLblPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -694,7 +726,7 @@
             // 
             this.BtnModif.Image = ((System.Drawing.Image)(resources.GetObject("BtnModif.Image")));
             this.BtnModif.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnModif.Location = new System.Drawing.Point(123, 18);
+            this.BtnModif.Location = new System.Drawing.Point(99, 18);
             this.BtnModif.Name = "BtnModif";
             this.BtnModif.Size = new System.Drawing.Size(105, 45);
             this.BtnModif.TabIndex = 2;
@@ -707,9 +739,9 @@
             // 
             this.BtnNvo.Image = ((System.Drawing.Image)(resources.GetObject("BtnNvo.Image")));
             this.BtnNvo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnNvo.Location = new System.Drawing.Point(620, 18);
+            this.BtnNvo.Location = new System.Drawing.Point(651, 18);
             this.BtnNvo.Name = "BtnNvo";
-            this.BtnNvo.Size = new System.Drawing.Size(95, 45);
+            this.BtnNvo.Size = new System.Drawing.Size(64, 45);
             this.BtnNvo.TabIndex = 1;
             this.BtnNvo.Text = "Nuevo";
             this.BtnNvo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -723,7 +755,7 @@
             this.BtnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnEditar.Location = new System.Drawing.Point(12, 18);
             this.BtnEditar.Name = "BtnEditar";
-            this.BtnEditar.Size = new System.Drawing.Size(90, 45);
+            this.BtnEditar.Size = new System.Drawing.Size(81, 45);
             this.BtnEditar.TabIndex = 0;
             this.BtnEditar.Text = "Editar";
             this.BtnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -841,19 +873,6 @@
             // 
             this.OFD1.FileName = "Seleccionar imagen";
             // 
-            // BtnAddCosto
-            // 
-            this.BtnAddCosto.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddCosto.Image")));
-            this.BtnAddCosto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.BtnAddCosto.Location = new System.Drawing.Point(321, 166);
-            this.BtnAddCosto.Name = "BtnAddCosto";
-            this.BtnAddCosto.Size = new System.Drawing.Size(75, 44);
-            this.BtnAddCosto.TabIndex = 42;
-            this.BtnAddCosto.Text = "Costo +";
-            this.BtnAddCosto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnAddCosto.UseVisualStyleBackColor = true;
-            this.BtnAddCosto.Click += new System.EventHandler(this.BtnAddCosto_Click);
-            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -878,6 +897,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PbxProd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudEtiqueta)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -954,5 +974,7 @@
         private System.Windows.Forms.CheckBox ChkCantCamb;
         private System.Windows.Forms.Button BtnTrack;
         private System.Windows.Forms.Button BtnAddCosto;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox TxtManu;
     }
 }
