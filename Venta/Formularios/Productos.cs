@@ -652,6 +652,7 @@ namespace Venta.Formularios
                 try
                 {
                     // using (var stream = File.Open(@".\imagen\" + imag, FileMode.Open))
+                   // MessageBox.Show(rutaimg1);
                     using (var stream = File.Open(rutaimg1 + imag, FileMode.Open))
                     {
                         Bitmap archivo = new Bitmap(stream);

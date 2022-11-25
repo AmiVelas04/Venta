@@ -298,8 +298,15 @@ namespace Venta.Formularios
 
         private void BtnSaveSale_Click(object sender, EventArgs e)
         {
-
-            listarProdSave();
+            if (DgvProd.Rows.Count <= 0)
+            {
+                MessageBox.Show("No se encontraron productos para guardar provisionalmente","Sin productos",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                listarProdSave();
+            }
+            
         }
 
         private void ChkNvoCli_CheckStateChanged(object sender, EventArgs e)
