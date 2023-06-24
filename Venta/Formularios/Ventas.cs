@@ -371,7 +371,7 @@ namespace Venta.Formularios
                 }
                 else
                 {
-                    CboPrecioM.Items.Add(costo);
+                    CboPrecioM.Items.Add(costo.ToString());
                 }
             }
             CboPrecioM.Items.Add(datos.Rows[0][2].ToString());
@@ -1242,8 +1242,9 @@ namespace Venta.Formularios
 
         private void TxtFreePri_TextChanged(object sender, EventArgs e)
         {
-           string[] precios= new string[3];
-            CboPrecioM.Items.CopyTo(precios, 0);
+           int cant = CboPrecioM.Items.Count;
+           string[] precios= new string[cant];
+           CboPrecioM.Items.CopyTo(precios, 0);
 
             decimal precio;
             if (decimal.TryParse(TxtFreePri.Text, out precio))
@@ -1252,6 +1253,7 @@ namespace Venta.Formularios
             }
              else
             { BtnAgr.Enabled = false; }
+
             if (precio < decimal.Parse(precios[0]))
             { BtnAgr.Enabled = false; }
             else

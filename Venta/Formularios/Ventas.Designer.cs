@@ -736,7 +736,6 @@
             this.BtnCharSale.Size = new System.Drawing.Size(101, 40);
             this.BtnCharSale.TabIndex = 12;
             this.BtnCharSale.Text = "Cargar venta";
-            this.BtnCharSale.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnCharSale.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnCharSale.UseVisualStyleBackColor = true;
             this.BtnCharSale.Click += new System.EventHandler(this.BtnCharSale_Click);
@@ -750,7 +749,6 @@
             this.BtnSaveSale.Size = new System.Drawing.Size(101, 40);
             this.BtnSaveSale.TabIndex = 11;
             this.BtnSaveSale.Text = "Guardar venta";
-            this.BtnSaveSale.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnSaveSale.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnSaveSale.UseVisualStyleBackColor = true;
             this.BtnSaveSale.Click += new System.EventHandler(this.BtnSaveSale_Click);

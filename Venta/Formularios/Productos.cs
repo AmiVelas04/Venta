@@ -47,13 +47,13 @@ namespace Venta.Formularios
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
 
-          if (TxtCod.Text == "")
+            if (TxtCod.Text == "")
             {
                 MessageBox.Show("¡No se ha ingresado el codigo del producto, porfavor ingrese un codigo valido!", "No codigo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-               
+
                 string cod;
                 cod = TxtCod.Text;
                 cod = "R" + cod;
@@ -63,12 +63,13 @@ namespace Venta.Formularios
                 }
                 else
                 {
-                 guardar();
-                limpiar();
+                    guardar();
+                    limpiar();
                 }
-           // }
+                // }
 
-            
+
+            }
         }
 
         private void TxtProdNom_TextChanged(object sender, EventArgs e)
