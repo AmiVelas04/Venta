@@ -628,9 +628,9 @@ namespace Venta.Formularios
                 LblCantprod.Text = produc.ToString();
             }
         }
-
         private void venta()
         {
+            string ventTemp = LblVtemp.Text;
             if (RdbContado.Checked)
             {
                 if ((decimal.Parse(LblTotal.Text) > decimal.Parse(TxtMonto.Text)))
@@ -641,7 +641,6 @@ namespace Venta.Formularios
                     /*  decimal cambio;
                       cambio = decimal.Parse(TxtMonto.Text) - decimal.Parse(LblTotal.Text);
                       MessageBox.Show("Cambio: Q." + cambio.ToString());*/
-
                 }
                 if (TxtMonto.Text == "") TxtMonto.Text = "0";
                 pago();
@@ -649,7 +648,6 @@ namespace Venta.Formularios
             else if (RdbCredito.Checked)
             {
                 if (TxtMonto.Text == "") TxtMonto.Text = "0";
-
                 pago();
             }
             else if (RdbConce.Checked)
@@ -666,6 +664,17 @@ namespace Venta.Formularios
             else if (Rdcoti.Checked)
             {
                 cotiza();
+            }
+            if (ventTemp.Equals("0"))
+            { }
+            else
+            { if (vent.Liberar(ventTemp) && vent.ElimDeta(ventTemp))
+                { MessageBox.Show("El listado de la venta temporal ha sido limpiado", "venta temporal liberada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LblVtemp.Text = "0";
+                }
+
+                else
+                { MessageBox.Show("El listado de la venta temporal no ha podido ser limpiado", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
         }
 
@@ -1198,8 +1207,7 @@ namespace Venta.Formularios
             datos= vent.BuscaProdTemp(venta);
             LimpiarDatos();
             ListarProdTemp(datos);
-           
-           
+            LblVtemp.Text = venta;
         }
 
         private void ChkFree_CheckedChanged(object sender, EventArgs e)

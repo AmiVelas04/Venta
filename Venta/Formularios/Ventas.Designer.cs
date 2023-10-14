@@ -93,6 +93,7 @@
             this.RdbContado = new System.Windows.Forms.RadioButton();
             this.RdbConce = new System.Windows.Forms.RadioButton();
             this.RdbCredito = new System.Windows.Forms.RadioButton();
+            this.LblVtemp = new System.Windows.Forms.Label();
             this.PanData.SuspendLayout();
             this.Gbx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicExemp)).BeginInit();
@@ -714,6 +715,7 @@
             // 
             // PanArriba
             // 
+            this.PanArriba.Controls.Add(this.LblVtemp);
             this.PanArriba.Controls.Add(this.BtnCharSale);
             this.PanArriba.Controls.Add(this.BtnSaveSale);
             this.PanArriba.Controls.Add(this.TxtSoli);
@@ -878,6 +880,16 @@
             this.RdbCredito.Text = "Credito";
             this.RdbCredito.UseVisualStyleBackColor = true;
             // 
+            // LblVtemp
+            // 
+            this.LblVtemp.AutoSize = true;
+            this.LblVtemp.Location = new System.Drawing.Point(365, 69);
+            this.LblVtemp.Name = "LblVtemp";
+            this.LblVtemp.Size = new System.Drawing.Size(14, 15);
+            this.LblVtemp.TabIndex = 13;
+            this.LblVtemp.Text = "0";
+            this.LblVtemp.Visible = false;
+            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -977,5 +989,6 @@
         private System.Windows.Forms.CheckBox ChkFree;
         private System.Windows.Forms.TextBox TxtFreePri;
         private System.Windows.Forms.Label LblPrecioFree;
+        private System.Windows.Forms.Label LblVtemp;
     }
 }

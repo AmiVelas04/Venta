@@ -53,19 +53,19 @@ namespace Venta.Formularios
             }
             else
             {
+                guardar();
+                limpiar();
+                /* string cod;
+                 cod = TxtCod.Text;
+                 cod = "R" + cod;
+                 if (prod.hayprod(cod))
+                 {
+                     MessageBox.Show("¡El codigo ingresado ya existe dentro del registro de productos, intente de nuevo!", "Codigo existente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                 }
+                 else
+                 {
 
-                string cod;
-                cod = TxtCod.Text;
-                cod = "R" + cod;
-                if (prod.hayprod(cod))
-                {
-                    MessageBox.Show("¡El codigo ingresado ya existe dentro del registro de productos, intente de nuevo!", "Codigo existente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
-                    guardar();
-                    limpiar();
-                }
+                 }*/
                 // }
 
 
