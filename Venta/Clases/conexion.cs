@@ -16,10 +16,10 @@ namespace Venta.Clases
         //string cadena_conn = "server=localhost;  database=bdtipicos; user id=Tipicos; password=Venta_2020_Sis;  allow zero Datetime= true";
 
         //Produccion
-        //string cadena_conn = "server=localhost;  database=bdtipicos; user id=root; password=Ami_1532;  allow zero Datetime= true";
+        string cadena_conn = "server=localhost;  database=bdtipicos; user id=root; password=Ami_1532;  allow zero Datetime= true";
 
         //Cliente en red
-        string cadena_conn = "server=192.168.0.100;  database=bdtipicos; user id=ClienteRed; password=Ventas_Tip_Red;  allow zero Datetime= true";
+        //string cadena_conn = "server=192.168.0.100;  database=bdtipicos; user id=ClienteRed; password=Ventas_Tip_Red;  allow zero Datetime= true";
 
         public MySqlConnection conn = new MySqlConnection();
         public void iniciar()
